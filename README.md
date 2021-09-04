@@ -32,36 +32,58 @@ control (as I did), then feel free to explore this project :)
 
 \todo
 
-For now, see **Building from Source**.
+For now, see [Building from Source](#building-from-source) below.
 
-## Use
+## Usage
 
-\todo
-
-Something like:
-
-Set the following options in your [Doxygen] configuration:
+Update your [Doxygen] configuration file to enable XML output:
 
 ```
 GENERATE_XML           = YES
-XML_OUTPUT             = <path-to-xml>
-XML_PROGRAMLISTING     = YES # \todo Do we recomment/require this?
-XML_NS_MEMB_FILE_SCOPE = NO  # \todo Do we recommend/require/forbid this?
+XML_OUTPUT             = <path-to-xml> # Optional; defaults to xml.
+XML_PROGRAMLISTING     = YES # Optional; set to YES to include source code in the documentation.
+XML_NS_MEMB_FILE_SCOPE = YES # Optional; set to YES to include namespace documentation, if any.
 ```
 
 Generate the documentation:
 
 ```sh
 doxygen [configname]
-doxlee --input-dir <path-to-XML-> --output-dir <path-to-html> --templates-dir <path-to-templates>
+doxlee -i <path-to-XML-> --o <path-to-html> -t <path-to-templates>
 ```
 
-## [Building from Source](build-ing-fromsosurce)
+There are some other basic options too. Use `--help` to see them.
 
-\todo
+```
+Options:
+  -i, --input-dir <dir>        Read Doyxgen XML files from dir
+  -t, --templates-dir <dir>    Read Grantlee templates from dir
+  -o, --output-dir <dir>       Write output files to dir
+  -d, --debug                  Enable debug output
+  --color <yes|no|auto>        Color the console output (default auto)
+  --overwrite <yes|no|prompt>  Overwrite existing files (default prompt)
+  -f, --force                  Same as --overwrite=yes but also skip initial
+                               prompt
+  -h, --help                   Displays help on commandline options.
+  --help-all                   Displays help including Qt specific options.
+  -v, --version                Displays version information.
 
-[QDoc]:             https://doc.qt.io/qt-6/01-qdoc-manual.html "Introduction to QDoc"
+```
+
+## Building from Source
+
+Typical [CMake]-based out-of-source build process:
+
+~~~{.sh}
+cmake -E make_directory <tmp-build-dir>
+cmake -D CMAKE_BUILD_TYPE=Release -S <path-to-cloned-repo> -B <tmp-build-dir>
+cmake --build <tmp-build-dir>
+ctest --test-dir <tmp-build-dir> --verbose
+~~~
+
+[CMake]:            https://cmake.org/ "CMake"
 [Doxygen]:          https://www.doxygen.nl/ "Doxygen"
 [Doxygen Awesome]:  https://jothepro.github.io/doxygen-awesome-css/ "Doxygen Awesome"
 [Grantlee]:         https://github.com/steveire/grantlee "The Grantlee Libraries"
+[QDoc]:             https://doc.qt.io/qt-6/01-qdoc-manual.html "Introduction to QDoc"
 [Qt documentation]: https://doc.qt.io/qt-6/index.html "Qt Documentation"
