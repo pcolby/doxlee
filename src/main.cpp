@@ -100,16 +100,22 @@ int main(int argc, char *argv[])
     parser.process(app);
     configureLogging(parser);
 
-    bool anyMissingOptions = false;
-    for (const QString &optionName: QStringList
-        { QLatin1String("input-dir"), QLatin1String("output-dir"), QLatin1String("templates-dir") }) {
-        if (!parser.isSet(optionName)) {
-            qWarning().noquote() << QCoreApplication::translate("main", "Missing required option: %1").arg(optionName);
-            anyMissingOptions = true;
-        }
+    // Check for any missing (but required) command line options.
+    QStringList missingOptions {
+        QLatin1String("input-dir"),
+        QLatin1String("output-dir"),
+        QLatin1String("templates-dir"),
+    };
+    for (auto iter = missingOptions.begin(); iter != missingOptions.end();) {
+        if (parser.isSet(*iter)) iter=missingOptions.erase(iter); else ++iter;
     }
-    if (anyMissingOptions) return 2;
+    if (!missingOptions.empty()) {
+        qWarning().noquote() << QCoreApplication::translate("main", "Missing required option(s): %1")
+            .arg(missingOptions.join(QLatin1Char(' ')));
+        return 2;
+    }
 
+    // Translate the --overwrite option's value (if any) to a Renderer::ClobberMode value.
     Renderer::ClobberMode clobberMode = Renderer::Prompt;
     if (parser.isSet(QStringLiteral("force"))) {
         clobberMode = Renderer::Overwrite;
@@ -120,7 +126,7 @@ int main(int argc, char *argv[])
         else if (overwrite == QStringLiteral("prompt")) clobberMode = Renderer::Prompt;
         else {
             qWarning().noquote() << QCoreApplication::translate("main",
-                "Invalid argument to open --overwrite: %1").arg(overwrite);
+                "Invalid argument to option --overwrite: %1").arg(overwrite);
             return 2;
         }
     }
