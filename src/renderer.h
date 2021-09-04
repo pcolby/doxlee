@@ -19,6 +19,7 @@
 
 #include <grantlee/engine.h>
 #include <QDir>
+#include <QVariantList>
 
 class Renderer {
 
@@ -36,6 +37,7 @@ public:
     int outputFileCount() const;
 
 protected:
+    bool parseIndexXml(const QString &fileName, Grantlee::Context &context);
 
 private:
     const QDir inputDir, templatesDir, outputDir;

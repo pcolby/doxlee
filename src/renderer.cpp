@@ -60,14 +60,13 @@ Renderer::Renderer(QDir inputDir, QDir templatesDir, const QDir &outputDir, cons
 
 bool Renderer::render()
 {
-    QFile index(inputDir.absoluteFilePath(QSL("index.xml")));
-    if (!index.open(QIODevice::ReadOnly|QIODevice::Text)) {
-        qWarning().noquote() << QTR("Error opening index file for reading: %1").arg(index.fileName());
-        return false;
-    }
-
     Grantlee::Context context;
     context.insert(QSL("doxleeVersion"), QStringLiteral(CMAKE_PROJECT_VERSION));
+
+    if (!parseIndexXml(inputDir.absoluteFilePath(QSL("index.xml")), context)) {
+            return false;
+    }
+
 
     // Parse index.xml
 
@@ -81,6 +80,44 @@ int Renderer::outputFileCount() const
 {
     return 0; ///< \todo
 }
+
+bool Renderer::parseIndexXml(const QString &fileName, Grantlee::Context &context)
+{
+    // Open the file for reading.
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly|QIODevice::Text)) {
+        qWarning().noquote() << QTR("Error opening file for reading: %1").arg(fileName);
+        return false;
+    }
+
+    // Parse the opening <doxygenindex> element.
+    QXmlStreamReader xml(&file);
+    if (!xml.readNextStartElement()) {
+        qWarning().noquote() << QTR("Invalid XML file: %1 - %2").arg(fileName, xml.errorString());
+        return false;
+    }
+    qDebug() << xml.name() << "version" << xml.attributes().value(QSL("version"))
+             << xml.attributes().value(QSL("xml:lang")).toString();
+    if (xml.name() != QSL("doxygenindex")) {
+        qWarning().noquote() << QTR("File is not a Doxygen XML index: %1 - %2").arg(fileName, xml.name());
+        return false;
+    }
+    context.insert(QSL("doxygenVersion"), xml.attributes().value(QSL("version")).toString());
+    context.insert(QSL("doxygenLanguage"), xml.attributes().value(QSL("xml:lang")).toString());
+
+    // Parse the contained <compound> elements.
+    while ((!xml.atEnd()) && (xml.readNextStartElement())) {
+        if (xml.name() == QSL("compound")) {
+            // parse compound.
+            qDebug() << xml.name();
+        } else {
+            qWarning().noquote() << QTR("Skipping unknown element: <%1>").arg(xml.name());
+            xml.skipCurrentElement();
+        }
+    }
+    return false; ///< \todo
+}
+
 
 /// Grantlee output stream that does *no* content escaping.
 class NoEscapeStream : public Grantlee::OutputStream {
