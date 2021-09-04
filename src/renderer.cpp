@@ -60,6 +60,7 @@ bool Renderer::render()
     context.insert(QSL("doxleeVersion"), QStringLiteral(CMAKE_PROJECT_VERSION));
 
     /// \todo
+    Q_UNUSED(clobber);
 
     return true;
 }
