@@ -19,13 +19,17 @@
 
 #include "renderer.h"
 
+#include <grantlee/templateloader.h>
 #include <QCoreApplication>
 #include <QDebug>
 #include <QDirIterator>
+#include <QXmlStreamReader>
 
-#include <grantlee/templateloader.h>
+/// Shorten the QStringLiteral macro for readability.
+#define QSL(str) QStringLiteral(str)
 
-#define QSL(str) QStringLiteral(str) // Shorten the QStringLiteral macro for readability.
+/// Shorten QCoreApplication::translate calls for readability.
+#define QTR(str) QCoreApplication::translate("Renderer", str)
 
 Renderer::Renderer(QDir inputDir, QDir templatesDir, const QDir &outputDir, const ClobberMode clobber)
     : inputDir(inputDir), templatesDir(templatesDir), outputDir(outputDir), clobber(clobber)
@@ -39,25 +43,33 @@ Renderer::Renderer(QDir inputDir, QDir templatesDir, const QDir &outputDir, cons
     engine.addTemplateLoader(loader);
     engine.setSmartTrimEnabled(true);
 
-    templatesDir.setFilter(QDir::Files|QDir::Readable);
-    QDirIterator dir(templatesDir, QDirIterator::Subdirectories);
-    while (dir.hasNext()) {
-        const QString name = dir.next().mid(dir.path().size()+1);
-        qInfo().noquote() << QCoreApplication::translate("Renderer", "Loading template: %1").arg(name);
-        const auto tmplate = engine.loadByName(name);
-        if (tmplate->error()) {
-            qWarning().noquote() << QCoreApplication::translate("Renderer",
-                "Error loading template: %1 - %2").arg(name, tmplate->errorString());
-            continue;
-        }
-        //templates.insert(name, tmplate);
-    }
+    /// \todo We probably don't need to iteratively load these up-front.
+//    templatesDir.setFilter(QDir::Files|QDir::Readable);
+//    QDirIterator dir(templatesDir, QDirIterator::Subdirectories);
+//    while (dir.hasNext()) {
+//        const QString name = dir.next().mid(dir.path().size()+1);
+//        qInfo().noquote() << QTR("Loading template: %1").arg(name);
+//        const auto tmplate = engine.loadByName(name);
+//        if (tmplate->error()) {
+//            qWarning().noquote() << QTR("Error loading template: %1 - %2").arg(name, tmplate->errorString());
+//            continue;
+//        }
+//        //templates.insert(name, tmplate);
+//    }
 }
 
 bool Renderer::render()
 {
+    QFile index(inputDir.absoluteFilePath(QSL("index.xml")));
+    if (!index.open(QIODevice::ReadOnly|QIODevice::Text)) {
+        qWarning().noquote() << QTR("Error opening index file for reading: %1").arg(index.fileName());
+        return false;
+    }
+
     Grantlee::Context context;
     context.insert(QSL("doxleeVersion"), QStringLiteral(CMAKE_PROJECT_VERSION));
+
+    // Parse index.xml
 
     /// \todo
     Q_UNUSED(clobber);

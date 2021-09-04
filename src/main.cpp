@@ -165,6 +165,6 @@ int main(int argc, char *argv[])
         return 3;
     }
     qInfo().noquote() << QCoreApplication::translate("main",
-        "Rendered %n file(s) in %2").arg(renderer.outputFileCount()).arg(outputDir.absoluteFilePath());
+        "Rendered %1 file(s) in %2").arg(renderer.outputFileCount()).arg(outputDir.absoluteFilePath());
     return 0;
 }

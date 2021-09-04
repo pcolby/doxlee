@@ -17,10 +17,8 @@
     along with doxlee.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <QDir>
-#include <QJsonObject>
-
 #include <grantlee/engine.h>
+#include <QDir>
 
 class Renderer {
 
