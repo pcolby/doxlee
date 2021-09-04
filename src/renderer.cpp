@@ -43,19 +43,7 @@ Renderer::Renderer(QDir inputDir, QDir templatesDir, const QDir &outputDir, cons
     engine.addTemplateLoader(loader);
     engine.setSmartTrimEnabled(true);
 
-    /// \todo We probably don't need to iteratively load these up-front.
-//    templatesDir.setFilter(QDir::Files|QDir::Readable);
-//    QDirIterator dir(templatesDir, QDirIterator::Subdirectories);
-//    while (dir.hasNext()) {
-//        const QString name = dir.next().mid(dir.path().size()+1);
-//        qInfo().noquote() << QTR("Loading template: %1").arg(name);
-//        const auto tmplate = engine.loadByName(name);
-//        if (tmplate->error()) {
-//            qWarning().noquote() << QTR("Error loading template: %1 - %2").arg(name, tmplate->errorString());
-//            continue;
-//        }
-//        //templates.insert(name, tmplate);
-//    }
+    templatesDir.setFilter(QDir::Files|QDir::Readable);
 }
 
 bool Renderer::render()
@@ -69,12 +57,8 @@ bool Renderer::render()
     // Supplement the compounds index data (from parseIndex) with additional views of the same data.
     if (!supplementIndexes(context)) return false;
 
-    /// \todo Render templates for each compound, and index.
-
-    /// \todo
-    Q_UNUSED(clobber);
-
-    return true;
+    // Render all templates to output files.
+    return renderAll(context);
 }
 
 int Renderer::outputFileCount() const
@@ -195,6 +179,30 @@ bool Renderer::supplementIndexes(Grantlee::Context &context)
     context.insert(QSL("compoundsByRefId"), compoundsByRefId);
     context.insert(QSL("membersByKind"   ), toVariantMap(membersByKind));
     context.insert(QSL("membersByRefId"  ), membersByRefId);
+    return true;
+}
+
+bool Renderer::renderAll(Grantlee::Context &context)
+{
+    // Iterate through all templates.
+    QDirIterator dir(templatesDir, QDirIterator::Subdirectories);
+    while (dir.hasNext()) {
+        // Load the template.
+        const QString name = dir.next().mid(dir.path().size()+1);
+        qDebug().noquote() << QTR("Loading template: %1").arg(name);
+        const Grantlee::Template tmplate = engine.loadByName(name);
+        if (tmplate->error()) {
+            qWarning().noquote() << QTR("Error loading template: %1 - %2").arg(name, tmplate->errorString());
+            continue;
+        }
+
+        // Extract the "kind" that this template renders.
+
+        // Render template once for every instance of "kind" we have.
+    }
+
+    Q_UNUSED(clobber);
+    Q_UNUSED(context);
     return true;
 }
 
