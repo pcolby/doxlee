@@ -1,5 +1,11 @@
 # doxlee
 
+[![Build Status](https://github.com/pcolby/doxlee/actions/workflows/build.yaml/badge.svg)](https://github.com/pcolby/doxlee/actions/workflows/build.yaml)
+[![Static Analysis](https://github.com/pcolby/doxlee/actions/workflows/static.yaml/badge.svg)](https://github.com/pcolby/doxlee/actions/workflows/static.yaml)
+[![Coverage Status](https://img.shields.io/coveralls/github/pcolby/doxlee?label=Coverage)](https://coveralls.io/github/pcolby/doxlee)
+[![GitHub Release](https://img.shields.io/github/v/release/pcolby/doxlee?include_prereleases&label=Release)](https://github.com/pcolby/doxlee/releases/latest)
+[![GPLv3 License](https://img.shields.io/badge/License-GPLv3-informational.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
+
 Doxlee renders source code documentation by applying [Grantlee] templates to [Doxygen]'s XML output.
 
     ┌───┐            ┌───┐           ┌────┐
