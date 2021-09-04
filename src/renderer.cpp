@@ -66,7 +66,8 @@ bool Renderer::render()
     // Parse the XMLl index.
     if (!parseIndex(inputDir.absoluteFilePath(QSL("index.xml")), context)) return false;
 
-    /// \todo Generate some alternative index views? eg lists by kind? sorted views?
+    // Supplement the compounds index data (from parseIndex) with additional views of the same data.
+    if (!supplementIndexes(context)) return false;
 
     /// \todo Render templates for each compound, and index.
 
@@ -133,6 +134,7 @@ bool Renderer::parseIndex(const QString &fileName, Grantlee::Context &context)
                     }
                     member.insert(QSL("name"), xml.readElementText());
                     //qDebug() << __func__ << "member" << member;
+                    members.append(member);
                     xml.skipCurrentElement();
                 } else {
                     qWarning().noquote() << QTR("xSkipping unknown <%1> element at %2:%3:%4")
@@ -149,7 +151,50 @@ bool Renderer::parseIndex(const QString &fileName, Grantlee::Context &context)
         }
     }
     qInfo().noquote() << QTR("Parsed %1 compound(s) from %2").arg(compounds.size()).arg(fileName);
-    context.insert(QSL("compounds"), compounds);
+    context.insert(QSL("compoundsList"), compounds);
+    return true;
+}
+
+QVariantMap toVariantMap(const QHash<QString,QVariantMap> &hash)
+{
+    QVariantMap map;
+    for (auto iter = hash.begin(); iter != hash.end(); ++iter) {
+        map.insert(iter.key(), iter.value());
+    }
+    return map;
+}
+
+bool Renderer::supplementIndexes(Grantlee::Context &context)
+{
+    const QVariantList compounds = context.lookup(QSL("compoundsList")).toList();
+    QHash<QString,QVariantMap> compoundsByKind, membersByKind;
+    QVariantMap compoundsByRefId, membersByRefId;
+    for (const QVariant &compound: compounds) {
+        const QVariantMap compoundMap = compound.toMap();
+        {
+            const QString kind = compoundMap.value(QSL("kind")).toString();
+            const QString name = compoundMap.value(QSL("name")).toString();
+            const QString refid = compoundMap.value(QSL("refid")).toString();
+            //qDebug() << "compound" << kind << name << refid;
+            compoundsByKind[kind].insert(name, compound);
+            compoundsByRefId.insert(refid, compound);
+        }
+
+        const QVariantList members = compoundMap.value(QSL("members")).toList();
+        for (const QVariant &member: members) {
+            const QVariantMap memberMap = member.toMap();
+            const QString kind = memberMap.value(QSL("kind")).toString();
+            const QString name = memberMap.value(QSL("name")).toString();
+            const QString refid = memberMap.value(QSL("refid")).toString();
+            //qDebug() << "member" << kind << name << refid;
+            membersByKind[kind].insert(name, member);
+            membersByRefId.insert(refid, member);
+        }
+    }
+    context.insert(QSL("compoundsByKind" ), toVariantMap(compoundsByKind));
+    context.insert(QSL("compoundsByRefId"), compoundsByRefId);
+    context.insert(QSL("membersByKind"   ), toVariantMap(membersByKind));
+    context.insert(QSL("membersByRefId"  ), membersByRefId);
     return true;
 }
 
