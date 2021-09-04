@@ -1,0 +1,30 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+  linux:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest ]
+        env:
+        - { cc: clang, cxx: clang++ }
+        - { cc: gcc, cxx: g++ }
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Dependencies
+      run: sudo apt update && sudo apt upgrade && sudo apt install libgrantlee5-dev
+    - name: Build
+      env:
+        CC:  ${{ matrix.env.cc }}
+        CXX: ${{ matrix.env.cxx }}
+      run: |
+        cmake -D CMAKE_BUILD_TYPE=Release -S "$GITHUB_WORKSPACE" -B "$RUNNER_TEMP"
+        cmake --build "$RUNNER_TEMP"
+    - name: Test
+      run: ctest --verbose
+      working-directory: ${{ runner.temp }}
+
+  # \todo Add mac and windows too.
