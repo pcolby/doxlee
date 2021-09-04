@@ -63,12 +63,10 @@ bool Renderer::render()
     Grantlee::Context context;
     context.insert(QSL("doxleeVersion"), QStringLiteral(CMAKE_PROJECT_VERSION));
 
-    if (!parseIndexXml(inputDir.absoluteFilePath(QSL("index.xml")), context)) {
-            return false;
-    }
+    // Parse the XMLl index.
+    if (!parseIndex(inputDir.absoluteFilePath(QSL("index.xml")), context)) return false;
 
-
-    // Parse index.xml
+    /// \todo Generate some alternative index views? eg lists by kind? sorted views?
 
     /// \todo
     Q_UNUSED(clobber);
@@ -81,7 +79,7 @@ int Renderer::outputFileCount() const
     return 0; ///< \todo
 }
 
-bool Renderer::parseIndexXml(const QString &fileName, Grantlee::Context &context)
+bool Renderer::parseIndex(const QString &fileName, Grantlee::Context &context)
 {
     // Open the file for reading.
     QFile file(fileName);
@@ -106,16 +104,50 @@ bool Renderer::parseIndexXml(const QString &fileName, Grantlee::Context &context
     context.insert(QSL("doxygenLanguage"), xml.attributes().value(QSL("xml:lang")).toString());
 
     // Parse the contained <compound> elements.
+    QVariantList compounds;
     while ((!xml.atEnd()) && (xml.readNextStartElement())) {
         if (xml.name() == QSL("compound")) {
-            // parse compound.
-            qDebug() << xml.name();
+            QVariantMap compound;
+            compound.insert(QSL("refid"), xml.attributes().value(QSL("refid")).toString());
+            compound.insert(QSL("kind"), xml.attributes().value(QSL("kind")).toString());
+            if ((!xml.readNextStartElement()) || (xml.name() != QSL("name"))) {
+                qWarning().noquote() << QTR(" %1:%2:%3 <compound> does not begin with <name>")
+                    .arg(fileName).arg(xml.lineNumber()).arg(xml.columnNumber());
+                return false;
+            }
+            compound.insert(QSL("name"), xml.readElementText());
+            //qDebug() << __func__ << "compound" << compound;
+            QVariantList members;
+            while ((!xml.atEnd()) && (xml.readNextStartElement())) {
+                if (xml.name() == QSL("member")) {
+                    QVariantMap member;
+                    member.insert(QSL("refid"), xml.attributes().value(QSL("refid")).toString());
+                    member.insert(QSL("kind"), xml.attributes().value(QSL("kind")).toString());
+                    if ((!xml.readNextStartElement()) || (xml.name() != QSL("name"))) {
+                        qWarning().noquote() << QTR("%1:%2:%3 <member> does not begin with <name>")
+                            .arg(fileName).arg(xml.lineNumber()).arg(xml.columnNumber());
+                        return false;
+                    }
+                    member.insert(QSL("name"), xml.readElementText());
+                    //qDebug() << __func__ << "member" << member;
+                    xml.skipCurrentElement();
+                } else {
+                    qWarning().noquote() << QTR("xSkipping unknown <%1> element at %2:%3:%4")
+                        .arg(xml.name(), fileName).arg(xml.lineNumber()).arg(xml.columnNumber());
+                    xml.skipCurrentElement();
+                }
+            }
+            compound.insert(QSL("members"), members);
+            compounds.append(compound);
         } else {
-            qWarning().noquote() << QTR("Skipping unknown element: <%1>").arg(xml.name());
+            qWarning().noquote() << QTR("Skipping unknown <%1> element at %2:%3:%4")
+                .arg(xml.name(), fileName).arg(xml.lineNumber()).arg(xml.columnNumber());
             xml.skipCurrentElement();
         }
     }
-    return false; ///< \todo
+    qInfo().noquote() << QTR("Parsed %1 compound(s) from %2").arg(compounds.size()).arg(fileName);
+    context.insert(QSL("compounds"), compounds);
+    return true;
 }
 
 

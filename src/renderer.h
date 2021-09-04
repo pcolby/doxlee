@@ -37,7 +37,7 @@ public:
     int outputFileCount() const;
 
 protected:
-    bool parseIndexXml(const QString &fileName, Grantlee::Context &context);
+    bool parseIndex(const QString &fileName, Grantlee::Context &context);
 
 private:
     const QDir inputDir, templatesDir, outputDir;
