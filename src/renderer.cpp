@@ -99,7 +99,8 @@ bool Renderer::parseIndex(const QString &fileName, Grantlee::Context &context)
     qDebug() << xml.name() << "version" << xml.attributes().value(QSL("version"))
              << xml.attributes().value(QSL("xml:lang")).toString();
     if (xml.name() != QSL("doxygenindex")) {
-        qWarning().noquote() << QTR("File is not a Doxygen XML index: %1 - %2").arg(fileName, xml.name());
+        qWarning().noquote() << QTR("File is not a Doxygen XML index: %1 - %2")
+                                .arg(fileName, xml.name().toString());
         return false;
     }
     context.insert(QSL("doxygenVersion"), xml.attributes().value(QSL("version")).toString());
@@ -135,7 +136,7 @@ bool Renderer::parseIndex(const QString &fileName, Grantlee::Context &context)
                     xml.skipCurrentElement();
                 } else {
                     qWarning().noquote() << QTR("xSkipping unknown <%1> element at %2:%3:%4")
-                        .arg(xml.name(), fileName).arg(xml.lineNumber()).arg(xml.columnNumber());
+                        .arg(xml.name().toString(), fileName).arg(xml.lineNumber()).arg(xml.columnNumber());
                     xml.skipCurrentElement();
                 }
             }
@@ -143,7 +144,7 @@ bool Renderer::parseIndex(const QString &fileName, Grantlee::Context &context)
             compounds.append(compound);
         } else {
             qWarning().noquote() << QTR("Skipping unknown <%1> element at %2:%3:%4")
-                .arg(xml.name(), fileName).arg(xml.lineNumber()).arg(xml.columnNumber());
+                .arg(xml.name().toString(), fileName).arg(xml.lineNumber()).arg(xml.columnNumber());
             xml.skipCurrentElement();
         }
     }
