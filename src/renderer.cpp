@@ -68,6 +68,8 @@ bool Renderer::render()
 
     /// \todo Generate some alternative index views? eg lists by kind? sorted views?
 
+    /// \todo Render templates for each compound, and index.
+
     /// \todo
     Q_UNUSED(clobber);
 
@@ -150,15 +152,14 @@ bool Renderer::parseIndex(const QString &fileName, Grantlee::Context &context)
     return true;
 }
 
-
 /// Grantlee output stream that does *no* content escaping.
-class NoEscapeStream : public Grantlee::OutputStream {
-public:
-    explicit NoEscapeStream(QTextStream * stream) : Grantlee::OutputStream(stream) { }
+//class NoEscapeStream : public Grantlee::OutputStream {
+//public:
+//    explicit NoEscapeStream(QTextStream * stream) : Grantlee::OutputStream(stream) { }
 
-    virtual QString escape(const QString &input) const { return input; }
+//    virtual QString escape(const QString &input) const { return input; }
 
-    virtual QSharedPointer<OutputStream> clone( QTextStream *stream ) const {
-        return QSharedPointer<OutputStream>(new NoEscapeStream(stream));
-    }
-};
+//    virtual QSharedPointer<OutputStream> clone( QTextStream *stream ) const {
+//        return QSharedPointer<OutputStream>(new NoEscapeStream(stream));
+//    }
+//};
