@@ -31,19 +31,14 @@
 /// Shorten QCoreApplication::translate calls for readability.
 #define QTR(str) QCoreApplication::translate("Renderer", str)
 
-Renderer::Renderer(QDir inputDir, QDir templatesDir, const QDir &outputDir, const ClobberMode clobber)
-    : inputDir(inputDir), templatesDir(templatesDir), outputDir(outputDir), clobber(clobber)
+Renderer::Renderer(const QString &inputDir, const QString &templatesDir,
+                   const QString &outputDir, const ClobberMode clobber)
+    : inputDir(inputDir), outputDir(outputDir), templatesDir(templatesDir), clobber(clobber)
 {
-    Q_ASSERT(inputDir.exists() && inputDir.isReadable());
-    Q_ASSERT(templatesDir.exists() && templatesDir.isReadable());
-    Q_ASSERT(outputDir.exists());
-
     auto loader = QSharedPointer<Grantlee::FileSystemTemplateLoader>::create();
-    loader->setTemplateDirs(QStringList() << QSL(":/templates"));
+    loader->setTemplateDirs(QStringList() << templatesDir);
     engine.addTemplateLoader(loader);
     engine.setSmartTrimEnabled(true);
-
-    templatesDir.setFilter(QDir::Files|QDir::Readable);
 }
 
 bool Renderer::render()
@@ -51,7 +46,7 @@ bool Renderer::render()
     Grantlee::Context context;
     context.insert(QSL("doxleeVersion"), QStringLiteral(CMAKE_PROJECT_VERSION));
 
-    // Parse the XMLl index.
+    // Parse the XML index.
     if (!parseIndex(inputDir.absoluteFilePath(QSL("index.xml")), context)) return false;
 
     // Supplement the compounds index data (from parseIndex) with additional views of the same data.
@@ -185,11 +180,11 @@ bool Renderer::supplementIndexes(Grantlee::Context &context)
 bool Renderer::renderAll(Grantlee::Context &context)
 {
     // Iterate through all templates.
-    QDirIterator dir(templatesDir, QDirIterator::Subdirectories);
+    QDirIterator dir(templatesDir, QDir::Files|QDir::Readable, QDirIterator::Subdirectories);
     while (dir.hasNext()) {
         // Load the template.
         const QString name = dir.next().mid(dir.path().size()+1);
-        qDebug().noquote() << QTR("Loading template: %1").arg(name);
+        qDebug().noquote() << QTR("Loading template: %1 (%2)").arg(dir.filePath(), name);
         const Grantlee::Template tmplate = engine.loadByName(name);
         if (tmplate->error()) {
             qWarning().noquote() << QTR("Error loading template: %1 - %2").arg(name, tmplate->errorString());

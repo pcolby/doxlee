@@ -30,8 +30,8 @@ public:
         Skip,
     };
 
-    explicit Renderer(QDir inputDir, QDir templatesDir,
-                      const QDir &outputDir, const ClobberMode clobber);
+    explicit Renderer(const QString &inputDir, const QString &templatesDir,
+                      const QString &outputDir, const ClobberMode clobber);
 
     bool render();
     int outputFileCount() const;
@@ -42,9 +42,9 @@ protected:
     bool renderAll(Grantlee::Context &context);
 
 private:
-    const QDir inputDir, templatesDir, outputDir;
+    const QDir inputDir, outputDir;
+    const QString templatesDir;
     const ClobberMode clobber;
     Grantlee::Engine engine;
-//    QMap<QString, Grantlee::Template> templates;
 
 };
