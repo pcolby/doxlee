@@ -34,11 +34,18 @@
 Renderer::Renderer(const QString &inputDir, const QString &outputDir, const ClobberMode clobber)
     : inputDir(inputDir), outputDir(outputDir), clobber(clobber)
 {
+    // Default Grantlee context values.
+    context.insert(QSL("doxleeVersion"), QStringLiteral(CMAKE_PROJECT_VERSION));
+
     // Configure the Grantlee Templates rendering engine.
     engine.setSmartTrimEnabled(true);
-}
 
-#include <QRegularExpression>
+    // Parse the XML index.
+    parseIndex(this->inputDir.absoluteFilePath(QSL("index.xml")), context)
+
+    // Supplement the compounds index data (from parseIndex) with additional views.
+    && supplementIndexes(context);
+}
 
 bool Renderer::loadTemplates(const QString &templatesDir)
 {
@@ -109,14 +116,7 @@ bool Renderer::loadTemplates(const QString &templatesDir)
 
 bool Renderer::render()
 {
-    Grantlee::Context context;
-    context.insert(QSL("doxleeVersion"), QStringLiteral(CMAKE_PROJECT_VERSION));
 
-    // Parse the XML index.
-    if (!parseIndex(inputDir.absoluteFilePath(QSL("index.xml")), context)) return false;
-
-    // Supplement the compounds index data (from parseIndex) with additional views of the same data.
-    if (!supplementIndexes(context)) return false;
 
     // Render all templates to output files.
     return renderAll(context);
@@ -170,8 +170,8 @@ QPair<QStringList,QStringList> Renderer::getKinds(const QString &indexXsdPath)
             } else xml.skipCurrentElement();
         } else xml.skipCurrentElement();
     }
-    qDebug() << "Schema specifies" << compoundKinds.size() << "compound kind(s), and"
-                                   << memberKinds.size() << "member kind(s)";
+    qInfo().noquote() << QTR("Parsed %1 compound kind(s), and %2 member kind(s) from %3")
+        .arg(compoundKinds.size()).arg(memberKinds.size()).arg(indexXsdPath);
     return { compoundKinds, memberKinds };
 }
 
@@ -230,7 +230,7 @@ bool Renderer::parseIndex(const QString &fileName, Grantlee::Context &context)
                     members.append(member);
                     xml.skipCurrentElement();
                 } else {
-                    qWarning().noquote() << QTR("xSkipping unknown <%1> element at %2:%3:%4")
+                    qWarning().noquote() << QTR("Skipping unknown <%1> element at %2:%3:%4")
                         .arg(xml.name().toString(), fileName).arg(xml.lineNumber()).arg(xml.columnNumber());
                     xml.skipCurrentElement();
                 }

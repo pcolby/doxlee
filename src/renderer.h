@@ -18,6 +18,7 @@
 */
 
 #include <grantlee/engine.h>
+#include <grantlee/context.h>
 #include <QDir>
 #include <QMultiHash>
 #include <QVariantList>
@@ -47,6 +48,7 @@ protected:
 private:
     const QDir inputDir, outputDir;
     const ClobberMode clobber;
+    Grantlee::Context context;
     Grantlee::Engine engine;
     QStringList indexTemplateNames;
     QList<QPair<QString, QString>> staticFileNames;
