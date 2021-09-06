@@ -19,6 +19,7 @@
 
 #include <grantlee/engine.h>
 #include <QDir>
+#include <QMultiHash>
 #include <QVariantList>
 
 class Renderer {
@@ -30,21 +31,24 @@ public:
         Skip,
     };
 
-    explicit Renderer(const QString &inputDir, const QString &templatesDir,
-                      const QString &outputDir, const ClobberMode clobber);
+    Renderer(const QString &inputDir, const QString &outputDir, const ClobberMode clobber);
 
+    bool loadTemplates(const QString &templatesDir); // Need's inputDir.
     bool render();
     int outputFileCount() const;
 
 protected:
     static bool supplementIndexes(Grantlee::Context &context);
     static bool parseIndex(const QString &fileName, Grantlee::Context &context);
+
     bool renderAll(Grantlee::Context &context);
 
 private:
     const QDir inputDir, outputDir;
-    const QString templatesDir;
     const ClobberMode clobber;
     Grantlee::Engine engine;
+    QStringList indexTemplateNames;
+    QList<QPair<QString, QString>> staticFileNames;
+    QMultiHash<QString, QString> templateNamesByKind;
 
 };

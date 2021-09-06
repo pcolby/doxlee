@@ -31,14 +31,75 @@
 /// Shorten QCoreApplication::translate calls for readability.
 #define QTR(str) QCoreApplication::translate("Renderer", str)
 
-Renderer::Renderer(const QString &inputDir, const QString &templatesDir,
-                   const QString &outputDir, const ClobberMode clobber)
-    : inputDir(inputDir), outputDir(outputDir), templatesDir(templatesDir), clobber(clobber)
+Renderer::Renderer(const QString &inputDir, const QString &outputDir, const ClobberMode clobber)
+    : inputDir(inputDir), outputDir(outputDir), clobber(clobber)
 {
+    // Configure the Grantlee Templates rendering engine.
+    engine.setSmartTrimEnabled(true);
+}
+
+#include <QRegularExpression>
+
+bool Renderer::loadTemplates(const QString &templatesDir)
+{
+    // Need to no 'kinds' first; and that requires loading index.xsd
+    QStringList kinds; ///< \todo
+    kinds << QSL("class");
+
+    // Setup the template loader.
     auto loader = QSharedPointer<Grantlee::FileSystemTemplateLoader>::create();
+    // Note, {% include "<filename>" %} will look for files relative to templatesDir.
     loader->setTemplateDirs(QStringList() << templatesDir);
     engine.addTemplateLoader(loader);
-    engine.setSmartTrimEnabled(true);
+
+    // Load the templates.
+    QDirIterator dir(templatesDir, QDir::Files|QDir::Readable, QDirIterator::Subdirectories);
+    while (dir.hasNext()) {
+        // Fetch the next entry.
+        const QString relativePathName = dir.next().mid(dir.path().size()+1);
+        qDebug().noquote() << QTR("Inspecting template: %1 (%2)")
+            .arg(dir.filePath(), relativePathName);
+
+        // Check for 'static' directory names in the local path.
+        if (relativePathName.split(QLatin1Char('/')).contains(QSL("static"))) {
+            //staticFileNames.append(dir.filePath());
+            staticFileNames.append({dir.filePath(), relativePathName});
+            continue;
+        }
+
+        // Extract the 'kind' string, if any. Equivalent to ^([^-.]+) on the file name only.
+        const QString kind =
+            dir.fileName().section(QLatin1Char('-'),0,0).section(QLatin1Char('.'),0,0);
+        qDebug().noquote() << QTR("Inspecting template: %1 (%2,%3)")
+            .arg(dir.filePath(), relativePathName, kind);
+
+        // If the 'kind' is static, just record it for copying to the output later.
+        if (kind == QSL("static")) {
+            staticFileNames.append({dir.filePath(), relativePathName});
+            continue;
+        }
+
+        // Load the template, and store against the relevant 'kind'.
+        if ((kind == QSL("index")) || (kinds.contains(kind))) {
+            qDebug().noquote() << QTR("Loading template: %1 (%2,%3)")
+                .arg(dir.filePath(), relativePathName, kind);
+            const Grantlee::Template tmplate = engine.loadByName(relativePathName);
+            if (tmplate->error()) {
+                qWarning().noquote() << QTR("Error loading template: %1 - %2")
+                    .arg(relativePathName, tmplate->errorString());
+                return false;
+            }
+            if (kind == QSL("index")) {
+                indexTemplateNames.append(relativePathName);
+            } else {
+                templateNamesByKind.insert(kind, relativePathName);
+            }
+        }
+    }
+    qDebug() << "Loaded" << indexTemplateNames.size() << "index template(s),"
+                         << templateNamesByKind.size() << "'kind' template(s), and"
+                         << staticFileNames.size() << "static files";
+    return true;
 }
 
 bool Renderer::render()
@@ -179,22 +240,14 @@ bool Renderer::supplementIndexes(Grantlee::Context &context)
 
 bool Renderer::renderAll(Grantlee::Context &context)
 {
-    // Iterate through all templates.
-    QDirIterator dir(templatesDir, QDir::Files|QDir::Readable, QDirIterator::Subdirectories);
-    while (dir.hasNext()) {
-        // Load the template.
-        const QString name = dir.next().mid(dir.path().size()+1);
-        qDebug().noquote() << QTR("Loading template: %1 (%2)").arg(dir.filePath(), name);
-        const Grantlee::Template tmplate = engine.loadByName(name);
-        if (tmplate->error()) {
-            qWarning().noquote() << QTR("Error loading template: %1 - %2").arg(name, tmplate->errorString());
-            continue;
-        }
+    // Render all index templates.
 
-        // Extract the "kind" that this template renders.
+    // Render all "lind" templates:
+    // For each <kind>, if we have templates, then
+    //   for each input XML file with matching kind
+    //     render each XML file for each <kind> template.
 
-        // Render template once for every instance of "kind" we have.
-    }
+    // Copy all static files.
 
     Q_UNUSED(clobber);
     Q_UNUSED(context);

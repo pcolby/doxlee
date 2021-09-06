@@ -155,7 +155,13 @@ int main(int argc, char *argv[])
         return 2;
     }
 
-    // Let the user know we're about to generate a lot of files.
+    // Setup the renderer.
+    Renderer renderer(inputDir.absoluteFilePath(), outputDir.absoluteFilePath(), clobberMode);
+    if (!renderer.loadTemplates(templatesDir.absoluteFilePath())) {
+        return 3;
+    }
+
+    // Let the user know we're about to generate a lot of files, then do it!
     if (!parser.isSet(QStringLiteral("force"))) {
         qWarning().noquote() << QCoreApplication::translate("main",
             "About to generate a lot of files in: %1").arg(outputDir.absoluteFilePath());
@@ -163,12 +169,8 @@ int main(int argc, char *argv[])
         QTextStream stream(stdin);
         stream.readLine();
     }
-
-    // Generate code.
-    Renderer renderer(inputDir.absoluteFilePath(), templatesDir.absoluteFilePath(),
-                      outputDir.absoluteFilePath(), clobberMode);
     if (!renderer.render()) {
-        return 3;
+        return 4;
     }
     qInfo().noquote() << QCoreApplication::translate("main",
         "Rendered %1 file(s) in %2").arg(renderer.outputFileCount()).arg(outputDir.absoluteFilePath());
