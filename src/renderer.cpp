@@ -42,18 +42,21 @@ Renderer::Renderer(const QString &inputDir, const QString &outputDir, const Clob
 
 bool Renderer::loadTemplates(const QString &templatesDir)
 {
-    // Need to no 'kinds' first; and that requires loading index.xsd
-    QStringList kinds; ///< \todo
-    kinds << QSL("class");
+    // Fetch the list of compound and member kinds supported by the Doxgen version.
+    auto kinds = getKinds(inputDir.absoluteFilePath(QSL("index.xsd")));
+    if ((kinds.first.isEmpty()) && (kinds.second.isEmpty())) {
+        return false; // getKinds failed; and reported an appropriate error.
+    }
 
     // Setup the template loader.
     auto loader = QSharedPointer<Grantlee::FileSystemTemplateLoader>::create();
-    // Note, {% include "<filename>" %} will look for files relative to templatesDir.
+    // Note, {% include "<filename>" %} will look for files relative to templateDirs.
     loader->setTemplateDirs(QStringList() << templatesDir);
     engine.addTemplateLoader(loader);
 
     // Load the templates.
     QDirIterator dir(templatesDir, QDir::Files|QDir::Readable, QDirIterator::Subdirectories);
+    int otherFilesCount=0;
     while (dir.hasNext()) {
         // Fetch the next entry.
         const QString relativePathName = dir.next().mid(dir.path().size()+1);
@@ -80,7 +83,7 @@ bool Renderer::loadTemplates(const QString &templatesDir)
         }
 
         // Load the template, and store against the relevant 'kind'.
-        if ((kind == QSL("index")) || (kinds.contains(kind))) {
+        if ((kind == QSL("index")) || (kinds.first.contains(kind)) || (kinds.second.contains(kind))) {
             qDebug().noquote() << QTR("Loading template: %1 (%2,%3)")
                 .arg(dir.filePath(), relativePathName, kind);
             const Grantlee::Template tmplate = engine.loadByName(relativePathName);
@@ -94,11 +97,13 @@ bool Renderer::loadTemplates(const QString &templatesDir)
             } else {
                 templateNamesByKind.insert(kind, relativePathName);
             }
+            continue;
         }
+        otherFilesCount++;
     }
-    qDebug() << "Loaded" << indexTemplateNames.size() << "index template(s),"
-                         << templateNamesByKind.size() << "'kind' template(s), and"
-                         << staticFileNames.size() << "static files";
+    qInfo().noquote() << QTR("Loaded %1 template(s), alongside %2 static file(s)")
+        .arg(indexTemplateNames.size() + templateNamesByKind.size() + otherFilesCount)
+        .arg(staticFileNames.size());
     return true;
 }
 
@@ -120,6 +125,54 @@ bool Renderer::render()
 int Renderer::outputFileCount() const
 {
     return 0; ///< \todo
+}
+
+QPair<QStringList,QStringList> Renderer::getKinds(const QString &indexXsdPath)
+{
+    // Open the file for reading.
+    QFile file(indexXsdPath);
+    if (!file.open(QIODevice::ReadOnly|QIODevice::Text)) {
+        qWarning().noquote() << QTR("Error opening file for reading: %1").arg(indexXsdPath);
+        return { };
+    }
+
+    QStringList compoundKinds, memberKinds;
+
+    // Parse the opening <schema> element.
+    QXmlStreamReader xml(&file);
+    if (!xml.readNextStartElement()) {
+        qWarning().noquote() << QTR("Invalid XML file: %1 - %2").arg(indexXsdPath, xml.errorString());
+        return { };
+    }
+    if (xml.name() != QSL("schema")) {
+        qWarning().noquote() << QTR("File is not a Doxygen XML index schema: %1 - %2")
+                                .arg(indexXsdPath, xml.name().toString());
+        return { };
+    }
+
+    // Parse the contained 'kind' elements.
+    while ((!xml.atEnd()) && (xml.readNextStartElement())) {
+        if (xml.name() == QSL("simpleType")) {
+            const QString nameAttribute = xml.attributes().value(QSL("name")).toString();
+            if ((nameAttribute == QSL("CompoundKind")) || (nameAttribute == QSL("MemberKind"))) {
+                while ((!xml.atEnd()) && (xml.readNextStartElement())) {
+                    if (xml.name() == QSL("restriction")) {
+                        QStringList &kinds = (nameAttribute == QLatin1String("CompoundKind"))
+                            ? compoundKinds : memberKinds;
+                        while ((!xml.atEnd()) && (xml.readNextStartElement())) {
+                            if (xml.name() == QSL("enumeration")) {
+                                kinds.append(xml.attributes().value(QSL("value")).toString());
+                            }
+                            xml.skipCurrentElement();
+                        }
+                    } else xml.skipCurrentElement();
+                }
+            } else xml.skipCurrentElement();
+        } else xml.skipCurrentElement();
+    }
+    qDebug() << "Schema specifies" << compoundKinds.size() << "compound kind(s), and"
+                                   << memberKinds.size() << "member kind(s)";
+    return { compoundKinds, memberKinds };
 }
 
 bool Renderer::parseIndex(const QString &fileName, Grantlee::Context &context)

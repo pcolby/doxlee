@@ -38,8 +38,9 @@ public:
     int outputFileCount() const;
 
 protected:
-    static bool supplementIndexes(Grantlee::Context &context);
+    static QPair<QStringList,QStringList> getKinds(const QString &indexXsdPath);
     static bool parseIndex(const QString &fileName, Grantlee::Context &context);
+    static bool supplementIndexes(Grantlee::Context &context);
 
     bool renderAll(Grantlee::Context &context);
 
