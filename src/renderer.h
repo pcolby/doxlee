@@ -34,7 +34,8 @@ public:
 
     Renderer(const QString &inputDir, const QString &outputDir, const ClobberMode clobber);
 
-    bool loadTemplates(const QString &templatesDir); // Need's inputDir.
+    bool loadTemplates(const QString &templatesDir);
+    int expectedFileCount() const;
     bool render();
     int outputFileCount() const;
 

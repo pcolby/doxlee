@@ -164,7 +164,8 @@ int main(int argc, char *argv[])
     // Let the user know we're about to generate a lot of files, then do it!
     if (!parser.isSet(QStringLiteral("force"))) {
         qWarning().noquote() << QCoreApplication::translate("main",
-            "About to generate a lot of files in: %1").arg(outputDir.absoluteFilePath());
+            "About to generate approximately %1 file(s) in: %2")
+            .arg(renderer.expectedFileCount()).arg(outputDir.absoluteFilePath());
         qInfo().noquote() << QCoreApplication::translate("main", "Press Enter to contine");
         QTextStream stream(stdin);
         stream.readLine();

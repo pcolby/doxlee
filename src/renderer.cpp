@@ -114,26 +114,30 @@ bool Renderer::loadTemplates(const QString &templatesDir)
     return true;
 }
 
+// Estimate number of files that will be generated.
+// Also report if any compounds have no templates.
+int Renderer::expectedFileCount() const
+{
+    int count = indexTemplateNames.count() + staticFileNames.count();
+    const QStringList indexNames { QSL("compoundsByKind"), QSL("membersByKinds") };
+    for (const QString &indexName: indexNames) {
+        const QVariantMap itemsByKind = context.lookup(indexName).toMap();
+        for (auto iter = itemsByKind.constBegin(); iter != itemsByKind.constEnd(); ++iter) {
+            const int templatesCount = templateNamesByKind.count(iter.key());
+            const int itemsCounts = iter.value().toMap().size();
+            if ((templatesCount == 0) && (indexName == QSL("compoundsByKind"))) {
+                qWarning().noquote() << QTR("Found documentation for %1 %2 compound(s), "
+                                            "but no specialised templates for %2 compounds")
+                                            .arg(itemsCounts).arg(iter.key());
+            }
+            count += templatesCount * itemsCounts;
+        }
+    }
+    return count;
+}
+
 bool Renderer::render()
 {
-    // Estimate number of files that will be generated.
-    // Also report if any compounds have no templates.
-    const QVariantMap compoundsByKind = context.lookup(QSL("compoundsByKind")).toMap();
-    const QVariantMap membersByKind = context.lookup(QSL("membersByKind")).toMap();
-
-    int count = 0;
-    for (auto iter = compoundsByKind.constBegin(); iter != compoundsByKind.constEnd(); ++iter) {
-        const int templatesCount = templateNamesByKind.count(iter.key());
-        const int compoundsCount = iter.value().toMap().size();
-        if (templatesCount == 0) {
-            qWarning().noquote() << QTR("Found documentation for %1 %2 compound(s),"
-                                        " but no specialised templates for %2 compounds")
-                                        .arg(compoundsCount).arg(iter.key());
-        }
-        count += templatesCount * compoundsCount;
-    }
-    qDebug() << "Count" << count;
-
     // Render all templates to output files.
     return renderAll(context);
 }
