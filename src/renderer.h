@@ -32,11 +32,11 @@ public:
         Skip,
     };
 
-    Renderer(const QString &inputDir, const QString &outputDir, const ClobberMode clobber);
+    Renderer(const QString &inputDir);
 
     bool loadTemplates(const QString &templatesDir);
     int expectedFileCount() const;
-    bool render();
+    bool render(const QDir &outputDir, ClobberMode clobberMode);
     int outputFileCount() const;
 
 protected:
@@ -44,15 +44,21 @@ protected:
     static bool parseIndex(const QString &fileName, Grantlee::Context &context);
     static bool supplementIndexes(Grantlee::Context &context);
 
-    bool renderAll(Grantlee::Context &context);
+    bool copy(const QString &fromPath, const QString &toPath, ClobberMode &clobberMode);
+
+    bool render(const QString &doxmlPath, const QStringList &templateNames,
+                       const QDir &outputDir, Grantlee::Context &context, ClobberMode &clobberMode);
+
+    bool render(const QString &templateName, const QString &outputPath,
+                Grantlee::Context &context, ClobberMode &clobberMode);
 
 private:
-    const QDir inputDir, outputDir;
-    const ClobberMode clobber;
+    const QDir inputDir;
     Grantlee::Context context;
     Grantlee::Engine engine;
     QStringList indexTemplateNames;
     QList<QPair<QString, QString>> staticFileNames;
     QMultiHash<QString, QString> templateNamesByKind;
+    QStringList filesWritten;
 
 };

@@ -156,7 +156,7 @@ int main(int argc, char *argv[])
     }
 
     // Setup the renderer.
-    Renderer renderer(inputDir.absoluteFilePath(), outputDir.absoluteFilePath(), clobberMode);
+    Renderer renderer(inputDir.absoluteFilePath());
     if (!renderer.loadTemplates(templatesDir.absoluteFilePath())) {
         return 3;
     }
@@ -170,7 +170,7 @@ int main(int argc, char *argv[])
         QTextStream stream(stdin);
         stream.readLine();
     }
-    if (!renderer.render()) {
+    if (!renderer.render(outputDir.absoluteFilePath(), clobberMode)) {
         return 4;
     }
     qInfo().noquote() << QCoreApplication::translate("main",

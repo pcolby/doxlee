@@ -31,8 +31,7 @@
 /// Shorten QCoreApplication::translate calls for readability.
 #define QTR(str) QCoreApplication::translate("Renderer", str)
 
-Renderer::Renderer(const QString &inputDir, const QString &outputDir, const ClobberMode clobber)
-    : inputDir(inputDir), outputDir(outputDir), clobber(clobber)
+Renderer::Renderer(const QString &inputDir) : inputDir(inputDir)
 {
     // Default Grantlee context values.
     context.insert(QSL("doxleeVersion"), QStringLiteral(CMAKE_PROJECT_VERSION));
@@ -136,15 +135,42 @@ int Renderer::expectedFileCount() const
     return count;
 }
 
-bool Renderer::render()
+bool Renderer::render(const QDir &outputDir, ClobberMode clobberMode)
 {
-    // Render all templates to output files.
-    return renderAll(context);
+    // Render all compounds (and members) we have templates for.
+    const QStringList indexNames { QSL("compoundsByKind"), QSL("membersByKinds") };
+    for (const QString &indexName: indexNames) {
+        const QVariantMap itemsByKind = context.lookup(indexName).toMap();
+        for (auto iter = itemsByKind.constBegin(); iter != itemsByKind.constEnd(); ++iter) {
+            const QStringList templateNames = templateNamesByKind.values(iter.key());
+            if (templateNames.empty()) continue;
+            const QVariantMap items = iter.value().toMap();
+            qDebug() << items.value(QSL("refid"));
+            const QString doxmlPath =
+                inputDir.absoluteFilePath(iter.value().toMap().value(QSL("refif")).toString() + QSL(".xml"));
+            render(doxmlPath, templateNames, outputDir, context, clobberMode);
+        }
+    }
+
+    // Render all index templates.
+    for (const QString &templateName: indexTemplateNames) {
+        if (!render(templateName, outputDir.absoluteFilePath(templateName), context, clobberMode))
+            return false;
+    }
+
+    // Copy all static files.
+    for (auto iter = staticFileNames.begin(); iter != staticFileNames.end(); ++iter) {
+        const QString destination = outputDir.absoluteFilePath(iter->second);
+        if (!copy(iter->first, destination, clobberMode)) {
+            return false;
+        }
+    }
+    return true;
 }
 
 int Renderer::outputFileCount() const
 {
-    return 0; ///< \todo
+    return filesWritten.size();
 }
 
 QPair<QStringList,QStringList> Renderer::getKinds(const QString &indexXsdPath)
@@ -311,19 +337,49 @@ bool Renderer::supplementIndexes(Grantlee::Context &context)
     return true;
 }
 
-bool Renderer::renderAll(Grantlee::Context &context)
+bool Renderer::copy(const QString &fromPath, const QString &toPath, ClobberMode &clobberMode)
 {
-    // Render all index templates.
+    qDebug() << __func__ << fromPath << toPath << clobberMode;
+    QFileInfo toFileInfo(toPath);
+    if (toFileInfo.exists()) {
+        switch (clobberMode) {
+        case Overwrite:
+            if (!QFile::remove(toPath)) {
+                qWarning() << QTR("Failed to copy over existing file: %1").arg(toPath);
+            }
+            break;
+        case Prompt:
+            /// \todo Prompt, then return or (remove and continue).
+            break;
+        case Skip:
+            qDebug() << QTR("Skipping existing output file: %1").arg(toPath);
+            break;
+        }
+    }
 
-    // Render all "lind" templates:
-    // For each <kind>, if we have templates, then
-    //   for each input XML file with matching kind
-    //     render each XML file for each <kind> template.
+    qInfo().noquote() << QTR("Copying to: %1").arg(toPath);
+    if (!toFileInfo.dir().exists()) {
+        toFileInfo.dir().mkpath(QSL("./"));
+    }
+    if (!QFile::copy(fromPath, toPath)) {
+        qWarning() << QTR("Failed to copy %1 to %2").arg(fromPath).arg(toPath);
+        return false;
+    }
+    filesWritten.append(toPath);
+    return true;
+}
 
-    // Copy all static files.
+bool Renderer::render(const QString &doxmlPath, const QStringList &templateNames,
+                      const QDir &outputDir, Grantlee::Context &context, ClobberMode &clobberMode)
+{
+    qDebug() << __func__ << doxmlPath << templateNames << outputDir << context.isMutating() << clobberMode;
+    return true;
+}
 
-    Q_UNUSED(clobber);
-    Q_UNUSED(context);
+bool Renderer::render(const QString &templateName, const QString &outputPath,
+                      Grantlee::Context &context, ClobberMode &clobberMode)
+{
+    qDebug() << __func__ << templateName << outputPath << context.isMutating() << clobberMode;
     return true;
 }
 
