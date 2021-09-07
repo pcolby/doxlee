@@ -153,7 +153,7 @@ bool Renderer::render(const QDir &outputDir, ClobberMode clobberMode)
     }
 
     // Render all index templates.
-    for (const QString &templateName: indexTemplateNames) {
+    for (const QString &templateName: qAsConst(indexTemplateNames)) {
         if (!render(templateName, outputDir.absoluteFilePath(templateName), context, clobberMode))
             return false;
     }
@@ -363,7 +363,7 @@ bool Renderer::copy(const QString &fromPath, const QString &toPath, ClobberMode 
     }
 
     if (!QFile::copy(fromPath, toPath)) {
-        qWarning() << QTR("Failed to copy %1 to %2").arg(fromPath).arg(toPath);
+        qWarning() << QTR("Failed to copy %1 to %2").arg(fromPath, toPath);
         return false;
     }
     filesWritten.append(toPath);
