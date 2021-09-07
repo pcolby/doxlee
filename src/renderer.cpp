@@ -124,7 +124,7 @@ int Renderer::expectedFileCount() const
         const QVariantMap itemsByKind = context.lookup(indexName).toMap();
         for (auto iter = itemsByKind.constBegin(); iter != itemsByKind.constEnd(); ++iter) {
             const int templatesCount = templateNamesByKind.count(iter.key());
-            const int itemsCounts = iter.value().toMap().size();
+            const int itemsCounts = iter.value().toList().size();
             if ((templatesCount == 0) && (indexName == QSL("compoundsByKind"))) {
                 qWarning().noquote() << QTR("Found documentation for %1 %2 compound(s), "
                                             "but no specialised templates for %2 compounds")
@@ -145,7 +145,7 @@ bool Renderer::render(const QDir &outputDir, ClobberMode clobberMode)
         for (auto iter = itemsByKind.constBegin(); iter != itemsByKind.constEnd(); ++iter) {
             const QStringList templateNames = templateNamesByKind.values(iter.key());
             if (templateNames.empty()) continue;
-            if (!render(iter.value().toMap(), templateNames, outputDir, context, clobberMode))
+            if (!render(iter.value().toList(), templateNames, outputDir, context, clobberMode))
                 return false;
         }
     }
@@ -292,7 +292,7 @@ bool Renderer::parseIndex(const QString &fileName, Grantlee::Context &context)
     return true;
 }
 
-QVariantMap toVariantMap(const QHash<QString,QVariantMap> &hash)
+QVariantMap toVariantMap(const QHash<QString,QVariantList> &hash)
 {
     QVariantMap map;
     for (auto iter = hash.begin(); iter != hash.end(); ++iter) {
@@ -301,19 +301,25 @@ QVariantMap toVariantMap(const QHash<QString,QVariantMap> &hash)
     return map;
 }
 
+inline void sortBy(QVariantList &list, const QString &name)
+{
+    std::sort(list.begin(), list.end(),
+        [&name](const QVariant &a, const QVariant &b) {
+            return a.toMap().value(name).toString() < b.toMap().value(name).toString();
+        });
+}
+
 bool Renderer::supplementIndexes(Grantlee::Context &context)
 {
     const QVariantList compounds = context.lookup(QSL("compoundsList")).toList();
-    QHash<QString,QVariantMap> compoundsByKind, membersByKind;
+    QHash<QString,QVariantList> compoundsByKind, membersByKind;
     QVariantMap compoundsByRefId, membersByRefId;
     for (const QVariant &compound: compounds) {
         const QVariantMap compoundMap = compound.toMap();
         {
             const QString kind = compoundMap.value(QSL("kind")).toString();
-            const QString name = compoundMap.value(QSL("name")).toString();
             const QString refid = compoundMap.value(QSL("refid")).toString();
-            //qDebug() << "compound" << kind << name << refid;
-            compoundsByKind[kind].insert(name, compound); ///< \todo name is not unique here.
+            compoundsByKind[kind].append(compound);
             compoundsByRefId.insert(refid, compound);
         }
 
@@ -321,13 +327,13 @@ bool Renderer::supplementIndexes(Grantlee::Context &context)
         for (const QVariant &member: members) {
             const QVariantMap memberMap = member.toMap();
             const QString kind = memberMap.value(QSL("kind")).toString();
-            const QString name = memberMap.value(QSL("name")).toString();
             const QString refid = memberMap.value(QSL("refid")).toString();
-            //qDebug() << "member" << kind << name << refid;
-            membersByKind[kind].insert(name, member); ///< \todo name is not unique here.
+            membersByKind[kind].append(member);
             membersByRefId.insert(refid, member);
         }
     }
+    for (QVariantList &compoundsList: compoundsByKind) sortBy(compoundsList, QSL("name"));
+    for (QVariantList &membersList: membersByKind)     sortBy(membersList,   QSL("name"));
     context.insert(QSL("compoundsByKind" ), toVariantMap(compoundsByKind));
     context.insert(QSL("compoundsByRefId"), compoundsByRefId);
     context.insert(QSL("membersByKind"   ), toVariantMap(membersByKind));
@@ -368,30 +374,39 @@ bool Renderer::copy(const QString &fromPath, const QString &toPath, ClobberMode 
     return true;
 }
 
-bool Renderer::render(const QVariantMap &indexItem, const QStringList &templateNames,
+// \a items == list of compounds, or list of members.
+bool Renderer::render(const QVariantList &items, const QStringList &templateNames,
                       const QDir &outputDir, Grantlee::Context &context, ClobberMode &clobberMode)
 {
-    /// \todo refid is wrong here, becayse indexItem is map of items, keyed on item names, which are
-    /// not unique. This needs to be fixed in parseIndex.
-    const QString refId = indexItem.value(QSL("refid")).toString();
-    qDebug() << __func__ << refId << templateNames << outputDir << context.isMutating() << clobberMode;
+    // Note, we're effectively doing a product of items * templates here, which could be quite a
+    // lot of processing. We choose to iterate items in the outer loop, so we only parse each item
+    // once. Whereas repeatedly loading templates in the inner loop is fairly cheap, since we
+    // allocated a caching template loader earlier. We could of course, invert the loops for the
+    // same ouput, just an order of magnitude slower and/or using more RAM to cache parsed XML.
 
-    // Parse the item's Doxygen XML data.
-    const QString doxmlPath = inputDir.absoluteFilePath(refId + QSL(".xml"));
-    context.push();
-    /// \todo Parse doxmlPath into context.
-    qDebug() << "Todo parse" << doxmlPath;
-
-    // Render the output for each template.
-    for (const QString &templateName: templateNames) {
-        /// \todo Determine the correct path name from the template's name.
-        const QString outputPath = outputDir.absoluteFilePath(refId);
-        if (!render(templateName, outputPath, context, clobberMode)) {
-            context.pop();
-            return false;
+    for (const QVariant &item: items) {
+        // Parse the item's Doxygen XML data.
+        const QString refId = item.toMap().value(QSL("refid")).toString();
+        const QString doxmlPath = inputDir.absoluteFilePath(refId + QSL(".xml"));
+        context.push();
+        /// \todo Parse doxmlPath into context; possibly move the above extracts too.
+        qDebug() << "Todo parse" << doxmlPath;
+        if (!QFile::exists(doxmlPath)) {
+            qWarning() << "not exist" << doxmlPath;
+            return false; /// \todo Remove this; just a hack a diagnostic check for now.
         }
+
+        // Render the output for each template.
+        for (const QString &templateName: templateNames) {
+            /// \todo Determine the correct path name from the template's name.
+            const QString outputPath = outputDir.absoluteFilePath(refId);
+            if (!render(templateName, outputPath, context, clobberMode)) {
+                context.pop();
+                return false;
+            }
+        }
+        context.pop();
     }
-    context.pop();
     return true;
 }
 
