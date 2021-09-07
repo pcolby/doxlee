@@ -32,7 +32,7 @@ public:
         Skip,
     };
 
-    Renderer(const QString &inputDir);
+    explicit Renderer(const QString &inputDir);
 
     bool loadTemplates(const QString &templatesDir);
     int expectedFileCount() const;
