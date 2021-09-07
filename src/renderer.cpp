@@ -340,6 +340,7 @@ bool Renderer::supplementIndexes(Grantlee::Context &context)
 bool Renderer::copy(const QString &fromPath, const QString &toPath, ClobberMode &clobberMode)
 {
     qDebug() << __func__ << fromPath << toPath << clobberMode;
+
     QFileInfo toFileInfo(toPath);
     if (toFileInfo.exists()) {
         switch (clobberMode) {
@@ -357,10 +358,10 @@ bool Renderer::copy(const QString &fromPath, const QString &toPath, ClobberMode 
         }
     }
 
-    qInfo().noquote() << QTR("Copying to: %1").arg(toPath);
     if (!toFileInfo.dir().exists()) {
         toFileInfo.dir().mkpath(QSL("./"));
     }
+
     if (!QFile::copy(fromPath, toPath)) {
         qWarning() << QTR("Failed to copy %1 to %2").arg(fromPath).arg(toPath);
         return false;
