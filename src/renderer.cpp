@@ -145,11 +145,8 @@ bool Renderer::render(const QDir &outputDir, ClobberMode clobberMode)
         for (auto iter = itemsByKind.constBegin(); iter != itemsByKind.constEnd(); ++iter) {
             const QStringList templateNames = templateNamesByKind.values(iter.key());
             if (templateNames.empty()) continue;
-            const QVariantMap items = iter.value().toMap();
-            qDebug() << items.value(QSL("refid"));
-            const QString doxmlPath =
-                inputDir.absoluteFilePath(iter.value().toMap().value(QSL("refif")).toString() + QSL(".xml"));
-            render(doxmlPath, templateNames, outputDir, context, clobberMode);
+            if (!render(iter.value().toMap(), templateNames, outputDir, context, clobberMode))
+                return false;
         }
     }
 
@@ -316,7 +313,7 @@ bool Renderer::supplementIndexes(Grantlee::Context &context)
             const QString name = compoundMap.value(QSL("name")).toString();
             const QString refid = compoundMap.value(QSL("refid")).toString();
             //qDebug() << "compound" << kind << name << refid;
-            compoundsByKind[kind].insert(name, compound);
+            compoundsByKind[kind].insert(name, compound); ///< \todo name is not unique here.
             compoundsByRefId.insert(refid, compound);
         }
 
@@ -327,7 +324,7 @@ bool Renderer::supplementIndexes(Grantlee::Context &context)
             const QString name = memberMap.value(QSL("name")).toString();
             const QString refid = memberMap.value(QSL("refid")).toString();
             //qDebug() << "member" << kind << name << refid;
-            membersByKind[kind].insert(name, member);
+            membersByKind[kind].insert(name, member); ///< \todo name is not unique here.
             membersByRefId.insert(refid, member);
         }
     }
@@ -371,10 +368,30 @@ bool Renderer::copy(const QString &fromPath, const QString &toPath, ClobberMode 
     return true;
 }
 
-bool Renderer::render(const QString &doxmlPath, const QStringList &templateNames,
+bool Renderer::render(const QVariantMap &indexItem, const QStringList &templateNames,
                       const QDir &outputDir, Grantlee::Context &context, ClobberMode &clobberMode)
 {
-    qDebug() << __func__ << doxmlPath << templateNames << outputDir << context.isMutating() << clobberMode;
+    /// \todo refid is wrong here, becayse indexItem is map of items, keyed on item names, which are
+    /// not unique. This needs to be fixed in parseIndex.
+    const QString refId = indexItem.value(QSL("refid")).toString();
+    qDebug() << __func__ << refId << templateNames << outputDir << context.isMutating() << clobberMode;
+
+    // Parse the item's Doxygen XML data.
+    const QString doxmlPath = inputDir.absoluteFilePath(refId + QSL(".xml"));
+    context.push();
+    /// \todo Parse doxmlPath into context.
+    qDebug() << "Todo parse" << doxmlPath;
+
+    // Render the output for each template.
+    for (const QString &templateName: templateNames) {
+        /// \todo Determine the correct path name from the template's name.
+        const QString outputPath = outputDir.absoluteFilePath(refId);
+        if (!render(templateName, outputPath, context, clobberMode)) {
+            context.pop();
+            return false;
+        }
+    }
+    context.pop();
     return true;
 }
 
@@ -382,6 +399,7 @@ bool Renderer::render(const QString &templateName, const QString &outputPath,
                       Grantlee::Context &context, ClobberMode &clobberMode)
 {
     qDebug() << __func__ << templateName << outputPath << clobberMode;
+return true;
 
     QFileInfo toFileInfo(outputPath);
     if (toFileInfo.exists()) {

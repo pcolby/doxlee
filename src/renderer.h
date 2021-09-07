@@ -46,8 +46,8 @@ protected:
 
     bool copy(const QString &fromPath, const QString &toPath, ClobberMode &clobberMode);
 
-    bool render(const QString &doxmlPath, const QStringList &templateNames,
-                       const QDir &outputDir, Grantlee::Context &context, ClobberMode &clobberMode);
+    bool render(const QVariantMap &indexItem, const QStringList &templateNames,
+                const QDir &outputDir, Grantlee::Context &context, ClobberMode &clobberMode);
 
     bool render(const QString &templateName, const QString &outputPath,
                 Grantlee::Context &context, ClobberMode &clobberMode);
