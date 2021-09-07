@@ -19,6 +19,7 @@
 
 #include "renderer.h"
 
+#include <grantlee/cachingloaderdecorator.h>
 #include <grantlee/templateloader.h>
 #include <QCoreApplication>
 #include <QDebug>
@@ -58,7 +59,8 @@ bool Renderer::loadTemplates(const QString &templatesDir)
     auto loader = QSharedPointer<Grantlee::FileSystemTemplateLoader>::create();
     // Note, {% include "<filename>" %} will look for files relative to templateDirs.
     loader->setTemplateDirs(QStringList() << templatesDir);
-    engine.addTemplateLoader(loader);
+    auto cachedLoader = QSharedPointer<Grantlee::CachingLoaderDecorator>::create(loader);
+    engine.addTemplateLoader(cachedLoader);
 
     // Load the templates.
     QDirIterator dir(templatesDir, QDir::Files|QDir::Readable, QDirIterator::Subdirectories);
@@ -71,7 +73,6 @@ bool Renderer::loadTemplates(const QString &templatesDir)
 
         // Check for 'static' directory names in the local path.
         if (relativePathName.split(QLatin1Char('/')).contains(QSL("static"))) {
-            //staticFileNames.append(dir.filePath());
             staticFileNames.append({dir.filePath(), relativePathName});
             continue;
         }
@@ -354,7 +355,7 @@ bool Renderer::copy(const QString &fromPath, const QString &toPath, ClobberMode 
             break;
         case Skip:
             qDebug() << QTR("Skipping existing output file: %1").arg(toPath);
-            break;
+            return true;
         }
     }
 
@@ -380,7 +381,48 @@ bool Renderer::render(const QString &doxmlPath, const QStringList &templateNames
 bool Renderer::render(const QString &templateName, const QString &outputPath,
                       Grantlee::Context &context, ClobberMode &clobberMode)
 {
-    qDebug() << __func__ << templateName << outputPath << context.isMutating() << clobberMode;
+    qDebug() << __func__ << templateName << outputPath << clobberMode;
+
+    QFileInfo toFileInfo(outputPath);
+    if (toFileInfo.exists()) {
+        switch (clobberMode) {
+        case Overwrite:
+            // QFile::open below will happily overwrite (if we have write permission).
+            break;
+        case Prompt:
+            /// \todo Prompt, then return or continue.
+            break;
+        case Skip:
+            qDebug() << QTR("Skipping existing output file: %1").arg(outputPath);
+            return true;
+        }
+    }
+
+    const Grantlee::Template tmplate = engine.loadByName(templateName);
+    if (tmplate->error()) {
+        qWarning().noquote() << QTR("Error loading template: %1 - %2")
+            .arg(templateName, tmplate->errorString());
+        return false;
+    }
+
+    if (!toFileInfo.dir().exists()) {
+        toFileInfo.dir().mkpath(QSL("./"));
+    }
+
+    QFile file(outputPath);
+    if (!file.open(QFile::WriteOnly)) {
+        qWarning().noquote() << QTR("Failed to open file for writing: %1").arg(outputPath);
+        return false;
+    }
+
+    QTextStream textStream(&file);
+    //NoEscapeStream noEscapeStream(&textStream); ///< \todo Do we need this?
+    Grantlee::OutputStream outputStream(&textStream);
+    tmplate->render(&outputStream, &context);
+    if (tmplate->error()) {
+        qWarning() << QTR("Failed to render: %1 - %2").arg(outputPath, tmplate->errorString());
+        return false;
+    }
     return true;
 }
 
