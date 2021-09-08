@@ -22,6 +22,8 @@
 #include <QDir>
 #include <QMultiHash>
 #include <QVariantList>
+#include <QVariantMap>
+#include <QXmlStreamReader>
 
 class Renderer {
 
@@ -46,11 +48,14 @@ protected:
 
     bool copy(const QString &fromPath, const QString &toPath, ClobberMode &clobberMode);
 
-    bool render(const QVariantList &items, const QStringList &templateNames,
+    bool render(const QVariantList &compounds, const QStringList &templateNames,
                 const QDir &outputDir, Grantlee::Context &context, ClobberMode &clobberMode);
 
     bool render(const QString &templateName, const QString &outputPath,
                 Grantlee::Context &context, ClobberMode &clobberMode);
+
+    static QVariantMap toVariant(QXmlStreamReader &xml, const QString &prefix=QStringLiteral("."),
+                                 const int maxDepth=1024);
 
 private:
     const QDir inputDir;

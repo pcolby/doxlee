@@ -89,8 +89,8 @@ bool Renderer::loadTemplates(const QString &templatesDir)
             continue;
         }
 
-        // Load the template, and store against the relevant 'kind'.
-        if ((kind == QSL("index")) || (kinds.first.contains(kind)) || (kinds.second.contains(kind))) {
+        // Load the template, and store against the relevant compound kind.
+        if ((kind == QSL("index")) || (kinds.first.contains(kind))) {
             qDebug().noquote() << QTR("Loading template: %1 (%2,%3)")
                 .arg(dir.filePath(), relativePathName, kind);
             const Grantlee::Template tmplate = engine.loadByName(relativePathName);
@@ -119,19 +119,16 @@ bool Renderer::loadTemplates(const QString &templatesDir)
 int Renderer::expectedFileCount() const
 {
     int count = indexTemplateNames.count() + staticFileNames.count();
-    const QStringList indexNames { QSL("compoundsByKind"), QSL("membersByKinds") };
-    for (const QString &indexName: indexNames) {
-        const QVariantMap itemsByKind = context.lookup(indexName).toMap();
-        for (auto iter = itemsByKind.constBegin(); iter != itemsByKind.constEnd(); ++iter) {
-            const int templatesCount = templateNamesByKind.count(iter.key());
-            const int itemsCounts = iter.value().toList().size();
-            if ((templatesCount == 0) && (indexName == QSL("compoundsByKind"))) {
-                qWarning().noquote() << QTR("Found documentation for %1 %2 compound(s), "
-                                            "but no specialised templates for %2 compounds")
-                                            .arg(itemsCounts).arg(iter.key());
-            }
-            count += templatesCount * itemsCounts;
+    const QVariantMap compoundsByKind = context.lookup(QSL("compoundsByKind")).toMap();
+    for (auto iter = compoundsByKind.constBegin(); iter != compoundsByKind.constEnd(); ++iter) {
+        const int templatesCount = templateNamesByKind.count(iter.key());
+        const int itemsCounts = iter.value().toList().size();
+        if (templatesCount == 0) {
+            qWarning().noquote() << QTR("Found documentation for %1 %2 compound(s), "
+                                        "but no specialised templates for %2 compounds")
+                                        .arg(itemsCounts).arg(iter.key());
         }
+        count += templatesCount * itemsCounts;
     }
     return count;
 }
@@ -139,15 +136,12 @@ int Renderer::expectedFileCount() const
 bool Renderer::render(const QDir &outputDir, ClobberMode clobberMode)
 {
     // Render all compounds (and members) we have templates for.
-    const QStringList indexNames { QSL("compoundsByKind"), QSL("membersByKinds") };
-    for (const QString &indexName: indexNames) {
-        const QVariantMap itemsByKind = context.lookup(indexName).toMap();
-        for (auto iter = itemsByKind.constBegin(); iter != itemsByKind.constEnd(); ++iter) {
-            const QStringList templateNames = templateNamesByKind.values(iter.key());
-            if (templateNames.empty()) continue;
-            if (!render(iter.value().toList(), templateNames, outputDir, context, clobberMode))
-                return false;
-        }
+    const QVariantMap compoundsByKind = context.lookup(QSL("compoundsByKind")).toMap();
+    for (auto iter = compoundsByKind.constBegin(); iter != compoundsByKind.constEnd(); ++iter) {
+        const QStringList templateNames = templateNamesByKind.values(iter.key());
+        if (templateNames.empty()) continue;
+        if (!render(iter.value().toList(), templateNames, outputDir, context, clobberMode))
+            return false;
     }
 
     // Render all index templates.
@@ -374,29 +368,34 @@ bool Renderer::copy(const QString &fromPath, const QString &toPath, ClobberMode 
     return true;
 }
 
-// \a items == list of compounds, or list of members.
-bool Renderer::render(const QVariantList &items, const QStringList &templateNames,
+bool Renderer::render(const QVariantList &compounds, const QStringList &templateNames,
                       const QDir &outputDir, Grantlee::Context &context, ClobberMode &clobberMode)
 {
-    // Note, we're effectively doing a product of items * templates here, which could be quite a
+    // Note, we're effectively doing a product of compounds * templates here, which could be quite a
     // lot of processing. We choose to iterate items in the outer loop, so we only parse each item
     // once. Whereas repeatedly loading templates in the inner loop is fairly cheap, since we
     // allocated a caching template loader earlier. We could of course, invert the loops for the
     // same ouput, just an order of magnitude slower and/or using more RAM to cache parsed XML.
-
-    for (const QVariant &item: items) {
+    for (const QVariant &compound: compounds) {
         // Parse the item's Doxygen XML data.
-        const QString refId = item.toMap().value(QSL("refid")).toString();
-        const QString doxmlPath = inputDir.absoluteFilePath(refId + QSL(".xml"));
-        context.push();
-        /// \todo Parse doxmlPath into context; possibly move the above extracts too.
-        qDebug() << "Todo parse" << doxmlPath;
-        if (!QFile::exists(doxmlPath)) {
-            qWarning() << "not exist" << doxmlPath;
-            return false; /// \todo Remove this; just a hack a diagnostic check for now.
+        const QString refId = compound.toMap().value(QSL("refid")).toString();
+        const QString xmlFilePath = inputDir.absoluteFilePath(refId + QSL(".xml"));
+        QFile file(xmlFilePath);
+        if (!file.open(QIODevice::ReadOnly|QIODevice::Text)) {
+            qWarning().noquote() << QTR("Error opening file for reading: %1").arg(xmlFilePath);
+            return false;
+        }
+        QXmlStreamReader xml(&file);
+        const QVariantMap compoundDefinition = toVariant(xml) .value(QSL("doxygen")).toMap()
+            .value(QSL("compounddef")).toMap();
+        if (compoundDefinition.isEmpty()) {
+            qWarning().noquote() << QTR("Error reading compond defintion: %1").arg(xmlFilePath);
+            return false;
         }
 
         // Render the output for each template.
+        context.push();
+        context.insert(QSL("compound"), compoundDefinition);
         for (const QString &templateName: templateNames) {
             /// \todo Determine the correct path name from the template's name.
             const QString outputPath = outputDir.absoluteFilePath(refId);
@@ -414,7 +413,6 @@ bool Renderer::render(const QString &templateName, const QString &outputPath,
                       Grantlee::Context &context, ClobberMode &clobberMode)
 {
     qDebug() << __func__ << templateName << outputPath << clobberMode;
-return true;
 
     QFileInfo toFileInfo(outputPath);
     if (toFileInfo.exists()) {
@@ -456,6 +454,7 @@ return true;
         qWarning() << QTR("Failed to render: %1 - %2").arg(outputPath, tmplate->errorString());
         return false;
     }
+    filesWritten.append(outputPath);
     return true;
 }
 
@@ -470,3 +469,71 @@ return true;
 //        return QSharedPointer<OutputStream>(new NoEscapeStream(stream));
 //    }
 //};
+
+/// Borrowed from (my own old) gist: https://gist.github.com/pcolby/6558910
+/// \todo Move this to its own file; its really nothing to do with rendering.
+QVariantMap Renderer::toVariant(QXmlStreamReader &xml, const QString &prefix, const int maxDepth)
+{
+    if (maxDepth < 0) {
+        qWarning() << QObject::tr("max depth exceeded");
+        return QVariantMap();
+    }
+
+    if (xml.hasError()) {
+        qWarning() << xml.errorString();
+        return QVariantMap();
+    }
+
+    if (xml.tokenType() == QXmlStreamReader::NoToken)
+        xml.readNext();
+
+    if ((xml.tokenType() != QXmlStreamReader::StartDocument) &&
+        (xml.tokenType() != QXmlStreamReader::StartElement)) {
+        qWarning() << QObject::tr("unexpected XML tokenType %1 (%2)")
+                      .arg(xml.tokenString()).arg(xml.tokenType());
+        return QVariantMap();
+    }
+
+    QMultiMap<QString, QVariant> map;
+    if (xml.tokenType() == QXmlStreamReader::StartDocument) {
+        map.insert(prefix + QLatin1String("DocumentEncoding"), xml.documentEncoding().toString());
+        map.insert(prefix + QLatin1String("DocumentVersion"), xml.documentVersion().toString());
+        map.insert(prefix + QLatin1String("StandaloneDocument"), xml.isStandaloneDocument());
+    } else {
+        if (!xml.namespaceUri().isEmpty())
+            map.insert(prefix + QLatin1String("NamespaceUri"), xml.namespaceUri().toString());
+        foreach (const QXmlStreamAttribute &attribute, xml.attributes()) {
+            QVariantMap attributeMap;
+            attributeMap.insert(QLatin1String("Value"), attribute.value().toString());
+            if (!attribute.namespaceUri().isEmpty())
+                attributeMap.insert(QLatin1String("NamespaceUri"), attribute.namespaceUri().toString());
+            if (!attribute.prefix().isEmpty())
+                attributeMap.insert(QLatin1String("Prefix"), attribute.prefix().toString());
+            attributeMap.insert(QLatin1String("QualifiedName"), attribute.qualifiedName().toString());
+            map.insert(prefix + attribute.name().toString(), attributeMap);
+        }
+    }
+
+    for (xml.readNext(); (!xml.atEnd()) && (xml.tokenType() != QXmlStreamReader::EndElement)
+          && (xml.tokenType() != QXmlStreamReader::EndDocument); xml.readNext()) {
+        switch (xml.tokenType()) {
+        case QXmlStreamReader::Characters:
+        case QXmlStreamReader::Comment:
+        case QXmlStreamReader::DTD:
+        case QXmlStreamReader::EntityReference:
+            map.insert(prefix + xml.tokenString(), xml.text().toString());
+            break;
+        case QXmlStreamReader::ProcessingInstruction:
+            map.insert(prefix + xml.processingInstructionTarget().toString(),
+                            xml.processingInstructionData().toString());
+            break;
+        case QXmlStreamReader::StartElement:
+            map.insert(xml.name().toString(), toVariant(xml, prefix, maxDepth-1));
+            break;
+        default:
+            qWarning() << QObject::tr("unexpected XML tokenType %1 (%2)")
+                          .arg(xml.tokenString()).arg(xml.tokenType());
+        }
+    }
+    return QVariantMap(map);
+}
