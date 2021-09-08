@@ -16,17 +16,17 @@ Doxlee renders source code documentation by applying [Grantlee] templates to [Do
                │templates├────┘
                └─────────┘
 
-Note, the output doesn't have to be HTML... just about any text format should be possible.
+Of course, the output doesn't have to be HTML... just about any text format should be possible.
 
 Doxlee was written specifically to support generating documentation from [Doxygen] in the same (or very
 similar) format as [QDoc]'s _online_ format (ie the format used by the official [Qt documentation]). But
 anyone can provide their own templates to generate completely different site layouts of their own.
 
-Note, [Doxygen] does support using your own custom headers, footers, and style sheets, which can achieve
-a fair amount of flexibility already ([Doxygen Awesome] is a great example). But those options do not
-allow fundamental restructuring things like the navigation menus, sidebar and breadcrumbs. So if
-[Doxygen]'s built-in options are sufficient for your desired output, then use them. But if you want more
-control (as I did), then feel free to explore this project :)
+[Doxygen] does support using your own custom headers, footers, and style sheets, which can achieve a
+fair amount of flexibility already ([Doxygen Awesome] is a great example). But those options do not
+allow fundamental restructuring of things like the navigation menus, sidebar and breadcrumbs. So if
+[Doxygen]'s built-in options are sufficient for your desired output, then use them. But if you need more
+control, then feel free to explore this project :)
 
 ## Installation
 
@@ -49,7 +49,7 @@ Generate the documentation:
 
 ```sh
 doxygen [configname]
-doxlee -i <path-to-XML-> --o <path-to-html> -t <path-to-templates>
+doxlee -i <path-to-xml-> -o <path-to-write-output> -t <path-to-templates>
 ```
 
 There are some other basic options too. Use `--help` to see them.
@@ -72,9 +72,9 @@ Options:
 
 ## Building from Source
 
-Typical [CMake]-based out-of-source build process:
+Just follow a typical [CMake]-based out-of-source build process:
 
-~~~{.sh}
+~~~.sh
 cmake -E make_directory <tmp-build-dir>
 cmake -D CMAKE_BUILD_TYPE=Release -S <path-to-cloned-repo> -B <tmp-build-dir>
 cmake --build <tmp-build-dir>
