@@ -479,7 +479,6 @@ bool Renderer::render(const QVariantList &compounds, const QStringList &template
         context.push();
         context.insert(QSL("compound"), compoundDefinition);
         for (const QString &templateName: templateNames) {
-            /// \todo Determine the correct path name from the template's name.
             const QString outputPath = outputDir.absoluteFilePath(
                 compoundPathName(compound.toMap(), templateName));
             if (!render(templateName, outputPath, context, clobberMode)) {
