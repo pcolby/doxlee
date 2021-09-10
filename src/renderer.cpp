@@ -426,7 +426,7 @@ bool Renderer::copy(const QString &fromPath, const QString &toPath, ClobberMode 
                 qDebug().noquote() << QTR("Skipping existing output file: %1").arg(toPath);
                 return true;
             }
-            // Fall-through to Overwrite behaviour.
+            __attribute__((fallthrough)); // Fall-through to Overwrite behaviour.
         case Overwrite:
             if (!QFile::remove(toPath)) {
                 qWarning().noquote() << QTR("Failed to copy over existing file: %1").arg(toPath);
@@ -505,7 +505,7 @@ bool Renderer::render(const QString &templateName, const QString &outputPath,
         case Prompt:
             if (promptToOverwrite(outputPath, clobberMode))
                 break; // QFile::open below will happily overwrite (if we have write permission).
-            // else fall-through to Skip behaviour.
+            __attribute__((fallthrough)); // else fall-through to Skip behaviour.
         case Skip:
             qDebug() << QTR("Skipping existing output file: %1").arg(outputPath);
             return true;
