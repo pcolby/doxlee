@@ -116,14 +116,14 @@ int main(int argc, char *argv[])
     }
 
     // Translate the --overwrite option's value (if any) to a Renderer::ClobberMode value.
-    Renderer::ClobberMode clobberMode = Renderer::Prompt;
+    doxlee::Renderer::ClobberMode clobberMode = doxlee::Renderer::Prompt;
     if (parser.isSet(QStringLiteral("force"))) {
-        clobberMode = Renderer::Overwrite;
+        clobberMode = doxlee::Renderer::Overwrite;
     } else {
         const QString overwrite = parser.value(QStringLiteral("overwrite"));
-        if      (overwrite == QStringLiteral("yes"))    clobberMode = Renderer::Overwrite;
-        else if (overwrite == QStringLiteral("no"))     clobberMode = Renderer::Skip;
-        else if (overwrite == QStringLiteral("prompt")) clobberMode = Renderer::Prompt;
+        if      (overwrite == QStringLiteral("yes"))    clobberMode = doxlee::Renderer::Overwrite;
+        else if (overwrite == QStringLiteral("no"))     clobberMode = doxlee::Renderer::Skip;
+        else if (overwrite == QStringLiteral("prompt")) clobberMode = doxlee::Renderer::Prompt;
         else {
             qWarning().noquote() << QCoreApplication::translate("main",
                 "Invalid argument to option --overwrite: %1").arg(overwrite);
@@ -156,7 +156,7 @@ int main(int argc, char *argv[])
     }
 
     // Setup the renderer.
-    Renderer renderer(inputDir.absoluteFilePath());
+    doxlee::Renderer renderer(inputDir.absoluteFilePath());
     if (!renderer.loadTemplates(templatesDir.absoluteFilePath())) {
         return 3;
     }

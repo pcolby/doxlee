@@ -24,6 +24,7 @@
 #include <QCoreApplication>
 #include <QDebug>
 #include <QDirIterator>
+#include <QRegularExpression>
 #include <QXmlStreamReader>
 
 /// Shorten the QStringLiteral macro for readability.
@@ -31,6 +32,8 @@
 
 /// Shorten QCoreApplication::translate calls for readability.
 #define QTR(str) QCoreApplication::translate("Renderer", str)
+
+namespace doxlee {
 
 Renderer::Renderer(const QString &inputDir) : inputDir(inputDir)
 {
@@ -77,9 +80,8 @@ bool Renderer::loadTemplates(const QString &templatesDir)
             continue;
         }
 
-        // Extract the 'kind' string, if any. Equivalent to ^([^-.]+) on the file name only.
-        const QString kind =
-            dir.fileName().section(QLatin1Char('-'),0,0).section(QLatin1Char('.'),0,0);
+        // Extract the 'kind' string, if any (everything up to the first non-alphanemeric char).
+        QString kind = getKindFromFileName(dir.fileName());
         qDebug().noquote() << QTR("Inspecting template: %1 (%2,%3)")
             .arg(dir.filePath(), relativePathName, kind);
 
@@ -163,6 +165,53 @@ bool Renderer::render(const QDir &outputDir, ClobberMode clobberMode)
 int Renderer::outputFileCount() const
 {
     return filesWritten.size();
+}
+
+QString Renderer::compoundPathName(const QVariantMap &compound, const QString &templateName)
+{
+    // Start by breaking the path into the fileName and dirName (if any).
+    const int pos = templateName.lastIndexOf(QLatin1Char('/'));
+    QString fileName = (pos<0) ? templateName : templateName.mid(pos+1);
+    QString dirName = (pos<0) ? QString() : templateName.left(pos);
+
+    // Strip the "<kind>[char]" prefix from fileName, but remember which separator (if any) was used.
+    const QString kind = compound.value(QSL("kind")).toString();
+    Q_ASSERT(fileName.startsWith(kind));
+    QChar separator;
+    fileName = fileName.mid(kind.length());
+    if ((!fileName.isEmpty()) && (fileName.at(0) != QLatin1Char('.'))) {
+        separator = fileName.at(0);
+        fileName.remove(0,1);
+    }
+    if ((fileName.isEmpty()) || (fileName.at(0) == QLatin1Char('.'))) {
+        fileName.prepend(QSL("refid"));
+    }
+
+    // Replace the supported compound tokens.
+    const QStringList tokens { QSL("kind"), QSL("name"), QSL("refid") };
+    for (const QString &token: tokens) {
+        const QRegularExpression before(QSL("(^|\\W|_)%1(\\W|_|$)").arg(token));
+        const QString after = QSL("\\1%1\\2").arg(compound.value(token).toString());
+        fileName.replace(before, after);
+        dirName.replace(before, after);
+    }
+    if (!separator.isNull()) {
+        fileName.remove(separator);
+        dirName.remove(separator);
+    }
+    if (!dirName.isEmpty()) dirName.append(QLatin1Char('/'));
+    return dirName + fileName;
+}
+
+QString Renderer::getKindFromFileName(const QString &fileName)
+{
+    QString kind = fileName.split(QLatin1Char('/')).last();
+    const QString::ConstIterator pos = std::find_if_not(kind.constBegin(), kind.constEnd(),
+        [](const QChar &c){ return c.isLetterOrNumber();});
+    if (pos != kind.constEnd()) {
+        kind.truncate(pos - kind.constBegin());
+    }
+    return kind;
 }
 
 QPair<QStringList,QStringList> Renderer::getKinds(const QString &indexXsdPath)
@@ -398,7 +447,8 @@ bool Renderer::render(const QVariantList &compounds, const QStringList &template
         context.insert(QSL("compound"), compoundDefinition);
         for (const QString &templateName: templateNames) {
             /// \todo Determine the correct path name from the template's name.
-            const QString outputPath = outputDir.absoluteFilePath(refId);
+            const QString outputPath = outputDir.absoluteFilePath(
+                compoundPathName(compound.toMap(), templateName));
             if (!render(templateName, outputPath, context, clobberMode)) {
                 context.pop();
                 return false;
@@ -537,3 +587,5 @@ QVariantMap Renderer::toVariant(QXmlStreamReader &xml, const QString &prefix, co
     }
     return QVariantMap(map);
 }
+
+} // namespace doxlee

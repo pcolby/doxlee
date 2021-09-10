@@ -13,6 +13,10 @@ project(
  #HOMEPAGE_URL "https://github.com/pcolby/doxlee"
   LANGUAGES CXX)
 
+add_definitions(
+  -DCMAKE_PROJECT_NAME="${CMAKE_PROJECT_NAME}"
+  -DCMAKE_PROJECT_VERSION="${CMAKE_PROJECT_VERSION}")
+
 # Disable automatic ASCII conversions.
 add_definitions(-DQT_NO_CAST_FROM_ASCII -DQT_NO_CAST_TO_ASCII)
 

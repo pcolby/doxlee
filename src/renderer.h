@@ -25,6 +25,8 @@
 #include <QVariantMap>
 #include <QXmlStreamReader>
 
+namespace doxlee {
+
 class Renderer {
 
 public:
@@ -42,6 +44,8 @@ public:
     int outputFileCount() const;
 
 protected:
+    static QString compoundPathName(const QVariantMap &compound, const QString &templateName);
+    static QString getKindFromFileName(const QString &fileName);
     static QPair<QStringList,QStringList> getKinds(const QString &indexXsdPath);
     static bool parseIndex(const QString &fileName, Grantlee::Context &context);
     static bool supplementIndexes(Grantlee::Context &context);
@@ -67,3 +71,5 @@ private:
     QStringList filesWritten;
 
 };
+
+} // namespace doxlee
