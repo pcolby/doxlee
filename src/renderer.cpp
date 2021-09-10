@@ -335,6 +335,36 @@ bool Renderer::parseIndex(const QString &fileName, Grantlee::Context &context)
     return true;
 }
 
+bool Renderer::promptToOverwrite(const QString &pathName, ClobberMode &clobberMode)
+{
+    Q_ASSERT(clobberMode == Prompt);
+    while (true) {
+        qWarning().noquote() << QTR("Overwrite %1 [y,n,a,s,q,?]? ").arg(pathName);
+        QTextStream stream(stdin);
+        const QString response = stream.readLine();
+        if (response == QSL("y")) {
+            return true;
+        } else if (response == QSL("n")) {
+            return false;
+        } else if (response == QSL("a")) {
+            clobberMode = Overwrite;
+            return true;
+        } else if (response == QSL("s")) {
+            clobberMode = Skip;
+            return false;
+        } else if (response == QSL("q")) {
+            exit(255);
+        } else {
+            qInfo().noquote() << QTR("y - overwrite this file");
+            qInfo().noquote() << QTR("n - do not overwrite this file");
+            qInfo().noquote() << QTR("a - overwrite this, and all remaining files");
+            qInfo().noquote() << QTR("s - do not overwrite this, or any remaining files");
+            qInfo().noquote() << QTR("q - quit now, without writing any further files");
+            qInfo().noquote() << QTR("? - print help");
+        }
+   }
+}
+
 QVariantMap toVariantMap(const QHash<QString,QVariantList> &hash)
 {
     QVariantMap map;
@@ -391,16 +421,19 @@ bool Renderer::copy(const QString &fromPath, const QString &toPath, ClobberMode 
     QFileInfo toFileInfo(toPath);
     if (toFileInfo.exists()) {
         switch (clobberMode) {
+        case Prompt:
+            if (!promptToOverwrite(toPath, clobberMode)) {
+                qDebug().noquote() << QTR("Skipping existing output file: %1").arg(toPath);
+                return true;
+            }
+            // Fall-through to Overwrite behaviour.
         case Overwrite:
             if (!QFile::remove(toPath)) {
-                qWarning() << QTR("Failed to copy over existing file: %1").arg(toPath);
+                qWarning().noquote() << QTR("Failed to copy over existing file: %1").arg(toPath);
             }
             break;
-        case Prompt:
-            /// \todo Prompt, then return or (remove and continue).
-            break;
         case Skip:
-            qDebug() << QTR("Skipping existing output file: %1").arg(toPath);
+            qDebug().noquote() << QTR("Skipping existing output file: %1").arg(toPath);
             return true;
         }
     }
@@ -471,8 +504,9 @@ bool Renderer::render(const QString &templateName, const QString &outputPath,
             // QFile::open below will happily overwrite (if we have write permission).
             break;
         case Prompt:
-            /// \todo Prompt, then return or continue.
-            break;
+            if (promptToOverwrite(outputPath, clobberMode))
+                break; // QFile::open below will happily overwrite (if we have write permission).
+            // else fall-through to Skip behaviour.
         case Skip:
             qDebug() << QTR("Skipping existing output file: %1").arg(outputPath);
             return true;
