@@ -89,7 +89,7 @@ void TestRenderer::compoundPathName()
 void TestRenderer::getKindFromFileName_data()
 {
     QTest::addColumn<QString>("kind");
-    QTest::addRow("")                     << QString();
+    QTest::addRow(" ")                    << QString();
     QTest::addRow("/")                    << QString();
     QTest::addRow(".abc")                 << QString();
     QTest::addRow("kind1")                << QSL("kind1");
