@@ -148,7 +148,8 @@ bool Renderer::render(const QDir &outputDir, ClobberMode clobberMode)
 
     // Render all index templates.
     for (const QString &templateName: qAsConst(indexTemplateNames)) {
-        if (!render(templateName, outputDir.absoluteFilePath(templateName), context, clobberMode))
+        Q_ASSERT(templateName.startsWith(QSL("index")));
+        if (!render(templateName, outputDir.absoluteFilePath(templateName.mid(6)), context, clobberMode))
             return false;
     }
 
@@ -468,7 +469,7 @@ bool Renderer::render(const QVariantList &compounds, const QStringList &template
             return false;
         }
         QXmlStreamReader xml(&file);
-        const QVariantMap compoundDefinition = toVariant(xml) .value(QSL("doxygen")).toMap()
+        const QVariantMap compoundDefinition = toVariant(xml).value(QSL("doxygen")).toMap()
             .value(QSL("compounddef")).toMap();
         if (compoundDefinition.isEmpty()) {
             qWarning().noquote() << QTR("Error reading compond defintion: %1").arg(xmlFilePath);

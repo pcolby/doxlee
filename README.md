@@ -49,15 +49,18 @@ Generate the documentation:
 
 ```sh
 doxygen [configname]
-doxlee -i <path-to-xml-> -o <path-to-write-output> -t <path-to-templates>
+doxlee -i <path-to-xml-> -o <path-to-write-output> -t <path-to-theme>
 ```
 
 There are some other basic options too. Use `--help` to see them.
 
 ```
+Usage: ./src/doxlee [options]
+Render Doxygen XML via Grantlee Templates
+
 Options:
   -i, --input-dir <dir>        Read Doyxgen XML files from dir
-  -t, --templates-dir <dir>    Read Grantlee templates from dir
+  -t, --theme-dir <dir>        Read Grantlee theme from dir
   -o, --output-dir <dir>       Write output files to dir
   -d, --debug                  Enable debug output
   --color <yes|no|auto>        Color the console output (default auto)

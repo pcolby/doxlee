@@ -80,8 +80,8 @@ int main(int argc, char *argv[])
         {{QStringLiteral("i"), QStringLiteral("input-dir")},
           QCoreApplication::translate("main", "Read Doyxgen XML files from dir"),
           QStringLiteral("dir")},
-        {{QStringLiteral("t"), QStringLiteral("templates-dir")},
-          QCoreApplication::translate("main", "Read Grantlee templates from dir"),
+        {{QStringLiteral("t"), QStringLiteral("theme-dir")},
+          QCoreApplication::translate("main", "Read Grantlee theme from dir"),
           QStringLiteral("dir")},
         {{QStringLiteral("o"), QStringLiteral("output-dir")},
           QCoreApplication::translate("main", "Write output files to dir"), QStringLiteral("dir")},
@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
     QStringList missingOptions {
         QLatin1String("input-dir"),
         QLatin1String("output-dir"),
-        QLatin1String("templates-dir"),
+        QLatin1String("theme-dir"),
     };
     for (auto iter = missingOptions.begin(); iter != missingOptions.end();) {
         if (parser.isSet(*iter)) iter=missingOptions.erase(iter); else ++iter;
@@ -132,9 +132,9 @@ int main(int argc, char *argv[])
     }
 
     // Verify that the directories exist.
-    const QFileInfo inputDir    (QDir::cleanPath(parser.value(QStringLiteral("input-dir"))));
-    const QFileInfo templatesDir(QDir::cleanPath(parser.value(QStringLiteral("templates-dir"))));
-    const QFileInfo outputDir   (QDir::cleanPath(parser.value(QStringLiteral("output-dir"))));
+    const QFileInfo inputDir (QDir::cleanPath(parser.value(QStringLiteral("input-dir"))));
+    const QFileInfo themeDir (QDir::cleanPath(parser.value(QStringLiteral("theme-dir"))));
+    const QFileInfo outputDir(QDir::cleanPath(parser.value(QStringLiteral("output-dir"))));
 
     if ((!inputDir.exists()) || (!inputDir.isDir()) || (!inputDir.isReadable())) {
         qWarning().noquote() << QCoreApplication::translate("main",
@@ -142,10 +142,10 @@ int main(int argc, char *argv[])
             .arg(inputDir.absoluteFilePath());
         return 2;
     }
-    if ((!templatesDir.exists()) || (!templatesDir.isDir()) || (!templatesDir.isReadable())) {
+    if ((!themeDir.exists()) || (!themeDir.isDir()) || (!themeDir.isReadable())) {
         qWarning().noquote() << QCoreApplication::translate("main",
-            "Templates directory does not exist, is not a directory, or is not readable: %1")
-            .arg(templatesDir.absoluteFilePath());
+            "Theme directory does not exist, is not a directory, or is not readable: %1")
+            .arg(themeDir.absoluteFilePath());
         return 2;
     }
     if ((!outputDir.exists()) || (!outputDir.isDir()) || (!outputDir.isWritable())) {
@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
 
     // Setup the renderer.
     doxlee::Renderer renderer(inputDir.absoluteFilePath());
-    if (!renderer.loadTemplates(templatesDir.absoluteFilePath())) {
+    if (!renderer.loadTemplates(themeDir.absoluteFilePath())) {
         return 3;
     }
 

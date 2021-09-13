@@ -1,0 +1,18 @@
+{% include 'header.html' %}
+
+Classes
+<div class="classindex">
+<dl class="classindex even"> <!-- todo odd/even -->
+<dt class="alphachar"><a name="letter_A">A</a></dt>
+for
+{% for class in compoundsByKind.class %}
+<dd><a class="el" href="{{ class.refid }}.html">{{ class.name }}</a></dd>
+{% empty %}
+No classes documented.
+{% endfor %}
+</dl>
+</div> <!-- classindex -->
+
+doxlee {{ doxleeVersion }}
+
+{% include 'footer.html' %}
