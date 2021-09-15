@@ -150,7 +150,9 @@ bool Renderer::render(const QDir &outputDir, ClobberMode clobberMode)
     // Render all index templates.
     for (const QString &templateName: qAsConst(indexTemplateNames)) {
         Q_ASSERT(templateName.startsWith(QSL("index")));
-        if (!render(templateName, outputDir.absoluteFilePath(templateName.mid(6)), context, clobberMode))
+        const QString outputPath = outputDir.absoluteFilePath(
+            (templateName.lastIndexOf(QLatin1Char('.')) == 5) ? templateName : templateName.mid(6));
+        if (!render(templateName, outputPath, context, clobberMode))
             return false;
     }
 
