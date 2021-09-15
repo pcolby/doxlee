@@ -43,7 +43,8 @@ Renderer::Renderer(const QString &inputDir) : inputDir(inputDir)
     // Configure the Grantlee Templates rendering engine.
     engine.setSmartTrimEnabled(true);
 
-    // Parse the XML index.
+    // Parse the XML index
+    /// \todo the caller should be able to detect failure here.
     parseIndex(this->inputDir.absoluteFilePath(QSL("index.xml")), context)
 
     // Supplement the compounds index data (from parseIndex) with additional views.
