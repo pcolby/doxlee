@@ -37,7 +37,7 @@ function runTest {
   $DEBUG && echo "$DOXLEE" ${DOXLEE_ARGS:-} --force --input-dir "$themeDir/xml" --theme-dir "$THEMES_DIR/$themeName" --output-dir "$tmpDir"
   "$DOXLEE" ${DOXLEE_ARGS:-} --force --input-dir "$testDir/xml" --theme-dir "$THEMES_DIR/$themeName" --output-dir "$tmpDir"
   $DEBUG && echo "$DIFF" $DIFF_ARGS --recursive "$testDir/expected/$themeName" "$tmpDir"
-  #"$DIFF" $DIFF_ARGS --recursive "$name/expected/$themeName" "$tmpDir"
+  "$DIFF" $DIFF_ARGS --recursive "$testDir/expected/$themeName" "$tmpDir"
   echo "PASS : $testName($themeName)" >&2
 }
 
