@@ -46,10 +46,7 @@ public:
 protected:
     static QString compoundPathName(const QVariantMap &compound, const QString &templateName);
     static QString getKindFromFileName(const QString &fileName);
-    static QPair<QStringList,QStringList> getKinds(const QString &indexXsdPath);
-    static bool parseIndex(const QString &fileName, Grantlee::Context &context);
     static bool promptToOverwrite(const QString &pathName, ClobberMode &clobberMode);
-    static bool supplementIndexes(Grantlee::Context &context);
 
     bool copy(const QString &fromPath, const QString &toPath, ClobberMode &clobberMode);
 

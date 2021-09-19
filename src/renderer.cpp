@@ -17,9 +17,10 @@
     along with doxlee.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "variant.h"
-
 #include "renderer.h"
+
+#include "doxml.h"
+#include "variant.h" ///< \todo Remove this once more code has been shifted to doxml.cpp
 
 #include <grantlee/cachingloaderdecorator.h>
 #include <grantlee/templateloader.h>
@@ -47,18 +48,17 @@ Renderer::Renderer(const QString &inputDir) : inputDir(inputDir)
 
     // Parse the XML index
     /// \todo the caller should be able to detect failure here.
-    parseIndex(this->inputDir.absoluteFilePath(QSL("index.xml")), context)
-
-    // Supplement the compounds index data (from parseIndex) with additional views.
-    && supplementIndexes(context);
+    const QVariantMap map = doxml::parseIndex(this->inputDir);
+    for (auto iter = map.constBegin(); iter != map.constEnd(); ++iter)
+        context.insert(iter.key(), iter.value());
 }
 
 bool Renderer::loadTemplates(const QString &templatesDir)
 {
     // Fetch the list of compound and member kinds supported by the Doxgen version.
-    auto kinds = getKinds(inputDir.absoluteFilePath(QSL("index.xsd")));
+    auto kinds = doxml::kinds(inputDir);
     if ((kinds.first.isEmpty()) && (kinds.second.isEmpty())) {
-        return false; // getKinds failed; and reported an appropriate error.
+        return false; // doxml::kinds failed; and reported an appropriate error.
     }
 
     // Setup the template loader.
@@ -220,127 +220,6 @@ QString Renderer::getKindFromFileName(const QString &fileName)
     return kind;
 }
 
-QPair<QStringList,QStringList> Renderer::getKinds(const QString &indexXsdPath)
-{
-    // Open the file for reading.
-    QFile file(indexXsdPath);
-    if (!file.open(QIODevice::ReadOnly|QIODevice::Text)) {
-        qWarning().noquote() << QTR("Error opening file for reading: %1").arg(indexXsdPath);
-        return { };
-    }
-
-    QStringList compoundKinds, memberKinds;
-
-    // Parse the opening <schema> element.
-    QXmlStreamReader xml(&file);
-    if (!xml.readNextStartElement()) {
-        qWarning().noquote() << QTR("Invalid XML file: %1 - %2").arg(indexXsdPath, xml.errorString());
-        return { };
-    }
-    if (xml.name() != QSL("schema")) {
-        qWarning().noquote() << QTR("File is not a Doxygen XML index schema: %1 - %2")
-                                .arg(indexXsdPath, xml.name().toString());
-        return { };
-    }
-
-    // Parse the contained 'kind' elements.
-    while ((!xml.atEnd()) && (xml.readNextStartElement())) {
-        if (xml.name() == QSL("simpleType")) {
-            const QString nameAttribute = xml.attributes().value(QSL("name")).toString();
-            if ((nameAttribute == QSL("CompoundKind")) || (nameAttribute == QSL("MemberKind"))) {
-                while ((!xml.atEnd()) && (xml.readNextStartElement())) {
-                    if (xml.name() == QSL("restriction")) {
-                        QStringList &kinds = (nameAttribute == QLatin1String("CompoundKind"))
-                            ? compoundKinds : memberKinds;
-                        while ((!xml.atEnd()) && (xml.readNextStartElement())) {
-                            if (xml.name() == QSL("enumeration")) {
-                                kinds.append(xml.attributes().value(QSL("value")).toString());
-                            }
-                            xml.skipCurrentElement();
-                        }
-                    } else xml.skipCurrentElement();
-                }
-            } else xml.skipCurrentElement();
-        } else xml.skipCurrentElement();
-    }
-    qInfo().noquote() << QTR("Parsed %1 compound kind(s), and %2 member kind(s) from %3")
-        .arg(compoundKinds.size()).arg(memberKinds.size()).arg(indexXsdPath);
-    return { compoundKinds, memberKinds };
-}
-
-bool Renderer::parseIndex(const QString &fileName, Grantlee::Context &context)
-{
-    // Open the file for reading.
-    QFile file(fileName);
-    if (!file.open(QIODevice::ReadOnly|QIODevice::Text)) {
-        qWarning().noquote() << QTR("Error opening file for reading: %1").arg(fileName);
-        return false;
-    }
-
-    // Parse the opening <doxygenindex> element.
-    QXmlStreamReader xml(&file);
-    if (!xml.readNextStartElement()) {
-        qWarning().noquote() << QTR("Invalid XML file: %1 - %2").arg(fileName, xml.errorString());
-        return false;
-    }
-    qDebug() << xml.name() << "version" << xml.attributes().value(QSL("version"))
-             << xml.attributes().value(QSL("xml:lang")).toString();
-    if (xml.name() != QSL("doxygenindex")) {
-        qWarning().noquote() << QTR("File is not a Doxygen XML index: %1 - %2")
-                                .arg(fileName, xml.name().toString());
-        return false;
-    }
-    context.insert(QSL("doxygenVersion"), xml.attributes().value(QSL("version")).toString());
-    context.insert(QSL("doxygenLanguage"), xml.attributes().value(QSL("xml:lang")).toString());
-
-    // Parse the contained <compound> elements.
-    QVariantList compounds;
-    while ((!xml.atEnd()) && (xml.readNextStartElement())) {
-        if (xml.name() == QSL("compound")) {
-            QVariantMap compound;
-            compound.insert(QSL("refid"), xml.attributes().value(QSL("refid")).toString());
-            compound.insert(QSL("kind"), xml.attributes().value(QSL("kind")).toString());
-            if ((!xml.readNextStartElement()) || (xml.name() != QSL("name"))) {
-                qWarning().noquote() << QTR(" %1:%2:%3 <compound> does not begin with <name>")
-                    .arg(fileName).arg(xml.lineNumber()).arg(xml.columnNumber());
-                return false;
-            }
-            compound.insert(QSL("name"), xml.readElementText());
-            //qDebug() << __func__ << "compound" << compound;
-            QVariantList members;
-            while ((!xml.atEnd()) && (xml.readNextStartElement())) {
-                if (xml.name() == QSL("member")) {
-                    QVariantMap member;
-                    member.insert(QSL("refid"), xml.attributes().value(QSL("refid")).toString());
-                    member.insert(QSL("kind"), xml.attributes().value(QSL("kind")).toString());
-                    if ((!xml.readNextStartElement()) || (xml.name() != QSL("name"))) {
-                        qWarning().noquote() << QTR("%1:%2:%3 <member> does not begin with <name>")
-                            .arg(fileName).arg(xml.lineNumber()).arg(xml.columnNumber());
-                        return false;
-                    }
-                    member.insert(QSL("name"), xml.readElementText());
-                    //qDebug() << __func__ << "member" << member;
-                    members.append(member);
-                    xml.skipCurrentElement();
-                } else {
-                    qWarning().noquote() << QTR("Skipping unknown <%1> element at %2:%3:%4")
-                        .arg(xml.name().toString(), fileName).arg(xml.lineNumber()).arg(xml.columnNumber());
-                    xml.skipCurrentElement();
-                }
-            }
-            compound.insert(QSL("members"), members);
-            compounds.append(compound);
-        } else {
-            qWarning().noquote() << QTR("Skipping unknown <%1> element at %2:%3:%4")
-                .arg(xml.name().toString(), fileName).arg(xml.lineNumber()).arg(xml.columnNumber());
-            xml.skipCurrentElement();
-        }
-    }
-    qInfo().noquote() << QTR("Parsed %1 compound(s) from %2").arg(compounds.size()).arg(fileName);
-    context.insert(QSL("compoundsList"), compounds);
-    return true;
-}
-
 bool Renderer::promptToOverwrite(const QString &pathName, ClobberMode &clobberMode)
 {
     Q_ASSERT(clobberMode == Prompt);
@@ -369,46 +248,6 @@ bool Renderer::promptToOverwrite(const QString &pathName, ClobberMode &clobberMo
             qInfo().noquote() << QTR("? - print help");
         }
    }
-}
-
-inline void sortBy(QVariantList &list, const QString &name)
-{
-    std::sort(list.begin(), list.end(),
-        [&name](const QVariant &a, const QVariant &b) {
-            return a.toMap().value(name).toString() < b.toMap().value(name).toString();
-        });
-}
-
-bool Renderer::supplementIndexes(Grantlee::Context &context)
-{
-    const QVariantList compounds = context.lookup(QSL("compoundsList")).toList();
-    QHash<QString,QVariantList> compoundsByKind, membersByKind;
-    QVariantMap compoundsByRefId, membersByRefId;
-    for (const QVariant &compound: compounds) {
-        const QVariantMap compoundMap = compound.toMap();
-        {
-            const QString kind = compoundMap.value(QSL("kind")).toString();
-            const QString refid = compoundMap.value(QSL("refid")).toString();
-            compoundsByKind[kind].append(compound);
-            compoundsByRefId.insert(refid, compound);
-        }
-
-        const QVariantList members = compoundMap.value(QSL("members")).toList();
-        for (const QVariant &member: members) {
-            const QVariantMap memberMap = member.toMap();
-            const QString kind = memberMap.value(QSL("kind")).toString();
-            const QString refid = memberMap.value(QSL("refid")).toString();
-            membersByKind[kind].append(member);
-            membersByRefId.insert(refid, member);
-        }
-    }
-    for (QVariantList &compoundsList: compoundsByKind) sortBy(compoundsList, QSL("name"));
-    for (QVariantList &membersList: membersByKind)     sortBy(membersList,   QSL("name"));
-    context.insert(QSL("compoundsByKind" ), toVariant(compoundsByKind));
-    context.insert(QSL("compoundsByRefId"), compoundsByRefId);
-    context.insert(QSL("membersByKind"   ), toVariant(membersByKind));
-    context.insert(QSL("membersByRefId"  ), membersByRefId);
-    return true;
 }
 
 bool Renderer::copy(const QString &fromPath, const QString &toPath, ClobberMode &clobberMode)

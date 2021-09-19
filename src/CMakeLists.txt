@@ -3,6 +3,8 @@ message("-- Found Grantlee ${Grantlee5_VERSION}")
 
 add_executable(
   doxlee
+  doxml.h
+  doxml.cpp
   main.cpp
   renderer.cpp
   renderer.h

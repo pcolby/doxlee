@@ -5,6 +5,8 @@ add_executable(
   testRenderer
   testrenderer.h
   testrenderer.cpp
+  ${CMAKE_SOURCE_DIR}/src/doxml.h
+  ${CMAKE_SOURCE_DIR}/src/doxml.cpp
   ${CMAKE_SOURCE_DIR}/src/renderer.h
   ${CMAKE_SOURCE_DIR}/src/renderer.cpp
   ${CMAKE_SOURCE_DIR}/src/variant.h

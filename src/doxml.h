@@ -17,22 +17,27 @@
     along with doxlee.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef DOXLEE_VARIANT_H
-#define DOXLEE_VARIANT_H
-
-#include <QHash>
+#include <QDir>
+#include <QPair>
 #include <QVariantMap>
-#include <QXmlStreamReader>
+
+#ifndef DOXLEE_DOXML_H
+#define DOXLEE_DOXML_H
 
 namespace doxlee {
 
-void sortBy(QVariantList &list, const QString &key);
+namespace doxml {
 
-QVariantMap toVariant(const QHash<QString,QVariantList> &hash);
+QPair<QStringList,QStringList> kinds(const QDir &doxmlDir);
+QPair<QStringList,QStringList> kinds(const QString &indexXsdPath);
 
-QVariantMap toVariant(QXmlStreamReader &xml, const QString &prefix=QStringLiteral("."),
-                      const int maxDepth=1024);
+QVariantMap parseIndex(const QDir &doxmlDir, const bool extraIndexes = true);
+QVariantMap parseIndex(const QString &indexXmlPath, const bool extraIndexes = true);
+
+QVariantMap extraIndexes(const QVariantList &compounds);
+
+} // namespace doxml
 
 } // namespace doxlee
 
-#endif // DOXLEE_VARIANT_H
+#endif // DOXLEE_DOXML_H

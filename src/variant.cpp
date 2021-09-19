@@ -28,6 +28,14 @@
 
 namespace doxlee {
 
+void sortBy(QVariantList &list, const QString &key)
+{
+    std::sort(list.begin(), list.end(),
+        [&key](const QVariant &a, const QVariant &b) {
+            return a.toMap().value(key).toString() < b.toMap().value(key).toString();
+        });
+}
+
 QVariantMap toVariant(const QHash<QString,QVariantList> &hash)
 {
     QVariantMap map;
@@ -105,5 +113,3 @@ QVariantMap toVariant(QXmlStreamReader &xml, const QString &prefix, const int ma
 }
 
 } // namespace doxlee
-
-#undef QTR
