@@ -17,6 +17,8 @@
     along with doxlee.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "variant.h"
+
 #include "renderer.h"
 
 #include <grantlee/cachingloaderdecorator.h>
@@ -369,15 +371,6 @@ bool Renderer::promptToOverwrite(const QString &pathName, ClobberMode &clobberMo
    }
 }
 
-QVariantMap toVariantMap(const QHash<QString,QVariantList> &hash)
-{
-    QVariantMap map;
-    for (auto iter = hash.begin(); iter != hash.end(); ++iter) {
-        map.insert(iter.key(), iter.value());
-    }
-    return map;
-}
-
 inline void sortBy(QVariantList &list, const QString &name)
 {
     std::sort(list.begin(), list.end(),
@@ -411,9 +404,9 @@ bool Renderer::supplementIndexes(Grantlee::Context &context)
     }
     for (QVariantList &compoundsList: compoundsByKind) sortBy(compoundsList, QSL("name"));
     for (QVariantList &membersList: membersByKind)     sortBy(membersList,   QSL("name"));
-    context.insert(QSL("compoundsByKind" ), toVariantMap(compoundsByKind));
+    context.insert(QSL("compoundsByKind" ), toVariant(compoundsByKind));
     context.insert(QSL("compoundsByRefId"), compoundsByRefId);
-    context.insert(QSL("membersByKind"   ), toVariantMap(membersByKind));
+    context.insert(QSL("membersByKind"   ), toVariant(membersByKind));
     context.insert(QSL("membersByRefId"  ), membersByRefId);
     return true;
 }
@@ -556,73 +549,5 @@ bool Renderer::render(const QString &templateName, const QString &outputPath,
 //        return QSharedPointer<OutputStream>(new NoEscapeStream(stream));
 //    }
 //};
-
-/// Borrowed from (my own old) gist: https://gist.github.com/pcolby/6558910
-/// \todo Move this to its own file; its really nothing to do with rendering.
-QVariantMap Renderer::toVariant(QXmlStreamReader &xml, const QString &prefix, const int maxDepth)
-{
-    if (maxDepth < 0) {
-        qWarning() << QObject::tr("max depth exceeded");
-        return QVariantMap();
-    }
-
-    if (xml.hasError()) {
-        qWarning() << xml.errorString();
-        return QVariantMap();
-    }
-
-    if (xml.tokenType() == QXmlStreamReader::NoToken)
-        xml.readNext();
-
-    if ((xml.tokenType() != QXmlStreamReader::StartDocument) &&
-        (xml.tokenType() != QXmlStreamReader::StartElement)) {
-        qWarning() << QObject::tr("unexpected XML tokenType %1 (%2)")
-                      .arg(xml.tokenString()).arg(xml.tokenType());
-        return QVariantMap();
-    }
-
-    QMultiMap<QString, QVariant> map;
-    if (xml.tokenType() == QXmlStreamReader::StartDocument) {
-        map.insert(prefix + QLatin1String("DocumentEncoding"), xml.documentEncoding().toString());
-        map.insert(prefix + QLatin1String("DocumentVersion"), xml.documentVersion().toString());
-        map.insert(prefix + QLatin1String("StandaloneDocument"), xml.isStandaloneDocument());
-    } else {
-        if (!xml.namespaceUri().isEmpty())
-            map.insert(prefix + QLatin1String("NamespaceUri"), xml.namespaceUri().toString());
-        foreach (const QXmlStreamAttribute &attribute, xml.attributes()) {
-            QVariantMap attributeMap;
-            attributeMap.insert(QLatin1String("Value"), attribute.value().toString());
-            if (!attribute.namespaceUri().isEmpty())
-                attributeMap.insert(QLatin1String("NamespaceUri"), attribute.namespaceUri().toString());
-            if (!attribute.prefix().isEmpty())
-                attributeMap.insert(QLatin1String("Prefix"), attribute.prefix().toString());
-            attributeMap.insert(QLatin1String("QualifiedName"), attribute.qualifiedName().toString());
-            map.insert(prefix + attribute.name().toString(), attributeMap);
-        }
-    }
-
-    for (xml.readNext(); (!xml.atEnd()) && (xml.tokenType() != QXmlStreamReader::EndElement)
-          && (xml.tokenType() != QXmlStreamReader::EndDocument); xml.readNext()) {
-        switch (xml.tokenType()) {
-        case QXmlStreamReader::Characters:
-        case QXmlStreamReader::Comment:
-        case QXmlStreamReader::DTD:
-        case QXmlStreamReader::EntityReference:
-            map.insert(prefix + xml.tokenString(), xml.text().toString());
-            break;
-        case QXmlStreamReader::ProcessingInstruction:
-            map.insert(prefix + xml.processingInstructionTarget().toString(),
-                            xml.processingInstructionData().toString());
-            break;
-        case QXmlStreamReader::StartElement:
-            map.insert(xml.name().toString(), toVariant(xml, prefix, maxDepth-1));
-            break;
-        default:
-            qWarning() << QObject::tr("unexpected XML tokenType %1 (%2)")
-                          .arg(xml.tokenString()).arg(xml.tokenType());
-        }
-    }
-    return QVariantMap(map);
-}
 
 } // namespace doxlee

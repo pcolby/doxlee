@@ -6,6 +6,8 @@ add_executable(
   main.cpp
   renderer.cpp
   renderer.h
+  variant.cpp
+  variant.h
 )
 
 target_link_libraries(

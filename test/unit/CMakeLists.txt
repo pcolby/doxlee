@@ -6,7 +6,9 @@ add_executable(
   testrenderer.h
   testrenderer.cpp
   ${CMAKE_SOURCE_DIR}/src/renderer.h
-  ${CMAKE_SOURCE_DIR}/src/renderer.cpp)
+  ${CMAKE_SOURCE_DIR}/src/renderer.cpp
+  ${CMAKE_SOURCE_DIR}/src/variant.h
+  ${CMAKE_SOURCE_DIR}/src/variant.cpp)
 
 add_test(NAME testRenderer COMMAND testRenderer)
 

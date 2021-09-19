@@ -18,7 +18,7 @@ Language specified in the [Doxygen] XML index, for example `en-US`.
 
 ### `compoundsList`
 
-Compounds listed in the order they appear [Doxyen] XML index. Note, the 
+Compounds listed in the order they appear [Doxygen] XML index. See also [index.xsd].
 
 * `compoundsList[].refid`
 * `compoundsList[].kind`
@@ -70,7 +70,27 @@ All members contained in `compoundsList`, indexed by member *refid*.
 
 Context variables available to per-compound templates:
 
+* `compound.id` eg `classFoo`
+* `compound.kind` eg `class`
+* `compound.name`
+* `compound.title`
+* `compound.language` eg `C++`
+* `compound.proto` eg `public`
+* `compound.brief`
+* `compound.description`
+* `compound.members`
+* `compound.location.bodyfile` eg `foo.cpp`
+* `compound.location.bodystart` eg 2
+* `compound.location.bodyend` eg 4
+* `compound.location.file` eg `foo.cpp`
+* `compound.location.line` eg `2`
+* `compound.location.column` eg `1`
+
+See also [compound.xsd].
+
 \todo
 
+[compound.xsd]: https://github.com/doxygen/doxygen/blob/master/templates/xml/compound.xsd
 [Doxygen]: https://github.com/doxygen/doxygen
 [doxlee]: https://github.com/pcolby/doxlee
+[index.xsd]: https://github.com/doxygen/doxygen/blob/master/templates/xml/index.xsd

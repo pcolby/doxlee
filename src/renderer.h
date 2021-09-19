@@ -59,9 +59,6 @@ protected:
     bool render(const QString &templateName, const QString &outputPath,
                 Grantlee::Context &context, ClobberMode &clobberMode);
 
-    static QVariantMap toVariant(QXmlStreamReader &xml, const QString &prefix=QStringLiteral("."),
-                                 const int maxDepth=1024);
-
 private:
     const QDir inputDir;
     Grantlee::Context context;
