@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classabc_1_1def_1_1Bar" kind="class" language="C++" prot="public">
+    <compoundname>abc::def::Bar</compoundname>
+    <basecompoundref refid="classabc_1_1def_1_1Foo" prot="public" virt="non-virtual">abc::def::Foo</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classabc_1_1def_1_1Bar_1a71e7d7204b27d7311c036ff1de0690e3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void abc::def::Bar::doSomethingVirtually</definition>
+        <argsstring>()</argsstring>
+        <name>doSomethingVirtually</name>
+        <reimplements refid="classabc_1_1def_1_1Foo_1ad88fea02a9157387e822baf6484e0d54">doSomethingVirtually</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Do something virtually.</para>
+<para>This implementation does nada (other than demonstrating providing an implelemtation for a pure virtual function). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="foo.cpp" line="104" column="10" bodyfile="foo.cpp" bodystart="104" bodyend="104"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classabc_1_1def_1_1Bar_1a9013e1a34eb6344b81e1dedd7932cad1" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>int abc::def::Bar::doSomethingOverridable</definition>
+        <argsstring>() override</argsstring>
+        <name>doSomethingOverridable</name>
+        <reimplements refid="classabc_1_1def_1_1Foo_1ae799411793d84d150c28af25036e7690">doSomethingOverridable</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Do something overridable.</para>
+<para>Derived clases may override to do their own thing.</para>
+<para><simplesect kind="return"><para>some integer </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="foo.cpp" line="107" column="9" bodyfile="foo.cpp" bodystart="107" bodyend="107"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The <ref refid="classabc_1_1def_1_1Bar" kindref="compound">Bar</ref> class extends <ref refid="classabc_1_1def_1_1Foo" kindref="compound">Foo</ref> to do bar. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>abc::def::Bar</label>
+        <link refid="classabc_1_1def_1_1Bar"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>abc::def::Foo</label>
+        <link refid="classabc_1_1def_1_1Foo"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>abc::def::Bar</label>
+        <link refid="classabc_1_1def_1_1Bar"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>abc::def::Foo</label>
+        <link refid="classabc_1_1def_1_1Foo"/>
+      </node>
+    </collaborationgraph>
+    <location file="foo.cpp" line="95" column="1" bodyfile="foo.cpp" bodystart="95" bodyend="109"/>
+    <listofallmembers>
+      <member refid="classabc_1_1def_1_1Foo_1ae2f5ed49ffb708bdac47603abebd3b54" prot="public" virt="non-virtual"><scope>abc::def::Bar</scope><name>doSomething</name></member>
+      <member refid="classabc_1_1def_1_1Bar_1a9013e1a34eb6344b81e1dedd7932cad1" prot="protected" virt="virtual"><scope>abc::def::Bar</scope><name>doSomethingOverridable</name></member>
+      <member refid="classabc_1_1def_1_1Bar_1a71e7d7204b27d7311c036ff1de0690e3" prot="public" virt="virtual"><scope>abc::def::Bar</scope><name>doSomethingVirtually</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1ab8f1e0ba51e35a47d6554aea55f0b498" prot="public" virt="non-virtual"><scope>abc::def::Bar</scope><name>Foo</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1a37a4ea2633645b48a19ec498f15940cf" prot="public" virt="non-virtual"><scope>abc::def::Bar</scope><name>Foo</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1a611afbf15f5adf26966a4a02b4ed3642" prot="public" virt="non-virtual"><scope>abc::def::Bar</scope><name>i</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1a9db7c72c7c8b6d07835a7925a0e28460" prot="public" virt="non-virtual"><scope>abc::def::Bar</scope><name>j</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1a08b8295d543c49f762a4e3c5c4b9221c" prot="public" virt="non-virtual"><scope>abc::def::Bar</scope><name>k</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1a359670694702fd4e3b86f1143421841c" prot="protected" virt="non-virtual"><scope>abc::def::Bar</scope><name>l</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1ab854402f184dd03f2e18c4143307c44f" prot="protected" virt="non-virtual"><scope>abc::def::Bar</scope><name>m</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1abf4d2e8fbbc03ba903b515e657789bad" prot="protected" virt="non-virtual"><scope>abc::def::Bar</scope><name>n</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

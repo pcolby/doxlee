@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespaceabc_1_1def" kind="namespace" language="C++">
+    <compoundname>abc::def</compoundname>
+    <innerclass refid="classabc_1_1def_1_1Foo" prot="public">abc::def::Foo</innerclass>
+    <innerclass refid="classabc_1_1def_1_1Bar" prot="public">abc::def::Bar</innerclass>
+    <innerclass refid="classabc_1_1def_1_1Baz" prot="public">abc::def::Baz</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The def namespace encapsulates everything in this file, except the abc namespace. </para>
+    </detaileddescription>
+    <location file="foo.cpp" line="17" column="1"/>
+  </compounddef>
+</doxygen>

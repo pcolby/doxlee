@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classabc_1_1def_1_1Baz" kind="class" language="C++" prot="public">
+    <compoundname>abc::def::Baz</compoundname>
+    <basecompoundref refid="classabc_1_1def_1_1Foo" prot="private" virt="non-virtual">abc::def::Foo</basecompoundref>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The <ref refid="classabc_1_1def_1_1Bar" kindref="compound">Bar</ref> class extends <ref refid="classabc_1_1def_1_1Foo" kindref="compound">Foo</ref> to do baz. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>abc::def::Baz</label>
+        <link refid="classabc_1_1def_1_1Baz"/>
+        <childnode refid="2" relation="private-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>abc::def::Foo</label>
+        <link refid="classabc_1_1def_1_1Foo"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>abc::def::Baz</label>
+        <link refid="classabc_1_1def_1_1Baz"/>
+        <childnode refid="2" relation="private-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>abc::def::Foo</label>
+        <link refid="classabc_1_1def_1_1Foo"/>
+      </node>
+    </collaborationgraph>
+    <location file="foo.cpp" line="114" column="1" bodyfile="foo.cpp" bodystart="114" bodyend="116"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

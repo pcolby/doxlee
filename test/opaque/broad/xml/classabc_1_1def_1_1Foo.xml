@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classabc_1_1def_1_1Foo" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>abc::def::Foo</compoundname>
+    <derivedcompoundref refid="classabc_1_1def_1_1Bar" prot="public" virt="non-virtual">abc::def::Bar</derivedcompoundref>
+    <derivedcompoundref refid="classabc_1_1def_1_1Baz" prot="private" virt="non-virtual">abc::def::Baz</derivedcompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classabc_1_1def_1_1Foo_1a611afbf15f5adf26966a4a02b4ed3642" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int abc::def::Foo::i</definition>
+        <argsstring></argsstring>
+        <name>i</name>
+        <briefdescription>
+<para>A public class member. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="foo.cpp" line="26" column="9" bodyfile="foo.cpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classabc_1_1def_1_1Foo_1a9db7c72c7c8b6d07835a7925a0e28460" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int abc::def::Foo::j</definition>
+        <argsstring></argsstring>
+        <name>j</name>
+        <briefdescription>
+<para>Another public class member. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="foo.cpp" line="27" column="9" bodyfile="foo.cpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classabc_1_1def_1_1Foo_1a08b8295d543c49f762a4e3c5c4b9221c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int abc::def::Foo::k</definition>
+        <argsstring></argsstring>
+        <name>k</name>
+        <briefdescription>
+<para>Yet another public class member. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="foo.cpp" line="28" column="9" bodyfile="foo.cpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classabc_1_1def_1_1Foo_1a359670694702fd4e3b86f1143421841c" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int abc::def::Foo::l</definition>
+        <argsstring></argsstring>
+        <name>l</name>
+        <briefdescription>
+<para>A protected class member. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="foo.cpp" line="61" column="9" bodyfile="foo.cpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classabc_1_1def_1_1Foo_1ab854402f184dd03f2e18c4143307c44f" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int abc::def::Foo::m</definition>
+        <argsstring></argsstring>
+        <name>m</name>
+        <briefdescription>
+<para>Another protected class member. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="foo.cpp" line="62" column="9" bodyfile="foo.cpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classabc_1_1def_1_1Foo_1abf4d2e8fbbc03ba903b515e657789bad" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int abc::def::Foo::n</definition>
+        <argsstring></argsstring>
+        <name>n</name>
+        <briefdescription>
+<para>Yet another protected class member. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="foo.cpp" line="63" column="9" bodyfile="foo.cpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classabc_1_1def_1_1Foo_1a42095f658b4bc59a96876e873d0e69fc" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int abc::def::Foo::o</definition>
+        <argsstring></argsstring>
+        <name>o</name>
+        <briefdescription>
+<para>A private class member. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="foo.cpp" line="75" column="9" bodyfile="foo.cpp" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classabc_1_1def_1_1Foo_1a2951631fed521ad31e49cb7998024734" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int abc::def::Foo::p</definition>
+        <argsstring></argsstring>
+        <name>p</name>
+        <briefdescription>
+<para>Another private class member. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="foo.cpp" line="76" column="9" bodyfile="foo.cpp" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classabc_1_1def_1_1Foo_1a46459207c33600771b08fb8110d06ee4" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int abc::def::Foo::q</definition>
+        <argsstring></argsstring>
+        <name>q</name>
+        <briefdescription>
+<para>Yet another private class member. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="foo.cpp" line="77" column="9" bodyfile="foo.cpp" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classabc_1_1def_1_1Foo_1ab8f1e0ba51e35a47d6554aea55f0b498" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>abc::def::Foo::Foo</definition>
+        <argsstring>()</argsstring>
+        <name>Foo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Constructs a <ref refid="classabc_1_1def_1_1Foo" kindref="compound">Foo</ref> object.</para>
+<para><xrefsect id="todo_1_todo000001"><xreftitle>Todo</xreftitle><xrefdescription><para>Make this constructor do more. </para>
+</xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="foo.cpp" line="35" column="5" bodyfile="foo.cpp" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classabc_1_1def_1_1Foo_1a37a4ea2633645b48a19ec498f15940cf" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>abc::def::Foo::Foo</definition>
+        <argsstring>(const int i=123)</argsstring>
+        <name>Foo</name>
+        <param>
+          <type>const int</type>
+          <declname>i</declname>
+          <defval>123</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Constructs a <ref refid="classabc_1_1def_1_1Foo" kindref="compound">Foo</ref> object.</para>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="foo.cpp" line="42" column="14" bodyfile="foo.cpp" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classabc_1_1def_1_1Foo_1ae2f5ed49ffb708bdac47603abebd3b54" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool abc::def::Foo::doSomething</definition>
+        <argsstring>()</argsstring>
+        <name>doSomething</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Do something.</para>
+<para>Anyone may call this funtion.</para>
+<para><simplesect kind="return"><para><computeroutput>true</computeroutput>, pretty much always. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="foo.cpp" line="51" column="10" bodyfile="foo.cpp" bodystart="51" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classabc_1_1def_1_1Foo_1ad88fea02a9157387e822baf6484e0d54" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>void abc::def::Foo::doSomethingVirtually</definition>
+        <argsstring>()=0</argsstring>
+        <name>doSomethingVirtually</name>
+        <reimplementedby refid="classabc_1_1def_1_1Bar_1a71e7d7204b27d7311c036ff1de0690e3">doSomethingVirtually</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Do something virtually.</para>
+<para>Derived classes <emphasis>must</emphasis> override this function to do something. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="foo.cpp" line="58" column="10"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classabc_1_1def_1_1Foo_1ae799411793d84d150c28af25036e7690" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>virtual int abc::def::Foo::doSomethingOverridable</definition>
+        <argsstring>()</argsstring>
+        <name>doSomethingOverridable</name>
+        <reimplementedby refid="classabc_1_1def_1_1Bar_1a9013e1a34eb6344b81e1dedd7932cad1">doSomethingOverridable</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Do something overridable.</para>
+<para>Derived clases may override to do their own thing.</para>
+<para><simplesect kind="return"><para>some integer </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="foo.cpp" line="72" column="17" bodyfile="foo.cpp" bodystart="72" bodyend="72"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classabc_1_1def_1_1Foo_1af99ae404b8742e0bcbef6313d5b9d337" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int abc::def::Foo::doSomethingPrivately</definition>
+        <argsstring>()</argsstring>
+        <name>doSomethingPrivately</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="foo.cpp" line="88" column="16" bodyfile="foo.cpp" bodystart="88" bodyend="88"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The <ref refid="classabc_1_1def_1_1Foo" kindref="compound">Foo</ref> class.</para>
+<para>This class is pretty simple. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>abc::def::Bar</label>
+        <link refid="classabc_1_1def_1_1Bar"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>abc::def::Baz</label>
+        <link refid="classabc_1_1def_1_1Baz"/>
+        <childnode refid="1" relation="private-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>abc::def::Foo</label>
+        <link refid="classabc_1_1def_1_1Foo"/>
+      </node>
+    </inheritancegraph>
+    <location file="foo.cpp" line="24" column="1" bodyfile="foo.cpp" bodystart="24" bodyend="90"/>
+    <listofallmembers>
+      <member refid="classabc_1_1def_1_1Foo_1ae2f5ed49ffb708bdac47603abebd3b54" prot="public" virt="non-virtual"><scope>abc::def::Foo</scope><name>doSomething</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1ae799411793d84d150c28af25036e7690" prot="protected" virt="virtual"><scope>abc::def::Foo</scope><name>doSomethingOverridable</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1af99ae404b8742e0bcbef6313d5b9d337" prot="private" virt="non-virtual"><scope>abc::def::Foo</scope><name>doSomethingPrivately</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1ad88fea02a9157387e822baf6484e0d54" prot="public" virt="pure-virtual"><scope>abc::def::Foo</scope><name>doSomethingVirtually</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1ab8f1e0ba51e35a47d6554aea55f0b498" prot="public" virt="non-virtual"><scope>abc::def::Foo</scope><name>Foo</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1a37a4ea2633645b48a19ec498f15940cf" prot="public" virt="non-virtual"><scope>abc::def::Foo</scope><name>Foo</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1a611afbf15f5adf26966a4a02b4ed3642" prot="public" virt="non-virtual"><scope>abc::def::Foo</scope><name>i</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1a9db7c72c7c8b6d07835a7925a0e28460" prot="public" virt="non-virtual"><scope>abc::def::Foo</scope><name>j</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1a08b8295d543c49f762a4e3c5c4b9221c" prot="public" virt="non-virtual"><scope>abc::def::Foo</scope><name>k</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1a359670694702fd4e3b86f1143421841c" prot="protected" virt="non-virtual"><scope>abc::def::Foo</scope><name>l</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1ab854402f184dd03f2e18c4143307c44f" prot="protected" virt="non-virtual"><scope>abc::def::Foo</scope><name>m</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1abf4d2e8fbbc03ba903b515e657789bad" prot="protected" virt="non-virtual"><scope>abc::def::Foo</scope><name>n</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1a42095f658b4bc59a96876e873d0e69fc" prot="private" virt="non-virtual"><scope>abc::def::Foo</scope><name>o</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1a2951631fed521ad31e49cb7998024734" prot="private" virt="non-virtual"><scope>abc::def::Foo</scope><name>p</name></member>
+      <member refid="classabc_1_1def_1_1Foo_1a46459207c33600771b08fb8110d06ee4" prot="private" virt="non-virtual"><scope>abc::def::Foo</scope><name>q</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,6 +1,31 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.1" xml:lang="en-US">
-  <compound refid="classFoo" kind="class"><name>Foo</name>
+  <compound refid="classabc_1_1def_1_1Bar" kind="class"><name>abc::def::Bar</name>
+    <member refid="classabc_1_1def_1_1Bar_1a71e7d7204b27d7311c036ff1de0690e3" kind="function"><name>doSomethingVirtually</name></member>
+    <member refid="classabc_1_1def_1_1Bar_1a9013e1a34eb6344b81e1dedd7932cad1" kind="function"><name>doSomethingOverridable</name></member>
+  </compound>
+  <compound refid="classabc_1_1def_1_1Baz" kind="class"><name>abc::def::Baz</name>
+  </compound>
+  <compound refid="classabc_1_1def_1_1Foo" kind="class"><name>abc::def::Foo</name>
+    <member refid="classabc_1_1def_1_1Foo_1a611afbf15f5adf26966a4a02b4ed3642" kind="variable"><name>i</name></member>
+    <member refid="classabc_1_1def_1_1Foo_1a9db7c72c7c8b6d07835a7925a0e28460" kind="variable"><name>j</name></member>
+    <member refid="classabc_1_1def_1_1Foo_1a08b8295d543c49f762a4e3c5c4b9221c" kind="variable"><name>k</name></member>
+    <member refid="classabc_1_1def_1_1Foo_1a359670694702fd4e3b86f1143421841c" kind="variable"><name>l</name></member>
+    <member refid="classabc_1_1def_1_1Foo_1ab854402f184dd03f2e18c4143307c44f" kind="variable"><name>m</name></member>
+    <member refid="classabc_1_1def_1_1Foo_1abf4d2e8fbbc03ba903b515e657789bad" kind="variable"><name>n</name></member>
+    <member refid="classabc_1_1def_1_1Foo_1a42095f658b4bc59a96876e873d0e69fc" kind="variable"><name>o</name></member>
+    <member refid="classabc_1_1def_1_1Foo_1a2951631fed521ad31e49cb7998024734" kind="variable"><name>p</name></member>
+    <member refid="classabc_1_1def_1_1Foo_1a46459207c33600771b08fb8110d06ee4" kind="variable"><name>q</name></member>
+    <member refid="classabc_1_1def_1_1Foo_1ab8f1e0ba51e35a47d6554aea55f0b498" kind="function"><name>Foo</name></member>
+    <member refid="classabc_1_1def_1_1Foo_1a37a4ea2633645b48a19ec498f15940cf" kind="function"><name>Foo</name></member>
+    <member refid="classabc_1_1def_1_1Foo_1ae2f5ed49ffb708bdac47603abebd3b54" kind="function"><name>doSomething</name></member>
+    <member refid="classabc_1_1def_1_1Foo_1ad88fea02a9157387e822baf6484e0d54" kind="function"><name>doSomethingVirtually</name></member>
+    <member refid="classabc_1_1def_1_1Foo_1ae799411793d84d150c28af25036e7690" kind="function"><name>doSomethingOverridable</name></member>
+    <member refid="classabc_1_1def_1_1Foo_1af99ae404b8742e0bcbef6313d5b9d337" kind="function"><name>doSomethingPrivately</name></member>
+  </compound>
+  <compound refid="namespaceabc" kind="namespace"><name>abc</name>
+  </compound>
+  <compound refid="namespaceabc_1_1def" kind="namespace"><name>abc::def</name>
   </compound>
   <compound refid="foo_8cpp" kind="file"><name>foo.cpp</name>
   </compound>
