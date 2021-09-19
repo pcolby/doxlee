@@ -70,11 +70,11 @@ QPair<QStringList,QStringList> kinds(const QString &indexXsdPath)
             if ((nameAttribute == QSL("CompoundKind")) || (nameAttribute == QSL("MemberKind"))) {
                 while ((!xml.atEnd()) && (xml.readNextStartElement())) {
                     if (xml.name() == QSL("restriction")) {
-                        QStringList &kinds = (nameAttribute == QLatin1String("CompoundKind"))
+                        QStringList &kindsList = (nameAttribute == QLatin1String("CompoundKind"))
                             ? compoundKinds : memberKinds;
                         while ((!xml.atEnd()) && (xml.readNextStartElement())) {
                             if (xml.name() == QSL("enumeration")) {
-                                kinds.append(xml.attributes().value(QSL("value")).toString());
+                                kindsList.append(xml.attributes().value(QSL("value")).toString());
                             }
                             xml.skipCurrentElement();
                         }
