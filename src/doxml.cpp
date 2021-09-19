@@ -164,7 +164,16 @@ QVariantMap parseIndex(const QString &indexXmlPath, const bool extraIndexes)
     }
     qInfo().noquote() << QTR("Parsed %1 compound(s) from %2").arg(compounds.size()).arg(indexXmlPath);
     indexMap.insert(QSL("compoundsList"), compounds);
-    if (extraIndexes) indexMap.insert(doxml::extraIndexes(compounds));
+    if (extraIndexes) {
+        #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+        indexMap.insert(doxml::extraIndexes(compounds));
+        #else
+        const QVariantMap extra = doxml::extraIndexes(compounds);
+        for (auto iter = extra.constBegin(); iter != extra.constEnd(); ++iter) {
+            indexMap.insert(iter.key(), iter.value());
+        }
+        #endif
+    }
     return indexMap;
 }
 
