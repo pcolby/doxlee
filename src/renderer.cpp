@@ -297,19 +297,7 @@ bool Renderer::render(const QVariantList &compounds, const QStringList &template
     for (const QVariant &compound: compounds) {
         // Parse the item's Doxygen XML data.
         const QString refId = compound.toMap().value(QSL("refid")).toString();
-        const QString xmlFilePath = inputDir.absoluteFilePath(refId + QSL(".xml"));
-        QFile file(xmlFilePath);
-        if (!file.open(QIODevice::ReadOnly|QIODevice::Text)) {
-            qWarning().noquote() << QTR("Error opening file for reading: %1").arg(xmlFilePath);
-            return false;
-        }
-        QXmlStreamReader xml(&file);
-        const QVariantMap compoundDefinition = toVariant(xml).value(QSL("doxygen")).toMap()
-            .value(QSL("compounddef")).toMap();
-        if (compoundDefinition.isEmpty()) {
-            qWarning().noquote() << QTR("Error reading compond defintion: %1").arg(xmlFilePath);
-            return false;
-        }
+        const QVariantMap compoundDefinition = doxml::parseCompound(inputDir, refId);
 
         // Render the output for each template.
         context.push();

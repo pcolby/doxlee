@@ -36,6 +36,9 @@ QVariantMap parseIndex(const QString &indexXmlPath, const bool extraIndexes = tr
 
 QVariantMap extraIndexes(const QVariantList &compounds);
 
+QVariantMap parseCompound(const QDir &doxmlDir, const QString &refId);
+QVariantMap parseCompound(const QString &compoundXmlPath);
+
 } // namespace doxml
 
 } // namespace doxlee

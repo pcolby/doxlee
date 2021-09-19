@@ -200,6 +200,33 @@ QVariantMap extraIndexes(const QVariantList &compounds)
     };
 }
 
+QVariantMap parseCompound(const QDir &doxmlDir, const QString &refId)
+{
+    return parseCompound(doxmlDir.absoluteFilePath(QSL("%1.xml").arg(refId)));
+}
+
+QVariantMap parseCompound(const QString &compoundXmlPath)
+{
+    QFile file(compoundXmlPath);
+    if (!file.open(QIODevice::ReadOnly|QIODevice::Text)) {
+        qWarning().noquote() << QTR("Error opening file for reading: %1").arg(compoundXmlPath);
+        return QVariantMap();
+    }
+    QXmlStreamReader xml(&file);
+
+    /// \todo Transform map to our desired structure
+    const QVariantMap map = toVariant(xml);
+
+    const QVariantMap compoundDefinition = map.value(QSL("doxygen")).toMap()
+        .value(QSL("compounddef")).toMap();
+    if (compoundDefinition.isEmpty()) {
+        qWarning().noquote() << QTR("Error reading compond defintion: %1").arg(compoundXmlPath);
+        return QVariantMap();
+    }
+
+    return compoundDefinition;
+}
+
 } // namespace doxml
 
 } // namespace doxlee
