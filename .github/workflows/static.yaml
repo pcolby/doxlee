@@ -31,7 +31,7 @@ jobs:
         cppcheck \
            --enable=all --error-exitcode=1 -Isrc --std={c++03,c++11} \
            --suppress={missingIncludeSystem,unusedFunction:test/unit/*} \
-           --xml --xml-version=2 src test 2> "$RUNNER_TEMP/cppcheck.xml"
+           --xml --xml-version=2 src test/unit 2> "$RUNNER_TEMP/cppcheck.xml"
     - name: Generate Report
       if: ${{ failure() }}
       run: |
