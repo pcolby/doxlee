@@ -20,7 +20,6 @@
 #include "renderer.h"
 
 #include "doxml.h"
-#include "variant.h" ///< \todo Remove this once more code has been shifted to doxml.cpp
 
 #include <grantlee/cachingloaderdecorator.h>
 #include <grantlee/templateloader.h>
