@@ -8,13 +8,11 @@
 
 Doxlee renders source code documentation by applying [Grantlee] templates to [Doxygen]'s XML output.
 
-    ┌───┐            ┌───┐           ┌────┐
-    │src├──Doxygen──►│XML├──doxlee──►│HTML│
-    └───┘            └───┘    ▲      └────┘
-                              │
-               ┌─────────┐    │
-               │templates├────┘
-               └─────────┘
+```mermaid
+graph LR
+    SRC[(src)] --> DOXYGEN(Doxygen) --> XML[(XML)]
+    XML & TMP[(templates)] --> DOXLEE(doxlee) --> HTML[(html)]
+```
 
 Of course, the output doesn't have to be HTML... just about any text format should be possible.
 
