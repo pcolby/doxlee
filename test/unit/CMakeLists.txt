@@ -1,28 +1,28 @@
 # SPDX-FileCopyrightText: 2021-2024 Paul Colby <git@colby.id.au>
 # SPDX-License-Identifier: LGPL-3.0-or-later
 
-find_package(Grantlee5 REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR}Test REQUIRED)
 
-add_executable(
-  testRenderer
-  testrenderer.h
+function(add_doxlee_unit_test name)
+  add_executable(test${name} ${ARGN})
+
+  target_include_directories(test${name} PRIVATE ${CMAKE_SOURCE_DIR}/src)
+
+  target_link_libraries(
+    test${name}
+    PRIVATE libDoxlee
+    #PRIVATE Qt${QT_VERSION_MAJOR}::Network
+    PRIVATE Qt${QT_VERSION_MAJOR}::Test)
+
+if(${QT_VERSION} VERSION_LESS "5.12")
+  add_test(NAME ${name} COMMAND test${name})
+else() # Support for TAP format added to Qt Test in 5.12.
+  add_test(NAME ${name} COMMAND test${name} -o ${name}.tap,tap -o -,txt)
+endif()
+  set_tests_properties(${name} PROPERTIES LABELS "unit")
+endfunction()
+
+add_doxlee_unit_test(
+  Renderer
   testrenderer.cpp
-  ${CMAKE_SOURCE_DIR}/src/doxml.h
-  ${CMAKE_SOURCE_DIR}/src/doxml.cpp
-  ${CMAKE_SOURCE_DIR}/src/renderer.h
-  ${CMAKE_SOURCE_DIR}/src/renderer.cpp
-  ${CMAKE_SOURCE_DIR}/src/variant.h
-  ${CMAKE_SOURCE_DIR}/src/variant.cpp)
-
-add_test(NAME testRenderer COMMAND testRenderer)
-
-target_include_directories(
-  testRenderer
-  PRIVATE ${CMAKE_SOURCE_DIR}/src)
-
-target_link_libraries(
-  testRenderer
-  PRIVATE Grantlee5::Templates
-  PRIVATE Qt${QT_VERSION_MAJOR}::Test
-)
+  testrenderer.h)
