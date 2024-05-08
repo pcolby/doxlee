@@ -3,6 +3,7 @@
 
 #include "renderer.h"
 
+#include <grantlee/grantlee_version.h>
 #include <QCommandLineParser>
 #include <QCoreApplication>
 #include <QDebug>
@@ -15,6 +16,8 @@
 #elif defined(Q_OS_WIN)
 #include <Windows.h>
 #endif
+
+static Q_LOGGING_CATEGORY(lc, "doxlee.main", QtInfoMsg);
 
 inline bool haveConsole()
 {
@@ -38,7 +41,7 @@ void configureLogging(const QCommandLineParser &parser)
         messagePattern.prepend(QStringLiteral("%{function} "));
         #endif
         messagePattern.prepend(QStringLiteral("%{time process} %{threadid} %{type} "));
-        QLoggingCategory::setFilterRules(QStringLiteral("dokit.*.debug=true\npokit.*.debug=true"));
+        QLoggingCategory::setFilterRules(QStringLiteral("doxlee.*.debug=true"));
     }
 
     const QString color = parser.value(QStringLiteral("color"));
@@ -97,6 +100,12 @@ int main(int argc, char *argv[])
     parser.addVersionOption();
     parser.process(app);
     configureLogging(parser);
+    qCDebug(lc).noquote() << QCoreApplication::applicationName() << QCoreApplication::applicationVersion();
+    qCDebug(lc).noquote() << "Qt " QT_VERSION_STR " compile-time";
+    qCDebug(lc).noquote() << "Qt" << qVersion() << "runtime";
+    #ifdef GRANTLEE_VERSION_STRING
+    qCDebug(lc).noquote() << "Grantlee " GRANTLEE_VERSION_STRING " runtime";
+    #endif
 
     // Check for any missing (but required) command line options.
     QStringList missingOptions {
@@ -108,7 +117,7 @@ int main(int argc, char *argv[])
         if (parser.isSet(*iter)) iter=missingOptions.erase(iter); else ++iter;
     }
     if (!missingOptions.empty()) {
-        qWarning().noquote() << QCoreApplication::translate("main", "Missing required option(s): %1")
+        qCWarning(lc).noquote() << QCoreApplication::translate("main", "Missing required option(s): %1")
             .arg(missingOptions.join(QLatin1Char(' ')));
         return 2;
     }
@@ -123,7 +132,7 @@ int main(int argc, char *argv[])
         else if (overwrite == QStringLiteral("no"))     clobberMode = doxlee::Renderer::Skip;
         else if (overwrite == QStringLiteral("prompt")) clobberMode = doxlee::Renderer::Prompt;
         else {
-            qWarning().noquote() << QCoreApplication::translate("main",
+            qCWarning(lc).noquote() << QCoreApplication::translate("main",
                 "Invalid argument to option --overwrite: %1").arg(overwrite);
             return 2;
         }
@@ -135,19 +144,19 @@ int main(int argc, char *argv[])
     const QFileInfo outputDir(QDir::cleanPath(parser.value(QStringLiteral("output-dir"))));
 
     if ((!inputDir.exists()) || (!inputDir.isDir()) || (!inputDir.isReadable())) {
-        qWarning().noquote() << QCoreApplication::translate("main",
+        qCWarning(lc).noquote() << QCoreApplication::translate("main",
             "Input directory does not exist, is not a directory, or is not readable: %1")
             .arg(inputDir.absoluteFilePath());
         return 2;
     }
     if ((!themeDir.exists()) || (!themeDir.isDir()) || (!themeDir.isReadable())) {
-        qWarning().noquote() << QCoreApplication::translate("main",
+        qCWarning(lc).noquote() << QCoreApplication::translate("main",
             "Theme directory does not exist, is not a directory, or is not readable: %1")
             .arg(themeDir.absoluteFilePath());
         return 2;
     }
     if ((!outputDir.exists()) || (!outputDir.isDir()) || (!outputDir.isWritable())) {
-        qWarning().noquote() << QCoreApplication::translate("main",
+        qCWarning(lc).noquote() << QCoreApplication::translate("main",
             "Output directory does not exist, is not a directory, or is not writable: %1")
             .arg(outputDir.absoluteFilePath());
         return 2;
@@ -160,18 +169,18 @@ int main(int argc, char *argv[])
     }
 
     // Let the user know we're about to generate a lot of files, then do it!
-    qWarning().noquote() << QCoreApplication::translate("main",
+    qCWarning(lc).noquote() << QCoreApplication::translate("main",
         "About to generate approximately %1 file(s) in: %2")
         .arg(renderer.expectedFileCount()).arg(outputDir.absoluteFilePath());
     if (!parser.isSet(QStringLiteral("force"))) {
-        qInfo().noquote() << QCoreApplication::translate("main", "Press Enter to contine");
+        qCInfo(lc).noquote() << QCoreApplication::translate("main", "Press Enter to contine");
         QTextStream stream(stdin);
         stream.readLine();
     }
     if (!renderer.render(outputDir.absoluteFilePath(), clobberMode)) {
         return 4;
     }
-    qInfo().noquote() << QCoreApplication::translate("main",
+    qCInfo(lc).noquote() << QCoreApplication::translate("main",
         "Rendered %1 file(s) in %2").arg(renderer.outputFileCount()).arg(outputDir.absoluteFilePath());
     return 0;
 }
