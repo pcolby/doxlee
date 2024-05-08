@@ -60,7 +60,8 @@ QVariantMap toVariant(QXmlStreamReader &xml, const QString &prefix, const int ma
     } else {
         if (!xml.namespaceUri().isEmpty())
             map.insert(prefix + QLatin1String("NamespaceUri"), xml.namespaceUri().toString());
-        foreach (const QXmlStreamAttribute &attribute, xml.attributes()) {
+        const auto attributes = xml.attributes();
+        for (const QXmlStreamAttribute &attribute: attributes) {
             QVariantMap attributeMap;
             attributeMap.insert(QLatin1String("Value"), attribute.value().toString());
             if (!attribute.namespaceUri().isEmpty())
