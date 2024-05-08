@@ -53,9 +53,19 @@ void configureLogging(const QCommandLineParser &parser)
 
 int main(int argc, char *argv[])
 {
+    // Setup the core application.
     QCoreApplication app(argc, argv);
-    app.setApplicationName(QStringLiteral(CMAKE_PROJECT_NAME));
-    app.setApplicationVersion(QStringLiteral(CMAKE_PROJECT_VERSION));
+    QCoreApplication::setApplicationName(QStringLiteral(PROJECT_NAME));
+    QCoreApplication::setApplicationVersion(QString::fromLatin1(PROJECT_VERSION
+        #ifdef PROJECT_PRE_RELEASE
+        "-" PROJECT_PRE_RELEASE
+        #endif
+        #ifdef PROJECT_BUILD_ID
+        "+" PROJECT_BUILD_ID
+        #endif
+    ));
+
+    // \todo Install localised translator, if we have translations for the current locale.
 
     // Parse the command line options.
     QCommandLineParser parser;
