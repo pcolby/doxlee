@@ -24,7 +24,7 @@ namespace doxlee {
 Renderer::Renderer(const QString &inputDir) : inputDir(inputDir)
 {
     // Default Grantlee context values.
-    context.insert(QSL("doxleeVersion"), QStringLiteral(CMAKE_PROJECT_VERSION));
+    context.insert(QSL("doxleeVersion"), QStringLiteral(PROJECT_VERSION));
 
     // Configure the Grantlee Templates rendering engine.
     engine.setSmartTrimEnabled(true);
