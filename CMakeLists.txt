@@ -78,11 +78,10 @@ endif()
 # Default to Qt6 where available, otherwise Qt5.
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-find_package(QT REQUIRED COMPONENTS Core LinguistTools Network NAMES Qt6 Qt5)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core LinguistTools Network)
+find_package(QT REQUIRED COMPONENTS Core LinguistTools NAMES Qt6 Qt5)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core LinguistTools)
 message(STATUS "Found Qt ${Qt${QT_VERSION_MAJOR}_VERSION}")
 message(STATUS "Found Qt Linguist Tools ${Qt${QT_VERSION_MAJOR}LinguistTools_VERSION}")
-message(STATUS "Found Qt Network ${Qt${QT_VERSION_MAJOR}Network_VERSION}")
 
 include(CTest)
 add_subdirectory(doc)
