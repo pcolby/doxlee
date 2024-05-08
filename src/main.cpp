@@ -33,8 +33,12 @@ void configureLogging(const QCommandLineParser &parser)
     QString messagePattern = QStringLiteral("%{if-category}%{category}: %{endif}%{message}");
 
     if (parser.isSet(QStringLiteral("debug"))) {
-        messagePattern.prepend(QStringLiteral("%{time process} %{type} %{function} "));
-        QLoggingCategory::defaultCategory()->setEnabled(QtDebugMsg, true);
+        #ifdef QT_MESSAGELOGCONTEXT
+        // %{file}, %{line} and %{function} are only available when QT_MESSAGELOGCONTEXT is set.
+        messagePattern.prepend(QStringLiteral("%{function} "));
+        #endif
+        messagePattern.prepend(QStringLiteral("%{time process} %{threadid} %{type} "));
+        QLoggingCategory::setFilterRules(QStringLiteral("dokit.*.debug=true\npokit.*.debug=true"));
     }
 
     const QString color = parser.value(QStringLiteral("color"));
