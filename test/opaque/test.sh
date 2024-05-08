@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Usage: test.sh [testDir1 ... testDirN]
+# Usage: [DOXLEE=/path/to/doxlee] test.sh [testDir1 ... testDirN]
 #
 
 set -o errexit -o noclobber -o nounset -o pipefail
