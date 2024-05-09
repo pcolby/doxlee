@@ -25,7 +25,7 @@ jobs:
       run: make coverage-html
       working-directory: ${{ runner.temp }}
     - name: Upload HTML Report
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: Test Coverage HTML Report
         path: "${{ runner.temp }}/coverage"
