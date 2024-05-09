@@ -6,7 +6,7 @@ jobs:
   CodeQL:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Install Dependencies
       run: sudo apt update && sudo apt upgrade && sudo apt install libgrantlee5-dev
     - name: Initialize CodeQL
@@ -25,7 +25,7 @@ jobs:
     steps:
     - name: Install Cppcheck
       run: sudo apt update && sudo apt upgrade && sudo apt install cppcheck
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Perform Cppcheck Analysis
       run: |
         cppcheck \
