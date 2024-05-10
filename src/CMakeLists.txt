@@ -34,4 +34,4 @@ target_link_libraries(
   PRIVATE Grantlee5::Templates
   PRIVATE Qt${QT_VERSION_MAJOR}::Core)
 
-# \todo linuxdeploy, macdeployqt, etc.
+# \todo linuxdeploy/appImage, macdeployqt, etc.
