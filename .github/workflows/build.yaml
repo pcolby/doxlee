@@ -473,7 +473,7 @@ jobs:
   update-tests-on-doc-branch:
     if: false # \todo Setup doc branch
     runs-on: ubuntu-latest
-    if: success() && (github.ref == 'refs/heads/main')
+    #if: success() && (github.ref == 'refs/heads/main')
     needs: collate-test-results
     steps:
     - uses: actions/checkout@v4
