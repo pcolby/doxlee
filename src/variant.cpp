@@ -52,7 +52,7 @@ QVariantMap toVariant(QXmlStreamReader &xml, const QString &prefix, const int ma
         return QVariantMap();
     }
 
-    QMultiMap<QString, QVariant> map;
+    QMap<QString, QVariant> map;
     if (xml.tokenType() == QXmlStreamReader::StartDocument) {
         map.insert(prefix + QLatin1String("DocumentEncoding"), xml.documentEncoding().toString());
         map.insert(prefix + QLatin1String("DocumentVersion"), xml.documentVersion().toString());

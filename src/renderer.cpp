@@ -5,8 +5,14 @@
 
 #include "doxml.h"
 
+#if defined USE_CUTELEE
+#include <cutelee/cachingloaderdecorator.h>
+#include <cutelee/templateloader.h>
+#elif defined USE_GRANTLEE
 #include <grantlee/cachingloaderdecorator.h>
 #include <grantlee/templateloader.h>
+#endif
+
 #include <QCoreApplication>
 #include <QDebug>
 #include <QDirIterator>
@@ -45,10 +51,15 @@ bool Renderer::loadTemplates(const QString &templatesDir)
     }
 
     // Setup the template loader.
-    auto loader = QSharedPointer<Grantlee::FileSystemTemplateLoader>::create();
+    #if defined USE_CUTELEE
+    auto loader = std::make_shared<Textlee::FileSystemTemplateLoader>();
+    auto cachedLoader = std::make_shared<Textlee::CachingLoaderDecorator>(loader);
+    #elif defined USE_GRANTLEE
+    auto loader = QSharedPointer<Textlee::FileSystemTemplateLoader>::create();
+    auto cachedLoader = QSharedPointer<Textlee::CachingLoaderDecorator>::create(loader);
+    #endif
     // Note, {% include "<filename>" %} will look for files relative to templateDirs.
     loader->setTemplateDirs(QStringList() << templatesDir);
-    auto cachedLoader = QSharedPointer<Grantlee::CachingLoaderDecorator>::create(loader);
     engine.addTemplateLoader(cachedLoader);
 
     // Load the templates.
@@ -81,7 +92,7 @@ bool Renderer::loadTemplates(const QString &templatesDir)
         if ((kind == QSL("index")) || (kinds.first.contains(kind))) {
             qDebug().noquote() << QTR("Loading template: %1 (%2,%3)")
                 .arg(dir.filePath(), relativePathName, kind);
-            const Grantlee::Template tmplate = engine.loadByName(relativePathName);
+            const Textlee::Template tmplate = engine.loadByName(relativePathName);
             if (tmplate->error()) {
                 qWarning().noquote() << QTR("Error loading template: %1 - %2")
                     .arg(relativePathName, tmplate->errorString());
@@ -133,7 +144,7 @@ bool Renderer::render(const QDir &outputDir, ClobberMode clobberMode)
     }
 
     // Render all index templates.
-    for (const QString &templateName: qAsConst(indexTemplateNames)) {
+    for (const QString &templateName: std::as_const(indexTemplateNames)) {
         Q_ASSERT(templateName.startsWith(QSL("index")));
         const QString outputPath = outputDir.absoluteFilePath(
             (templateName.lastIndexOf(QLatin1Char('.')) == 5) ? templateName : templateName.mid(6));
@@ -270,7 +281,7 @@ bool Renderer::copy(const QString &fromPath, const QString &toPath, ClobberMode 
 }
 
 bool Renderer::render(const QVariantList &compounds, const QStringList &templateNames,
-                      const QDir &outputDir, Grantlee::Context &context, ClobberMode &clobberMode)
+                      const QDir &outputDir, Textlee::Context &context, ClobberMode &clobberMode)
 {
     // Note, we're effectively doing a product of compounds * templates here, which could be quite a
     // lot of processing. We choose to iterate items in the outer loop, so we only parse each item
@@ -299,7 +310,7 @@ bool Renderer::render(const QVariantList &compounds, const QStringList &template
 }
 
 bool Renderer::render(const QString &templateName, const QString &outputPath,
-                      Grantlee::Context &context, ClobberMode &clobberMode)
+                      Textlee::Context &context, ClobberMode &clobberMode)
 {
     qDebug() << __func__ << templateName << outputPath << clobberMode;
 
@@ -319,7 +330,7 @@ bool Renderer::render(const QString &templateName, const QString &outputPath,
         }
     }
 
-    const Grantlee::Template tmplate = engine.loadByName(templateName);
+    const Textlee::Template tmplate = engine.loadByName(templateName);
     if (tmplate->error()) {
         qWarning().noquote() << QTR("Error loading template: %1 - %2")
             .arg(templateName, tmplate->errorString());
@@ -338,7 +349,7 @@ bool Renderer::render(const QString &templateName, const QString &outputPath,
 
     QTextStream textStream(&file);
     //NoEscapeStream noEscapeStream(&textStream); ///< \todo Do we need this?
-    Grantlee::OutputStream outputStream(&textStream);
+    Textlee::OutputStream outputStream(&textStream);
     tmplate->render(&outputStream, &context);
     if (tmplate->error()) {
         qWarning() << QTR("Failed to render: %1 - %2").arg(outputPath, tmplate->errorString());
@@ -349,9 +360,9 @@ bool Renderer::render(const QString &templateName, const QString &outputPath,
 }
 
 /// Grantlee output stream that does *no* content escaping.
-//class NoEscapeStream : public Grantlee::OutputStream {
+//class NoEscapeStream : public Textlee::OutputStream {
 //public:
-//    explicit NoEscapeStream(QTextStream * stream) : Grantlee::OutputStream(stream) { }
+//    explicit NoEscapeStream(QTextStream * stream) : Textlee::OutputStream(stream) { }
 
 //    virtual QString escape(const QString &input) const { return input; }
 

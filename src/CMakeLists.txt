@@ -1,15 +1,12 @@
 # SPDX-FileCopyrightText: 2021-2024 Paul Colby <git@colby.id.au>
 # SPDX-License-Identifier: LGPL-3.0-or-later
 
-# \todo Support KF6-KTextTemplate for Qt6.
-find_package(Grantlee5 REQUIRED)
-message(STATUS "Found Grantlee ${Grantlee5_VERSION}")
-
 set(DoxleeSources
   doxml.h
   doxml.cpp
   renderer.cpp
   renderer.h
+  textlee.h
   variant.cpp
   variant.h
 )
@@ -19,7 +16,7 @@ add_library(libDoxlee OBJECT ${DoxleeSources})
 
 target_link_libraries(
   libDoxlee
-  PRIVATE Grantlee5::Templates
+  PRIVATE ${TEXT_TEMPLATE_TARGET}
   PRIVATE Qt${QT_VERSION_MAJOR}::Core)
 
 add_executable(doxlee main.cpp)
@@ -31,7 +28,7 @@ add_executable(doxlee main.cpp)
 target_link_libraries(
   doxlee
   PRIVATE libDoxlee
-  PRIVATE Grantlee5::Templates
+  PRIVATE ${TEXT_TEMPLATE_TARGET}
   PRIVATE Qt${QT_VERSION_MAJOR}::Core)
 
 # \todo linuxdeploy/appImage, macdeployqt, etc.

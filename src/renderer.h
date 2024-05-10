@@ -1,8 +1,16 @@
 // SPDX-FileCopyrightText: 2021-2024 Paul Colby <git@colby.id.au>
 // SPDX-License-Identifier: LGPL-3.0-or-later
 
+#if defined USE_CUTELEE
+#include <cutelee/engine.h>
+#include <cutelee/context.h>
+#elif defined USE_GRANTLEE
 #include <grantlee/engine.h>
 #include <grantlee/context.h>
+#endif
+
+#include "textlee.h"
+
 #include <QDir>
 #include <QMultiHash>
 #include <QVariantList>
@@ -35,15 +43,15 @@ protected:
     bool copy(const QString &fromPath, const QString &toPath, ClobberMode &clobberMode);
 
     bool render(const QVariantList &compounds, const QStringList &templateNames,
-                const QDir &outputDir, Grantlee::Context &context, ClobberMode &clobberMode);
+                const QDir &outputDir, Textlee::Context &context, ClobberMode &clobberMode);
 
     bool render(const QString &templateName, const QString &outputPath,
-                Grantlee::Context &context, ClobberMode &clobberMode);
+                Textlee::Context &context, ClobberMode &clobberMode);
 
 private:
     const QDir inputDir;
-    Grantlee::Context context;
-    Grantlee::Engine engine;
+    Textlee::Context context;
+    Textlee::Engine engine;
     QStringList indexTemplateNames;
     QList<QPair<QString, QString>> staticFileNames;
     QMultiHash<QString, QString> templateNamesByKind;

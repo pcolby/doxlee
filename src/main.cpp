@@ -3,7 +3,12 @@
 
 #include "renderer.h"
 
+#if defined USE_CUTELEE
+#include <cutelee/cutelee_version.h>
+#elif defined USE_GRANTLEE
 #include <grantlee/grantlee_version.h>
+#endif
+
 #include <QCommandLineParser>
 #include <QCoreApplication>
 #include <QDebug>
@@ -103,6 +108,9 @@ int main(int argc, char *argv[])
     qCDebug(lc).noquote() << QCoreApplication::applicationName() << QCoreApplication::applicationVersion();
     qCDebug(lc).noquote() << "Qt " QT_VERSION_STR " compile-time";
     qCDebug(lc).noquote() << "Qt" << qVersion() << "runtime";
+    #ifdef CUTELEE_VERSION_STRING
+    qCDebug(lc).noquote() << "Cutelee " CUTELEE_VERSION_STRING " runtime";
+    #endif
     #ifdef GRANTLEE_VERSION_STRING
     qCDebug(lc).noquote() << "Grantlee " GRANTLEE_VERSION_STRING " runtime";
     #endif

@@ -11,6 +11,7 @@ function(add_doxlee_unit_test name)
   target_link_libraries(
     test${name}
     PRIVATE libDoxlee
+    PRIVATE ${TEXT_TEMPLATE_TARGET}
     PRIVATE Qt${QT_VERSION_MAJOR}::Test)
 
 if(${QT_VERSION} VERSION_LESS "5.12")
