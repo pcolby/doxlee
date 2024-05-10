@@ -17,12 +17,12 @@ jobs:
         #- 5.13.2
         #- 5.14.2
         - 5.15.2
-        #- 6 # \todo Need KF6-KTextTemplate for Qt6+
-        #- 6.2.4
-        #- 6.3.2
-        #- 6.4.3
-        #- 6.5.3
-        #- 6.6.3
+        - 6
+        - 6.2.4
+        - 6.3.2
+        - 6.4.3
+        - 6.5.3
+        - 6.6.3
         env:
         - { cc: clang, cxx: clang++, coverage: false }
         - { cc: gcc, cxx: g++, coverage: false }
@@ -32,7 +32,7 @@ jobs:
       run: |
         sudo apt-mark hold grub-efi-amd64-signed
         sudo apt update && sudo apt upgrade
-        sudo apt install lcov libfuse2 libgrantlee5-dev
+        sudo apt install lcov libfuse2
     - name: Install Ubuntu's Qt5
       if: matrix.qt == 5
       run: sudo apt install qtbase5{,-doc}-dev qtconnectivity5-{dev,doc-html} qttools5-dev{,-tools}
@@ -64,6 +64,15 @@ jobs:
         doc-archives: ${{ (startsWith(matrix.qt, '5.10.') || startsWith(matrix.qt, '5.11.')) && 'qt' || (startsWith(matrix.qt, '5') && 'qtcore qtbluetooth' || 'qtcore') }}
         doc-modules: ${{ startsWith(matrix.qt, '6') && 'qtbluetooth' || '' }}
         aqtversion: ==3.1.*
+    - name: Install Cutelee
+      if: startsWith(matrix.qt, '6')
+      run: |
+        curl --location --output-dir "$RUNNER_TEMP" --remote-name-all \
+          'https://github.com/cutelyst/cutelee/releases/download/v6.1.0/cutelee6-qt6_6.1.0_amd64.deb'
+        sudo apt install "$RUNNER_TEMP/cutelee6-qt6_6.1.0_amd64.deb"
+    - name: Install Grantlee
+      if: startsWith(matrix.qt, '5')
+      run: sudo apt install libgrantlee5-dev
     - name: Install linuxdeploy
       run: |
         curl --create-dirs --location --output-dir /home/runner/.local/bin --remote-name-all \
