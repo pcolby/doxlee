@@ -10,12 +10,12 @@ jobs:
       matrix:
         qt:
         - 5
-        - 5.9.9
-        - 5.10.1
-        - 5.11.3
-        - 5.12.12
-        - 5.13.2
-        - 5.14.2
+        #- 5.9.9 # \todo Ubuntu's libgrantlee5 binaries reqire Qt 5.15.1+
+        #- 5.10.1
+        #- 5.11.3
+        #- 5.12.12
+        #- 5.13.2
+        #- 5.14.2
         - 5.15.2
         #- 6 # \todo Need KF6-KTextTemplate for Qt6+
         #- 6.2.4
