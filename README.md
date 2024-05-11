@@ -74,12 +74,12 @@ doxlee -i <path-to-xml-> -o <path-to-write-output> -t <path-to-theme>
 There are some other basic options too. Use `--help` to see them.
 
 ```
-Usage: ./src/doxlee [options]
-Render Doxygen XML via Grantlee Templates
+Usage: doxlee [options]
+Render Doxygen XML via text templates
 
 Options:
   -i, --input-dir <dir>        Read Doyxgen XML files from dir
-  -t, --theme-dir <dir>        Read Grantlee theme from dir
+  -t, --templates-dir <dir>    Read text templates from dir
   -o, --output-dir <dir>       Write output files to dir
   -d, --debug                  Enable debug output
   --color <yes|no|auto>        Color the console output (default auto)
@@ -87,9 +87,8 @@ Options:
   -f, --force                  Same as --overwrite=yes but also skip initial
                                prompt
   -h, --help                   Displays help on commandline options.
-  --help-all                   Displays help including Qt specific options.
+  --help-all                   Displays help, including generic Qt options.
   -v, --version                Displays version information.
-
 ```
 
 ## Building from Source

@@ -29,10 +29,10 @@ namespace doxlee {
 
 Renderer::Renderer(const QString &inputDir) : inputDir(inputDir)
 {
-    // Default Grantlee context values.
+    // Default context values.
     context.insert(QSL("doxleeVersion"), QStringLiteral(PROJECT_VERSION));
 
-    // Configure the Grantlee Templates rendering engine.
+    // Configure the template rendering engine.
     engine.setSmartTrimEnabled(true);
 
     // Parse the XML index
@@ -359,7 +359,7 @@ bool Renderer::render(const QString &templateName, const QString &outputPath,
     return true;
 }
 
-/// Grantlee output stream that does *no* content escaping.
+/// Text output stream that does *no* content escaping.
 //class NoEscapeStream : public Textlee::OutputStream {
 //public:
 //    explicit NoEscapeStream(QTextStream * stream) : Textlee::OutputStream(stream) { }
