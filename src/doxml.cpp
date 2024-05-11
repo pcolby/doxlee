@@ -7,6 +7,7 @@
 
 #include <QCoreApplication>
 #include <QDebug>
+#include <QJsonDocument> // \todo Remove; only for early dev / debugging.
 #include <QLoggingCategory>
 #include <QXmlStreamReader>
 
@@ -203,24 +204,44 @@ QVariantMap parseCompound(const QDir &doxmlDir, const QString &refId)
 
 QVariantMap parseCompound(const QString &compoundXmlPath)
 {
+    // Open the compound XML file.
     QFile file(compoundXmlPath);
     if (!file.open(QIODevice::ReadOnly|QIODevice::Text)) {
         qCWarning(lc).noquote() << QTR("Error opening file for reading: %1").arg(compoundXmlPath);
         return QVariantMap();
     }
+
+    // Parse, and fetch the compoundDef element.
     QXmlStreamReader xml(&file);
-
-    /// \todo Transform map to our desired structure
-    const QVariantMap map = toVariant(xml);
-
-    const QVariantMap compoundDefinition = map.value(QSL("doxygen")).toMap()
-        .value(QSL("compounddef")).toMap();
-    if (compoundDefinition.isEmpty()) {
+    const QVariantMap compoundDef = toVariant(xml).value(QSL("doxygen")).toMap().value(QSL("compounddef")).toMap();
+    if (compoundDef.isEmpty()) {
         qCWarning(lc).noquote() << QTR("Error reading compond defintion: %1").arg(compoundXmlPath);
         return QVariantMap();
     }
+    qCDebug(lc).noquote() << QJsonDocument::fromVariant(compoundDef).toJson();
 
-    return compoundDefinition;
+    // Map the compoundDef properties to our own compound map.
+    QVariantMap compound{
+        { QSL("name"), compoundDef.value(QSL("compoundname")).toMap().value(QSL(".Characters")) },
+        /// \todo Provide stand way of fetch, and trimming, all text from each of these...
+        // { QSL("brief"),       compoundDef.value(QSL("briefdescription")).toMap().value(QSL(".Characters")) },
+        // { QSL("description"), compoundDef.value(QSL("fulldescription" )).toMap().value(QSL(".Characters")) },
+    };
+
+    // Copy call compoundDef attributes to top-level compound properties.
+    for (const QVariant &attribute: compoundDef) {
+        const auto map = attribute.toMap();
+        const auto name = map.find(QSL("QualifiedName"));
+        const auto value = map.find(QSL("Value"));
+        if ((name != map.constEnd()) && (value != map.constEnd())) {
+            compound.insert(name->toString(), *value);
+        }
+    }
+
+    /// \todo More parsing here...
+
+    qCDebug(lc).noquote() << QJsonDocument::fromVariant(compound).toJson();
+    return compound;
 }
 
 } // namespace doxml
