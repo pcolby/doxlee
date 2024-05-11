@@ -18,6 +18,7 @@
 #include <QCoreApplication>
 #include <QDebug>
 #include <QDirIterator>
+#include <QLoggingCategory>
 #include <QRegularExpression>
 #include <QXmlStreamReader>
 
@@ -28,6 +29,8 @@
 #define QTR(str) QCoreApplication::translate("Renderer", str)
 
 namespace doxlee {
+
+static Q_LOGGING_CATEGORY(lc, "doxlee.renderer", QtInfoMsg);
 
 Renderer::Renderer(const QString &inputDir) : inputDir(inputDir)
 {
@@ -77,7 +80,7 @@ bool Renderer::loadTemplates(const QString &templatesDir)
     while (dir.hasNext()) {
         // Fetch the next entry.
         const QString relativePathName = dir.next().mid(dir.path().size()+1);
-        qDebug().noquote() << QTR("Inspecting template: %1 (%2)")
+        qCDebug(lc).noquote() << QTR("Inspecting template: %1 (%2)")
             .arg(dir.filePath(), relativePathName);
 
         // Check for 'static' directory names in the local path.
@@ -88,7 +91,7 @@ bool Renderer::loadTemplates(const QString &templatesDir)
 
         // Extract the 'kind' string, if any (everything up to the first non-alphanemeric char).
         QString kind = getKindFromFileName(dir.fileName());
-        qDebug().noquote() << QTR("Inspecting template: %1 (%2,%3)")
+        qCDebug(lc).noquote() << QTR("Inspecting template: %1 (%2,%3)")
             .arg(dir.filePath(), relativePathName, kind);
 
         // If the 'kind' is static, just record it for copying to the output later.
@@ -99,11 +102,11 @@ bool Renderer::loadTemplates(const QString &templatesDir)
 
         // Load the template, and store against the relevant compound kind.
         if ((kind == QSL("index")) || (kinds.first.contains(kind))) {
-            qDebug().noquote() << QTR("Loading template: %1 (%2,%3)")
+            qCDebug(lc).noquote() << QTR("Loading template: %1 (%2,%3)")
                 .arg(dir.filePath(), relativePathName, kind);
             const Textlee::Template tmplate = engine.loadByName(relativePathName);
             if (tmplate->error()) {
-                qWarning().noquote() << QTR("Error loading template: %1 - %2")
+                qCWarning(lc).noquote() << QTR("Error loading template: %1 - %2")
                     .arg(relativePathName, tmplate->errorString());
                 return false;
             }
@@ -116,7 +119,7 @@ bool Renderer::loadTemplates(const QString &templatesDir)
         }
         otherFilesCount++;
     }
-    qInfo().noquote() << QTR("Loaded %1 template(s), alongside %2 static file(s)")
+    qCInfo(lc).noquote() << QTR("Loaded %1 template(s), alongside %2 static file(s)")
         .arg(indexTemplateNames.size() + templateNamesByKind.size() + otherFilesCount)
         .arg(staticFileNames.size());
     return true;
@@ -132,7 +135,7 @@ int Renderer::expectedFileCount() const
         const int templatesCount = templateNamesByKind.count(iter.key());
         const int itemsCounts = iter.value().toList().size();
         if (templatesCount == 0) {
-            qWarning().noquote() << QTR("Found documentation for %1 %2 compound(s), "
+            qCWarning(lc).noquote() << QTR("Found documentation for %1 %2 compound(s), "
                                         "but no specialised templates for %2 compounds")
                                         .arg(itemsCounts).arg(iter.key());
         }
@@ -227,7 +230,7 @@ bool Renderer::promptToOverwrite(const QString &pathName, ClobberMode &clobberMo
 {
     Q_ASSERT(clobberMode == Prompt);
     while (true) {
-        qWarning().noquote() << QTR("Overwrite %1 [y,n,a,s,q,?]? ").arg(pathName);
+        qCWarning(lc).noquote() << QTR("Overwrite %1 [y,n,a,s,q,?]? ").arg(pathName);
         QTextStream stream(stdin);
         const QString response = stream.readLine();
         if (response == QSL("y")) {
@@ -243,36 +246,36 @@ bool Renderer::promptToOverwrite(const QString &pathName, ClobberMode &clobberMo
         } else if (response == QSL("q")) {
             exit(255);
         } else {
-            qInfo().noquote() << QTR("y - overwrite this file");
-            qInfo().noquote() << QTR("n - do not overwrite this file");
-            qInfo().noquote() << QTR("a - overwrite this, and all remaining files");
-            qInfo().noquote() << QTR("s - do not overwrite this, or any remaining files");
-            qInfo().noquote() << QTR("q - quit now, without writing any further files");
-            qInfo().noquote() << QTR("? - print help");
+            qCInfo(lc).noquote() << QTR("y - overwrite this file");
+            qCInfo(lc).noquote() << QTR("n - do not overwrite this file");
+            qCInfo(lc).noquote() << QTR("a - overwrite this, and all remaining files");
+            qCInfo(lc).noquote() << QTR("s - do not overwrite this, or any remaining files");
+            qCInfo(lc).noquote() << QTR("q - quit now, without writing any further files");
+            qCInfo(lc).noquote() << QTR("? - print help");
         }
    }
 }
 
 bool Renderer::copy(const QString &fromPath, const QString &toPath, ClobberMode &clobberMode)
 {
-    qDebug() << __func__ << fromPath << toPath << clobberMode;
+    qCDebug(lc) << __func__ << fromPath << toPath << clobberMode;
 
     QFileInfo toFileInfo(toPath);
     if (toFileInfo.exists()) {
         switch (clobberMode) {
         case Prompt:
             if (!promptToOverwrite(toPath, clobberMode)) {
-                qDebug().noquote() << QTR("Skipping existing output file: %1").arg(toPath);
+                qCDebug(lc).noquote() << QTR("Skipping existing output file: %1").arg(toPath);
                 return true;
             }
             __attribute__((fallthrough)); // Fall-through to Overwrite behaviour.
         case Overwrite:
             if (!QFile::remove(toPath)) {
-                qWarning().noquote() << QTR("Failed to copy over existing file: %1").arg(toPath);
+                qCWarning(lc).noquote() << QTR("Failed to copy over existing file: %1").arg(toPath);
             }
             break;
         case Skip:
-            qDebug().noquote() << QTR("Skipping existing output file: %1").arg(toPath);
+            qCDebug(lc).noquote() << QTR("Skipping existing output file: %1").arg(toPath);
             return true;
         }
     }
@@ -282,7 +285,7 @@ bool Renderer::copy(const QString &fromPath, const QString &toPath, ClobberMode 
     }
 
     if (!QFile::copy(fromPath, toPath)) {
-        qWarning() << QTR("Failed to copy %1 to %2").arg(fromPath, toPath);
+        qCWarning(lc) << QTR("Failed to copy %1 to %2").arg(fromPath, toPath);
         return false;
     }
     filesWritten.append(toPath);
@@ -321,7 +324,7 @@ bool Renderer::render(const QVariantList &compounds, const QStringList &template
 bool Renderer::render(const QString &templateName, const QString &outputPath,
                       Textlee::Context &context, ClobberMode &clobberMode)
 {
-    qDebug() << __func__ << templateName << outputPath << clobberMode;
+    qCDebug(lc) << __func__ << templateName << outputPath << clobberMode;
 
     QFileInfo toFileInfo(outputPath);
     if (toFileInfo.exists()) {
@@ -334,14 +337,14 @@ bool Renderer::render(const QString &templateName, const QString &outputPath,
                 break; // QFile::open below will happily overwrite (if we have write permission).
             __attribute__((fallthrough)); // else fall-through to Skip behaviour.
         case Skip:
-            qDebug() << QTR("Skipping existing output file: %1").arg(outputPath);
+            qCDebug(lc) << QTR("Skipping existing output file: %1").arg(outputPath);
             return true;
         }
     }
 
     const Textlee::Template tmplate = engine.loadByName(templateName);
     if (tmplate->error()) {
-        qWarning().noquote() << QTR("Error loading template: %1 - %2")
+        qCWarning(lc).noquote() << QTR("Error loading template: %1 - %2")
             .arg(templateName, tmplate->errorString());
         return false;
     }
@@ -352,7 +355,7 @@ bool Renderer::render(const QString &templateName, const QString &outputPath,
 
     QFile file(outputPath);
     if (!file.open(QFile::WriteOnly)) {
-        qWarning().noquote() << QTR("Failed to open file for writing: %1").arg(outputPath);
+        qCWarning(lc).noquote() << QTR("Failed to open file for writing: %1").arg(outputPath);
         return false;
     }
 
@@ -361,7 +364,7 @@ bool Renderer::render(const QString &templateName, const QString &outputPath,
     Textlee::OutputStream outputStream(&textStream);
     tmplate->render(&outputStream, &context);
     if (tmplate->error()) {
-        qWarning() << QTR("Failed to render: %1 - %2").arg(outputPath, tmplate->errorString());
+        qCWarning(lc) << QTR("Failed to render: %1 - %2").arg(outputPath, tmplate->errorString());
         return false;
     }
     filesWritten.append(outputPath);

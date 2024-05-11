@@ -5,12 +5,15 @@
 
 #include <QCoreApplication>
 #include <QDebug>
+#include <QLoggingCategory>
 #include <QXmlStreamReader>
 
 /// Shorten QCoreApplication::translate calls for readability.
 #define QTR(str) QCoreApplication::translate("toVariant", str)
 
 namespace doxlee {
+
+static Q_LOGGING_CATEGORY(lc, "doxlee.variant", QtInfoMsg);
 
 void sortBy(QVariantList &list, const QString &key)
 {
@@ -33,12 +36,12 @@ QVariantMap toVariant(const QHash<QString,QVariantList> &hash)
 QVariantMap toVariant(QXmlStreamReader &xml, const QString &prefix, const int maxDepth)
 {
     if (maxDepth < 0) {
-        qWarning().noquote() << QTR("max depth exceeded");
+        qCWarning(lc).noquote() << QTR("max depth exceeded");
         return QVariantMap();
     }
 
     if (xml.hasError()) {
-        qWarning().noquote() << xml.errorString();
+        qCWarning(lc).noquote() << xml.errorString();
         return QVariantMap();
     }
 
@@ -47,8 +50,7 @@ QVariantMap toVariant(QXmlStreamReader &xml, const QString &prefix, const int ma
 
     if ((xml.tokenType() != QXmlStreamReader::StartDocument) &&
         (xml.tokenType() != QXmlStreamReader::StartElement)) {
-        qWarning().noquote() << QTR("unexpected XML tokenType %1 (%2)")
-                                .arg(xml.tokenString()).arg(xml.tokenType());
+        qCWarning(lc).noquote() << QTR("unexpected XML tokenType %1 (%2)").arg(xml.tokenString()).arg(xml.tokenType());
         return QVariantMap();
     }
 
@@ -90,8 +92,7 @@ QVariantMap toVariant(QXmlStreamReader &xml, const QString &prefix, const int ma
             map.insert(xml.name().toString(), toVariant(xml, prefix, maxDepth-1));
             break;
         default:
-            qWarning() << QTR("unexpected XML tokenType %1 (%2)")
-                          .arg(xml.tokenString()).arg(xml.tokenType());
+            qCWarning(lc) << QTR("unexpected XML tokenType %1 (%2)").arg(xml.tokenString()).arg(xml.tokenType());
         }
     }
     return QVariantMap(map);

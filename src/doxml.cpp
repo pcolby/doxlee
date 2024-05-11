@@ -7,6 +7,7 @@
 
 #include <QCoreApplication>
 #include <QDebug>
+#include <QLoggingCategory>
 #include <QXmlStreamReader>
 
 /// Shorten the QStringLiteral macro for readability.
@@ -19,6 +20,8 @@ namespace doxlee {
 
 namespace doxml {
 
+static Q_LOGGING_CATEGORY(lc, "doxlee.doxml", QtInfoMsg);
+
 QPair<QStringList,QStringList> kinds(const QDir &doxmlDir)
 {
     return kinds(doxmlDir.absoluteFilePath(QSL("index.xsd")));
@@ -29,7 +32,7 @@ QPair<QStringList,QStringList> kinds(const QString &indexXsdPath)
     // Open the file for reading.
     QFile file(indexXsdPath);
     if (!file.open(QIODevice::ReadOnly|QIODevice::Text)) {
-        qWarning().noquote() << QTR("Error opening file for reading: %1").arg(indexXsdPath);
+        qCWarning(lc).noquote() << QTR("Error opening file for reading: %1").arg(indexXsdPath);
         return { };
     }
 
@@ -38,12 +41,12 @@ QPair<QStringList,QStringList> kinds(const QString &indexXsdPath)
     // Parse the opening <schema> element.
     QXmlStreamReader xml(&file);
     if (!xml.readNextStartElement()) {
-        qWarning().noquote() << QTR("Invalid XML file: %1 - %2").arg(indexXsdPath, xml.errorString());
+        qCWarning(lc).noquote() << QTR("Invalid XML file: %1 - %2").arg(indexXsdPath, xml.errorString());
         return { };
     }
     if (xml.name() != QSL("schema")) {
-        qWarning().noquote() << QTR("File is not a Doxygen XML index schema: %1 - %2")
-                                .arg(indexXsdPath, xml.name().toString());
+        qCWarning(lc).noquote() << QTR("File is not a Doxygen XML index schema: %1 - %2")
+            .arg(indexXsdPath, xml.name().toString());
         return { };
     }
 
@@ -67,7 +70,7 @@ QPair<QStringList,QStringList> kinds(const QString &indexXsdPath)
             } else xml.skipCurrentElement();
         } else xml.skipCurrentElement();
     }
-    qInfo().noquote() << QTR("Parsed %1 compound kind(s), and %2 member kind(s) from %3")
+    qCInfo(lc).noquote() << QTR("Parsed %1 compound kind(s), and %2 member kind(s) from %3")
         .arg(compoundKinds.size()).arg(memberKinds.size()).arg(indexXsdPath);
     return { compoundKinds, memberKinds };
 }
@@ -82,20 +85,20 @@ QVariantMap parseIndex(const QString &indexXmlPath, const bool extraIndexes)
     // Open the file for reading.
     QFile file(indexXmlPath);
     if (!file.open(QIODevice::ReadOnly|QIODevice::Text)) {
-        qWarning().noquote() << QTR("Error opening file for reading: %1").arg(indexXmlPath);
+        qCWarning(lc).noquote() << QTR("Error opening file for reading: %1").arg(indexXmlPath);
         return QVariantMap();
     }
 
     // Parse the opening <doxygenindex> element.
     QXmlStreamReader xml(&file);
     if (!xml.readNextStartElement()) {
-        qWarning().noquote() << QTR("Invalid XML file: %1 - %2").arg(indexXmlPath, xml.errorString());
+        qCWarning(lc).noquote() << QTR("Invalid XML file: %1 - %2").arg(indexXmlPath, xml.errorString());
         return QVariantMap();
     }
-    qDebug() << xml.name() << "version" << xml.attributes().value(QSL("version"))
+    qCDebug(lc) << xml.name() << "version" << xml.attributes().value(QSL("version"))
              << xml.attributes().value(QSL("xml:lang")).toString();
     if (xml.name() != QSL("doxygenindex")) {
-        qWarning().noquote() << QTR("File is not a Doxygen XML index: %1 - %2")
+        qCWarning(lc).noquote() << QTR("File is not a Doxygen XML index: %1 - %2")
                                 .arg(indexXmlPath, xml.name().toString());
         return QVariantMap();
     }
@@ -111,12 +114,12 @@ QVariantMap parseIndex(const QString &indexXmlPath, const bool extraIndexes)
             compound.insert(QSL("refid"), xml.attributes().value(QSL("refid")).toString());
             compound.insert(QSL("kind"), xml.attributes().value(QSL("kind")).toString());
             if ((!xml.readNextStartElement()) || (xml.name() != QSL("name"))) {
-                qWarning().noquote() << QTR(" %1:%2:%3 <compound> does not begin with <name>")
+                qCWarning(lc).noquote() << QTR(" %1:%2:%3 <compound> does not begin with <name>")
                     .arg(indexXmlPath).arg(xml.lineNumber()).arg(xml.columnNumber());
                 return QVariantMap();
             }
             compound.insert(QSL("name"), xml.readElementText());
-            //qDebug() << __func__ << "compound" << compound;
+            //qCDebug(lc) << __func__ << "compound" << compound;
             QVariantList members;
             while ((!xml.atEnd()) && (xml.readNextStartElement())) {
                 if (xml.name() == QSL("member")) {
@@ -124,16 +127,16 @@ QVariantMap parseIndex(const QString &indexXmlPath, const bool extraIndexes)
                     member.insert(QSL("refid"), xml.attributes().value(QSL("refid")).toString());
                     member.insert(QSL("kind"), xml.attributes().value(QSL("kind")).toString());
                     if ((!xml.readNextStartElement()) || (xml.name() != QSL("name"))) {
-                        qWarning().noquote() << QTR("%1:%2:%3 <member> does not begin with <name>")
+                        qCWarning(lc).noquote() << QTR("%1:%2:%3 <member> does not begin with <name>")
                             .arg(indexXmlPath).arg(xml.lineNumber()).arg(xml.columnNumber());
                         return QVariantMap();
                     }
                     member.insert(QSL("name"), xml.readElementText());
-                    //qDebug() << __func__ << "member" << member;
+                    //qCDebug(lc) << __func__ << "member" << member;
                     members.append(member);
                     xml.skipCurrentElement();
                 } else {
-                    qWarning().noquote() << QTR("Skipping unknown <%1> element at %2:%3:%4")
+                    qCWarning(lc).noquote() << QTR("Skipping unknown <%1> element at %2:%3:%4")
                         .arg(xml.name().toString(), indexXmlPath).arg(xml.lineNumber()).arg(xml.columnNumber());
                     xml.skipCurrentElement();
                 }
@@ -141,12 +144,12 @@ QVariantMap parseIndex(const QString &indexXmlPath, const bool extraIndexes)
             compound.insert(QSL("members"), members);
             compounds.append(compound);
         } else {
-            qWarning().noquote() << QTR("Skipping unknown <%1> element at %2:%3:%4")
+            qCWarning(lc).noquote() << QTR("Skipping unknown <%1> element at %2:%3:%4")
                 .arg(xml.name().toString(), indexXmlPath).arg(xml.lineNumber()).arg(xml.columnNumber());
             xml.skipCurrentElement();
         }
     }
-    qInfo().noquote() << QTR("Parsed %1 compound(s) from %2").arg(compounds.size()).arg(indexXmlPath);
+    qCInfo(lc).noquote() << QTR("Parsed %1 compound(s) from %2").arg(compounds.size()).arg(indexXmlPath);
     indexMap.insert(QSL("compoundsList"), compounds);
     if (extraIndexes) {
         #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
@@ -202,7 +205,7 @@ QVariantMap parseCompound(const QString &compoundXmlPath)
 {
     QFile file(compoundXmlPath);
     if (!file.open(QIODevice::ReadOnly|QIODevice::Text)) {
-        qWarning().noquote() << QTR("Error opening file for reading: %1").arg(compoundXmlPath);
+        qCWarning(lc).noquote() << QTR("Error opening file for reading: %1").arg(compoundXmlPath);
         return QVariantMap();
     }
     QXmlStreamReader xml(&file);
@@ -213,7 +216,7 @@ QVariantMap parseCompound(const QString &compoundXmlPath)
     const QVariantMap compoundDefinition = map.value(QSL("doxygen")).toMap()
         .value(QSL("compounddef")).toMap();
     if (compoundDefinition.isEmpty()) {
-        qWarning().noquote() << QTR("Error reading compond defintion: %1").arg(compoundXmlPath);
+        qCWarning(lc).noquote() << QTR("Error reading compond defintion: %1").arg(compoundXmlPath);
         return QVariantMap();
     }
 
