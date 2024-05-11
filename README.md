@@ -35,7 +35,7 @@ documentation, then feel free to explore this project :)
 ### Text Templates
 
 Doxlee uses a text template language that is very similar to [Django templates]. Specfically, Doxlee uses either the
-[Grantlee] or [Cutelee] library (the former is a Qt6-compatible fork of the former).
+[Grantlee] or [Cutelee] library (the latter is a Qt6-compatible fork of the former).
 
 > [!NOTE]
 > Doxlee began using the [Grantlee] library with Qt5. However, the [Grantlee] author has moved the library to [KDE],
