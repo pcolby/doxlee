@@ -110,6 +110,7 @@ ctest --test-dir <tmp-build-dir> --verbose
 [Doxygen]:          https://www.doxygen.nl/ "Doxygen"
 [Doxygen Awesome]:  https://jothepro.github.io/doxygen-awesome-css/ "Doxygen Awesome"
 [Grantlee]:         https://github.com/steveire/grantlee "The Grantlee Libraries"
+[KDE]:              https://kde.org/ "KDE Community"
 [KTextTemplate]:    https://invent.kde.org/frameworks/ktexttemplate "The KTextTemplate Library"
 [QDoc]:             https://doc.qt.io/qt-6/01-qdoc-manual.html "Introduction to QDoc"
 [Qt documentation]: https://doc.qt.io/qt-6/index.html "Qt Documentation"
