@@ -121,9 +121,13 @@ int main(int argc, char *argv[])
         QLatin1String("output-dir"),
         QLatin1String("templates-dir"),
     };
+    #if QT_VERSION >= QT_VERSION_CHECK(6, 1, 0) // QList::removeIf() added in Qt 6.1.
+    missingOptions.removeIf([&parser](const QString &option){ return parser.isSet(option); });
+    #else
     for (auto iter = missingOptions.begin(); iter != missingOptions.end();) {
         if (parser.isSet(*iter)) iter=missingOptions.erase(iter); else ++iter;
     }
+    #endif
     if (!missingOptions.empty()) {
         qCWarning(lc).noquote() << QCoreApplication::translate("main", "Missing required option(s): %1")
             .arg(missingOptions.join(QLatin1Char(' ')));
