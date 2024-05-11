@@ -92,7 +92,8 @@ QVariantMap toVariant(QXmlStreamReader &xml, const QString &prefix, const int ma
             map.insert(xml.name().toString(), toVariant(xml, prefix, maxDepth-1));
             break;
         default:
-            qCWarning(lc) << QTR("unexpected XML tokenType %1 (%2)").arg(xml.tokenString()).arg(xml.tokenType());
+            qCWarning(lc).noquote() << QTR("unexpected XML tokenType %1 (%2)")
+                .arg(xml.tokenString()).arg(xml.tokenType());
         }
     }
     return QVariantMap(map);

@@ -285,7 +285,7 @@ bool Renderer::copy(const QString &fromPath, const QString &toPath, ClobberMode 
     }
 
     if (!QFile::copy(fromPath, toPath)) {
-        qCWarning(lc) << QTR("Failed to copy %1 to %2").arg(fromPath, toPath);
+        qCWarning(lc).noquote() << QTR("Failed to copy %1 to %2").arg(fromPath, toPath);
         return false;
     }
     filesWritten.append(toPath);
@@ -337,7 +337,7 @@ bool Renderer::render(const QString &templateName, const QString &outputPath,
                 break; // QFile::open below will happily overwrite (if we have write permission).
             __attribute__((fallthrough)); // else fall-through to Skip behaviour.
         case Skip:
-            qCDebug(lc) << QTR("Skipping existing output file: %1").arg(outputPath);
+            qCDebug(lc).noquote() << QTR("Skipping existing output file: %1").arg(outputPath);
             return true;
         }
     }
@@ -364,7 +364,7 @@ bool Renderer::render(const QString &templateName, const QString &outputPath,
     Textlee::OutputStream outputStream(&textStream);
     tmplate->render(&outputStream, &context);
     if (tmplate->error()) {
-        qCWarning(lc) << QTR("Failed to render: %1 - %2").arg(outputPath, tmplate->errorString());
+        qCWarning(lc).noquote() << QTR("Failed to render: %1 - %2").arg(outputPath, tmplate->errorString());
         return false;
     }
     filesWritten.append(outputPath);
