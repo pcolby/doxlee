@@ -5,7 +5,7 @@
 [![Codacy Grade](https://img.shields.io/codacy/grade/50f86ac1809f438eae51d294ad11f36f?label=Code%20Quality&logo=codacy)](https://www.codacy.com/gh/pcolby/doxlee/dashboard)
 [![Coverage Status](https://img.shields.io/coveralls/github/pcolby/doxlee/main?label=Coverage&logo=coveralls)](https://coveralls.io/github/pcolby/doxlee?branch=main)
 
-Doxlee renders source code documentation by applying [Grantlee] templates to [Doxygen]'s XML output.
+Doxlee renders source code documentation by applying text templates to [Doxygen]'s XML output.
 
 ```mermaid
 flowchart LR
@@ -26,17 +26,26 @@ flowchart LR
     doxml & templates --> doxlee(doxlee)
 ```
 
-Of course, the output doesn't have to be HTML... just about any text format should be possible.
+[Doxygen] does support using your own custom headers, footers, and style sheets, which can achieve a fair amount of
+flexibility already ([Doxygen Awesome] is a great example). But those options do not allow fundamental restructuring of
+things like the navigation menus, sidebar and breadcrumbs. So if [Doxygen]'s built-in options are sufficient for your
+desired output, then you should definitely use them directly. But if you do desire more control over the generated
+documentation, then feel free to explore this project :)
 
-Doxlee was written specifically to support generating documentation from [Doxygen] in the same (or very
-similar) format as [QDoc]'s _online_ format (ie the format used by the official [Qt documentation]). But
-anyone can provide their own templates to generate completely different site layouts of their own.
+### Text Templates
 
-[Doxygen] does support using your own custom headers, footers, and style sheets, which can achieve a
-fair amount of flexibility already ([Doxygen Awesome] is a great example). But those options do not
-allow fundamental restructuring of things like the navigation menus, sidebar and breadcrumbs. So if
-[Doxygen]'s built-in options are sufficient for your desired output, then use them. But if you need more
-control, then feel free to explore this project :)
+Doxlee uses a text template language that is very similar to [Django templates]. Specfically, Doxless uses either the
+[Grantlee] or [Cutelee] library (the former is a Qt6-compatible fork of the former).
+
+> [!NOTE]
+> Doxlee began using the [Grantlee] library with Qt5. However, the [Grantlee] author has moved the library to [KDE],
+> where it is now known as [KTextTemplate], and the original [Grantlee] library has been retired. Meanwhile, the
+> [Cutelyst] project has forked [Grantlee] to [Cutelee], and ported it to Qt6. Today, Doxlee supports both [Grantlee]
+> (with Qt5) and [Cutelee] with Qt6. Doxlee will most likely support [KTextTemplate] too, when that library becomes
+> more readily available.
+
+You can find the template language documention [here](https://pcolby.github.io/cutelee/for_themers.html). You can also
+have a look at some of the [demo](demo) templates.
 
 ## Installation
 
@@ -95,8 +104,12 @@ ctest --test-dir <tmp-build-dir> --verbose
 ~~~
 
 [CMake]:            https://cmake.org/ "CMake"
+[Cutelee]:          https://github.com/cutelyst/cutelee "The Cutelee Libraries"
+[Cutelyst]:         https://cutelyst.org/ "Cutelyst! The Qt Web Framework"
+[Django templates]: https://docs.djangoproject.com/en/5.0/ref/templates/ "Django Templates"
 [Doxygen]:          https://www.doxygen.nl/ "Doxygen"
 [Doxygen Awesome]:  https://jothepro.github.io/doxygen-awesome-css/ "Doxygen Awesome"
 [Grantlee]:         https://github.com/steveire/grantlee "The Grantlee Libraries"
+[KTextTemplate]:    https://invent.kde.org/frameworks/ktexttemplate "The KTextTemplate Library"
 [QDoc]:             https://doc.qt.io/qt-6/01-qdoc-manual.html "Introduction to QDoc"
 [Qt documentation]: https://doc.qt.io/qt-6/index.html "Qt Documentation"
