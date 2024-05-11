@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/pcolby/doxlee/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/pcolby/doxlee/actions/workflows/build.yaml?query=branch%3Amain)
 [![Static Analysis](https://github.com/pcolby/doxlee/actions/workflows/static.yaml/badge.svg?branch=main)](https://github.com/pcolby/doxlee/actions/workflows/static.yaml?query=branch%3Amain)
-[![Codacy Grade](https://img.shields.io/codacy/grade/50f86ac1809f438eae51d294ad11f36f?label=Code%20Quality&logo=codacy)](https://www.codacy.com/gh/pcolby/doxlee/dashboard)
+[![Codacy Grade](https://img.shields.io/codacy/grade/50f86ac1809f438eae51d294ad11f36f?label=Code%20Quality&logo=codacy)](https://app.codacy.com/gh/pcolby/doxlee/dashboard)
 [![Coverage Status](https://img.shields.io/coveralls/github/pcolby/doxlee/main?label=Coverage&logo=coveralls)](https://coveralls.io/github/pcolby/doxlee?branch=main)
 
 Doxlee renders source code documentation by applying text templates to [Doxygen]'s XML output.
