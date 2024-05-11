@@ -8,9 +8,22 @@
 Doxlee renders source code documentation by applying [Grantlee] templates to [Doxygen]'s XML output.
 
 ```mermaid
-graph LR
-    SRC[(src)] --> DOXYGEN(Doxygen) --> XML[(XML)]
-    XML & TMP[(templates)] --> DOXLEE(doxlee) --> HTML[(html)]
+flowchart LR
+    subgraph Your project
+      src[(Source\ncode)]
+      templates[(Templates)]
+    end
+
+    subgraph Doxygen
+      doxygen(doxygen) --> doxml[("doxml\n(XML)")]
+    end
+
+    subgraph Doxlee
+      doxlee(doxlee) --> renders[(HTML,\nMarkdown,\netc.)]
+    end
+
+    src --> doxygen
+    doxml & templates --> doxlee(doxlee)
 ```
 
 Of course, the output doesn't have to be HTML... just about any text format should be possible.
