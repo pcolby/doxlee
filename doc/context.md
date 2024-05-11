@@ -16,6 +16,14 @@ Version of [Doxygen] that generated the XML input, for example `1.9.1`.
 
 Language specified in the [Doxygen] XML index, for example `en-US`.
 
+### `templateLibraryName`
+
+Name  of template library in use, for example `Cutelee` or `Grantlee`.
+
+### `templateLibraryVersion`
+
+Version of template library in use, for example `6.1.0`.
+
 ### `compoundsList`
 
 Compounds listed in the order they appear [Doxygen] XML index. See also [index.xsd].

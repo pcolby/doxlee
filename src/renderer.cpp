@@ -7,9 +7,11 @@
 
 #if defined USE_CUTELEE
 #include <cutelee/cachingloaderdecorator.h>
+#include <cutelee/cutelee_version.h>
 #include <cutelee/templateloader.h>
 #elif defined USE_GRANTLEE
 #include <grantlee/cachingloaderdecorator.h>
+#include <grantlee/grantlee_version.h>
 #include <grantlee/templateloader.h>
 #endif
 
@@ -31,6 +33,13 @@ Renderer::Renderer(const QString &inputDir) : inputDir(inputDir)
 {
     // Default context values.
     context.insert(QSL("doxleeVersion"), QStringLiteral(PROJECT_VERSION));
+    #if defined USE_CUTELEE
+    context.insert(QSL("templateLibraryName"), QStringLiteral("Cutelee"));
+    context.insert(QSL("templateLibraryVersion"), QStringLiteral(CUTELEE_VERSION_STRING));
+    #elif defined USE_GRANTLEE
+    context.insert(QSL("templateLibraryName"), QStringLiteral("Grantlee"));
+    context.insert(QSL("templateLibraryVersion"), QStringLiteral(GRANTLEE_VERSION_STRING));
+    #endif
 
     // Configure the template rendering engine.
     engine.setSmartTrimEnabled(true);
