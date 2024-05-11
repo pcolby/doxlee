@@ -1,4 +1,4 @@
-# doxlee
+# Doxlee
 
 [![Build Status](https://github.com/pcolby/doxlee/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/pcolby/doxlee/actions/workflows/build.yaml?query=branch%3Amain)
 [![Static Analysis](https://github.com/pcolby/doxlee/actions/workflows/static.yaml/badge.svg?branch=main)](https://github.com/pcolby/doxlee/actions/workflows/static.yaml?query=branch%3Amain)
@@ -34,14 +34,14 @@ documentation, then feel free to explore this project :)
 
 ### Text Templates
 
-Doxlee uses a text template language that is very similar to [Django templates]. Specfically, Doxless uses either the
+Doxlee uses a text template language that is very similar to [Django templates]. Specfically, Doxlee uses either the
 [Grantlee] or [Cutelee] library (the former is a Qt6-compatible fork of the former).
 
 > [!NOTE]
 > Doxlee began using the [Grantlee] library with Qt5. However, the [Grantlee] author has moved the library to [KDE],
 > where it is now known as [KTextTemplate], and the original [Grantlee] library has been retired. Meanwhile, the
 > [Cutelyst] project has forked [Grantlee] to [Cutelee], and ported it to Qt6. Today, Doxlee supports both [Grantlee]
-> (with Qt5) and [Cutelee] with Qt6. Doxlee will most likely support [KTextTemplate] too, when that library becomes
+> (with Qt5) and [Cutelee] (with Qt6). Doxlee will most likely support [KTextTemplate] too, when that library becomes
 > more readily available.
 
 You can find the template language documention [here](https://pcolby.github.io/cutelee/for_themers.html). You can also
