@@ -1,0 +1,25 @@
+{% include 'header.html' %}
+
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        {# \todo Use Doxygen project title here #}
+        Hello World
+      </h1>
+      <p class="subtitle">
+        My first website with <strong>Bulma</strong>!
+      </p>
+    </div>
+  </section>
+
+{# \todo Bulma'ify the following block #}
+
+{% for class in compoundsByKind.class %}
+<dd><a class="el" href="{{ class.refid }}.html">{{ class.name }}</a></dd>
+{% empty %}
+No classes documented.
+{% endfor %}
+</dl>
+</div> <!-- classindex -->
+
+{% include 'footer.html' %}

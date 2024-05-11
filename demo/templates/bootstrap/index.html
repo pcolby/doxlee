@@ -1,10 +1,13 @@
 {% include 'header.html' %}
 
-Classes
-<div class="classindex">
-<dl class="classindex even"> <!-- todo odd/even -->
-<dt class="alphachar"><a name="letter_A">A</a></dt>
-for
+    <h1>Bootstrap Demo</h1>
+
+{# \todo Use the Doxygen project name somewhere here... #}
+
+    <h2>Classes</h2>
+
+{# \todo Bootstrapify the following block #}
+
 {% for class in compoundsByKind.class %}
 <dd><a class="el" href="{{ class.refid }}.html">{{ class.name }}</a></dd>
 {% empty %}
