@@ -12,14 +12,14 @@
     </div>
   </section>
 
-{# \todo Bulma'ify the following block #}
-
+<div class="content">
+<ul>
 {% for class in compoundsByKind.class %}
-<dd><a class="el" href="{{ class.refid }}.html">{{ class.name }}</a></dd>
+<li><a class="el" href="{{ class.refid }}.html">{{ class.name }}</a></li>
 {% empty %}
 No classes documented.
 {% endfor %}
-</dl>
-</div> <!-- classindex -->
+</ul>
+</div>
 
 {% include 'footer.html' %}
