@@ -41,6 +41,15 @@ function(add_doxlee_opaque_test)
   set_tests_properties(${OPAQUE_TEST_NAME}Compare PROPERTIES FIXTURES_REQUIRED ${OPAQUE_TEST_NAME}RenderOutput)
   set_tests_properties(${OPAQUE_TEST_NAME}Cleanup PROPERTIES FIXTURES_CLEANUP  ${OPAQUE_TEST_NAME}RenderOutput)
   set_tests_properties(${OPAQUE_TEST_NAME}Compare PROPERTIES LABELS "opaque")
+
+  # Enable re-creating the test's renders, for internal (Doxlee) development.
+  add_custom_target(
+    ${OPAQUE_TEST_NAME}Render
+    COMMAND ${CMAKE_COMMAND} -E remove_directory ${OPAQUE_TEST_RENDERS_DIR}
+    COMMAND ${CMAKE_COMMAND} -E make_directory   ${OPAQUE_TEST_RENDERS_DIR}
+    COMMAND doxlee -i ${OPAQUE_TEST_DOXML_DIR} -t ${OPAQUE_TEST_TEMPLATES_DIR} -o ${OPAQUE_TEST_RENDERS_DIR} -f
+    COMMENT "Recreating renders for test: ${OPAQUE_TEST_NAME}")
+  add_dependencies(updateTestData ${OPAQUE_TEST_NAME}Render)
 endfunction()
 
 function(add_doxlee_opaque_tests dir)
