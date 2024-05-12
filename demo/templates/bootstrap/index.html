@@ -1,19 +1,17 @@
 {% include 'header.html' %}
 
-    <h1>Bootstrap Demo</h1>
+<h1>Bootstrap Demo</h1>
 
 {# \todo Use the Doxygen project name somewhere here... #}
 
-    <h2>Classes</h2>
+<h2>Classes</h2>
 
-{# \todo Bootstrapify the following block #}
-
+<div class="list-group">
 {% for class in compoundsByKind.class %}
-<dd><a class="el" href="{{ class.refid }}.html">{{ class.name }}</a></dd>
+  <a href="{{ class.refid }}.html" class="list-group-item list-group-item-action">{{ class.name }}</a>
 {% empty %}
-No classes documented.
+  No classes documented.
 {% endfor %}
-</dl>
-</div> <!-- classindex -->
+</div>
 
 {% include 'footer.html' %}
