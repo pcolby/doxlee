@@ -57,8 +57,8 @@ Renderer::Renderer(const QString &inputDir) : inputDir(inputDir)
 bool Renderer::loadTemplates(const QString &templatesDir)
 {
     // Fetch the list of compound and member kinds supported by the Doxgen version.
-    auto kinds = doxml::kinds(inputDir);
-    if ((kinds.first.isEmpty()) && (kinds.second.isEmpty())) {
+    const auto [compoundKinds, memberKinds] = doxml::kinds(inputDir);
+    if ((compoundKinds.isEmpty()) && (memberKinds.isEmpty())) {
         return false; // doxml::kinds failed; and reported an appropriate error.
     }
 
@@ -101,7 +101,7 @@ bool Renderer::loadTemplates(const QString &templatesDir)
         }
 
         // Load the template, and store against the relevant compound kind.
-        if ((kind == QSL("index")) || (kinds.first.contains(kind))) {
+        if ((kind == QSL("index")) || (compoundKinds.contains(kind))) {
             qCDebug(lc).noquote() << QTR("Loading template: %1 (%2,%3)")
                 .arg(dir.filePath(), relativePathName, kind);
             const Textlee::Template tmplate = engine.loadByName(relativePathName);
