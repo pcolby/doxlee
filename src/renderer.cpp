@@ -295,11 +295,11 @@ bool Renderer::copy(const QString &fromPath, const QString &toPath, ClobberMode 
 bool Renderer::render(const QVariantList &compounds, const QStringList &templateNames,
                       const QDir &outputDir, Textlee::Context &context, ClobberMode &clobberMode)
 {
-    // Note, we're effectively doing a product of compounds * templates here, which could be quite a
-    // lot of processing. We choose to iterate items in the outer loop, so we only parse each item
-    // once. Whereas repeatedly loading templates in the inner loop is fairly cheap, since we
-    // allocated a caching template loader earlier. We could of course, invert the loops for the
-    // same ouput, just an order of magnitude slower and/or using more RAM to cache parsed XML.
+    // Note, we're effectively doing a product of compounds * templates here, which could be quite a lot of processing.
+    // We choose to iterate compounds in the outer loop, so we only parse each compound once. Whereas repeatedly loading
+    // templates in the inner loop is fairly cheap, since we allocated a caching template loader earlier. We could of
+    // course, invert the loops for the same ouput, just an order of magnitude slower and/or using more RAM to cache
+    // parsed Doxml.
     for (const QVariant &compound: compounds) {
         // Parse the item's Doxygen XML data.
         const QString refId = compound.toMap().value(QSL("refid")).toString();
