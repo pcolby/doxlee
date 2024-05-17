@@ -50,8 +50,15 @@ Renderer::Renderer(const QString &inputDir) : inputDir(inputDir)
     // Parse the XML index
     /// \todo the caller should be able to detect failure here.
     const QVariantMap map = doxml::parseIndex(this->inputDir);
-    for (auto iter = map.constBegin(); iter != map.constEnd(); ++iter)
-        context.insert(iter.key(), iter.value());
+    #if QT_VERSION >= QT_VERSION_CHECK(6, 4, 0) // QMap::asKeyValueRange() added in Qt 6.4.
+    for (const auto& [key, value] : map.asKeyValueRange()) {
+        context.insert(key, value);
+    }
+    #else
+    std::for_each(map.constKeyValueBegin(), map.constKeyValueEnd(), [this](const auto &kv){
+        context.insert(kv.first, kv.second);
+    });
+    #endif
 }
 
 bool Renderer::loadTemplates(const QString &templatesDir)
