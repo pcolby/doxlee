@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Unloaded" kind="struct" language="C++" prot="public">
+    <compoundname>Engine::Assets::Asset::Event::Unloaded</compoundname>
+    <includes refid="Asset_8hpp" local="no">Asset.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Unloaded_1a2bd5af73d6bccab761fc36bc699512f5" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Engine::Assets::Asset::Event::Unloaded::success</definition>
+        <argsstring></argsstring>
+        <name>success</name>
+        <qualifiedname>Engine::Assets::Asset::Event::Unloaded::success</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Assets/Asset.hpp" line="21" column="6" bodyfile="src/Assets/Asset.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/Assets/Asset.hpp" line="20" column="1" bodyfile="src/Assets/Asset.hpp" bodystart="20" bodyend="22"/>
+    <listofallmembers>
+      <member refid="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Unloaded_1a2bd5af73d6bccab761fc36bc699512f5" prot="public" virt="non-virtual"><scope>Engine::Assets::Asset::Event::Unloaded</scope><name>success</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

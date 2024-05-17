@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="namespaceEngine_1_1Utils" kind="namespace" language="C++">
+    <compoundname>Engine::Utils</compoundname>
+    <innerclass refid="classEngine_1_1Utils_1_1ArrayView" prot="public">Engine::Utils::ArrayView</innerclass>
+    <innernamespace refid="namespaceEngine_1_1Utils_1_1Path">Engine::Utils::Path</innernamespace>
+    <sectiondef kind="func">
+      <member refid="group__Utils_1gaef03bfdf7ea06e105903c76f06f22deb" kind="function"><name>name_with_underscores</name></member>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/Utils/ArrayView.hpp" line="4" column="1"/>
+  </compounddef>
+</doxygen>

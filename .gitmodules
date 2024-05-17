@@ -1,0 +1,6 @@
+[submodule "test/opaque/doxybook2"]
+	path = test/opaque/doxybook2
+	url = git@github.com:matusnovak/doxybook2.git
+[submodule "test/opaque/moxygen"]
+	path = test/opaque/moxygen
+	url = git@github.com:sourcey/moxygen.git

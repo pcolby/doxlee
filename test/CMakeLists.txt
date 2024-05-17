@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: LGPL-3.0-or-later
 
 if(BUILD_TESTING)
-add_custom_target(updateTestData) # For internal (Doxlee) dev use.
+add_custom_target(updateTestData)  # For internal (Doxlee) dev use.
+add_custom_target(updateTestDoxml) # For internal (Doxlee) dev use.
 add_subdirectory(opaque)
 add_subdirectory(unit)
 endif()

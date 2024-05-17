@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="AudioManager_8hpp" kind="file" language="C++">
+    <compoundname>AudioManager.hpp</compoundname>
+    <includes refid="AudioBuffer_8hpp" local="yes">AudioBuffer.hpp</includes>
+    <includedby refid="Audio_8hpp" local="yes">src/Audio/Audio.hpp</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>AudioBuffer.hpp</label>
+        <link refid="AudioBuffer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>src/Audio/AudioManager.hpp</label>
+        <link refid="AudioManager_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>../Utils/ArrayView.hpp</label>
+        <link refid="ArrayView_8hpp"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>src/Audio/Audio.hpp</label>
+        <link refid="Audio_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>src/Audio/AudioManager.hpp</label>
+        <link refid="AudioManager_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>src/Engine.hpp</label>
+        <link refid="Engine_8hpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classEngine_1_1Audio_1_1AudioManager" prot="public">Engine::Audio::AudioManager</innerclass>
+    <innernamespace refid="namespaceEngine">Engine</innernamespace>
+    <innernamespace refid="namespaceEngine_1_1Audio">Engine::Audio</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="AudioBuffer_8hpp" kindref="compound">AudioBuffer.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceEngine" kindref="compound">Engine</ref><sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Audio<sp/>{</highlight></codeline>
+<codeline lineno="21" refid="classEngine_1_1Audio_1_1AudioManager" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classEngine_1_1Audio_1_1AudioManager" kindref="compound">AudioManager</ref><sp/>final<sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="23" refid="classEngine_1_1Audio_1_1AudioManager_1a6ddfa33f548bda24e5968f448dd88728" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classEngine_1_1Audio_1_1AudioManager_1a6ddfa33f548bda24e5968f448dd88728" kindref="member">AudioManager</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numOfChannels<sp/>=<sp/>128);</highlight></codeline>
+<codeline lineno="24" refid="classEngine_1_1Audio_1_1AudioManager_1aadcf89776de4c18aa2f227628e8a6186" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classEngine_1_1Audio_1_1AudioManager_1aadcf89776de4c18aa2f227628e8a6186" kindref="member">~AudioManager</ref>();</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="classEngine_1_1Audio_1_1AudioManager_1ab518e57bc7c039b0ac985c74244ed027" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEngine_1_1Audio_1_1AudioManager_1ab518e57bc7c039b0ac985c74244ed027" kindref="member">enque</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classEngine_1_1Audio_1_1AudioBuffer" kindref="compound">AudioBuffer</ref>&amp;<sp/>buffer);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>Audio</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>Engine</highlight></codeline>
+    </programlisting>
+    <location file="src/Audio/AudioManager.hpp"/>
+  </compounddef>
+</doxygen>

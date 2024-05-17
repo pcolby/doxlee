@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="Log_8hpp" kind="file" language="C++">
+    <compoundname>Log.hpp</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includedby refid="Utils_8hpp" local="yes">src/Utils/Utils.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>src/Utils/Log.hpp</label>
+        <link refid="Log_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>src/Engine.hpp</label>
+        <link refid="Engine_8hpp"/>
+      </node>
+      <node id="1">
+        <label>src/Utils/Log.hpp</label>
+        <link refid="Log_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>src/Utils/Utils.hpp</label>
+        <link refid="Utils_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
+      <member refid="group__Utils_1gac7c70714c30c998f33d7cb5639cec5fc" kind="define"><name>LOG_DEBUG</name></member>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="group__Utils_1gac7c70714c30c998f33d7cb5639cec5fc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LOG_DEBUG(MSG,<sp/>...)<sp/>printf(MSG,<sp/>##__VA_ARGS__)</highlight></codeline>
+    </programlisting>
+    <location file="src/Utils/Log.hpp"/>
+  </compounddef>
+</doxygen>

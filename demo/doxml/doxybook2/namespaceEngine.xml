@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="namespaceEngine" kind="namespace" language="C++">
+    <compoundname>Engine</compoundname>
+    <innerclass refid="classEngine_1_1Exception" prot="public">Engine::Exception</innerclass>
+    <innernamespace refid="namespaceEngine_1_1Assets">Engine::Assets</innernamespace>
+    <innernamespace refid="namespaceEngine_1_1Audio">Engine::Audio</innernamespace>
+    <innernamespace refid="namespaceEngine_1_1Graphics">Engine::Graphics</innernamespace>
+    <innernamespace refid="namespaceEngine_1_1Gui">Engine::Gui</innernamespace>
+    <innernamespace refid="namespaceEngine_1_1Utils">Engine::Utils</innernamespace>
+    <sectiondef kind="func">
+      <member refid="group__Engine_1gae3918a7bd8220f317f339ebda3295fa7" kind="function"><name>getVersion</name></member>
+    </sectiondef>
+    <briefdescription>
+<para>This namespace contains all of the necessary engine components. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="namespaceEngine_1_1Assets" kindref="compound">Engine::Assets</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="namespaceEngine_1_1Audio" kindref="compound">Engine::Audio</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="namespaceEngine_1_1Graphics" kindref="compound">Engine::Graphics</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="namespaceEngine_1_1Utils" kindref="compound">Engine::Utils</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="src/Assets/Asset.hpp" line="5" column="1"/>
+  </compounddef>
+</doxygen>

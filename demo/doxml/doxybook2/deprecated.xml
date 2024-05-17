@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="deprecated" kind="page">
+    <compoundname>deprecated</compoundname>
+    <title>Deprecated List</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><variablelist>
+<varlistentry><term>Member <ref refid="classEngine_1_1Audio_1_1AudioBuffer_1a9e2d6ba7577091ff59e68f2d520e9174" kindref="member">Engine::Audio::AudioBuffer::setCallback</ref>  (Callback callback)</term></varlistentry>
+<listitem><para><anchor id="deprecated_1_deprecated000003"/>Use the <ref refid="classEngine_1_1Audio_1_1AudioBuffer_1aa86b2b3bdc3ff9825d4e273f855adabe" kindref="member">AudioBuffer::setCallback2</ref> instead  </para>
+</listitem>
+<varlistentry><term>Member <ref refid="classEngine_1_1Audio_1_1AudioBuffer_1a5a9f408cc4d73ea1956277e0e189f8f0" kindref="member">Engine::Audio::AudioBuffer::setData</ref>  (const <ref refid="structEngine_1_1Audio_1_1AudioBuffer_1_1TypedAudioData" kindref="compound">TypedAudioData</ref> data[], size_t size)</term></varlistentry>
+<listitem><para><anchor id="deprecated_1_deprecated000002"/>Use the <ref refid="classEngine_1_1Audio_1_1AudioBuffer_1a51ef075612af06edcb53d3c9b6c4fc7c" kindref="member">AudioBuffer::setDataMultiple</ref> instead  </para>
+</listitem>
+<varlistentry><term>Member <ref refid="namespaceEngine_1_1Audio_1a9527f056637d57771ee8025589fd596d" kindref="member">Engine::Audio::Callback</ref>  )(<ref refid="classEngine_1_1Audio_1_1AudioBuffer" kindref="compound">AudioBuffer</ref> &amp;buffer, size_t offset)</term></varlistentry>
+<listitem><para><anchor id="deprecated_1_deprecated000001"/>Use the <ref refid="namespaceEngine_1_1Audio_1af6b7af071b7789e517f801764ba809fc" kindref="member">Audio::Callback2</ref> instead  </para>
+</listitem>
+<varlistentry><term>Class <ref refid="classEngine_1_1Graphics_1_1Texture3D" kindref="compound">Engine::Graphics::Texture3D</ref>  </term></varlistentry>
+<listitem><para><anchor id="deprecated_1_deprecated000004"/>Don&apos;t use this texture type </para>
+</listitem>
+</variablelist>
+</para>
+    </detaileddescription>
+    <location file="deprecated"/>
+  </compounddef>
+</doxygen>

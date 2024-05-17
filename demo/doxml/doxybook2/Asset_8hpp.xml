@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="Asset_8hpp" kind="file" language="C++">
+    <compoundname>Asset.hpp</compoundname>
+    <includes local="no">queue</includes>
+    <includes local="no">string</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>src/Assets/Asset.hpp</label>
+        <link refid="Asset_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>queue</label>
+      </node>
+      <node id="3">
+        <label>string</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classEngine_1_1Assets_1_1Asset" prot="public">Engine::Assets::Asset</innerclass>
+    <innerclass refid="unionEngine_1_1Assets_1_1Asset_1_1Event" prot="public">Engine::Assets::Asset::Event</innerclass>
+    <innerclass refid="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded" prot="public">Engine::Assets::Asset::Event::Loaded</innerclass>
+    <innerclass refid="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Unloaded" prot="public">Engine::Assets::Asset::Event::Unloaded</innerclass>
+    <innerclass refid="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting" prot="public">Engine::Assets::Asset::Event::Waiting</innerclass>
+    <innernamespace refid="namespaceEngine">Engine</innernamespace>
+    <innernamespace refid="namespaceEngine_1_1Assets">Engine::Assets</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;queue&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="namespaceEngine" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceEngine" kindref="compound">Engine</ref><sp/>{</highlight></codeline>
+<codeline lineno="6" refid="namespaceEngine_1_1Assets" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Assets<sp/>{</highlight></codeline>
+<codeline lineno="10" refid="classEngine_1_1Assets_1_1Asset" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classEngine_1_1Assets_1_1Asset" kindref="compound">Asset</ref><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="15" refid="unionEngine_1_1Assets_1_1Asset_1_1Event" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">union<sp/></highlight><highlight class="normal"><ref refid="unionEngine_1_1Assets_1_1Asset_1_1Event" kindref="compound">Event</ref><sp/>{</highlight></codeline>
+<codeline lineno="16" refid="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded" kindref="compound">Loaded</ref><sp/>{</highlight></codeline>
+<codeline lineno="17" refid="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded_1a6df474ccd46caeb0e7ffb2214bb795d3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded_1a6df474ccd46caeb0e7ffb2214bb795d3" kindref="member">success</ref>;</highlight></codeline>
+<codeline lineno="18" refid="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded_1a4560959655f932a372e0f9cee598ed1c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Loaded_1a4560959655f932a372e0f9cee598ed1c" kindref="member">usage</ref>;</highlight></codeline>
+<codeline lineno="19" refid="unionEngine_1_1Assets_1_1Asset_1_1Event_1ad231f75a131be36a5c508d12da8aa3ec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><ref refid="unionEngine_1_1Assets_1_1Asset_1_1Event_1ad231f75a131be36a5c508d12da8aa3ec" kindref="member">loaded</ref>;</highlight></codeline>
+<codeline lineno="20" refid="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Unloaded" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Unloaded" kindref="compound">Unloaded</ref><sp/>{</highlight></codeline>
+<codeline lineno="21" refid="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Unloaded_1a2bd5af73d6bccab761fc36bc699512f5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Unloaded_1a2bd5af73d6bccab761fc36bc699512f5" kindref="member">success</ref>;</highlight></codeline>
+<codeline lineno="22" refid="unionEngine_1_1Assets_1_1Asset_1_1Event_1ab339f3dfd552be24b4b2bd8df74ef771" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><ref refid="unionEngine_1_1Assets_1_1Asset_1_1Event_1ab339f3dfd552be24b4b2bd8df74ef771" kindref="member">unloaded</ref>;</highlight></codeline>
+<codeline lineno="23" refid="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting" kindref="compound">Waiting</ref><sp/>{</highlight></codeline>
+<codeline lineno="28" refid="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting_1acbeca9e79efb323226a26b82977d36ec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classEngine_1_1Assets_1_1Asset" kindref="compound">Asset</ref>*<sp/><ref refid="structEngine_1_1Assets_1_1Asset_1_1Event_1_1Waiting_1acbeca9e79efb323226a26b82977d36ec" kindref="member">other</ref>;</highlight></codeline>
+<codeline lineno="29" refid="unionEngine_1_1Assets_1_1Asset_1_1Event_1aa4f616e6024eaa8cf672ddb3a7d7d74a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><ref refid="unionEngine_1_1Assets_1_1Asset_1_1Event_1aa4f616e6024eaa8cf672ddb3a7d7d74a" kindref="member">waiting</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="classEngine_1_1Assets_1_1Asset_1acb5958d164f0b8ced1638de58b3ea0b0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classEngine_1_1Assets_1_1Asset_1acb5958d164f0b8ced1638de58b3ea0b0" kindref="member">Asset</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>name);</highlight></codeline>
+<codeline lineno="33" refid="classEngine_1_1Assets_1_1Asset_1aecd651b9312fa89e40d268214576839e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classEngine_1_1Assets_1_1Asset_1aecd651b9312fa89e40d268214576839e" kindref="member">~Asset</ref>()<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="classEngine_1_1Assets_1_1Asset_1a10931e97cd354bf1770b3824d0e87029" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEngine_1_1Assets_1_1Asset_1a10931e97cd354bf1770b3824d0e87029" kindref="member">load</ref>();</highlight></codeline>
+<codeline lineno="42" refid="classEngine_1_1Assets_1_1Asset_1ab25cbfe379d57b414b800c0040e7c63c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEngine_1_1Assets_1_1Asset_1ab25cbfe379d57b414b800c0040e7c63c" kindref="member">unload</ref>();</highlight></codeline>
+<codeline lineno="48" refid="classEngine_1_1Assets_1_1Asset_1a12084ccb4f99e98595fec70354969a2f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="unionEngine_1_1Assets_1_1Asset_1_1Event" kindref="compound">Event</ref>&amp;<sp/><ref refid="classEngine_1_1Assets_1_1Asset_1a12084ccb4f99e98595fec70354969a2f" kindref="member">getEvent</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>event;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Event<sp/>event;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="src/Assets/Asset.hpp"/>
+  </compounddef>
+</doxygen>

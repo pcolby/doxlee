@@ -1,6 +1,52 @@
 # SPDX-FileCopyrightText: 2021-2024 Paul Colby <git@colby.id.au>
 # SPDX-License-Identifier: LGPL-3.0-or-later
 
+find_package(Doxygen) # Not REQURIED.
+
+function(gen_doxlee_opaque_doxml)
+  cmake_parse_arguments(PARSE_ARGV 0 OPAQUE_DOXML "" "NAME;DOXYFILE;OUTPUT_DIR;WORKING_DIR" "")
+  if(DEFINED OPAQUE_DOXML_UNPARSED_ARGUMENTS)
+    message(SEND_ERROR "Opaque doxml unparsed arguments: ${OPAQUE_TEST_UNPARSED_ARGUMENTS}")
+  endif()
+  if(DEFINED OPAQUE_DOXML_KEYWORDS_MISSING_VALUES)
+    message(SEND_ERROR "Opaque doxml keywords missing values: ${OPAQUE_TEST_KEYWORDS_MISSING_VALUES}")
+  endif()
+
+  if(NOT DEFINED OPAQUE_DOXML_OUTPUT_DIR)
+    set(OPAQUE_DOXML_OUTPUT_DIR "${CMAKE_SOURCE_DIR}/demo/doxml/${OPAQUE_DOXML_NAME}")
+  endif()
+  if(NOT DEFINED OPAQUE_DOXML_WORKING_DIR)
+    set(OPAQUE_DOXML_WORKING_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${OPAQUE_DOXML_NAME}/example")
+  endif()
+  if(NOT DEFINED OPAQUE_DOXML_DOXYFILE)
+    set(OPAQUE_DOXML_DOXYFILE "${OPAQUE_DOXML_WORKING_DIR}/Doxyfile")
+  endif()
+
+  if(NOT IS_DIRECTORY ${OPAQUE_DOXML_OUTPUT_DIR})
+    message(NOTICE "Opaque doxml output path path is not a directory: ${OPAQUE_DOXML_OUTPUT_DIR}")
+  endif()
+  if(NOT IS_DIRECTORY ${OPAQUE_DOXML_WORKING_DIR})
+    message(SEND_ERROR "Opaque doxml working path is not a directory: ${OPAQUE_DOXML_WORKING_DIR}")
+  endif()
+  if(NOT EXISTS ${OPAQUE_DOXML_DOXYFILE} OR IS_DIRECTORY ${OPAQUE_DOXML_DOXYFILE})
+    message(SEND_ERROR "Opaque doxml Doxyfile does not exist, or is not a file: ${OPAQUE_DOXML_DOXYFILE}")
+  endif()
+
+  set(newDoxyfile ${CMAKE_CURRENT_BINARY_DIR}/${OPAQUE_DOXML_NAME}/Doxyfile)
+  configure_file(${OPAQUE_DOXML_DOXYFILE} ${newDoxyfile} COPYONLY)
+  file(APPEND ${newDoxyfile} "\nXML_OUTPUT = \"${OPAQUE_DOXML_OUTPUT_DIR}\"\nEXCLUDE_PATTERNS=\n\n")
+
+  add_custom_target(
+    ${OPAQUE_DOXML_NAME}Doxml
+    COMMAND ${CMAKE_COMMAND} -E remove_directory ${OPAQUE_DOXML_OUTPUT_DIR}
+    COMMAND ${CMAKE_COMMAND} -E make_directory   ${OPAQUE_DOXML_OUTPUT_DIR}
+    COMMAND ${DOXYGEN_EXECUTABLE} ${newDoxyfile}
+    WORKING_DIRECTORY ${OPAQUE_DOXML_WORKING_DIR}
+    COMMENT "Generating doxml: ${OPAQUE_DOXML_NAME}")
+
+  add_dependencies(updateTestDoxml ${OPAQUE_DOXML_NAME}Doxml)
+endfunction()
+
 # Tip: To keep the temporary output directory for further inspection, you can skip the fixture cleanup steps like:
 # ctest -FC '.*' -R <test-name-regex>
 
@@ -20,6 +66,7 @@ function(add_doxlee_opaque_test)
     message(SEND_ERROR "Opaque test templates path is not a directory: ${OPAQUE_TEST_TEMPLATES_DIR}")
   endif()
   if(NOT IS_DIRECTORY ${OPAQUE_TEST_RENDERS_DIR})
+    #FILE(MAKE_DIRECTORY ${OPAQUE_TEST_RENDERS_DIR})
     message(SEND_ERROR "Opaque test renders path is not a directory: ${OPAQUE_TEST_RENDERS_DIR}")
   endif()
 
@@ -88,5 +135,10 @@ function(add_doxlee_opaque_tests dir)
   endforeach()
   message(VERBOSE "Finished looking for opaque test data in: ${dir}")
 endfunction()
+
+if(DOXYGEN_FOUND)
+  gen_doxlee_opaque_doxml(NAME doxybook2)
+  gen_doxlee_opaque_doxml(NAME moxygen)
+endif()
 
 add_doxlee_opaque_tests(${CMAKE_SOURCE_DIR}/demo)

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="group__Engine" kind="group">
+    <compoundname>Engine</compoundname>
+    <title>An example game engine</title>
+    <innerclass refid="classEngine_1_1Exception" prot="public">Engine::Exception</innerclass>
+    <innernamespace refid="namespaceEngine">Engine</innernamespace>
+    <innergroup refid="group__Assets">Generic assets</innergroup>
+    <innergroup refid="group__Audio">Audio buffers and devices</innergroup>
+    <innergroup refid="group__Graphics">Graphical related classes</innergroup>
+    <innergroup refid="group__Gui">Some gui related stuff and whatever</innergroup>
+    <innergroup refid="group__Utils">Some useful utilities</innergroup>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="group__Engine_1gae3918a7bd8220f317f339ebda3295fa7" prot="public" static="no" extern="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string Engine::getVersion</definition>
+        <argsstring>()</argsstring>
+        <name>getVersion</name>
+        <qualifiedname>Engine::getVersion</qualifiedname>
+        <briefdescription>
+<para>Returns the version string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Engine.hpp" line="32" column="24" declfile="src/Engine.hpp" declline="32" declcolumn="24"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>This is a brief description to the engine group. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Some detailed description here </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>
