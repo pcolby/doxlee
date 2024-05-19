@@ -62,7 +62,6 @@ jobs:
         version: ${{ matrix.qt }}
         documentation: true
         doc-archives: 'qtcore'
-        aqtversion: ==3.1.*
     - name: Install Cutelee
       if: startsWith(matrix.qt, '6')
       run: |
@@ -204,7 +203,6 @@ jobs:
         version: ${{ matrix.qt }}
         documentation: true
         doc-archives: 'qtcore'
-        aqtversion: ==3.1.*
     - name: Build
       id: build
       env:
@@ -345,7 +343,6 @@ jobs:
         version: ${{ matrix.qt }}
         arch: win64_msvc2019_64
         set-env: false
-        aqtversion: ==3.1.*
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
@@ -357,7 +354,6 @@ jobs:
         #add-tools-to-path: true ///< \toto Use once released by install-qt-action.
         documentation: true
         doc-archives: 'qtcore'
-        aqtversion: ==3.1.*
     - name: Configure cross-compilation
       if: matrix.arch == 'arm64'
       shell: bash
