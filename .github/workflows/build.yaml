@@ -55,6 +55,13 @@ jobs:
         no-qt-binaries: true
         documentation: true
         doc-archives: 'qtcore'
+    - name: Upload aqtinstall log file
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: aqtinstall-log-linux-${{ matrix.env.cc }}-${{ matrix.qt }}${{ matrix.env.coverage && '-cov' || ''}}
+        path: aqtinstall.log
+        if-no-files-found: error
     - name: Install online Qt version
       if: contains(matrix.qt, '.') # ie if not using Ubuntu's Qt5/Qt6.
       uses: jurplel/install-qt-action@v4
@@ -62,6 +69,13 @@ jobs:
         version: ${{ matrix.qt }}
         documentation: true
         doc-archives: 'qtcore'
+    - name: Upload aqtinstall log file
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: aqtinstall-log-linux-${{ matrix.env.cc }}-${{ matrix.qt }}${{ matrix.env.coverage && '-cov' || ''}}
+        path: aqtinstall.log
+        if-no-files-found: error
     - name: Install Cutelee
       if: startsWith(matrix.qt, '6')
       run: |
@@ -203,6 +217,13 @@ jobs:
         version: ${{ matrix.qt }}
         documentation: true
         doc-archives: 'qtcore'
+    - name: Upload aqtinstall log file
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: aqtinstall-log-${{ matrix.os }}-${{ matrix.env.cc }}-${{ matrix.qt }}${{ matrix.env.coverage && '-cov' || ''}}
+        path: aqtinstall.log
+        if-no-files-found: error
     - name: Build
       id: build
       env:
@@ -343,6 +364,13 @@ jobs:
         version: ${{ matrix.qt }}
         arch: win64_msvc2019_64
         set-env: false
+    - name: Upload aqtinstall log file
+      if: matrix.arch == 'arm64' && failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: aqtinstall-log-win-${{ matrix.arch }}-${{ startsWith(matrix.generator, 'MinGW') && 'mingw' || 'msvc' }}-${{ matrix.qt }}-cross
+        path: aqtinstall.log
+        if-no-files-found: error
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
@@ -354,6 +382,13 @@ jobs:
         #add-tools-to-path: true ///< \toto Use once released by install-qt-action.
         documentation: true
         doc-archives: 'qtcore'
+    - name: Upload aqtinstall log file
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: aqtinstall-log-win-${{ matrix.arch }}-${{ startsWith(matrix.generator, 'MinGW') && 'mingw' || 'msvc' }}-${{ matrix.qt }}
+        path: aqtinstall.log
+        if-no-files-found: error
     - name: Configure cross-compilation
       if: matrix.arch == 'arm64'
       shell: bash
