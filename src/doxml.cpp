@@ -821,23 +821,70 @@ QVariantMap Doxml::parseCompound_docEmojiType(QXmlStreamReader &xml) const
 
 QVariantMap Doxml::parseDoxyfile(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseDoxyfile().
-    Q_UNUSED(xml)
-    return {};
+    if (!xml.readNextStartElement()) {
+        /// \todo Better standardise these warnings / errors.
+        qCWarning(lc).noquote() << QTR("Invalid XML file: %1 - %2").arg(location(xml), xml.errorString());
+        return { };
+    }
+    if (xml.name() != QSL("doxyfile")) {
+        xml.raiseError(QTR("Root element is not \"doxyfile\""));
+        return { };
+    }
+    return parseDoxyfile_DoxygenFileType(xml);
 }
 
 QVariantMap Doxml::parseDoxyfile_DoxygenFileType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseDoxyfile_DoxygenFileType().
-    Q_UNUSED(xml)
-    return {};
+    Q_ASSERT(xml.name() == QSL("doxyfile"));
+
+    // Fetch the XML attributes.
+    QVariantMap map;
+    map.insert(QSL("version"), xml.attributes().value(QSL("version")).toString());
+    map.insert(QSL("language"), xml.attributes().value(QSL("xml:lang")).toString());
+
+    // Parse the <option> elements.
+    QVariantMap options;
+    while ((!xml.atEnd()) && (xml.readNextStartElement())) {
+        if (xml.name() == QSL("option")) {
+            options.insert(parseDoxyfile_OptionType(xml));
+        } else {
+            qCWarning(lc).noquote() << QTR("Skipping unknown <%1> element at %2:%3:%4")
+                                           .arg(xml.name().toString(), location(xml));
+            xml.skipCurrentElement();
+        }
+    }
+    qCDebug(lc).noquote() << QTR("Parsed %1 options(s) from %2").arg(options.size()).arg(currentXmlFilePath);
+    map.insert(QSL("options"), options);
+    return map;
 }
 
 QVariantMap Doxml::parseDoxyfile_OptionType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseDoxyfile_OptionType().
-    Q_UNUSED(xml)
-    return {};
+    Q_ASSERT(xml.name() == QSL("option"));
+    const auto attributes = xml.attributes();
+    const auto id = attributes.value(QSL("id"));
+    const auto type = attributes.value(QSL("type"));
+    if (type == QSL("int")) {
+        return { { id.toString(), xml.readElementText(QXmlStreamReader::IncludeChildElements).toInt() } };
+    } else if (type == QSL("bool")) {
+        return { { id.toString(), xml.readElementText(QXmlStreamReader::IncludeChildElements) == QSL("YES") } };
+    } else if (type == QSL("string")) {
+        return { { id.toString(), xml.readElementText(QXmlStreamReader::IncludeChildElements) } };
+    } else if (type == QSL("stringlist")) {
+        QStringList values;
+        while ((!xml.atEnd()) && (xml.readNextStartElement())) {
+            if (xml.name() == QSL("value")) {
+                values.append(xml.readElementText());
+            } else {
+                qCWarning(lc).noquote() << QTR("Skipping unknown <%1> element at %2:%3:%4")
+                                               .arg(xml.name().toString(), location(xml));
+                xml.skipCurrentElement();
+            }
+        }
+        return { { id.toString(), values } };
+    }
+    qCWarning(lc).noquote() << QTR("Treating option of unknwn type as string");
+    return { { id.toString(), xml.readElementText(QXmlStreamReader::IncludeChildElements) } };
 }
 
 QVariantMap Doxml::parseIndex(QXmlStreamReader &xml) const

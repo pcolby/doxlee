@@ -994,38 +994,98 @@ void TestDoxml::parseCompound_docEmojiType()
 
 void TestDoxml::parseDoxyfile_data()
 {
+    parseDoxyfile_DoxygenFileType_data();
 }
 
 void TestDoxml::parseDoxyfile()
 {
-    /// \todo Implement TestDoxml::parseDoxyfile().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseDoxyfile(xml), QVariantMap{});
+    QTEST(doxml.parseDoxyfile(xml), "expected");
 }
 
 void TestDoxml::parseDoxyfile_DoxygenFileType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    QTest::addRow("string") << QStringLiteral(R"(<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+        <doxyfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="doxyfile.xsd" version="1.10.0" xml:lang="en-US">
+            <option id='QUIET' default='yes' type='bool'><value>NO</value></option>
+            <option id='WARNINGS' default='yes' type='bool'><value>YES</value></option>
+            <option id='TAB_SIZE' default='yes' type='int'><value>4</value></option>
+            <option id='PAPER_TYPE' default='yes' type='string'><value>a4</value></option>
+            <option id='STRIP_FROM_PATH' default='yes' type='stringlist'>
+            </option>
+            <option id='INPUT' default='no' type='stringlist'>
+                <value><![CDATA[./src1]]></value>
+                <value><![CDATA[./src2]]></value>
+            </option>
+        </doxyfile>)")
+        << QVariantMap{
+            { QSL("version"),  QSL("1.10.0") },
+            { QSL("language"), QSL("en-US") },
+            { QSL("options"),  QVariantMap{
+                { QSL("QUIET"), false },
+                { QSL("WARNINGS"), true },
+                { QSL("TAB_SIZE"), 4 },
+                { QSL("PAPER_TYPE"), QSL("a4") },
+                { QSL("STRIP_FROM_PATH"), QStringList{ } },
+                { QSL("INPUT"), QStringList{ QSL("./src1"), QSL("./src2") } },
+            } },
+        };
 }
 
 void TestDoxml::parseDoxyfile_DoxygenFileType()
 {
-    /// \todo Implement TestDoxml::parseDoxyfile_DoxygenFileType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseDoxyfile_DoxygenFileType(xml), QVariantMap{});
+    QTEST(doxml.parseDoxyfile_DoxygenFileType(xml), "expected");
 }
 
 void TestDoxml::parseDoxyfile_OptionType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    QTest::addRow("bool:no")
+        << QSL("<option id='QUIET' default='yes' type='bool'><value>NO</value></option>")
+        << QVariantMap{ { QSL("QUIET"), QVariant(false) } };
+
+    QTest::addRow("bool:yes")
+        << QSL("<option id='WARNINGS' default='yes' type='bool'><value>YES</value></option>")
+        << QVariantMap{ { QSL("WARNINGS"), QVariant(true) } };
+
+    QTest::addRow("int")
+        << QSL("<option id='TAB_SIZE' default='yes' type='int'><value>4</value></option>")
+        << QVariantMap{ { QSL("TAB_SIZE"), QVariant(4) } };
+
+    QTest::addRow("string")
+        << QSL("<option id='PAPER_TYPE' default='yes' type='string'><value>a4</value></option>")
+        << QVariantMap{ { QSL("PAPER_TYPE"), QVariant(QSL("a4")) } };
+
+    QTest::addRow("stinglist:empty")
+        << QSL("<option id='STRIP_FROM_PATH' default='yes' type='stringlist'>\n</option>")
+        << QVariantMap{ { QSL("STRIP_FROM_PATH"), QStringList{} } };
+
+    QTest::addRow("stinglist")
+        << QSL("<option id='INPUT' default='no' type='stringlist'>\
+                   <value><![CDATA[./src1]]></value>\
+                   <value><![CDATA[./src2]]></value>\
+                   </option>")
+        << QVariantMap{ { QSL("INPUT"), QStringList{ QSL("./src1"), QSL("./src2") } } };
 }
 
 void TestDoxml::parseDoxyfile_OptionType()
 {
-    /// \todo Implement TestDoxml::parseDoxyfile_OptionType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseDoxyfile_OptionType(xml), QVariantMap{});
+    QTEST(doxml.parseDoxyfile_OptionType(xml), "expected");
 }
 
 void TestDoxml::parseIndex_data()
