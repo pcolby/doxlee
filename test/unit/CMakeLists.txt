@@ -23,6 +23,11 @@ endif()
 endfunction()
 
 add_doxlee_unit_test(
+  Doxml
+  testdoxml.cpp
+  testdoxml.h)
+
+add_doxlee_unit_test(
   Renderer
   testrenderer.cpp
   testrenderer.h)

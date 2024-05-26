@@ -7,9 +7,7 @@
 
 #include <QCoreApplication>
 #include <QDebug>
-#include <QJsonDocument> // \todo Remove; only for early dev / debugging.
-#include <QLoggingCategory>
-#include <QXmlStreamReader>
+#include <QJsonDocument> /// \todo Remove; only for early dev / debugging.
 
 /// Shorten the QStringLiteral macro for readability.
 #define QSL(str) QStringLiteral(str)
@@ -245,5 +243,624 @@ QVariantMap parseCompound(const QString &compoundXmlPath)
 }
 
 } // namespace doxml
+
+Doxml::Doxml(const QString &doxmlDir) : doxmlDir(doxmlDir)
+{
+
+}
+
+bool Doxml::isValid() const
+{
+    return false; /// \todo.
+}
+
+QVariantMap Doxml::parseCompound(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_DoxygenType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_DoxygenType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_compounddefType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_compounddefType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_listofallmembersType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_listofallmembersType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_memberRefType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_memberRefType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docHtmlOnlyType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docHtmlOnlyType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_compoundRefType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_compoundRefType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_reimplementType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_reimplementType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_incType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_incType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_exportsType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_exportsType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_exportType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_exportType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_refType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_refType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_refTextType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_refTextType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_MemberType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_MemberType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_sectiondefType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_sectiondefType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_memberdefType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_memberdefType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_descriptionType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_descriptionType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_enumvalueType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_enumvalueType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_templateparamlistType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_templateparamlistType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_paramType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_paramType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_linkedTextType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_linkedTextType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_graphType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_graphType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_nodeType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_nodeType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_childnodeType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_childnodeType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_linkType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_linkType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_listingType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_listingType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_codelineType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_codelineType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_highlightType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_highlightType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_spType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_spType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_referenceType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_referenceType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_locationType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_locationType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docSect1Type(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docSect1Type().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docSect2Type(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docSect2Type().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docSect3Type(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docSect3Type().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docSect4Type(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docSect4Type().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docInternalType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docInternalType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docInternalS1Type(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docInternalS1Type().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docInternalS2Type(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docInternalS2Type().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docInternalS3Type(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docInternalS3Type().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docInternalS4Type(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docInternalS4Type().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docTitleType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docTitleType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docSummaryType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docSummaryType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docParaType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docParaType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docMarkupType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docMarkupType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docURLLink(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docURLLink().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docAnchorType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docAnchorType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docFormulaType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docFormulaType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docIndexEntryType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docIndexEntryType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docListType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docListType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docListItemType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docListItemType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docSimpleSectType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docSimpleSectType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docVarListEntryType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docVarListEntryType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docVariableListType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docVariableListType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docRefTextType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docRefTextType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docTableType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docTableType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docRowType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docRowType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docEntryType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docEntryType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docCaptionType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docCaptionType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docHeadingType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docHeadingType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docImageType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docImageType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docDotMscType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docDotMscType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docImageFileType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docImageFileType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docPlantumlType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docPlantumlType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docTocItemType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docTocItemType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docTocListType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docTocListType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docLanguageType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docLanguageType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docParamListType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docParamListType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docParamListItem(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docParamListItem().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docParamNameList(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docParamNameList().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docParamType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docParamType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docParamName(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docParamName().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docXRefSectType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docXRefSectType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docCopyType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docCopyType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docDetailsType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docDetailsType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docBlockQuoteType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docBlockQuoteType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docParBlockType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docParBlockType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docEmptyType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docEmptyType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_tableofcontentsType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_tableofcontentsType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_tableofcontentsKindType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_tableofcontentsKindType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseCompound_docEmojiType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseCompound_docEmojiType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseDoxyfile(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseDoxyfile().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseDoxyfile_DoxygenFileType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseDoxyfile_DoxygenFileType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseDoxyfile_OptionType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseDoxyfile_OptionType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseIndex(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseIndex().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseIndex_DoxygenType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseIndex_DoxygenType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseIndex_CompoundType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseIndex_CompoundType().
+    Q_UNUSED(xml)
+    return {};
+}
+
+QVariantMap Doxml::parseIndex_MemberType(QXmlStreamReader &xml) const
+{
+    /// \todo Implement Doxml::parseIndex_MemberType().
+    Q_UNUSED(xml)
+    return {};
+}
 
 } // namespace doxlee
