@@ -1090,50 +1090,118 @@ void TestDoxml::parseDoxyfile_OptionType()
 
 void TestDoxml::parseIndex_data()
 {
+    parseIndex_DoxygenType_data();
 }
 
 void TestDoxml::parseIndex()
 {
-    /// \todo Implement TestDoxml::parseIndex().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseIndex(xml), QVariantMap{});
+    QTEST(doxml.parseIndex(xml), "expected");
 }
 
 void TestDoxml::parseIndex_DoxygenType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    QTest::addRow("index")
+        << QSL(R"(<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+            <doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.10.0" xml:lang="en-US">
+                <compound refid="foo" kind="namespace"><name>bar</name></copmound>
+            </doxygenindex>)")
+        << QVariantMap {
+            { QSL("version"), QSL("1.10.0") },
+            { QSL("language"), QSL("en-US") },
+            { QSL("compounds"), QVariantList {
+                QVariantMap {
+                    { QSL("refid"), QSL("foo") },
+                    { QSL("kind"), QSL("namespace") },
+                    { QSL("name"), QSL("bar") },
+                    { QSL("members"), QVariantList{ } }, // Yes, we expect an empty 'members' variant list.
+                }
+            } }
+        };
 }
 
 void TestDoxml::parseIndex_DoxygenType()
 {
-    /// \todo Implement TestDoxml::parseIndex_DoxygenType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseIndex_DoxygenType(xml), QVariantMap{});
+    QTEST(doxml.parseIndex_DoxygenType(xml), "expected");
 }
 
 void TestDoxml::parseIndex_CompoundType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    QTest::addRow("without-members")
+        << QSL(R"(<compound refid="foo" kind="namespace"><name>bar</name></copmound>)")
+        << QVariantMap {
+            { QSL("refid"), QSL("foo") },
+            { QSL("kind"), QSL("namespace") },
+            { QSL("name"), QSL("bar") },
+            { QSL("members"), QVariantList{ } }, // Yes, we expect an empty 'members' variant list.
+        };
+
+    QTest::addRow("with-members")
+        << QSL(R"(<compound refid="foo" kind="namespace"><name>bar</name>
+                    <member refid="baz" kind="enum"><name>qux</name></member>
+                    <member refid="abc" kind="define"><name>def</name></member>
+                  </copmound>)")
+        << QVariantMap {
+            { QSL("refid"), QSL("foo") },
+            { QSL("kind"), QSL("namespace") },
+            { QSL("name"), QSL("bar") },
+            { QSL("members"), QVariantList{
+                QVariantMap {
+                    { QSL("refid"), QSL("baz") },
+                    { QSL("kind"), QSL("enum") },
+                    { QSL("name"), QSL("qux") },
+                },
+                QVariantMap {
+                    { QSL("refid"), QSL("abc") },
+                    { QSL("kind"), QSL("define") },
+                    { QSL("name"), QSL("def") },
+                },
+            } }
+        };
 }
 
 void TestDoxml::parseIndex_CompoundType()
 {
-    /// \todo Implement TestDoxml::parseIndex_CompoundType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseIndex_CompoundType(xml), QVariantMap{});
+    QTEST(doxml.parseIndex_CompoundType(xml), "expected");
 }
 
 void TestDoxml::parseIndex_MemberType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    QTest::addRow("enum")
+        << QSL(R"(<member refid="foo" kind="enum"><name>bar</name></member>)")
+        << QVariantMap{
+            { QSL("refid"), QSL("foo") },
+            { QSL("kind"), QSL("enum") },
+            { QSL("name"), QSL("bar") },
+        };
 }
 
 void TestDoxml::parseIndex_MemberType()
 {
-    /// \todo Implement TestDoxml::parseIndex_MemberType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseIndex_MemberType(xml), QVariantMap{});
+    QTEST(doxml.parseIndex_MemberType(xml), "expected");
 }
 
 QTEST_MAIN(TestDoxml)

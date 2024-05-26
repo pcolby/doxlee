@@ -249,10 +249,10 @@ Doxml::Doxml(const QString &doxmlDir) : doxmlDir(doxmlDir)
 
 }
 
-bool Doxml::isValid() const
-{
-    return false; /// \todo.
-}
+// bool Doxml::isValid() const
+// {
+//     return false; /// \todo.
+// }
 
 QString Doxml::location(const QXmlStreamReader &xml) const
 {
@@ -837,12 +837,10 @@ QVariantMap Doxml::parseDoxyfile_DoxygenFileType(QXmlStreamReader &xml) const
 {
     Q_ASSERT(xml.name() == QSL("doxyfile"));
 
-    // Fetch the XML attributes.
     QVariantMap map;
     map.insert(QSL("version"), xml.attributes().value(QSL("version")).toString());
     map.insert(QSL("language"), xml.attributes().value(QSL("xml:lang")).toString());
 
-    // Parse the <option> elements.
     QVariantMap options;
     while ((!xml.atEnd()) && (xml.readNextStartElement())) {
         if (xml.name() == QSL("option")) {
@@ -889,30 +887,84 @@ QVariantMap Doxml::parseDoxyfile_OptionType(QXmlStreamReader &xml) const
 
 QVariantMap Doxml::parseIndex(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseIndex().
-    Q_UNUSED(xml)
-    return {};
+    if (!xml.readNextStartElement()) {
+        /// \todo Better standardise these warnings / errors.
+        qCWarning(lc).noquote() << QTR("Invalid XML file: %1 - %2").arg(location(xml), xml.errorString());
+        return { };
+    }
+    if (xml.name() != QSL("doxygenindex")) {
+        xml.raiseError(QTR("Root element is not \"doxygenindex\""));
+        return { };
+    }
+    return parseIndex_DoxygenType(xml);
 }
 
 QVariantMap Doxml::parseIndex_DoxygenType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseIndex_DoxygenType().
-    Q_UNUSED(xml)
-    return {};
+    Q_ASSERT(xml.name() == QSL("doxygenindex"));
+
+    QVariantMap map {
+        { QSL("version"), xml.attributes().value(QSL("version")).toString() },
+        { QSL("language"), xml.attributes().value(QSL("xml:lang")).toString() },
+    };
+
+    QVariantList compounds;
+    while ((!xml.atEnd()) && (xml.readNextStartElement())) {
+        if (xml.name() == QSL("compound")) {
+            compounds.append(parseIndex_CompoundType(xml));
+        } else {
+            qCWarning(lc).noquote() << QTR("Skipping unknown <%1> element at %2:%3:%4")
+                                           .arg(xml.name().toString(), location(xml));
+            xml.skipCurrentElement();
+        }
+    }
+    qCDebug(lc).noquote() << QTR("Parsed %1 compounds(s) from %2").arg(compounds.size()).arg(currentXmlFilePath);
+    map.insert(QSL("compounds"), compounds);
+    return map;
 }
 
 QVariantMap Doxml::parseIndex_CompoundType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseIndex_CompoundType().
-    Q_UNUSED(xml)
-    return {};
+    Q_ASSERT(xml.name() == QSL("compound"));
+    QVariantMap map {
+        { QSL("refid"), xml.attributes().value(QSL("refid")).toString() },
+        { QSL("kind"),  xml.attributes().value(QSL("kind")).toString() },
+    };
+
+    if ((!xml.readNextStartElement()) || (xml.name() != QSL("name"))) {
+        xml.raiseError(QTR("<compound> does not begin with <name>"));
+        return { };
+    }
+    map.insert(QSL("name"), xml.readElementText());
+
+    QVariantList members;
+    while ((!xml.atEnd()) && (xml.readNextStartElement())) {
+        if (xml.name() == QSL("member")) {
+            members.append(parseIndex_MemberType(xml));
+        } else {
+            qCWarning(lc).noquote() << QTR("Skipping unknown <%1> element at %2")
+               .arg(xml.name().toString(), location(xml));
+            xml.skipCurrentElement();
+        }
+    }
+    map.insert(QSL("members"), members);
+    return map;
 }
 
 QVariantMap Doxml::parseIndex_MemberType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseIndex_MemberType().
-    Q_UNUSED(xml)
-    return {};
+    Q_ASSERT(xml.name() == QSL("member"));
+    QVariantMap map {
+        { QSL("refid"), xml.attributes().value(QSL("refid")).toString() },
+        { QSL("kind"),  xml.attributes().value(QSL("kind")).toString() },
+    };
+    if ((!xml.readNextStartElement()) || (xml.name() != QSL("name"))) {
+        xml.raiseError(QTR("<member> does not begin with <name>"));
+        return { };
+    }
+    map.insert(QSL("name"), xml.readElementText());
+    xml.skipCurrentElement();
+    return map;
 }
 
 } // namespace doxlee

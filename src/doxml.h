@@ -33,7 +33,7 @@ class Doxml {
 
 public:
     explicit Doxml(const QString &doxmlDir);
-    bool isValid() const;
+    // bool isValid() const;
 
     QVariantMap compound(const QString &refId) const;
     QVariantMap doxyfile() const;
