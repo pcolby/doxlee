@@ -254,6 +254,11 @@ bool Doxml::isValid() const
     return false; /// \todo.
 }
 
+QString Doxml::location(const QXmlStreamReader &xml) const
+{
+    return QStringLiteral("%1:%2:%3").arg(currentXmlFilePath).arg(xml.lineNumber()).arg(xml.columnNumber());
+}
+
 QVariantMap Doxml::parseCompound(QXmlStreamReader &xml) const
 {
     /// \todo Implement Doxml::parseCompound().

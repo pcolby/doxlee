@@ -7,6 +7,9 @@ class TestDoxml: public QObject {
     Q_OBJECT
 
 private slots:
+    void location_data();
+    void location();
+
     void parseCompound_data();
     void parseCompound();
 

@@ -11,6 +11,27 @@
 /// Shorten the QStringLiteral macro for readability.
 #define QSL(str) QStringLiteral(str)
 
+void TestDoxml::location_data()
+{
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QString>("expected");
+
+    QTest::addRow("empty") << QString{}                           << QStringLiteral("empty:1:0");
+    QTest::addRow("foo")   << QStringLiteral("<foo/>")            << QStringLiteral("foo:1:6");
+    QTest::addRow("bar")   << QStringLiteral("<foo><bar/></foo>") << QStringLiteral("bar:1:5");
+}
+
+void TestDoxml::location()
+{
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
+
+    doxlee::Doxml doxml(QString{});
+    doxml.currentXmlFilePath=QString::fromUtf8(QTest::currentDataTag());
+    QTEST(doxml.location(xml), "expected");
+}
+
 void TestDoxml::parseCompound_data()
 {
 }

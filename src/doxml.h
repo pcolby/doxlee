@@ -39,12 +39,15 @@ public:
     QVariantMap doxyfile() const;
     QVariantMap index() const;
 
+protected:
+    QString location(const QXmlStreamReader &xml) const;
+
 private:
     static Q_LOGGING_CATEGORY(lc, "doxlee.doxml", QtInfoMsg);
 
     const QDir doxmlDir;
     // mutable QVariantMap indexCache;
-    const QString xmlFilePath;
+    QString currentXmlFilePath;
 
     QVariantMap parseCompound                         (QXmlStreamReader &xml) const;
     QVariantMap parseCompound_DoxygenType             (QXmlStreamReader &xml) const;
