@@ -972,26 +972,153 @@ void TestDoxml::parseCompound_docEmptyType()
 
 void TestDoxml::parseCompound_tableofcontentsType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantList>("expected");
+
+    // Example from https://github.com/doxygen/doxygen/blob/master/testing/043/mypage.xml
+    // See also https://github.com/doxygen/doxygen/blob/master/testing/079/levels.xml
+    QTest::addRow("043/mypage.xml")
+        << QSL(R"(
+    <tableofcontents>
+      <tocsect>
+        <name>Section Title.</name>
+        <reference>mypage_1mysect</reference>
+        <tableofcontents>
+          <tocsect>
+            <name>Subsection Title.</name>
+            <reference>mypage_1mysubsect</reference>
+            <tableofcontents>
+              <tocsect>
+                <name>Subsubsection Title.</name>
+                <reference>mypage_1mysubsubsect</reference>
+                <tableofcontents>
+                  <tocsect>
+                    <name>Paragraph Title.</name>
+                    <reference>mypage_1mypara</reference>
+                  </tocsect>
+                </tableofcontents>
+              </tocsect>
+            </tableofcontents>
+          </tocsect>
+        </tableofcontents>
+      </tocsect>
+      <tocsect>
+        <name>Another Section Title.</name>
+        <reference>mypage_1mysect2</reference>
+      </tocsect>
+    </tableofcontents>)")
+        << QVariantList{
+            QVariantMap{
+                { QSL("name"), QSL("Section Title.") },
+                { QSL("reference"), QSL("mypage_1mysect") },
+                { QSL("tableofcontents"), QVariantList {
+                    QVariantMap {
+                        { QSL("name"), QSL("Subsection Title.") },
+                        { QSL("reference"), QSL("mypage_1mysubsect") },
+                        { QSL("tableofcontents"), QVariantList {
+                            QVariantMap {
+                                { QSL("name"), QSL("Subsubsection Title.") },
+                                { QSL("reference"), QSL("mypage_1mysubsubsect") },
+                                { QSL("tableofcontents"), QVariantList {
+                                    QVariantMap {
+                                        { QSL("name"), QSL("Paragraph Title.") },
+                                        { QSL("reference"), QSL("mypage_1mypara") },
+                                    },
+                                }},
+                            },
+                        }},
+                    },
+                }},
+            },
+            QVariantMap {
+                { QSL("name"), QSL("Another Section Title.") },
+                { QSL("reference"), QSL("mypage_1mysect2") },
+            },
+        };
 }
 
 void TestDoxml::parseCompound_tableofcontentsType()
 {
-    /// \todo Implement TestDoxml::parseCompound_tableofcontentsType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseCompound_tableofcontentsType(xml), QVariantMap{});
+    QTEST(doxml.parseCompound_tableofcontentsType(xml), "expected");
 }
 
 void TestDoxml::parseCompound_tableofcontentsKindType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    // Example from https://github.com/doxygen/doxygen/blob/master/testing/043/mypage.xml
+    // See also https://github.com/doxygen/doxygen/blob/master/testing/079/levels.xml
+    QTest::addRow("mypage_1mysect")
+        << QSL(R"(
+      <tocsect>
+        <name>Section Title.</name>
+        <reference>mypage_1mysect</reference>
+        <tableofcontents>
+          <tocsect>
+            <name>Subsection Title.</name>
+            <reference>mypage_1mysubsect</reference>
+            <tableofcontents>
+              <tocsect>
+                <name>Subsubsection Title.</name>
+                <reference>mypage_1mysubsubsect</reference>
+                <tableofcontents>
+                  <tocsect>
+                    <name>Paragraph Title.</name>
+                    <reference>mypage_1mypara</reference>
+                  </tocsect>
+                </tableofcontents>
+              </tocsect>
+            </tableofcontents>
+          </tocsect>
+        </tableofcontents>
+      </tocsect>)")
+        << QVariantMap{
+            { QSL("name"), QSL("Section Title.") },
+            { QSL("reference"), QSL("mypage_1mysect") },
+            { QSL("tableofcontents"), QVariantList {
+                QVariantMap {
+                    { QSL("name"), QSL("Subsection Title.") },
+                    { QSL("reference"), QSL("mypage_1mysubsect") },
+                    { QSL("tableofcontents"), QVariantList {
+                        QVariantMap {
+                            { QSL("name"), QSL("Subsubsection Title.") },
+                            { QSL("reference"), QSL("mypage_1mysubsubsect") },
+                            { QSL("tableofcontents"), QVariantList {
+                                QVariantMap {
+                                    { QSL("name"), QSL("Paragraph Title.") },
+                                    { QSL("reference"), QSL("mypage_1mypara") },
+                                },
+                            }},
+                        },
+                    }},
+                },
+            }},
+        };
+
+    QTest::addRow("mypage_1mysect2")
+        << QSL(R"(
+      <tocsect>
+        <name>Another Section Title.</name>
+        <reference>mypage_1mysect2</reference>
+      </tocsect>)")
+        <<  QVariantMap {
+                { QSL("name"), QSL("Another Section Title.") },
+                { QSL("reference"), QSL("mypage_1mysect2") },
+        };
 }
 
 void TestDoxml::parseCompound_tableofcontentsKindType()
 {
-    /// \todo Implement TestDoxml::parseCompound_tableofcontentsKindType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseCompound_tableofcontentsKindType(xml), QVariantMap{});
+    QTEST(doxml.parseCompound_tableofcontentsKindType(xml), "expected");
 }
 
 void TestDoxml::parseCompound_docEmojiType_data()

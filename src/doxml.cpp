@@ -837,18 +837,52 @@ QVariantMap Doxml::parseCompound_docEmptyType(QXmlStreamReader &xml) const
     return {};
 }
 
-QVariantMap Doxml::parseCompound_tableofcontentsType(QXmlStreamReader &xml) const
+QVariantList Doxml::parseCompound_tableofcontentsType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseCompound_tableofcontentsType().
-    Q_UNUSED(xml)
-    return {};
+    Q_ASSERT(xml.name() == QSL("tableofcontents"));
+    QVariantList sections;
+    while ((!xml.atEnd()) && (xml.readNextStartElement())) {
+        if (xml.name() == QSL("tocsect")) {
+            sections.append(parseCompound_tableofcontentsKindType(xml));
+        } else {
+            qCWarning(lc).noquote() << QTR("Skipping unknown <%1> element at %2")
+                                           .arg(xml.name().toString(), location(xml));
+            xml.skipCurrentElement();
+        }
+    }
+    return sections;
 }
 
 QVariantMap Doxml::parseCompound_tableofcontentsKindType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseCompound_tableofcontentsKindType().
-    Q_UNUSED(xml)
-    return {};
+    Q_ASSERT(xml.name() == QSL("tocsect"));
+
+    if ((!xml.readNextStartElement()) || (xml.name() != QSL("name"))) {
+        xml.raiseError(QTR("<tocsect> does not begin with <name>"));
+        return { };
+    }
+    QVariantMap map { { QSL("name"), xml.readElementText() } };
+
+    if ((!xml.readNextStartElement()) || (xml.name() != QSL("reference"))) {
+        xml.raiseError(QTR("<tocsect> does not contain <reference>"));
+        return { };
+    }
+    map.insert(QSL("reference"), xml.readElementText());
+
+    QVariantList tableofcontentsList; // A list of lists. Not sure why Doxygen models it that way.
+    while ((!xml.atEnd()) && (xml.readNextStartElement())) {
+        if (xml.name() == QSL("tableofcontents")) {
+            tableofcontentsList.append(parseCompound_tableofcontentsType(xml));
+        } else {
+            qCWarning(lc).noquote() << QTR("Skipping unknown <%1> element at %2")
+                                           .arg(xml.name().toString(), location(xml));
+            xml.skipCurrentElement();
+        }
+    }
+    if (!tableofcontentsList.isEmpty()) {
+        map.insert(QSL("tableofcontents"), tableofcontentsList);
+    }
+    return map;
 }
 
 QVariantMap Doxml::parseCompound_docEmojiType(QXmlStreamReader &xml) const

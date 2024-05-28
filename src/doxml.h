@@ -127,7 +127,7 @@ private:
     QVariantMap parseCompound_docBlockQuoteType       (QXmlStreamReader &xml) const;
     QVariantMap parseCompound_docParBlockType         (QXmlStreamReader &xml) const;
     QVariantMap parseCompound_docEmptyType            (QXmlStreamReader &xml) const;
-    QVariantMap parseCompound_tableofcontentsType     (QXmlStreamReader &xml) const;
+    QVariantList parseCompound_tableofcontentsType    (QXmlStreamReader &xml) const;
     QVariantMap parseCompound_tableofcontentsKindType (QXmlStreamReader &xml) const;
     QVariantMap parseCompound_docEmojiType            (QXmlStreamReader &xml) const;
 
