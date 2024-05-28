@@ -10,6 +10,9 @@ private slots:
     void location_data();
     void location();
 
+    void parseNumericCharacterReference_data();
+    void parseNumericCharacterReference();
+
     void parseCompound_data();
     void parseCompound();
 

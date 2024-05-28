@@ -41,6 +41,7 @@ public:
 
 protected:
     QString location(const QXmlStreamReader &xml) const;
+    static QString parseNumericCharacterReference(const QStringView &view);
 
 private:
     static Q_LOGGING_CATEGORY(lc, "doxlee.doxml", QtInfoMsg);

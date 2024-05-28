@@ -259,6 +259,45 @@ QString Doxml::location(const QXmlStreamReader &xml) const
     return QStringLiteral("%1:%2:%3").arg(currentXmlFilePath).arg(xml.lineNumber()).arg(xml.columnNumber());
 }
 
+/*!
+ * Returns an XML Numeric Character Reference as a QString.
+ *
+ * QChar and QString use UCS2 and UTF-16, but XML references can represent UCS4 characters. Indeed, for Doxygen XML,
+ * the numeric characer references are emoji characters, which all two big for UCS2. So, the resulting Unicode character
+ * cannot fit in a QChar. Instead we return a QString, with a UTF-16 encoding, so QString::size() will typically be 2,
+ * even though it's constains only a single Unicode character (two 16-bit values in UTF-16 format).
+ *
+ * \see https://www.w3.org/TR/xml/#dt-charref
+ */
+QString Doxml::parseNumericCharacterReference(const QStringView &view)
+{
+    if (!view.startsWith(QSL("&#"))) {
+        qWarning(lc) << QTR("Numeric character reference does not start with \"&#\": %1").arg(view);
+        return QString();
+    }
+    if (!view.endsWith(QLatin1Char(';'))) {
+        qWarning(lc) << QTR("Numeric character reference does not end with ';': %1").arg(view);
+        return QString();
+    }
+    const int base = view.startsWith(QSL("&#x")) ? 16 : 10;
+    const qsizetype pos = (base == 16) ? 3 : 2;
+    const QStringView numberView = view.mid(pos, (view.size()-pos-1));
+
+    bool ok;
+    const char32_t codePoint=numberView.toString().toULong(&ok, base);
+    if (!ok) {
+        qWarning(lc) << QTR("Failed to convert numeric character reference to integer: %1").arg(numberView);
+        return QString();
+    }
+
+    const QString result = QString::fromUcs4(&codePoint, 1);
+    if (result.isNull()) {
+        qWarning(lc) << QTR("Failed to parse Unicode codepoint: %1 (%2)").arg(codePoint).arg(view);
+    }
+    return result;
+}
+
+
 QVariantMap Doxml::parseCompound(QXmlStreamReader &xml) const
 {
     /// \todo Implement Doxml::parseCompound().
@@ -814,9 +853,17 @@ QVariantMap Doxml::parseCompound_tableofcontentsKindType(QXmlStreamReader &xml) 
 
 QVariantMap Doxml::parseCompound_docEmojiType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseCompound_docEmojiType().
-    Q_UNUSED(xml)
-    return {};
+    const auto unicode = xml.attributes().value(QSL("unicode"));
+    const auto value = parseNumericCharacterReference(unicode);
+    if (value.isNull()) {
+        /// \todo Better standardise these warnings / errors.
+        qCWarning(lc).noquote() << QTR("Invalid numeric character reference: %1 - %2").arg(location(xml));
+    }
+    return {
+        { QSL("name"), xml.attributes().value(QSL("name")).toString() },
+        { QSL("unicode"), unicode.toString() },
+        { QSL("value"), value },
+    };
 }
 
 QVariantMap Doxml::parseDoxyfile(QXmlStreamReader &xml) const

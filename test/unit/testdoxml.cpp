@@ -32,6 +32,20 @@ void TestDoxml::location()
     QTEST(doxml.location(xml), "expected");
 }
 
+void TestDoxml::parseNumericCharacterReference_data()
+{
+    QTest::addColumn<QString>("charRef");
+    QTest::addColumn<QString>("expected");
+
+    QTest::addRow("alien") << QSL("&#x1f47d;") << QSL("\U0001f47d");
+}
+
+void TestDoxml::parseNumericCharacterReference()
+{
+    QFETCH(QString, charRef);
+    QTEST(doxlee::Doxml::parseNumericCharacterReference(charRef), "expected");
+}
+
 void TestDoxml::parseCompound_data()
 {
 }
@@ -982,14 +996,26 @@ void TestDoxml::parseCompound_tableofcontentsKindType()
 
 void TestDoxml::parseCompound_docEmojiType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    // Example from https://github.com/doxygen/doxygen/blob/master/testing/076/indexpage.xml
+    QTest::addRow("alien")
+        << QSL(R"(<emoji name="alien" unicode="&amp;#x1f47d;"/>)")
+        << QVariantMap{
+            { QSL("name"), QSL("alien") },
+            { QSL("unicode"), QSL("&#x1f47d;") },
+            { QSL("value"), QSL("\U0001f47d") },
+    };
 }
 
 void TestDoxml::parseCompound_docEmojiType()
 {
-    /// \todo Implement TestDoxml::parseCompound_docEmojiType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseCompound_docEmojiType(xml), QVariantMap{});
+    QTEST(doxml.parseCompound_docEmojiType(xml), "expected");
 }
 
 void TestDoxml::parseDoxyfile_data()
