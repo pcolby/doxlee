@@ -256,7 +256,35 @@ Doxml::Doxml(const QString &doxmlDir) : doxmlDir(doxmlDir)
 
 QString Doxml::location(const QXmlStreamReader &xml) const
 {
-    return QStringLiteral("%1:%2:%3").arg(currentXmlFilePath).arg(xml.lineNumber()).arg(xml.columnNumber());
+    return (currentXmlFilePath.isNull()) ? QStringLiteral("%1:%2").arg(xml.lineNumber()).arg(xml.columnNumber())
+        : QStringLiteral("%1:%2:%3").arg(currentXmlFilePath).arg(xml.lineNumber()).arg(xml.columnNumber());
+}
+
+void Doxml::logError(const QXmlStreamReader &xml) const
+{
+    Q_ASSERT(xml.hasError());
+    qCCritical(lc).noquote().nospace() << xml.errorString() << " [" << location(xml) << ']';
+}
+
+void Doxml::logWarning(const QString &message, const QXmlStreamReader &xml) const
+{
+    Q_ASSERT(!xml.hasError());
+    qCWarning(lc).noquote().nospace() << message << " [" << location(xml) << ']';
+}
+
+void Doxml::logWarning(const Warning &warning, const QXmlStreamReader &xml) const
+{
+    QString message;
+    switch (warning) {
+    case Warning::UnexpectedElement:
+        message = QTR("Ignoring unexpected element: %1").arg(xml.name());
+        break;
+    default:
+        Q_ASSERT_X(false, "logWarning", "Unknown warning");
+        message = QTR("Unknown warning");
+        break;
+    }
+    logWarning(message, xml);
 }
 
 /*!
@@ -845,8 +873,7 @@ QVariantList Doxml::parseCompound_tableofcontentsType(QXmlStreamReader &xml) con
         if (xml.name() == QSL("tocsect")) {
             sections.append(parseCompound_tableofcontentsKindType(xml));
         } else {
-            qCWarning(lc).noquote() << QTR("Skipping unknown <%1> element at %2")
-                                           .arg(xml.name().toString(), location(xml));
+            logWarning(Warning::UnexpectedElement, xml);
             xml.skipCurrentElement();
         }
     }
@@ -874,8 +901,7 @@ QVariantMap Doxml::parseCompound_tableofcontentsKindType(QXmlStreamReader &xml) 
         if (xml.name() == QSL("tableofcontents")) {
             tableofcontentsList.append(parseCompound_tableofcontentsType(xml));
         } else {
-            qCWarning(lc).noquote() << QTR("Skipping unknown <%1> element at %2")
-                                           .arg(xml.name().toString(), location(xml));
+            logWarning(Warning::UnexpectedElement, xml);
             xml.skipCurrentElement();
         }
     }
@@ -890,8 +916,7 @@ QVariantMap Doxml::parseCompound_docEmojiType(QXmlStreamReader &xml) const
     const auto unicode = xml.attributes().value(QSL("unicode"));
     const auto value = parseNumericCharacterReference(unicode);
     if (value.isNull()) {
-        /// \todo Better standardise these warnings / errors.
-        qCWarning(lc).noquote() << QTR("Invalid numeric character reference: %1 - %2").arg(location(xml));
+        logWarning(QTR("Invalid numeric character reference: %1").arg(unicode), xml);
     }
     return {
         { QSL("name"), xml.attributes().value(QSL("name")).toString() },
@@ -903,8 +928,7 @@ QVariantMap Doxml::parseCompound_docEmojiType(QXmlStreamReader &xml) const
 QVariantMap Doxml::parseDoxyfile(QXmlStreamReader &xml) const
 {
     if (!xml.readNextStartElement()) {
-        /// \todo Better standardise these warnings / errors.
-        qCWarning(lc).noquote() << QTR("Invalid XML file: %1 - %2").arg(location(xml), xml.errorString());
+        Q_ASSERT(xml.hasError());
         return { };
     }
     if (xml.name() != QSL("doxyfile")) {
@@ -927,8 +951,7 @@ QVariantMap Doxml::parseDoxyfile_DoxygenFileType(QXmlStreamReader &xml) const
         if (xml.name() == QSL("option")) {
             options.insert(parseDoxyfile_OptionType(xml));
         } else {
-            qCWarning(lc).noquote() << QTR("Skipping unknown <%1> element at %2:%3:%4")
-                                           .arg(xml.name().toString(), location(xml));
+            logWarning(Warning::UnexpectedElement, xml);
             xml.skipCurrentElement();
         }
     }
@@ -955,22 +978,20 @@ QVariantMap Doxml::parseDoxyfile_OptionType(QXmlStreamReader &xml) const
             if (xml.name() == QSL("value")) {
                 values.append(xml.readElementText());
             } else {
-                qCWarning(lc).noquote() << QTR("Skipping unknown <%1> element at %2:%3:%4")
-                                               .arg(xml.name().toString(), location(xml));
+                logWarning(Warning::UnexpectedElement, xml);
                 xml.skipCurrentElement();
             }
         }
         return { { id.toString(), values } };
     }
-    qCWarning(lc).noquote() << QTR("Treating option of unknwn type as string");
+    logWarning(QTR("Treating Doxyfile option \"%1\" of unknown type \"%2\" as string").arg(id, type), xml);
     return { { id.toString(), xml.readElementText(QXmlStreamReader::IncludeChildElements) } };
 }
 
 QVariantMap Doxml::parseIndex(QXmlStreamReader &xml) const
 {
     if (!xml.readNextStartElement()) {
-        /// \todo Better standardise these warnings / errors.
-        qCWarning(lc).noquote() << QTR("Invalid XML file: %1 - %2").arg(location(xml), xml.errorString());
+        Q_ASSERT(xml.hasError());
         return { };
     }
     if (xml.name() != QSL("doxygenindex")) {
@@ -994,8 +1015,7 @@ QVariantMap Doxml::parseIndex_DoxygenType(QXmlStreamReader &xml) const
         if (xml.name() == QSL("compound")) {
             compounds.append(parseIndex_CompoundType(xml));
         } else {
-            qCWarning(lc).noquote() << QTR("Skipping unknown <%1> element at %2:%3:%4")
-                                           .arg(xml.name().toString(), location(xml));
+            logWarning(Warning::UnexpectedElement, xml);
             xml.skipCurrentElement();
         }
     }
@@ -1023,8 +1043,7 @@ QVariantMap Doxml::parseIndex_CompoundType(QXmlStreamReader &xml) const
         if (xml.name() == QSL("member")) {
             members.append(parseIndex_MemberType(xml));
         } else {
-            qCWarning(lc).noquote() << QTR("Skipping unknown <%1> element at %2")
-               .arg(xml.name().toString(), location(xml));
+            logWarning(Warning::UnexpectedElement, xml);
             xml.skipCurrentElement();
         }
     }

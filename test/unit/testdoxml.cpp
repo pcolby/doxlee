@@ -14,11 +14,23 @@
 void TestDoxml::location_data()
 {
     QTest::addColumn<QString>("xmlString");
-    QTest::addColumn<QString>("expected");
+    QTest::addColumn<QString>("withFilePath");
+    QTest::addColumn<QString>("withoutFilePath");
 
-    QTest::addRow("empty") << QString{}                           << QStringLiteral("empty:1:0");
-    QTest::addRow("foo")   << QStringLiteral("<foo/>")            << QStringLiteral("foo:1:6");
-    QTest::addRow("bar")   << QStringLiteral("<foo><bar/></foo>") << QStringLiteral("bar:1:5");
+    QTest::addRow("empty")
+        << QString{}
+        << QStringLiteral("empty:1:0")
+        << QStringLiteral("1:0");
+
+    QTest::addRow("foo")
+        << QStringLiteral("<foo/>")
+        << QStringLiteral("foo:1:6")
+        << QStringLiteral("1:6");
+
+    QTest::addRow("bar")
+        << QStringLiteral("<foo><bar/></foo>")
+        << QStringLiteral("bar:1:5")
+        << QStringLiteral("1:5");
 }
 
 void TestDoxml::location()
@@ -28,8 +40,31 @@ void TestDoxml::location()
     xml.readNextStartElement();
 
     doxlee::Doxml doxml(QString{});
-    doxml.currentXmlFilePath=QString::fromUtf8(QTest::currentDataTag());
-    QTEST(doxml.location(xml), "expected");
+    QTEST(doxml.location(xml), "withoutFilePath");
+    doxml.currentXmlFilePath = QString::fromUtf8(QTest::currentDataTag());
+    QTEST(doxml.location(xml), "withFilePath");
+}
+
+void TestDoxml::logError()
+{
+    QXmlStreamReader xml;
+    xml.raiseError(QSL("Custom error message"));
+
+    doxlee::Doxml doxml(QString{});
+    QTest::ignoreMessage(QtCriticalMsg, "Custom error message [1:0]");
+    doxml.logError(xml);
+}
+
+void TestDoxml::logWarning()
+{
+    QXmlStreamReader xml;
+
+    doxlee::Doxml doxml(QString{});
+    QTest::ignoreMessage(QtWarningMsg, "Warning message [1:0]");
+    doxml.logWarning(QSL("Warning message"), xml);
+
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression(QSL(R"(.* unexpected .* \[1:0\])")));
+    doxml.logWarning(doxlee::Doxml::Warning::UnexpectedElement, xml);
 }
 
 void TestDoxml::parseNumericCharacterReference_data()

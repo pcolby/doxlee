@@ -40,7 +40,14 @@ public:
     QVariantMap index() const;
 
 protected:
+    enum class Warning {
+        UnexpectedElement,
+    };
+
     QString location(const QXmlStreamReader &xml) const;
+    void logError(const QXmlStreamReader &xml) const;
+    void logWarning(const QString &message, const QXmlStreamReader &xml) const;
+    void logWarning(const Warning &warning, const QXmlStreamReader &xml) const;
     static QString parseNumericCharacterReference(const QStringView &view);
 
 private:

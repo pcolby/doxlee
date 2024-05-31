@@ -10,6 +10,10 @@ private slots:
     void location_data();
     void location();
 
+    void logError();
+
+    void logWarning();
+
     void parseNumericCharacterReference_data();
     void parseNumericCharacterReference();
 
