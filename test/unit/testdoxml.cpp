@@ -88,8 +88,9 @@ void TestDoxml::parseCompound_data()
 void TestDoxml::parseCompound()
 {
     /// \todo Implement TestDoxml::parseCompound().
-    QXmlStreamReader xml;
+    QXmlStreamReader xml(QSL("<doxygen/>"));
     doxlee::Doxml doxml(QString{});
+    doxml.parseCompound(xml);
     // QCOMPARE(doxml.parseCompound(xml), QVariantMap{});
 }
 
@@ -100,8 +101,10 @@ void TestDoxml::parseCompound_DoxygenType_data()
 void TestDoxml::parseCompound_DoxygenType()
 {
     /// \todo Implement TestDoxml::parseCompound_DoxygenType().
-    QXmlStreamReader xml;
+    QXmlStreamReader xml(QSL("<doxygen/>"));
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
+    doxml.parseCompound_DoxygenType(xml);
     // QCOMPARE(doxml.parseCompound_DoxygenType(xml), QVariantMap{});
 }
 
@@ -112,8 +115,10 @@ void TestDoxml::parseCompound_compounddefType_data()
 void TestDoxml::parseCompound_compounddefType()
 {
     /// \todo Implement TestDoxml::parseCompound_compounddefType().
-    QXmlStreamReader xml;
+    QXmlStreamReader xml(QSL("<compounddef/>"));
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
+    doxml.parseCompound_compounddefType(xml);
     // QCOMPARE(doxml.parseCompound_compounddefType(xml), QVariantMap{});
 }
 

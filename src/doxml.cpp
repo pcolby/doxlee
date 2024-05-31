@@ -336,7 +336,7 @@ QVariantMap Doxml::parseCompound(QXmlStreamReader &xml) const
         xml.raiseError(QTR("Root element is not \"doxygen\""));
         return { };
     }
-    return parseIndex_DoxygenType(xml);
+    return parseCompound_DoxygenType(xml);
 }
 
 QVariantMap Doxml::parseCompound_DoxygenType(QXmlStreamReader &xml) const
@@ -364,7 +364,7 @@ QVariantMap Doxml::parseCompound_DoxygenType(QXmlStreamReader &xml) const
 
 QVariantMap Doxml::parseCompound_compounddefType(QXmlStreamReader &xml) const
 {
-    Q_ASSERT(xml.name() == QSL("doxygen"));
+    Q_ASSERT(xml.name() == QSL("compounddef"));
 
     /// \todo Parse the attributes.
     // <xsd:attribute name="id" type="xsd:string" />
