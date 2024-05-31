@@ -366,15 +366,24 @@ QVariantMap Doxml::parseCompound_compounddefType(QXmlStreamReader &xml) const
 {
     Q_ASSERT(xml.name() == QSL("compounddef"));
 
-    /// \todo Parse the attributes.
-    // <xsd:attribute name="id" type="xsd:string" />
-    // <xsd:attribute name="kind" type="DoxCompoundKind" />
-    // <xsd:attribute name="language" type="DoxLanguage" use="optional"/>
-    // <xsd:attribute name="prot" type="DoxProtectionKind" />
-    // <xsd:attribute name="final" type="DoxBool" use="optional"/>
-    // <xsd:attribute name="inline" type="DoxBool" use="optional"/>
-    // <xsd:attribute name="sealed" type="DoxBool" use="optional"/>
-    // <xsd:attribute name="abstract" type="DoxBool" use="optional"/>
+    const QXmlStreamAttributes attributes = xml.attributes();
+    QVariantMap map {
+        { QSL("id"), attributes.value(QSL("id")).toString() },
+        { QSL("kind"), attributes.value(QSL("kind")).toString() },
+        { QSL("protection"), attributes.value(QSL("prot")).toString() },
+    };
+    {
+        const QStringView attributeValue = attributes.value(QSL("language"));
+        if (!attributeValue.isNull()) {
+            map.insert(QSL("language"), attributeValue.toString());
+        }
+    }
+    for (const QString &attributeName: QStringList{ QSL("final"), QSL("inline"), QSL("sealed"), QSL("abstract") }) {
+        const QStringView attributeValue = attributes.value(attributeName);
+        if (!attributeValue.isNull()) {
+            map.insert(attributeName, attributeValue == QSL("yes"));
+        }
+    }
 
     /// \todo Parse the child elemeents.
     // <xsd:sequence>
