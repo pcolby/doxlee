@@ -328,22 +328,88 @@ QString Doxml::parseNumericCharacterReference(const QStringView &view)
 
 QVariantMap Doxml::parseCompound(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseCompound().
-    Q_UNUSED(xml)
-    return {};
+    if (!xml.readNextStartElement()) {
+        Q_ASSERT(xml.hasError());
+        return { };
+    }
+    if (xml.name() != QSL("doxygen")) {
+        xml.raiseError(QTR("Root element is not \"doxygen\""));
+        return { };
+    }
+    return parseIndex_DoxygenType(xml);
 }
 
 QVariantMap Doxml::parseCompound_DoxygenType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseCompound_DoxygenType().
-    Q_UNUSED(xml)
-    return {};
+    Q_ASSERT(xml.name() == QSL("doxygen"));
+
+    QVariantMap map {
+        { QSL("version"), xml.attributes().value(QSL("version")).toString() },
+        { QSL("language"), xml.attributes().value(QSL("xml:lang")).toString() },
+    };
+
+    QVariantList compounds;
+    while ((!xml.atEnd()) && (xml.readNextStartElement())) {
+        if (xml.name() == QSL("compounddef")) {
+            compounds.append(parseCompound_compounddefType(xml));
+        } else {
+            logWarning(Warning::UnexpectedElement, xml);
+            xml.skipCurrentElement();
+        }
+    }
+    qCDebug(lc).noquote() << QTR("Parsed %1 compounds(s) from %2").arg(compounds.size()).arg(currentXmlFilePath);
+    map.insert(QSL("compounds"), compounds);
+    return map;
 }
 
 QVariantMap Doxml::parseCompound_compounddefType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseCompound_compounddefType().
-    Q_UNUSED(xml)
+    Q_ASSERT(xml.name() == QSL("doxygen"));
+
+    /// \todo Parse the attributes.
+    // <xsd:attribute name="id" type="xsd:string" />
+    // <xsd:attribute name="kind" type="DoxCompoundKind" />
+    // <xsd:attribute name="language" type="DoxLanguage" use="optional"/>
+    // <xsd:attribute name="prot" type="DoxProtectionKind" />
+    // <xsd:attribute name="final" type="DoxBool" use="optional"/>
+    // <xsd:attribute name="inline" type="DoxBool" use="optional"/>
+    // <xsd:attribute name="sealed" type="DoxBool" use="optional"/>
+    // <xsd:attribute name="abstract" type="DoxBool" use="optional"/>
+
+    /// \todo Parse the child elemeents.
+    // <xsd:sequence>
+    // <xsd:element name="compoundname" type="xsd:string"/>
+    // <xsd:element name="title" type="xsd:string" minOccurs="0" />
+    // <xsd:element name="basecompoundref" type="compoundRefType" minOccurs="0" maxOccurs="unbounded" />
+    // <xsd:element name="derivedcompoundref" type="compoundRefType" minOccurs="0" maxOccurs="unbounded" />
+    // <xsd:element name="includes" type="incType" minOccurs="0" maxOccurs="unbounded" />
+    // <xsd:element name="includedby" type="incType" minOccurs="0" maxOccurs="unbounded" />
+    // <xsd:element name="incdepgraph" type="graphType" minOccurs="0" />
+    // <xsd:element name="invincdepgraph" type="graphType" minOccurs="0" />
+    // <xsd:element name="innermodule" type="refType" minOccurs="0" maxOccurs="unbounded" />
+    // <xsd:element name="innerdir" type="refType" minOccurs="0" maxOccurs="unbounded" />
+    // <xsd:element name="innerfile" type="refType" minOccurs="0" maxOccurs="unbounded" />
+    // <xsd:element name="innerclass" type="refType" minOccurs="0" maxOccurs="unbounded" />
+    // <xsd:element name="innerconcept" type="refType" minOccurs="0" maxOccurs="unbounded" />
+    // <xsd:element name="innernamespace" type="refType" minOccurs="0" maxOccurs="unbounded" />
+    // <xsd:element name="innerpage" type="refType" minOccurs="0" maxOccurs="unbounded" />
+    // <xsd:element name="innergroup" type="refType" minOccurs="0" maxOccurs="unbounded" />
+    // <xsd:element name="qualifier" minOccurs="0" maxOccurs="unbounded" />
+    // <xsd:element name="templateparamlist" type="templateparamlistType" minOccurs="0" />
+    // <xsd:element name="sectiondef" type="sectiondefType" minOccurs="0" maxOccurs="unbounded" />
+    // <xsd:element name="tableofcontents" type="tableofcontentsType" minOccurs="0" maxOccurs="1" />
+    // <xsd:element name="requiresclause" type="linkedTextType" minOccurs="0" />
+    // <xsd:element name="initializer" type="linkedTextType" minOccurs="0" />
+    // <xsd:element name="briefdescription" type="descriptionType" minOccurs="0" />
+    // <xsd:element name="detaileddescription" type="descriptionType" minOccurs="0" />
+    // <xsd:element name="exports" type="exportsType" minOccurs="0" maxOccurs="1"/>
+    // <xsd:element name="inheritancegraph" type="graphType" minOccurs="0" />
+    // <xsd:element name="collaborationgraph" type="graphType" minOccurs="0" />
+    // <xsd:element name="programlisting" type="listingType" minOccurs="0" />
+    // <xsd:element name="location" type="locationType" minOccurs="0" />
+    // <xsd:element name="listofallmembers" type="listofallmembersType" minOccurs="0" />
+    // </xsd:sequence>
+
     return {};
 }
 
