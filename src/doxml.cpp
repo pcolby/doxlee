@@ -385,41 +385,156 @@ QVariantMap Doxml::parseCompound_compounddefType(QXmlStreamReader &xml) const
         }
     }
 
-    /// \todo Parse the child elemeents.
-    // <xsd:sequence>
-    // <xsd:element name="compoundname" type="xsd:string"/>
-    // <xsd:element name="title" type="xsd:string" minOccurs="0" />
-    // <xsd:element name="basecompoundref" type="compoundRefType" minOccurs="0" maxOccurs="unbounded" />
-    // <xsd:element name="derivedcompoundref" type="compoundRefType" minOccurs="0" maxOccurs="unbounded" />
-    // <xsd:element name="includes" type="incType" minOccurs="0" maxOccurs="unbounded" />
-    // <xsd:element name="includedby" type="incType" minOccurs="0" maxOccurs="unbounded" />
-    // <xsd:element name="incdepgraph" type="graphType" minOccurs="0" />
-    // <xsd:element name="invincdepgraph" type="graphType" minOccurs="0" />
-    // <xsd:element name="innermodule" type="refType" minOccurs="0" maxOccurs="unbounded" />
-    // <xsd:element name="innerdir" type="refType" minOccurs="0" maxOccurs="unbounded" />
-    // <xsd:element name="innerfile" type="refType" minOccurs="0" maxOccurs="unbounded" />
-    // <xsd:element name="innerclass" type="refType" minOccurs="0" maxOccurs="unbounded" />
-    // <xsd:element name="innerconcept" type="refType" minOccurs="0" maxOccurs="unbounded" />
-    // <xsd:element name="innernamespace" type="refType" minOccurs="0" maxOccurs="unbounded" />
-    // <xsd:element name="innerpage" type="refType" minOccurs="0" maxOccurs="unbounded" />
-    // <xsd:element name="innergroup" type="refType" minOccurs="0" maxOccurs="unbounded" />
-    // <xsd:element name="qualifier" minOccurs="0" maxOccurs="unbounded" />
-    // <xsd:element name="templateparamlist" type="templateparamlistType" minOccurs="0" />
-    // <xsd:element name="sectiondef" type="sectiondefType" minOccurs="0" maxOccurs="unbounded" />
-    // <xsd:element name="tableofcontents" type="tableofcontentsType" minOccurs="0" maxOccurs="1" />
-    // <xsd:element name="requiresclause" type="linkedTextType" minOccurs="0" />
-    // <xsd:element name="initializer" type="linkedTextType" minOccurs="0" />
-    // <xsd:element name="briefdescription" type="descriptionType" minOccurs="0" />
-    // <xsd:element name="detaileddescription" type="descriptionType" minOccurs="0" />
-    // <xsd:element name="exports" type="exportsType" minOccurs="0" maxOccurs="1"/>
-    // <xsd:element name="inheritancegraph" type="graphType" minOccurs="0" />
-    // <xsd:element name="collaborationgraph" type="graphType" minOccurs="0" />
-    // <xsd:element name="programlisting" type="listingType" minOccurs="0" />
-    // <xsd:element name="location" type="locationType" minOccurs="0" />
-    // <xsd:element name="listofallmembers" type="listofallmembersType" minOccurs="0" />
-    // </xsd:sequence>
+    QVariantList basecompoundref, derivedcompoundref, includes, includedby, innermodule, innerdir, innerfile,
+        innerclass, innerconcept, innernamespace, innerpage, innergroup, qualifier, sectiondef;
+    while ((!xml.atEnd()) && (xml.readNextStartElement())) {
+        if (xml.name() == QSL("compoundname")) {
+            map.insert(QSL("compoundname"), xml.readElementText());
+        }
 
-    return {};
+        else if (xml.name() == QSL("title")) {
+            map.insert(QSL("title"), xml.readElementText());
+        }
+
+        else if (xml.name() == QSL("basecompoundref")) {
+            basecompoundref.append(parseCompound_compoundRefType(xml));
+        }
+
+        else if (xml.name() == QSL("derivedcompoundref")) {
+            derivedcompoundref.append(parseCompound_compoundRefType(xml));
+        }
+
+        else if (xml.name() == QSL("includes")) {
+            includes.append(parseCompound_incType(xml));
+        }
+
+        else if (xml.name() == QSL("includedby")) {
+            includedby.append(parseCompound_incType(xml));
+        }
+
+        else if (xml.name() == QSL("incdepgraph")) {
+            map.insert(QSL("incdepgraph"), parseCompound_graphType(xml));
+        }
+
+        else if (xml.name() == QSL("invincdepgraph")) {
+            map.insert(QSL("invincdepgraph"), parseCompound_graphType(xml));
+        }
+
+        else if (xml.name() == QSL("innermodule")) {
+            innermodule.append(parseCompound_refType(xml));
+        }
+
+        else if (xml.name() == QSL("innerdir")) {
+            innerdir.append(parseCompound_refType(xml));
+        }
+
+        else if (xml.name() == QSL("innerfile")) {
+            innerfile.append(parseCompound_refType(xml));
+        }
+
+        else if (xml.name() == QSL("innerclass")) {
+            innerclass.append(parseCompound_refType(xml));
+        }
+
+        else if (xml.name() == QSL("innerconcept")) {
+            innerconcept.append(parseCompound_refType(xml));
+        }
+
+        else if (xml.name() == QSL("innernamespace")) {
+            innernamespace.append(parseCompound_refType(xml));
+        }
+
+        else if (xml.name() == QSL("innerpage")) {
+            innerpage.append(parseCompound_refType(xml));
+        }
+
+        else if (xml.name() == QSL("innergroup")) {
+            innergroup.append(parseCompound_refType(xml));
+        }
+
+        else if (xml.name() == QSL("qualifier")) {
+            // <xsd:element name="qualifier" minOccurs="0" maxOccurs="unbounded" />
+            /// \todo what type is this?! Seehttps://github.com/doxygen/doxygen/issues/10913
+            //qualifier.append(this->parseCompound_???(xml));
+            logWarning(QSL("Doxygen has not defined the type for the 'qualifier' element"), xml);
+            xml.skipCurrentElement();
+        }
+
+        else if (xml.name() == QSL("templateparamlist")) {
+            map.insert(QSL("templateparamlist"), parseCompound_templateparamlistType(xml));
+        }
+
+        else if (xml.name() == QSL("sectiondef")) {
+            sectiondef.append(parseCompound_sectiondefType(xml));
+        }
+
+        else if (xml.name() == QSL("tableofcontents")) {
+            map.insert(QSL("tableofcontents"), parseCompound_tableofcontentsType(xml));
+        }
+
+        else if (xml.name() == QSL("requiresclause")) {
+            map.insert(QSL("requiresclause"), parseCompound_linkedTextType(xml));
+        }
+
+        else if (xml.name() == QSL("initializer")) {
+            map.insert(QSL("initializer"), parseCompound_linkedTextType(xml));
+        }
+
+        else if (xml.name() == QSL("briefdescription")) {
+            map.insert(QSL("briefdescription"), parseCompound_descriptionType(xml));
+        }
+
+        else if (xml.name() == QSL("detaileddescription")) {
+            map.insert(QSL("detaileddescription"), parseCompound_descriptionType(xml));
+        }
+
+        else if (xml.name() == QSL("exports")) {
+            map.insert(QSL("exports"), parseCompound_exportsType(xml));
+        }
+
+        else if (xml.name() == QSL("inheritancegraph")) {
+            map.insert(QSL("inheritancegraph"), parseCompound_graphType(xml));
+        }
+
+        else if (xml.name() == QSL("collaborationgraph")) {
+            map.insert(QSL("collaborationgraph"), parseCompound_graphType(xml));
+        }
+
+        else if (xml.name() == QSL("programlisting")) {
+            map.insert(QSL("programlisting"), parseCompound_listingType(xml));
+        }
+
+        else if (xml.name() == QSL("location")) {
+            map.insert(QSL("location"), parseCompound_locationType(xml));
+        }
+
+        else if (xml.name() == QSL("listofallmembers")) {
+            map.insert(QSL("listofallmembers"), parseCompound_listofallmembersType(xml));
+        }
+
+        else {
+            logWarning(Warning::UnexpectedElement, xml);
+            xml.skipCurrentElement();
+        }
+    }
+
+    #define DOXLEE_INSERT_IF_NOT_EMPTY(name) if (!name.isEmpty()) { map.insert(QSL(#name), name); }
+    DOXLEE_INSERT_IF_NOT_EMPTY(basecompoundref)
+    DOXLEE_INSERT_IF_NOT_EMPTY(derivedcompoundref)
+    DOXLEE_INSERT_IF_NOT_EMPTY(includes)
+    DOXLEE_INSERT_IF_NOT_EMPTY(includedby)
+    DOXLEE_INSERT_IF_NOT_EMPTY(innermodule)
+    DOXLEE_INSERT_IF_NOT_EMPTY(innerdir)
+    DOXLEE_INSERT_IF_NOT_EMPTY(innerfile)
+    DOXLEE_INSERT_IF_NOT_EMPTY(innerclass)
+    DOXLEE_INSERT_IF_NOT_EMPTY(innerconcept)
+    DOXLEE_INSERT_IF_NOT_EMPTY(innernamespace)
+    DOXLEE_INSERT_IF_NOT_EMPTY(innerpage)
+    DOXLEE_INSERT_IF_NOT_EMPTY(innergroup)
+    DOXLEE_INSERT_IF_NOT_EMPTY(qualifier)
+    DOXLEE_INSERT_IF_NOT_EMPTY(sectiondef)
+    #undef DOXLEE_INSERT_IF_NOT_EMPTY
+    return map;
 }
 
 QVariantMap Doxml::parseCompound_listofallmembersType(QXmlStreamReader &xml) const
