@@ -453,11 +453,7 @@ QVariantMap Doxml::parseCompound_compounddefType(QXmlStreamReader &xml) const
         }
 
         else if (xml.name() == QSL("qualifier")) {
-            // <xsd:element name="qualifier" minOccurs="0" maxOccurs="unbounded" />
-            /// \todo what type is this?! Seehttps://github.com/doxygen/doxygen/issues/10913
-            //qualifier.append(this->parseCompound_???(xml));
-            logWarning(QSL("Doxygen has not defined the type for the 'qualifier' element"), xml);
-            xml.skipCurrentElement();
+            map.insert(QSL("qualifier"), xml.readElementText());
         }
 
         else if (xml.name() == QSL("templateparamlist")) {
@@ -623,9 +619,147 @@ QVariantMap Doxml::parseCompound_sectiondefType(QXmlStreamReader &xml) const
 
 QVariantMap Doxml::parseCompound_memberdefType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseCompound_memberdefType().
-    Q_UNUSED(xml)
-    return {};
+    Q_ASSERT(xml.name() == QSL("memberdef"));
+
+    const QXmlStreamAttributes attributes = xml.attributes();
+    QVariantMap map {
+        { QSL("kind"), attributes.value(QSL("kind")).toString() },
+        { QSL("id"), attributes.value(QSL("id")).toString() },
+        { QSL("protection"), attributes.value(QSL("prot")).toString() },
+        { QSL("static"), attributes.value(QSL("prot")) == QSL("yes") },
+    };
+    for (const QString &attributeName: QStringList{ QSL("refqual"), QSL("virt"), QSL("accessor") }) {
+        const QStringView attributeValue = attributes.value(attributeName);
+        if (!attributeValue.isNull()) {
+            map.insert(attributeName, attributeValue.toString());
+        }
+    }
+    for (const QString &attributeName: QStringList{
+        QSL("extern"), QSL("strong"), QSL("const"), QSL("explicit"), QSL("inline"), QSL("volatile"), QSL("mutable"),
+        QSL("noexcept"), QSL("constexpr"), QSL("readable"), QSL("writable"), QSL("initonly"), QSL("settable"),
+        QSL("privatesettable"), QSL("protectedsettable"), QSL("gettable"), QSL("privategettable"),
+        QSL("protectedgettable"), QSL("final"), QSL("sealed"), QSL("new"), QSL("add"), QSL("remove"), QSL("raise"),
+        QSL("optional"), QSL("required"), QSL("attribute"), QSL("property"), QSL("readonly"), QSL("bound"),
+        QSL("removable"), QSL("constrained"), QSL("transient"), QSL("maybevoid"), QSL("maybedefault"),
+        QSL("maybeambiguous"),
+    }) {
+        const QStringView attributeValue = attributes.value(attributeName);
+        if (!attributeValue.isNull()) {
+            map.insert(attributeName, attributeValue == QSL("yes"));
+        }
+    }
+
+    QVariantList reimplements, reimplementedby, qualifier, param, enumvalue, references, referencedby;
+    while ((!xml.atEnd()) && (xml.readNextStartElement())) {
+        if (xml.name() == QSL("templateparamlist")) {
+            map.insert(QSL("templateparamlist"), parseCompound_templateparamlistType(xml));
+        }
+
+        else if (xml.name() == QSL("type")) {
+            map.insert(QSL("type"), parseCompound_linkedTextType(xml));
+        }
+
+        else if (xml.name() == QSL("definition")) {
+            map.insert(QSL("definition"), xml.readElementText());
+        }
+
+        else if (xml.name() == QSL("argsstring")) {
+            map.insert(QSL("argsstring"), xml.readElementText());
+        }
+
+        else if (xml.name() == QSL("name")) {
+            map.insert(QSL("name"), xml.readElementText());
+        }
+
+        else if (xml.name() == QSL("qualifiedname")) {
+            map.insert(QSL("qualifiedname"), xml.readElementText());
+        }
+
+        else if (xml.name() == QSL("read")) {
+            map.insert(QSL("read"), xml.readElementText());
+        }
+
+        else if (xml.name() == QSL("write")) {
+            map.insert(QSL("write"), xml.readElementText());
+        }
+
+        else if (xml.name() == QSL("bitfield")) {
+            map.insert(QSL("bitfield"), xml.readElementText());
+        }
+
+        else if (xml.name() == QSL("reimplements")) {
+            reimplements.append(parseCompound_reimplementType(xml));
+        }
+
+        else if (xml.name() == QSL("reimplementedby")) {
+            reimplementedby.append(parseCompound_reimplementType(xml));
+        }
+
+        else if (xml.name() == QSL("qualifier")) {
+            map.insert(QSL("qualifier"), xml.readElementText());
+        }
+
+        else if (xml.name() == QSL("param")) {
+            param.append(parseCompound_paramType(xml));
+        }
+
+        else if (xml.name() == QSL("enumvalue")) {
+            enumvalue.append(parseCompound_enumvalueType(xml));
+        }
+
+        else if (xml.name() == QSL("requiresclause")) {
+            map.insert(QSL("requiresclause"), parseCompound_linkedTextType(xml));
+
+        }
+
+        else if (xml.name() == QSL("initializer")) {
+            map.insert(QSL("initializer"), parseCompound_linkedTextType(xml));
+        }
+
+        else if (xml.name() == QSL("exceptions")) {
+           map.insert(QSL("exceptions"), parseCompound_linkedTextType(xml));
+        }
+
+        else if (xml.name() == QSL("briefdescription")) {
+          map.insert(QSL("briefdescription"), parseCompound_descriptionType(xml));
+        }
+
+        else if (xml.name() == QSL("detaileddescription")) {
+          map.insert(QSL("detaileddescription"), parseCompound_descriptionType(xml));
+        }
+
+        else if (xml.name() == QSL("inbodydescription")) {
+          map.insert(QSL("inbodydescription"), parseCompound_descriptionType(xml));
+        }
+
+        else if (xml.name() == QSL("location")) {
+          map.insert(QSL("location"), parseCompound_locationType(xml));
+        }
+
+        else if (xml.name() == QSL("references")) {
+            references.append(parseCompound_referenceType(xml));
+        }
+
+        else if (xml.name() == QSL("referencedby")) {
+            referencedby.append(parseCompound_referenceType(xml));
+        }
+
+        else {
+            logWarning(Warning::UnexpectedElement, xml);
+            xml.skipCurrentElement();
+        }
+    }
+
+    #define DOXLEE_INSERT_IF_NOT_EMPTY(name) if (!name.isEmpty()) { map.insert(QSL(#name), name); }
+    DOXLEE_INSERT_IF_NOT_EMPTY(reimplements)
+    DOXLEE_INSERT_IF_NOT_EMPTY(reimplementedby)
+    DOXLEE_INSERT_IF_NOT_EMPTY(qualifier)
+    DOXLEE_INSERT_IF_NOT_EMPTY(param)
+    DOXLEE_INSERT_IF_NOT_EMPTY(enumvalue)
+    DOXLEE_INSERT_IF_NOT_EMPTY(references)
+    DOXLEE_INSERT_IF_NOT_EMPTY(referencedby)
+    #undef DOXLEE_INSERT_IF_NOT_EMPTY
+    return map;
 }
 
 QVariantMap Doxml::parseCompound_descriptionType(QXmlStreamReader &xml) const
