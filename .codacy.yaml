@@ -9,3 +9,4 @@ exclude_paths:
   - COPYING.md
   - demo/**/*
   - test/opaque/broad/src/foo.cpp
+  - test/unit/testdata/**/*
