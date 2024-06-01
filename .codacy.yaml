@@ -4,6 +4,8 @@ engines:
     language: c++
 
 exclude_paths:
+  - codegen/*
   - COPYING.LESSER.md
   - COPYING.md
   - demo/**/*
+  - test/opaque/broad/src/foo.cpp
