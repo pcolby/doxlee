@@ -1,0 +1,31 @@
+{
+    "compounds": [
+        {
+            "briefdescription": {
+            },
+            "compoundname": "levels",
+            "id": "levels",
+            "kind": "page",
+            "protection": "",
+            "tableofcontents": [
+                {
+                    "name": "A section that's in TOC",
+                    "reference": "levels_1first",
+                    "tableofcontents": [
+                        {
+                            "name": "A subsection that's in TOC",
+                            "reference": "levels_1first2"
+                        }
+                    ]
+                },
+                {
+                    "name": "A section that's in TOC again",
+                    "reference": "levels_1second"
+                }
+            ],
+            "title": "A page with two-level TOC"
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

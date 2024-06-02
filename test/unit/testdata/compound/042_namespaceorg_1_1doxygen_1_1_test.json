@@ -1,0 +1,15 @@
+{
+    "compounds": [
+        {
+            "briefdescription": {
+            },
+            "compoundname": "org::doxygen::Test",
+            "id": "namespaceorg_1_1doxygen_1_1_test",
+            "kind": "namespace",
+            "language": "Java",
+            "protection": ""
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "067_link_varargs.cpp",
+            "id": "067__link__varargs_8cpp",
+            "innerclass": [
+                {
+                }
+            ],
+            "kind": "file",
+            "language": "C++",
+            "protection": ""
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

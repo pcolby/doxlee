@@ -1,0 +1,15 @@
+{
+    "compounds": [
+        {
+            "briefdescription": {
+            },
+            "compoundname": "008_brief.c",
+            "id": "008__brief_8c",
+            "kind": "file",
+            "language": "C++",
+            "protection": ""
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

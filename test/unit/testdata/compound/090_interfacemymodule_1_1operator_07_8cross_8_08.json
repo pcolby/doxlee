@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "mymodule::operator(.cross.)",
+            "id": "interfacemymodule_1_1operator_07_8cross_8_08",
+            "kind": "interface",
+            "language": "Fortran",
+            "protection": "private",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

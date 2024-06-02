@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "mymodule::genericproc",
+            "id": "interfacemymodule_1_1genericproc",
+            "kind": "interface",
+            "language": "Fortran",
+            "protection": "public",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

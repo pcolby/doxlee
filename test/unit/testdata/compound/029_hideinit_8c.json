@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "029_hideinit.c",
+            "id": "029__hideinit_8c",
+            "kind": "file",
+            "language": "C++",
+            "protection": "",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

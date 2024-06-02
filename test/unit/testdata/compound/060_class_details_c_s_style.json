@@ -1,0 +1,15 @@
+{
+    "compounds": [
+        {
+            "briefdescription": {
+            },
+            "compoundname": "DetailsCSStyle",
+            "id": "class_details_c_s_style",
+            "kind": "class",
+            "language": "C++",
+            "protection": "public"
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

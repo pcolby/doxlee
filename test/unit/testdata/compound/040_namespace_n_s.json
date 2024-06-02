@@ -1,0 +1,15 @@
+{
+    "compounds": [
+        {
+            "briefdescription": {
+            },
+            "compoundname": "NS",
+            "id": "namespace_n_s",
+            "kind": "namespace",
+            "language": "C++",
+            "protection": ""
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

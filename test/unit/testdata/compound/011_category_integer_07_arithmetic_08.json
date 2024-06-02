@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "Integer(Arithmetic)",
+            "id": "category_integer_07_arithmetic_08",
+            "kind": "category",
+            "language": "Objective-C",
+            "protection": "public",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

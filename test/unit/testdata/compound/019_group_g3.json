@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "g3",
+            "id": "group__g3",
+            "kind": "group",
+            "protection": "",
+            "sectiondef": [
+                {
+                }
+            ],
+            "title": "Third Group"
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

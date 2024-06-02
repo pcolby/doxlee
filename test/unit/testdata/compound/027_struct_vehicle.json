@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "basecompoundref": [
+                {
+                }
+            ],
+            "compoundname": "Vehicle",
+            "id": "struct_vehicle",
+            "kind": "struct",
+            "language": "C++",
+            "protection": "public"
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

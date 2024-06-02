@@ -1,0 +1,15 @@
+{
+    "compounds": [
+        {
+            "compoundname": "N::allocator_traits",
+            "id": "struct_n_1_1allocator__traits",
+            "kind": "struct",
+            "language": "C++",
+            "protection": "public",
+            "templateparamlist": {
+            }
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

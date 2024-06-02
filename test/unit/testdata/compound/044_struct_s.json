@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "S",
+            "id": "struct_s",
+            "includes": [
+                {
+                }
+            ],
+            "kind": "struct",
+            "language": "C++",
+            "protection": "public"
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

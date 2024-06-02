@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "N",
+            "id": "namespace_n",
+            "kind": "namespace",
+            "language": "C++",
+            "protection": "",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "Deprecated",
+            "id": "class_deprecated",
+            "kind": "class",
+            "language": "C++",
+            "protection": "public",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

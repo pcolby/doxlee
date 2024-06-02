@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "085_tooltip.cpp",
+            "id": "085__tooltip_8cpp",
+            "includes": [
+                {
+                }
+            ],
+            "kind": "file",
+            "language": "C++",
+            "protection": ""
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

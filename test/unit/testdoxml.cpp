@@ -83,15 +83,60 @@ void TestDoxml::parseNumericCharacterReference()
 
 void TestDoxml::parseCompound_data()
 {
+    QTest::addColumn<QByteArray>("xmlString");
+    QTest::addColumn<QVariant>("expected");
+    QTest::addColumn<QJsonDocument>("json");
+
+    const QString dataDirPath = QFINDTESTDATA("testdata/compound");
+    QVERIFY2(!dataDirPath.isEmpty(), qUtf8Printable(QSL("Failed to locate compund test data dir")));
+    QDirIterator dir(dataDirPath, { QSL("*.xml") }, QDir::Files|QDir::Readable);
+    while (dir.hasNext()) {
+        QFile xmlFile(dir.next());
+        QVERIFY2(xmlFile.open(QFile::ReadOnly), qUtf8Printable(QSL("Failed to open: %1").arg(xmlFile.fileName())));
+
+        QFile varFile(dir.filePath().chopped(3) + QSL("var"));
+        QVERIFY2(varFile.open(QFile::ReadOnly), qUtf8Printable(QSL("Failed to open: %1").arg(varFile.fileName())));
+        QDataStream varStream(&varFile);
+        QVariant variant;
+        varStream >> variant;
+
+        QFile jsonFile(dir.filePath().chopped(3) + QSL("json"));
+        QVERIFY2(jsonFile.open(QFile::ReadOnly), qUtf8Printable(QSL("Failed to open: %1").arg(varFile.fileName())));
+
+        QJsonParseError jsonError;
+        QTest::addRow("%s", qUtf8Printable(dir.fileName()))
+            << xmlFile.readAll() << variant << QJsonDocument::fromJson(jsonFile.readAll(), &jsonError);
+        QVERIFY2(jsonError.error == QJsonParseError::NoError,
+            qUtf8Printable(QSL("%1: %2").arg(jsonError.errorString(), varFile.fileName())));
+    }
 }
 
 void TestDoxml::parseCompound()
 {
-    /// \todo Implement TestDoxml::parseCompound().
-    QXmlStreamReader xml(QSL("<doxygen/>"));
+    QFETCH(QByteArray, xmlString);
+    QFETCH(QJsonDocument, json);
+
+    // Parse the compound.
+    QXmlStreamReader xml(xmlString);
     doxlee::Doxml doxml(QString{});
-    doxml.parseCompound(xml);
-    // QCOMPARE(doxml.parseCompound(xml), QVariantMap{});
+    const QVariant actual = doxml.parseCompound(xml);
+
+    #if false
+    // (Optionally) Overwrite the expected output test files to update for future input.
+    QFile varFile(QFINDTESTDATA(QSL("testdata/compound/%1var")
+        .arg(QString::fromLocal8Bit(QTest::currentDataTag()).chopped(3))));
+    QVERIFY(varFile.open(QFile::WriteOnly));
+    QDataStream varStream(&varFile);
+    varStream << actual;
+    QFile jsonFile(QFINDTESTDATA(QSL("testdata/compound/%1json")
+        .arg(QString::fromLocal8Bit(QTest::currentDataTag()).chopped(3))));
+    QVERIFY(jsonFile.open(QFile::WriteOnly));
+    jsonFile.write(QJsonDocument::fromVariant(actual).toJson(QJsonDocument::Indented));
+    #endif
+
+    // Compare the actual to expected results.
+    QTEST(actual, "expected");
+    QCOMPARE(QJsonDocument::fromVariant(actual), json);
 }
 
 void TestDoxml::parseCompound_DoxygenType_data()

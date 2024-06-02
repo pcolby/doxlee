@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "strings",
+            "id": "namespacestrings",
+            "innerclass": [
+                {
+                }
+            ],
+            "kind": "namespace",
+            "language": "Fortran",
+            "protection": ""
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

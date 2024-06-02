@@ -1,0 +1,15 @@
+{
+    "compounds": [
+        {
+            "briefdescription": {
+            },
+            "compoundname": "DetailsSummaryAtTop",
+            "id": "class_details_summary_at_top",
+            "kind": "class",
+            "language": "C++",
+            "protection": "public"
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

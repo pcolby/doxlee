@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "Bug",
+            "id": "class_bug",
+            "kind": "class",
+            "language": "C++",
+            "protection": "public",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

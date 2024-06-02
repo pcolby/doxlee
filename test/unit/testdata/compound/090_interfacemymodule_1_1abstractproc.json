@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "mymodule::abstractproc",
+            "id": "interfacemymodule_1_1abstractproc",
+            "kind": "interface",
+            "language": "Fortran",
+            "protection": "public",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

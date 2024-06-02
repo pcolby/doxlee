@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "070_ref_variadic_template.cpp",
+            "id": "070__ref__variadic__template_8cpp",
+            "innerclass": [
+                {
+                }
+            ],
+            "kind": "file",
+            "language": "C++",
+            "protection": ""
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "mymodule::externalproc",
+            "id": "interfacemymodule_1_1externalproc",
+            "kind": "interface",
+            "language": "Fortran",
+            "protection": "public",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "093_interface_inside_routine.f90",
+            "id": "093__interface__inside__routine_8f90",
+            "kind": "file",
+            "language": "Fortran",
+            "protection": "",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

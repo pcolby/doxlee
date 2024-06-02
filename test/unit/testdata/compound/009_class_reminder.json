@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "Reminder",
+            "id": "class_reminder",
+            "kind": "class",
+            "language": "C++",
+            "protection": "public",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

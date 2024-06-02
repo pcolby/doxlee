@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "Test",
+            "id": "class_test",
+            "kind": "class",
+            "language": "C++",
+            "protection": "public",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

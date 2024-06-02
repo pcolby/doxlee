@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "strings::append",
+            "id": "interfacestrings_1_1append",
+            "kind": "interface",
+            "language": "Fortran",
+            "protection": "public",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

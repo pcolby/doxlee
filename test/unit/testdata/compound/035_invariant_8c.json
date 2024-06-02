@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "035_invariant.c",
+            "id": "035__invariant_8c",
+            "kind": "file",
+            "language": "C++",
+            "protection": "",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

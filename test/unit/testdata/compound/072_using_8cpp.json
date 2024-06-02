@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "072_using.cpp",
+            "id": "072__using_8cpp",
+            "includes": [
+                {
+                }
+            ],
+            "kind": "file",
+            "language": "C++",
+            "protection": ""
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

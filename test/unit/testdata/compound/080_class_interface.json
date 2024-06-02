@@ -1,0 +1,18 @@
+{
+    "compounds": [
+        {
+            "abstract": true,
+            "compoundname": "Interface",
+            "id": "class_interface",
+            "kind": "class",
+            "language": "C++",
+            "protection": "public",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

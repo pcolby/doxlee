@@ -1,0 +1,14 @@
+{
+    "compounds": [
+        {
+            "briefdescription": {
+            },
+            "compoundname": "example_test.cpp",
+            "id": "example_test_8cpp-example",
+            "kind": "example",
+            "protection": ""
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

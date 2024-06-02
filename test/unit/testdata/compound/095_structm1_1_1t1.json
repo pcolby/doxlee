@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "m1::t1",
+            "derivedcompoundref": [
+                {
+                }
+            ],
+            "id": "structm1_1_1t1",
+            "kind": "type",
+            "language": "Fortran",
+            "protection": "public"
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

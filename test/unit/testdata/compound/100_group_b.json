@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "B",
+            "id": "group___b",
+            "innerfile": [
+                {
+                }
+            ],
+            "kind": "group",
+            "protection": "",
+            "title": "B"
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

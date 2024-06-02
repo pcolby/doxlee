@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "Todo",
+            "id": "class_todo",
+            "kind": "class",
+            "language": "C++",
+            "protection": "public",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

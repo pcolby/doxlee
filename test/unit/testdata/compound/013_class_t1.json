@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "T1",
+            "id": "class_t1",
+            "includes": [
+                {
+                }
+            ],
+            "kind": "class",
+            "language": "C++",
+            "protection": "public"
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

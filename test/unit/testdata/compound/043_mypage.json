@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "mypage",
+            "id": "mypage",
+            "innerpage": [
+                {
+                }
+            ],
+            "kind": "page",
+            "protection": "",
+            "title": "Page Title"
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

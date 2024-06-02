@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "Receiver",
+            "id": "class_receiver",
+            "kind": "class",
+            "language": "C++",
+            "protection": "public",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

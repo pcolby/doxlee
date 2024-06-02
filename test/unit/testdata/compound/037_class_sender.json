@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "Sender",
+            "id": "class_sender",
+            "kind": "class",
+            "language": "C++",
+            "protection": "public",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "mymodule::t4",
+            "id": "structmymodule_1_1t4",
+            "kind": "type",
+            "language": "Fortran",
+            "protection": "private",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

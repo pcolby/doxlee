@@ -1,0 +1,15 @@
+{
+    "compounds": [
+        {
+            "briefdescription": {
+            },
+            "compoundname": "reminders",
+            "id": "reminders",
+            "kind": "page",
+            "protection": "",
+            "title": "Reminders"
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

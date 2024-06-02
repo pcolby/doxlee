@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "strings::operator(==)",
+            "id": "interfacestrings_1_1operator_07_0a_0a_08",
+            "kind": "interface",
+            "language": "Fortran",
+            "protection": "public",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

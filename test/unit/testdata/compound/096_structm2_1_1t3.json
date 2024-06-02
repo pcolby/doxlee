@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "basecompoundref": [
+                {
+                }
+            ],
+            "compoundname": "m2::t3",
+            "id": "structm2_1_1t3",
+            "kind": "struct",
+            "language": "C++",
+            "protection": "public"
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "037_msc.cpp",
+            "id": "037__msc_8cpp",
+            "innerclass": [
+                {
+                }
+            ],
+            "kind": "file",
+            "language": "C++",
+            "protection": ""
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

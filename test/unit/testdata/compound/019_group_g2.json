@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "g2",
+            "id": "group__g2",
+            "innergroup": [
+                {
+                }
+            ],
+            "kind": "group",
+            "protection": "",
+            "title": "Second Group"
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

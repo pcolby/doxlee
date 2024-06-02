@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "g1",
+            "id": "group__g1",
+            "kind": "group",
+            "protection": "",
+            "sectiondef": [
+                {
+                }
+            ],
+            "title": "First Group"
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

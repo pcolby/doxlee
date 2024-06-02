@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "048_showinit.c",
+            "id": "048__showinit_8c",
+            "kind": "file",
+            "language": "C++",
+            "protection": "",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

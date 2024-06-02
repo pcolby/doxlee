@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "m3",
+            "id": "namespacem3",
+            "innerclass": [
+                {
+                }
+            ],
+            "kind": "namespace",
+            "language": "C++",
+            "protection": ""
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

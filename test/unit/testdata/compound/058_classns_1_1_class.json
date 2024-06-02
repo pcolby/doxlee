@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "ns::Class",
+            "id": "classns_1_1_class",
+            "kind": "class",
+            "language": "C++",
+            "protection": "public",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

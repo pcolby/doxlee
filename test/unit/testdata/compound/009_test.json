@@ -1,0 +1,15 @@
+{
+    "compounds": [
+        {
+            "briefdescription": {
+            },
+            "compoundname": "test",
+            "id": "test",
+            "kind": "page",
+            "protection": "",
+            "title": "Test List"
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

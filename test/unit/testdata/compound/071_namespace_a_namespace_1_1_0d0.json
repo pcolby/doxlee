@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "ANamespace",
+            "id": "namespace_a_namespace_1_1_0d0",
+            "kind": "namespace",
+            "language": "C++",
+            "protection": "",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

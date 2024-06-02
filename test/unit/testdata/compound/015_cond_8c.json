@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "015_cond.c",
+            "id": "015__cond_8c",
+            "kind": "file",
+            "language": "C++",
+            "protection": "",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

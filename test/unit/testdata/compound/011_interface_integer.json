@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "basecompoundref": [
+                {
+                }
+            ],
+            "compoundname": "Integer",
+            "id": "interface_integer",
+            "kind": "class",
+            "language": "Objective-C",
+            "protection": "public"
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "library",
+            "id": "namespacelibrary",
+            "innerclass": [
+                {
+                }
+            ],
+            "kind": "namespace",
+            "language": "C++",
+            "protection": ""
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "016_copydoc.c",
+            "id": "016__copydoc_8c",
+            "kind": "file",
+            "language": "C++",
+            "protection": "",
+            "sectiondef": [
+                {
+                }
+            ]
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}

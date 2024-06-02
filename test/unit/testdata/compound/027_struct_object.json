@@ -1,0 +1,17 @@
+{
+    "compounds": [
+        {
+            "compoundname": "Object",
+            "derivedcompoundref": [
+                {
+                }
+            ],
+            "id": "struct_object",
+            "kind": "struct",
+            "language": "C++",
+            "protection": "public"
+        }
+    ],
+    "language": "en-US",
+    "version": ""
+}
