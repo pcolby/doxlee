@@ -9,8 +9,15 @@
             "id": "class_sender",
             "kind": "class",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "Ack",
+                    "prot": "public",
+                    "refid": "class_sender_1a8ad2c6f9baa4e798868fe4a4d45f8fda",
+                    "scope": "Sender",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

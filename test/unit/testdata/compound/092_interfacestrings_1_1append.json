@@ -9,8 +9,29 @@
             "id": "interfacestrings_1_1append",
             "kind": "interface",
             "language": "Fortran",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "append_",
+                    "prot": "public",
+                    "refid": "interfacestrings_1_1append_1ac6346f6a40d3a7f5a32b9892dfb28da1",
+                    "scope": "strings::append",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "append_scalar",
+                    "prot": "public",
+                    "refid": "interfacestrings_1_1append_1a4ec7ddd5fd369f6dcb2361d788cffbad",
+                    "scope": "strings::append",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "append_vector",
+                    "prot": "public",
+                    "refid": "interfacestrings_1_1append_1aad33bb7b5e37fe745bbb409d97ae0f87",
+                    "scope": "strings::append",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

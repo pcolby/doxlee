@@ -13,8 +13,8 @@
             ],
             "kind": "class",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+            ],
             "location": {
             },
             "protection": "public"

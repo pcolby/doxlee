@@ -17,8 +17,29 @@
             },
             "kind": "class",
             "language": "Objective-C",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "integer",
+                    "prot": "protected",
+                    "refid": "interface_integer_1a35e89216966d8179a1b77f14b8211fda",
+                    "scope": "Integer",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "integer",
+                    "prot": "public",
+                    "refid": "interface_integer_1a7b55035e1b0e8e7d4c8587f54a760819",
+                    "scope": "Integer",
+                    "virt": "virtual"
+                },
+                {
+                    "name": "integer:",
+                    "prot": "public",
+                    "refid": "interface_integer_1ad2f47761103b2442ff7b3fbfe33ec6c9",
+                    "scope": "Integer",
+                    "virt": "virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

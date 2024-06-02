@@ -13,8 +13,50 @@
             ],
             "kind": "struct",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "pri1",
+                    "prot": "private",
+                    "refid": "struct_s_1ab754fee7e3500035f644d0ac528cbfc3",
+                    "scope": "S",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "pri2",
+                    "prot": "private",
+                    "refid": "struct_s_1a4b26822a09bcd6b946702e99280826ff",
+                    "scope": "S",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "pro1",
+                    "prot": "protected",
+                    "refid": "struct_s_1ac506df106f05b04ac31b3b6ae1357067",
+                    "scope": "S",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "pro2",
+                    "prot": "protected",
+                    "refid": "struct_s_1a0c535a6122f4ae509a336e3a67f927a4",
+                    "scope": "S",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "pub1",
+                    "prot": "public",
+                    "refid": "struct_s_1aff6062601582dff52ace76d285c2e504",
+                    "scope": "S",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "pub2",
+                    "prot": "public",
+                    "refid": "struct_s_1a413054db7785010db38c16322c8583cc",
+                    "scope": "S",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

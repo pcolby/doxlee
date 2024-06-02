@@ -9,8 +9,64 @@
             "id": "structmymodule_1_1t1",
             "kind": "type",
             "language": "Fortran",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "destructor",
+                    "prot": "public",
+                    "refid": "structmymodule_1_1t1_1a69844b06186021c87dc0eccea9265d43",
+                    "scope": "mymodule::t1",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "firstproc",
+                    "prot": "public",
+                    "refid": "structmymodule_1_1t1_1ae19183d68bed3ffc6e05e413bd4f685b",
+                    "scope": "mymodule::t1",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "overloadedproc",
+                    "prot": "public",
+                    "refid": "structmymodule_1_1t1_1aae1fc16baab92e2262c25b49fdff8845",
+                    "scope": "mymodule::t1",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "overloadedproc",
+                    "prot": "public",
+                    "refid": "structmymodule_1_1t1_1a5aab3898edef16a90442c6d1af3990ef",
+                    "scope": "mymodule::t1",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "publicvariable",
+                    "prot": "public",
+                    "refid": "structmymodule_1_1t1_1a40dabbcb827e13ffbb38bb7e9e5957cc",
+                    "scope": "mymodule::t1",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "redundantpass",
+                    "prot": "public",
+                    "refid": "structmymodule_1_1t1_1a1f5d3b587c25b0cd8482ede135585bb5",
+                    "scope": "mymodule::t1",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "secondproc",
+                    "prot": "public",
+                    "refid": "structmymodule_1_1t1_1a46ef6a488a930d0a20a3b36eb268e65e",
+                    "scope": "mymodule::t1",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "staticproc",
+                    "prot": "public",
+                    "refid": "structmymodule_1_1t1_1abb688b8fc7c32fadd1055ff32392003c",
+                    "scope": "mymodule::t1",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

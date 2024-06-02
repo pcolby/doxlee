@@ -9,8 +9,22 @@
             "id": "classns_1_1_class",
             "kind": "class",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "Enum1",
+                    "prot": "public",
+                    "refid": "classns_1_1_class_1a00bce7c1691da19e4e1c2e770c9297e3",
+                    "scope": "ns::Class",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "Enum2",
+                    "prot": "public",
+                    "refid": "classns_1_1_class_1a2f5b74a27a12bfc86e653a13178317e4",
+                    "scope": "ns::Class",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

@@ -13,8 +13,22 @@
             ],
             "kind": "class",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "do_stuff",
+                    "prot": "public",
+                    "refid": "class_a_1ac5350de77c7e927b4bafa27a899743a8",
+                    "scope": "A",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "do_stuff2",
+                    "prot": "public",
+                    "refid": "class_a_1aa0ac26ebde08a69be4382f29077bd5d4",
+                    "scope": "A",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

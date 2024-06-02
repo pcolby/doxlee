@@ -9,8 +9,15 @@
             "id": "class_reminder",
             "kind": "class",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "reminder",
+                    "prot": "public",
+                    "refid": "class_reminder_1a173b5218bb11287b0e86a550d9f0728d",
+                    "scope": "Reminder",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

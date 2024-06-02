@@ -9,8 +9,57 @@
             "id": "struct_foo",
             "kind": "struct",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "foo",
+                    "prot": "public",
+                    "refid": "struct_foo_1a4f9767677227174b2a9684b92e36cba7",
+                    "scope": "Foo",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "foo",
+                    "prot": "public",
+                    "refid": "struct_foo_1a3b1460a8784e5cc8156899a04df08b94",
+                    "scope": "Foo",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "foo",
+                    "prot": "public",
+                    "refid": "struct_foo_1a87f5be128245c4a16b25500fe6ae2fd1",
+                    "scope": "Foo",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "foo",
+                    "prot": "public",
+                    "refid": "struct_foo_1adc1cd4494f8a556d5bf6cb78409e3e68",
+                    "scope": "Foo",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "foo",
+                    "prot": "public",
+                    "refid": "struct_foo_1a0baba36cdd24740c6e39d5641e30a0fe",
+                    "scope": "Foo",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "foo",
+                    "prot": "public",
+                    "refid": "struct_foo_1abeaaeb54ad61db26205c06927968845f",
+                    "scope": "Foo",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "foo",
+                    "prot": "public",
+                    "refid": "struct_foo_1a0d4913fb514ee1cf71c793578650e25d",
+                    "scope": "Foo",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

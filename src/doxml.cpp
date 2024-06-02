@@ -533,18 +533,50 @@ QVariantMap Doxml::parseCompound_compounddefType(QXmlStreamReader &xml) const
     return map;
 }
 
-QVariantMap Doxml::parseCompound_listofallmembersType(QXmlStreamReader &xml) const
+QVariantList Doxml::parseCompound_listofallmembersType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseCompound_listofallmembersType().
-    xml.skipCurrentElement();
-    return {};
+    Q_ASSERT(xml.name() == QSL("listofallmembers"));
+
+    QVariantList list;
+    while ((!xml.atEnd()) && (xml.readNextStartElement())) {
+        if (xml.name() == QSL("member")) {
+            list.append(parseCompound_memberRefType(xml));
+        } else {
+            logWarning(Warning::UnexpectedElement, xml);
+            xml.skipCurrentElement();
+        }
+    }
+    return list;
 }
 
 QVariantMap Doxml::parseCompound_memberRefType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseCompound_memberRefType().
-    xml.skipCurrentElement();
-    return {};
+    Q_ASSERT(xml.name() == QSL("member"));
+
+    const QXmlStreamAttributes attributes = xml.attributes();
+    QVariantMap map;
+    for (const QString &attributeName: QStringList{ QSL("refid"), QSL("prot"), QSL("virt"), QSL("ambiguityscope") }) {
+        const QStringView attributeValue = attributes.value(attributeName);
+        if (!attributeValue.isNull()) {
+            map.insert(attributeName, attributeValue.toString());
+        }
+    }
+
+    while ((!xml.atEnd()) && (xml.readNextStartElement())) {
+        if (xml.name() == QSL("scope")) {
+            map.insert(QSL("scope"), xml.readElementText());
+        }
+
+        else if (xml.name() == QSL("name")) {
+            map.insert(QSL("name"), xml.readElementText());
+        }
+
+        else {
+            logWarning(Warning::UnexpectedElement, xml);
+            xml.skipCurrentElement();
+        }
+    }
+    return map;
 }
 
 QVariantMap Doxml::parseCompound_docHtmlOnlyType(QXmlStreamReader &xml) const

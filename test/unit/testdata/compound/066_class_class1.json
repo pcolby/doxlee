@@ -9,8 +9,22 @@
             "id": "class_class1",
             "kind": "class",
             "language": "C#",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "Property1",
+                    "prot": "public",
+                    "refid": "class_class1_1a6b0b2ab73516e37adb38b8ff33f97c40",
+                    "scope": "Class1",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "Property2",
+                    "prot": "public",
+                    "refid": "class_class1_1a0d5b843d48ebc2c078e003d6ff3a1610",
+                    "scope": "Class1",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

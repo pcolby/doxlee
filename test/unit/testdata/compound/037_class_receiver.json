@@ -9,8 +9,15 @@
             "id": "class_receiver",
             "kind": "class",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "Command",
+                    "prot": "public",
+                    "refid": "class_receiver_1a162099741e0324e6254c9bc570566e40",
+                    "scope": "Receiver",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

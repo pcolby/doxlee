@@ -15,8 +15,29 @@
             },
             "kind": "struct",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "objRef",
+                    "prot": "public",
+                    "refid": "struct_object_1a71225073d06a793b9a6ea9263ed37b12",
+                    "scope": "Object",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "objUnref",
+                    "prot": "public",
+                    "refid": "struct_object_1a924ee0cecc906d148022b3f0d6325cfb",
+                    "scope": "Object",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "ref",
+                    "prot": "private",
+                    "refid": "struct_object_1a1b6037fba835e83243ababce426ff9af",
+                    "scope": "Object",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

@@ -17,8 +17,43 @@
             },
             "kind": "struct",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "base",
+                    "prot": "protected",
+                    "refid": "struct_truck_1ad0ac321609dda1a6c552488b05ec7ac8",
+                    "scope": "Truck",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "objRef",
+                    "prot": "public",
+                    "refid": "struct_object_1a71225073d06a793b9a6ea9263ed37b12",
+                    "scope": "Truck",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "objUnref",
+                    "prot": "public",
+                    "refid": "struct_object_1a924ee0cecc906d148022b3f0d6325cfb",
+                    "scope": "Truck",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "vehicleStart",
+                    "prot": "public",
+                    "refid": "struct_vehicle_1a6891d3d28853bc3fdd075596dc6de9f8",
+                    "scope": "Truck",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "vehicleStop",
+                    "prot": "public",
+                    "refid": "struct_vehicle_1a4dcbcba43792dcd673a552b14479ab77",
+                    "scope": "Truck",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

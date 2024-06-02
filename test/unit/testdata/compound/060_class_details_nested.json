@@ -9,8 +9,8 @@
             "id": "class_details_nested",
             "kind": "class",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+            ],
             "location": {
             },
             "protection": "public"

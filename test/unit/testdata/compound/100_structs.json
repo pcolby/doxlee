@@ -9,8 +9,15 @@
             "id": "structs",
             "kind": "struct",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "s",
+                    "prot": "public",
+                    "refid": "structs_1afbd4a62a1d1e5d85ea3fcb5954434f29",
+                    "scope": "s",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

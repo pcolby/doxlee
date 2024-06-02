@@ -9,8 +9,15 @@
             "id": "structmymodule_1_1t2",
             "kind": "type",
             "language": "Fortran",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "publicvariable",
+                    "prot": "public",
+                    "refid": "structmymodule_1_1t2_1af907af6c7950c587a50eadd26987799a",
+                    "scope": "mymodule::t2",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

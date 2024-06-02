@@ -9,8 +9,15 @@
             "id": "struct_n_1_1allocator__traits",
             "kind": "struct",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "const_pointer",
+                    "prot": "public",
+                    "refid": "struct_n_1_1allocator__traits_1a764c5cc2bd9edc0cfa83282a3f5a75f8",
+                    "scope": "N::allocator_traits",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

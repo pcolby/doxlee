@@ -9,8 +9,15 @@
             "id": "interfacemymodule_1_1abstractproc",
             "kind": "interface",
             "language": "Fortran",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "abstractproc",
+                    "prot": "public",
+                    "refid": "interfacemymodule_1_1abstractproc_1ae7af149f9526318f55fd76e8cef8004c",
+                    "scope": "mymodule::abstractproc",
+                    "virt": "virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

@@ -60,7 +60,7 @@ private:
     QVariantMap parseCompound                         (QXmlStreamReader &xml) const;
     QVariantMap parseCompound_DoxygenType             (QXmlStreamReader &xml) const;
     QVariantMap parseCompound_compounddefType         (QXmlStreamReader &xml) const;
-    QVariantMap parseCompound_listofallmembersType    (QXmlStreamReader &xml) const;
+    QVariantList parseCompound_listofallmembersType   (QXmlStreamReader &xml) const;
     QVariantMap parseCompound_memberRefType           (QXmlStreamReader &xml) const;
     QVariantMap parseCompound_docHtmlOnlyType         (QXmlStreamReader &xml) const;
     QVariantMap parseCompound_compoundRefType         (QXmlStreamReader &xml) const;

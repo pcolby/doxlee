@@ -10,8 +10,43 @@
             "id": "class_interface",
             "kind": "class",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "doLoad",
+                    "prot": "private",
+                    "refid": "class_interface_1a328e0a16ccee5d796ca93801a055d27d",
+                    "scope": "Interface",
+                    "virt": "pure-virtual"
+                },
+                {
+                    "name": "doOtherStuff",
+                    "prot": "private",
+                    "refid": "class_interface_1ad13fffb1181ab0da1f8fbb586eff9afe",
+                    "scope": "Interface",
+                    "virt": "virtual"
+                },
+                {
+                    "name": "doSomethingUndocumented",
+                    "prot": "private",
+                    "refid": "class_interface_1a46062977049a7c2c2c141e4487e954b8",
+                    "scope": "Interface",
+                    "virt": "virtual"
+                },
+                {
+                    "name": "load",
+                    "prot": "public",
+                    "refid": "class_interface_1ab58d3008a7001cbb47f2fa5a5a1aeefa",
+                    "scope": "Interface",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "someUtility",
+                    "prot": "private",
+                    "refid": "class_interface_1a108dce1debd0596b57e7985bbb0f63a1",
+                    "scope": "Interface",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

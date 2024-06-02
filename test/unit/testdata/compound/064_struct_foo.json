@@ -9,8 +9,22 @@
             "id": "struct_foo",
             "kind": "struct",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "operator int",
+                    "prot": "public",
+                    "refid": "struct_foo_1aab9774d892b6cd4a0fbebd034b4c1fad",
+                    "scope": "Foo",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "operator int",
+                    "prot": "public",
+                    "refid": "struct_foo_1a1cd30e67501c6ff12bd6bf17af081449",
+                    "scope": "Foo",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

@@ -23,8 +23,8 @@
             },
             "kind": "type",
             "language": "Fortran",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+            ],
             "location": {
             },
             "protection": "public"

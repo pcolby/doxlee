@@ -9,8 +9,78 @@
             "id": "struct_foo",
             "kind": "struct",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "Foo",
+                    "prot": "public",
+                    "refid": "struct_foo_1a5c036d1b3561a0e1beffe8c6799a4276",
+                    "scope": "Foo",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "fun",
+                    "prot": "public",
+                    "refid": "struct_foo_1abdf64a71706807b0f946265902c530ee",
+                    "scope": "Foo",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "fun",
+                    "prot": "public",
+                    "refid": "struct_foo_1a978acd73e910ce56cc169ebec8736669",
+                    "scope": "Foo",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "operator&=",
+                    "prot": "public",
+                    "refid": "struct_foo_1a9a43153b5cfddc91cb203adb36baed73",
+                    "scope": "Foo",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "operator&=",
+                    "prot": "public",
+                    "refid": "struct_foo_1acbe5b0f95d0cc8a1b98cad8ce4b17ae8",
+                    "scope": "Foo",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "operator()",
+                    "prot": "public",
+                    "refid": "struct_foo_1a3a41dcf8c53f777d50676ea28400a640",
+                    "scope": "Foo",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "operator()",
+                    "prot": "public",
+                    "refid": "struct_foo_1ae3c9c1f33cdb8b932c6eb104660a262b",
+                    "scope": "Foo",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "operator->*",
+                    "prot": "public",
+                    "refid": "struct_foo_1a8ceb6108ffeffc18a60d39e12b5ae6bc",
+                    "scope": "Foo",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "operator<<",
+                    "prot": "public",
+                    "refid": "struct_foo_1a95293a996eca95db78ef308372803c62",
+                    "scope": "Foo",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "operator<<",
+                    "prot": "public",
+                    "refid": "struct_foo_1ab797fc172c39b48c0ad7ce6a2a9dd74d",
+                    "scope": "Foo",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

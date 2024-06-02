@@ -9,8 +9,15 @@
             "id": "interfacemymodule_1_1externalproc",
             "kind": "interface",
             "language": "Fortran",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "externalproc",
+                    "prot": "public",
+                    "refid": "interfacemymodule_1_1externalproc_1a50cefb79127d029dda033934c4f0d4f1",
+                    "scope": "mymodule::externalproc",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

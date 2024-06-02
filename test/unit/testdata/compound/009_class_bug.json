@@ -9,8 +9,15 @@
             "id": "class_bug",
             "kind": "class",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "foo",
+                    "prot": "public",
+                    "refid": "class_bug_1a1f720954dd97cd1203e80501a6eae74c",
+                    "scope": "Bug",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

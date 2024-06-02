@@ -9,8 +9,22 @@
             "id": "category_integer_07_arithmetic_08",
             "kind": "category",
             "language": "Objective-C",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "add:",
+                    "prot": "public",
+                    "refid": "category_integer_07_arithmetic_08_1a12f411c5872ba3bafb8ea7dd1826cf2a",
+                    "scope": "Integer(Arithmetic)",
+                    "virt": "virtual"
+                },
+                {
+                    "name": "sub:",
+                    "prot": "public",
+                    "refid": "category_integer_07_arithmetic_08_1ae4ff0b0c62b6809e8f5bcee9baa6e521",
+                    "scope": "Integer(Arithmetic)",
+                    "virt": "virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

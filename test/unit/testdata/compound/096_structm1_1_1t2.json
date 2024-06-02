@@ -23,8 +23,8 @@
             },
             "kind": "struct",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+            ],
             "location": {
             },
             "protection": "public"

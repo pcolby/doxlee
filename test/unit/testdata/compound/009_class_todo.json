@@ -9,8 +9,15 @@
             "id": "class_todo",
             "kind": "class",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "todo",
+                    "prot": "public",
+                    "refid": "class_todo_1a9e70ec9176ac4c1b20e011b4daddc9d8",
+                    "scope": "Todo",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

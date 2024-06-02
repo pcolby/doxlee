@@ -9,8 +9,22 @@
             "id": "interfacestrings_1_1operator_07_0a_0a_08",
             "kind": "interface",
             "language": "Fortran",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "compare",
+                    "prot": "public",
+                    "refid": "interfacestrings_1_1operator_07_0a_0a_08_1a22eaf942e2152394fa8b7228a1bb5627",
+                    "scope": "strings::operator(==)",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "compare_str",
+                    "prot": "public",
+                    "refid": "interfacestrings_1_1operator_07_0a_0a_08_1ae1c3d14b8650130cbffc130479440e5e",
+                    "scope": "strings::operator(==)",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

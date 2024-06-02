@@ -9,8 +9,15 @@
             "id": "class_test",
             "kind": "class",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "test",
+                    "prot": "public",
+                    "refid": "class_test_1a9fc54b716f326514a4c5f434137f4fc0",
+                    "scope": "Test",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

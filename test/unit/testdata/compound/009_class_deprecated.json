@@ -9,8 +9,15 @@
             "id": "class_deprecated",
             "kind": "class",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "deprecated",
+                    "prot": "public",
+                    "refid": "class_deprecated_1a1d5f6803e72c625727e7083d1722dbf9",
+                    "scope": "Deprecated",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

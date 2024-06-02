@@ -9,8 +9,15 @@
             "id": "interfacemymodule_1_1operator_07_2_2_08",
             "kind": "interface",
             "language": "Fortran",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "cross_product",
+                    "prot": "public",
+                    "refid": "interfacemymodule_1_1operator_07_2_2_08_1a33fa562a998fde6ddba173ee9d52ad6d",
+                    "scope": "mymodule::operator(//)",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "private",

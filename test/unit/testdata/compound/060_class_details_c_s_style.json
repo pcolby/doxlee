@@ -9,8 +9,8 @@
             "id": "class_details_c_s_style",
             "kind": "class",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+            ],
             "location": {
             },
             "protection": "public"

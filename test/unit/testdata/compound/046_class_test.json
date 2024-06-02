@@ -9,8 +9,29 @@
             "id": "class_test",
             "kind": "class",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "another",
+                    "prot": "public",
+                    "refid": "class_test_1a1283d836e0611ff772c1b06a31ecbbfe",
+                    "scope": "Test",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "function",
+                    "prot": "public",
+                    "refid": "class_test_1a51a683fa4fcec142ab1574e00a7b6860",
+                    "scope": "Test",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "method",
+                    "prot": "public",
+                    "refid": "class_test_1a1683da699dc049d74101488d143c8e98",
+                    "scope": "Test",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

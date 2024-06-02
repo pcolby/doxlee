@@ -169,26 +169,75 @@ void TestDoxml::parseCompound_compounddefType()
 
 void TestDoxml::parseCompound_listofallmembersType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantList>("expected");
+
+    QTest::addRow("enum")
+        << QSL(R"(
+            <listofallmembers>
+                <member refid="foo" prot="bar" virt="baz" ambiguityscope="qux">
+                    <scope>ABC</scope>
+                    <name>xyz</name>
+                </member>
+                <member refid="1" prot="2" virt="3" ambiguityscope="4"><scope>5</scope><name>6</name></member>
+            </listofallmembers>)")
+        << QVariantList{
+            QVariantMap{
+                { QSL("refid"), QSL("foo") },
+                { QSL("prot"), QSL("bar") },
+                { QSL("virt"), QSL("baz") },
+                { QSL("ambiguityscope"), QSL("qux") },
+                { QSL("scope"), QSL("ABC") },
+                { QSL("name"), QSL("xyz") },
+            },
+            QVariantMap{
+                { QSL("refid"), QSL("1") },
+                { QSL("prot"), QSL("2") },
+                { QSL("virt"), QSL("3") },
+                { QSL("ambiguityscope"), QSL("4") },
+                { QSL("scope"), QSL("5") },
+                { QSL("name"), QSL("6") },
+            },
+        };
 }
 
 void TestDoxml::parseCompound_listofallmembersType()
 {
-    /// \todo Implement TestDoxml::parseCompound_listofallmembersType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseCompound_listofallmembersType(xml), QVariantMap{});
+    QTEST(doxml.parseCompound_listofallmembersType(xml), "expected");
 }
 
 void TestDoxml::parseCompound_memberRefType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    QTest::addRow("enum")
+        << QSL(R"(
+            <member refid="foo" prot="bar" virt="baz" ambiguityscope="qux">
+                <scope>ABC</scope>
+                <name>xyz</name>
+            </member>)")
+        << QVariantMap{
+            { QSL("refid"), QSL("foo") },
+            { QSL("prot"), QSL("bar") },
+            { QSL("virt"), QSL("baz") },
+            { QSL("ambiguityscope"), QSL("qux") },
+            { QSL("scope"), QSL("ABC") },
+            { QSL("name"), QSL("xyz") },
+        };
 }
 
 void TestDoxml::parseCompound_memberRefType()
 {
-    /// \todo Implement TestDoxml::parseCompound_memberRefType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseCompound_memberRefType(xml), QVariantMap{});
+    QTEST(doxml.parseCompound_memberRefType(xml), "expected");
 }
 
 void TestDoxml::parseCompound_docHtmlOnlyType_data()

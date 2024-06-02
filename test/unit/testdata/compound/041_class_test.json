@@ -9,8 +9,29 @@
             "id": "class_test",
             "kind": "class",
             "language": "C++",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "drawRect",
+                    "prot": "public",
+                    "refid": "class_test_1a8e7b46ceaf7bd2ab94114b390b3288ca",
+                    "scope": "Test",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "drawRect",
+                    "prot": "public",
+                    "refid": "class_test_1ae87a6e26707e684c0d2d07bb3d4a9d7f",
+                    "scope": "Test",
+                    "virt": "non-virtual"
+                },
+                {
+                    "name": "drawRect",
+                    "prot": "public",
+                    "refid": "class_test_1a62a76eed05fa84633d1e460aeeaf875d",
+                    "scope": "Test",
+                    "virt": "non-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",

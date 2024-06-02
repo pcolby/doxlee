@@ -10,8 +10,15 @@
             "id": "structmymodule_1_1t1",
             "kind": "type",
             "language": "Fortran",
-            "listofallmembers": {
-            },
+            "listofallmembers": [
+                {
+                    "name": "deferredproc",
+                    "prot": "public",
+                    "refid": "structmymodule_1_1t1_1ab1f2a4ba1fea02505c62a0cd41f447d1",
+                    "scope": "mymodule::t1",
+                    "virt": "pure-virtual"
+                }
+            ],
             "location": {
             },
             "protection": "public",
