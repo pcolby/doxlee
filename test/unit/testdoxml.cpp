@@ -141,30 +141,56 @@ void TestDoxml::parseCompound()
 
 void TestDoxml::parseCompound_DoxygenType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    QTest::addRow("basic")
+        << QSL(R"(
+            <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+                <compounddef id="foo" kind="bar" prot="baz"></compounddef>
+            </doxygen>)")
+        << QVariantMap{
+            { QSL("version"), QSL("1.10.0") },
+            { QSL("language"), QSL("en-US") },
+            { QSL("compounds"), QVariantList { QVariantMap {
+                { QSL("id"), QSL("foo") },
+                { QSL("kind"), QSL("bar") },
+                { QSL("protection"), QSL("baz") },
+            }}},
+        };
 }
 
 void TestDoxml::parseCompound_DoxygenType()
 {
-    /// \todo Implement TestDoxml::parseCompound_DoxygenType().
-    QXmlStreamReader xml(QSL("<doxygen/>"));
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
     xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    doxml.parseCompound_DoxygenType(xml);
-    // QCOMPARE(doxml.parseCompound_DoxygenType(xml), QVariantMap{});
+    QTEST(doxml.parseCompound_DoxygenType(xml), "expected");
 }
 
 void TestDoxml::parseCompound_compounddefType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    QTest::addRow("basic")
+        << QSL(R"(
+            <compounddef id="foo" kind="bar" prot="baz"></compounddef>)")
+        << QVariantMap{
+            { QSL("id"), QSL("foo") },
+            { QSL("kind"), QSL("bar") },
+            { QSL("protection"), QSL("baz") },
+        };
 }
 
 void TestDoxml::parseCompound_compounddefType()
 {
-    /// \todo Implement TestDoxml::parseCompound_compounddefType().
-    QXmlStreamReader xml(QSL("<compounddef/>"));
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
     xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    doxml.parseCompound_compounddefType(xml);
-    // QCOMPARE(doxml.parseCompound_compounddefType(xml), QVariantMap{});
+    QTEST(doxml.parseCompound_compounddefType(xml), "expected");
 }
 
 void TestDoxml::parseCompound_listofallmembersType_data()
@@ -172,7 +198,7 @@ void TestDoxml::parseCompound_listofallmembersType_data()
     QTest::addColumn<QString>("xmlString");
     QTest::addColumn<QVariantList>("expected");
 
-    QTest::addRow("enum")
+    QTest::addRow("basic")
         << QSL(R"(
             <listofallmembers>
                 <member refid="foo" prot="bar" virt="baz" ambiguityscope="qux">
@@ -215,7 +241,7 @@ void TestDoxml::parseCompound_memberRefType_data()
     QTest::addColumn<QString>("xmlString");
     QTest::addColumn<QVariantMap>("expected");
 
-    QTest::addRow("enum")
+    QTest::addRow("basic")
         << QSL(R"(
             <member refid="foo" prot="bar" virt="baz" ambiguityscope="qux">
                 <scope>ABC</scope>
