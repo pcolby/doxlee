@@ -1,15 +1,49 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "strings",
+            "detaileddescription": {
+            },
             "id": "namespacestrings",
             "innerclass": [
+                {
+                },
+                {
+                },
+                {
+                },
+                {
+                },
+                {
+                },
+                {
+                },
+                {
+                },
+                {
+                },
+                {
+                },
+                {
+                },
+                {
+                },
                 {
                 }
             ],
             "kind": "namespace",
             "language": "Fortran",
-            "protection": ""
+            "location": {
+            },
+            "protection": "",
+            "sectiondef": [
+                {
+                },
+                {
+                }
+            ]
         }
     ],
     "language": "en-US",

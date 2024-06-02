@@ -1,15 +1,31 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "Object",
             "derivedcompoundref": [
                 {
                 }
             ],
+            "detaileddescription": {
+            },
             "id": "struct_object",
+            "inheritancegraph": {
+            },
             "kind": "struct",
             "language": "C++",
-            "protection": "public"
+            "listofallmembers": {
+            },
+            "location": {
+            },
+            "protection": "public",
+            "sectiondef": [
+                {
+                },
+                {
+                }
+            ]
         }
     ],
     "language": "en-US",

@@ -1,7 +1,11 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "A",
+            "detaileddescription": {
+            },
             "id": "class_a",
             "includes": [
                 {
@@ -9,7 +13,15 @@
             ],
             "kind": "class",
             "language": "C++",
-            "protection": "public"
+            "listofallmembers": {
+            },
+            "location": {
+            },
+            "protection": "public",
+            "sectiondef": [
+                {
+                }
+            ]
         }
     ],
     "language": "en-US",

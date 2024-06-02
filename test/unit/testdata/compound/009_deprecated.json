@@ -4,8 +4,12 @@
             "briefdescription": {
             },
             "compoundname": "deprecated",
+            "detaileddescription": {
+            },
             "id": "deprecated",
             "kind": "page",
+            "location": {
+            },
             "protection": "",
             "title": "Deprecated List"
         }

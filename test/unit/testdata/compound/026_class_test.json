@@ -1,11 +1,23 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "Test",
+            "detaileddescription": {
+            },
             "id": "class_test",
             "kind": "class",
             "language": "C++",
+            "listofallmembers": {
+            },
+            "location": {
+            },
             "protection": "public",
+            "sectiondef": [
+                {
+                }
+            ],
             "templateparamlist": {
             }
         }

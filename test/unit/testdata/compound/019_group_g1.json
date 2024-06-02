@@ -1,7 +1,11 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "g1",
+            "detaileddescription": {
+            },
             "id": "group__g1",
             "kind": "group",
             "protection": "",

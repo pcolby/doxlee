@@ -5,11 +5,35 @@
                 {
                 }
             ],
+            "briefdescription": {
+            },
+            "collaborationgraph": {
+            },
             "compoundname": "Vehicle",
+            "derivedcompoundref": [
+                {
+                },
+                {
+                }
+            ],
+            "detaileddescription": {
+            },
             "id": "struct_vehicle",
+            "inheritancegraph": {
+            },
             "kind": "struct",
             "language": "C++",
-            "protection": "public"
+            "listofallmembers": {
+            },
+            "location": {
+            },
+            "protection": "public",
+            "sectiondef": [
+                {
+                },
+                {
+                }
+            ]
         }
     ],
     "language": "en-US",

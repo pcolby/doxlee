@@ -1,10 +1,18 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "Todo",
+            "detaileddescription": {
+            },
             "id": "class_todo",
             "kind": "class",
             "language": "C++",
+            "listofallmembers": {
+            },
+            "location": {
+            },
             "protection": "public",
             "sectiondef": [
                 {

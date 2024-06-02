@@ -1,10 +1,16 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "099_a.c",
+            "detaileddescription": {
+            },
             "id": "099__a_8c",
             "kind": "file",
             "language": "C++",
+            "location": {
+            },
             "protection": "",
             "sectiondef": [
                 {

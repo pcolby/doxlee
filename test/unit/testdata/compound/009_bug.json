@@ -4,8 +4,12 @@
             "briefdescription": {
             },
             "compoundname": "bug",
+            "detaileddescription": {
+            },
             "id": "bug",
             "kind": "page",
+            "location": {
+            },
             "protection": "",
             "title": "Bug List"
         }

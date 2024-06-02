@@ -2,10 +2,18 @@
     "compounds": [
         {
             "abstract": true,
+            "briefdescription": {
+            },
             "compoundname": "mymodule::t1",
+            "detaileddescription": {
+            },
             "id": "structmymodule_1_1t1",
             "kind": "type",
             "language": "Fortran",
+            "listofallmembers": {
+            },
+            "location": {
+            },
             "protection": "public",
             "sectiondef": [
                 {

@@ -4,9 +4,15 @@
             "briefdescription": {
             },
             "compoundname": "DetailsMultiSummary",
+            "detaileddescription": {
+            },
             "id": "class_details_multi_summary",
             "kind": "class",
             "language": "C++",
+            "listofallmembers": {
+            },
+            "location": {
+            },
             "protection": "public"
         }
     ],

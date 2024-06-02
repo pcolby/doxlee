@@ -4,9 +4,15 @@
             "briefdescription": {
             },
             "compoundname": "DetailsNested",
+            "detaileddescription": {
+            },
             "id": "class_details_nested",
             "kind": "class",
             "language": "C++",
+            "listofallmembers": {
+            },
+            "location": {
+            },
             "protection": "public"
         }
     ],

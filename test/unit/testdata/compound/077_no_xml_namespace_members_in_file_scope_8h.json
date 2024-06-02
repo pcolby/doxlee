@@ -1,7 +1,11 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "077_no_xml_namespace_members_in_file_scope.h",
+            "detaileddescription": {
+            },
             "id": "077__no__xml__namespace__members__in__file__scope_8h",
             "innernamespace": [
                 {
@@ -9,6 +13,8 @@
             ],
             "kind": "file",
             "language": "C++",
+            "location": {
+            },
             "protection": ""
         }
     ],

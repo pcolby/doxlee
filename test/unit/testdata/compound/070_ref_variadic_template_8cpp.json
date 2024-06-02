@@ -1,7 +1,11 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "070_ref_variadic_template.cpp",
+            "detaileddescription": {
+            },
             "id": "070__ref__variadic__template_8cpp",
             "innerclass": [
                 {
@@ -9,7 +13,13 @@
             ],
             "kind": "file",
             "language": "C++",
-            "protection": ""
+            "location": {
+            },
+            "protection": "",
+            "sectiondef": [
+                {
+                }
+            ]
         }
     ],
     "language": "en-US",

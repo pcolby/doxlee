@@ -5,10 +5,22 @@
                 {
                 }
             ],
+            "briefdescription": {
+            },
+            "collaborationgraph": {
+            },
             "compoundname": "m2::t3",
+            "detaileddescription": {
+            },
             "id": "structm2_1_1t3",
+            "inheritancegraph": {
+            },
             "kind": "struct",
             "language": "C++",
+            "listofallmembers": {
+            },
+            "location": {
+            },
             "protection": "public"
         }
     ],

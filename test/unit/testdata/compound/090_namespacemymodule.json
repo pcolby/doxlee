@@ -1,15 +1,33 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "mymodule",
+            "detaileddescription": {
+            },
             "id": "namespacemymodule",
             "innerclass": [
+                {
+                },
+                {
+                },
+                {
+                },
+                {
+                },
                 {
                 }
             ],
             "kind": "namespace",
             "language": "Fortran",
-            "protection": ""
+            "location": {
+            },
+            "protection": "",
+            "sectiondef": [
+                {
+                }
+            ]
         }
     ],
     "language": "en-US",

@@ -1,10 +1,18 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "Receiver",
+            "detaileddescription": {
+            },
             "id": "class_receiver",
             "kind": "class",
             "language": "C++",
+            "listofallmembers": {
+            },
+            "location": {
+            },
             "protection": "public",
             "sectiondef": [
                 {

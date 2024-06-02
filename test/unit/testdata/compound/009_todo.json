@@ -4,8 +4,12 @@
             "briefdescription": {
             },
             "compoundname": "todo",
+            "detaileddescription": {
+            },
             "id": "todo",
             "kind": "page",
+            "location": {
+            },
             "protection": "",
             "title": "Todo List"
         }

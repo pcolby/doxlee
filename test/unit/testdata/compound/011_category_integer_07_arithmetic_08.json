@@ -1,10 +1,18 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "Integer(Arithmetic)",
+            "detaileddescription": {
+            },
             "id": "category_integer_07_arithmetic_08",
             "kind": "category",
             "language": "Objective-C",
+            "listofallmembers": {
+            },
+            "location": {
+            },
             "protection": "public",
             "sectiondef": [
                 {

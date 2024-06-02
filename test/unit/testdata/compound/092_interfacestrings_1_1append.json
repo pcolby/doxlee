@@ -1,10 +1,18 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "strings::append",
+            "detaileddescription": {
+            },
             "id": "interfacestrings_1_1append",
             "kind": "interface",
             "language": "Fortran",
+            "listofallmembers": {
+            },
+            "location": {
+            },
             "protection": "public",
             "sectiondef": [
                 {

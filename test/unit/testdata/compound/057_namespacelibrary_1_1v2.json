@@ -1,16 +1,30 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "library::v2",
+            "detaileddescription": {
+            },
             "id": "namespacelibrary_1_1v2",
             "inline": true,
             "innerclass": [
                 {
                 }
             ],
+            "innernamespace": [
+                {
+                }
+            ],
             "kind": "namespace",
             "language": "C++",
-            "protection": ""
+            "location": {
+            },
+            "protection": "",
+            "sectiondef": [
+                {
+                }
+            ]
         }
     ],
     "language": "en-US",

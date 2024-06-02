@@ -1,10 +1,18 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "mymodule::operator(//)",
+            "detaileddescription": {
+            },
             "id": "interfacemymodule_1_1operator_07_2_2_08",
             "kind": "interface",
             "language": "Fortran",
+            "listofallmembers": {
+            },
+            "location": {
+            },
             "protection": "private",
             "sectiondef": [
                 {

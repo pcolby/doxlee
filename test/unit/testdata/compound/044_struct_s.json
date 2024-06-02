@@ -1,7 +1,11 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "S",
+            "detaileddescription": {
+            },
             "id": "struct_s",
             "includes": [
                 {
@@ -9,7 +13,19 @@
             ],
             "kind": "struct",
             "language": "C++",
-            "protection": "public"
+            "listofallmembers": {
+            },
+            "location": {
+            },
+            "protection": "public",
+            "sectiondef": [
+                {
+                },
+                {
+                },
+                {
+                }
+            ]
         }
     ],
     "language": "en-US",

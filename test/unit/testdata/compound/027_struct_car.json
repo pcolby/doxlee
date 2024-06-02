@@ -5,11 +5,27 @@
                 {
                 }
             ],
+            "briefdescription": {
+            },
+            "collaborationgraph": {
+            },
             "compoundname": "Car",
+            "detaileddescription": {
+            },
             "id": "struct_car",
+            "inheritancegraph": {
+            },
             "kind": "struct",
             "language": "C++",
-            "protection": "public"
+            "listofallmembers": {
+            },
+            "location": {
+            },
+            "protection": "public",
+            "sectiondef": [
+                {
+                }
+            ]
         }
     ],
     "language": "en-US",

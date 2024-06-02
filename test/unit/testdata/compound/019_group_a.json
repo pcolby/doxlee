@@ -1,9 +1,17 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "A",
+            "detaileddescription": {
+            },
             "id": "group___a",
             "innergroup": [
+                {
+                },
+                {
+                },
                 {
                 }
             ],

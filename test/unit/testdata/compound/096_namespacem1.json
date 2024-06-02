@@ -1,14 +1,24 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "m1",
+            "detaileddescription": {
+            },
             "id": "namespacem1",
             "innerclass": [
+                {
+                },
+                {
+                },
                 {
                 }
             ],
             "kind": "namespace",
             "language": "C++",
+            "location": {
+            },
             "protection": ""
         }
     ],

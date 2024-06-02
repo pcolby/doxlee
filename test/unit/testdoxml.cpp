@@ -132,11 +132,11 @@ void TestDoxml::parseCompound()
         .arg(QString::fromLocal8Bit(QTest::currentDataTag()).chopped(3))));
     QVERIFY(jsonFile.open(QFile::WriteOnly));
     jsonFile.write(QJsonDocument::fromVariant(actual).toJson(QJsonDocument::Indented));
-    #endif
-
+    #else
     // Compare the actual to expected results.
     QTEST(actual, "expected");
     QCOMPARE(QJsonDocument::fromVariant(actual), json);
+    #endif
 }
 
 void TestDoxml::parseCompound_DoxygenType_data()

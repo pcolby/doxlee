@@ -1,8 +1,16 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "C",
+            "detaileddescription": {
+            },
             "id": "group___c",
+            "innerclass": [
+                {
+                }
+            ],
             "innerfile": [
                 {
                 }

@@ -1,7 +1,11 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "m2",
+            "detaileddescription": {
+            },
             "id": "namespacem2",
             "innerclass": [
                 {
@@ -9,6 +13,8 @@
             ],
             "kind": "namespace",
             "language": "Fortran",
+            "location": {
+            },
             "protection": ""
         }
     ],

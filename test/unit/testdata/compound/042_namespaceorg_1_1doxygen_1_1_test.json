@@ -4,9 +4,13 @@
             "briefdescription": {
             },
             "compoundname": "org::doxygen::Test",
+            "detaileddescription": {
+            },
             "id": "namespaceorg_1_1doxygen_1_1_test",
             "kind": "namespace",
             "language": "Java",
+            "location": {
+            },
             "protection": ""
         }
     ],

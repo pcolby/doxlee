@@ -4,8 +4,12 @@
             "briefdescription": {
             },
             "compoundname": "test",
+            "detaileddescription": {
+            },
             "id": "test",
             "kind": "page",
+            "location": {
+            },
             "protection": "",
             "title": "Test List"
         }

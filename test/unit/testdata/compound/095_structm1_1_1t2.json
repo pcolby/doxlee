@@ -5,10 +5,28 @@
                 {
                 }
             ],
+            "briefdescription": {
+            },
+            "collaborationgraph": {
+            },
             "compoundname": "m1::t2",
+            "derivedcompoundref": [
+                {
+                },
+                {
+                }
+            ],
+            "detaileddescription": {
+            },
             "id": "structm1_1_1t2",
+            "inheritancegraph": {
+            },
             "kind": "type",
             "language": "Fortran",
+            "listofallmembers": {
+            },
+            "location": {
+            },
             "protection": "public"
         }
     ],

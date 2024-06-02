@@ -1,12 +1,22 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "Foo",
+            "detaileddescription": {
+            },
             "id": "struct_foo",
             "kind": "struct",
             "language": "C++",
+            "listofallmembers": {
+            },
+            "location": {
+            },
             "protection": "public",
             "sectiondef": [
+                {
+                },
                 {
                 }
             ]

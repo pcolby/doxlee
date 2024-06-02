@@ -1,14 +1,22 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "037_msc.cpp",
+            "detaileddescription": {
+            },
             "id": "037__msc_8cpp",
             "innerclass": [
+                {
+                },
                 {
                 }
             ],
             "kind": "file",
             "language": "C++",
+            "location": {
+            },
             "protection": ""
         }
     ],

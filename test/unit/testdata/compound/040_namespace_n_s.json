@@ -4,9 +4,13 @@
             "briefdescription": {
             },
             "compoundname": "NS",
+            "detaileddescription": {
+            },
             "id": "namespace_n_s",
             "kind": "namespace",
             "language": "C++",
+            "location": {
+            },
             "protection": ""
         }
     ],

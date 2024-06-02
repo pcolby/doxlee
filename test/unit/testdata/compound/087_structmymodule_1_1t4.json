@@ -1,10 +1,18 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "mymodule::t4",
+            "detaileddescription": {
+            },
             "id": "structmymodule_1_1t4",
             "kind": "type",
             "language": "Fortran",
+            "listofallmembers": {
+            },
+            "location": {
+            },
             "protection": "private",
             "sectiondef": [
                 {

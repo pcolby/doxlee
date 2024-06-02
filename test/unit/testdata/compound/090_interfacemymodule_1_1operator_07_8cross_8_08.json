@@ -1,10 +1,18 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "mymodule::operator(.cross.)",
+            "detaileddescription": {
+            },
             "id": "interfacemymodule_1_1operator_07_8cross_8_08",
             "kind": "interface",
             "language": "Fortran",
+            "listofallmembers": {
+            },
+            "location": {
+            },
             "protection": "private",
             "sectiondef": [
                 {

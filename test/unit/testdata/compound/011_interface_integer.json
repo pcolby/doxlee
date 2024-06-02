@@ -5,11 +5,29 @@
                 {
                 }
             ],
+            "briefdescription": {
+            },
+            "collaborationgraph": {
+            },
             "compoundname": "Integer",
+            "detaileddescription": {
+            },
             "id": "interface_integer",
+            "inheritancegraph": {
+            },
             "kind": "class",
             "language": "Objective-C",
-            "protection": "public"
+            "listofallmembers": {
+            },
+            "location": {
+            },
+            "protection": "public",
+            "sectiondef": [
+                {
+                },
+                {
+                }
+            ]
         }
     ],
     "language": "en-US",

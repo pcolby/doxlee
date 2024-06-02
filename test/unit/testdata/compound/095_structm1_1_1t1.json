@@ -1,14 +1,26 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "m1::t1",
             "derivedcompoundref": [
                 {
+                },
+                {
                 }
             ],
+            "detaileddescription": {
+            },
             "id": "structm1_1_1t1",
+            "inheritancegraph": {
+            },
             "kind": "type",
             "language": "Fortran",
+            "listofallmembers": {
+            },
+            "location": {
+            },
             "protection": "public"
         }
     ],

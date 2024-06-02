@@ -4,8 +4,12 @@
             "briefdescription": {
             },
             "compoundname": "index",
+            "detaileddescription": {
+            },
             "id": "indexpage",
             "kind": "page",
+            "location": {
+            },
             "protection": "",
             "title": "My Project"
         }

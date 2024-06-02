@@ -4,9 +4,15 @@
             "briefdescription": {
             },
             "compoundname": "DetailsCSStyle",
+            "detaileddescription": {
+            },
             "id": "class_details_c_s_style",
             "kind": "class",
             "language": "C++",
+            "listofallmembers": {
+            },
+            "location": {
+            },
             "protection": "public"
         }
     ],

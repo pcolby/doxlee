@@ -1,7 +1,11 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "g2",
+            "detaileddescription": {
+            },
             "id": "group__g2",
             "innergroup": [
                 {
@@ -9,6 +13,10 @@
             ],
             "kind": "group",
             "protection": "",
+            "sectiondef": [
+                {
+                }
+            ],
             "title": "Second Group"
         }
     ],

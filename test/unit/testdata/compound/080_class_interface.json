@@ -2,12 +2,22 @@
     "compounds": [
         {
             "abstract": true,
+            "briefdescription": {
+            },
             "compoundname": "Interface",
+            "detaileddescription": {
+            },
             "id": "class_interface",
             "kind": "class",
             "language": "C++",
+            "listofallmembers": {
+            },
+            "location": {
+            },
             "protection": "public",
             "sectiondef": [
+                {
+                },
                 {
                 }
             ]

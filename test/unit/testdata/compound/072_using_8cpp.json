@@ -1,15 +1,27 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "072_using.cpp",
+            "detaileddescription": {
+            },
             "id": "072__using_8cpp",
+            "incdepgraph": {
+            },
             "includes": [
                 {
                 }
             ],
             "kind": "file",
             "language": "C++",
-            "protection": ""
+            "location": {
+            },
+            "protection": "",
+            "sectiondef": [
+                {
+                }
+            ]
         }
     ],
     "language": "en-US",

@@ -1,7 +1,11 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "B",
+            "detaileddescription": {
+            },
             "id": "group___b",
             "innerfile": [
                 {
@@ -9,6 +13,18 @@
             ],
             "kind": "group",
             "protection": "",
+            "sectiondef": [
+                {
+                },
+                {
+                },
+                {
+                },
+                {
+                },
+                {
+                }
+            ],
             "title": "B"
         }
     ],

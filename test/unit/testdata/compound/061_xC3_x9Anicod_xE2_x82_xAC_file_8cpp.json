@@ -1,7 +1,11 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "061_Únicod€_file.cpp",
+            "detaileddescription": {
+            },
             "id": "061___xC3_x9Anicod_xE2_x82_xAC__file_8cpp",
             "innerclass": [
                 {
@@ -9,6 +13,8 @@
             ],
             "kind": "file",
             "language": "C++",
+            "location": {
+            },
             "protection": ""
         }
     ],

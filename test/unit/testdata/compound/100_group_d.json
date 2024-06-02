@@ -1,7 +1,11 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "D",
+            "detaileddescription": {
+            },
             "id": "group___d",
             "innernamespace": [
                 {
@@ -9,6 +13,10 @@
             ],
             "kind": "group",
             "protection": "",
+            "sectiondef": [
+                {
+                }
+            ],
             "title": "D"
         }
     ],

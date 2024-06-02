@@ -1,10 +1,16 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "054_parblock.cpp",
+            "detaileddescription": {
+            },
             "id": "054__parblock_8cpp",
             "kind": "file",
             "language": "C++",
+            "location": {
+            },
             "protection": "",
             "sectiondef": [
                 {

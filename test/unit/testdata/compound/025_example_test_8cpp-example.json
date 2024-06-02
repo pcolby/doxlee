@@ -4,8 +4,12 @@
             "briefdescription": {
             },
             "compoundname": "example_test.cpp",
+            "detaileddescription": {
+            },
             "id": "example_test_8cpp-example",
             "kind": "example",
+            "location": {
+            },
             "protection": ""
         }
     ],

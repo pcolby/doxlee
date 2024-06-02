@@ -1,7 +1,11 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "T3",
+            "detaileddescription": {
+            },
             "id": "class_t3",
             "includes": [
                 {
@@ -9,6 +13,10 @@
             ],
             "kind": "class",
             "language": "C++",
+            "listofallmembers": {
+            },
+            "location": {
+            },
             "protection": "public"
         }
     ],

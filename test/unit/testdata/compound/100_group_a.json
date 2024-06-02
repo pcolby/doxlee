@@ -1,14 +1,34 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "A",
+            "detaileddescription": {
+            },
             "id": "group___a",
+            "innerclass": [
+                {
+                }
+            ],
             "innerfile": [
                 {
                 }
             ],
             "kind": "group",
             "protection": "",
+            "sectiondef": [
+                {
+                },
+                {
+                },
+                {
+                },
+                {
+                },
+                {
+                }
+            ],
             "title": "A"
         }
     ],

@@ -5,11 +5,27 @@
                 {
                 }
             ],
+            "briefdescription": {
+            },
+            "collaborationgraph": {
+            },
             "compoundname": "Truck",
+            "detaileddescription": {
+            },
             "id": "struct_truck",
+            "inheritancegraph": {
+            },
             "kind": "struct",
             "language": "C++",
-            "protection": "public"
+            "listofallmembers": {
+            },
+            "location": {
+            },
+            "protection": "public",
+            "sectiondef": [
+                {
+                }
+            ]
         }
     ],
     "language": "en-US",

@@ -4,9 +4,13 @@
             "briefdescription": {
             },
             "compoundname": "101_static_assert.c",
+            "detaileddescription": {
+            },
             "id": "101__static__assert_8c",
             "kind": "file",
             "language": "C++",
+            "location": {
+            },
             "protection": ""
         }
     ],

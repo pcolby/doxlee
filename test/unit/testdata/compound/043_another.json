@@ -4,8 +4,12 @@
             "briefdescription": {
             },
             "compoundname": "another",
+            "detaileddescription": {
+            },
             "id": "another",
             "kind": "page",
+            "location": {
+            },
             "protection": "",
             "title": "Another Page"
         }

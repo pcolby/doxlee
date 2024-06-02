@@ -4,9 +4,13 @@
             "briefdescription": {
             },
             "compoundname": "008_brief.c",
+            "detaileddescription": {
+            },
             "id": "008__brief_8c",
             "kind": "file",
             "language": "C++",
+            "location": {
+            },
             "protection": ""
         }
     ],

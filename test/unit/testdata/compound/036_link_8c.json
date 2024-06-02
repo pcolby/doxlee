@@ -1,7 +1,11 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "036_link.c",
+            "detaileddescription": {
+            },
             "id": "036__link_8c",
             "innerclass": [
                 {
@@ -9,7 +13,13 @@
             ],
             "kind": "file",
             "language": "C++",
-            "protection": ""
+            "location": {
+            },
+            "protection": "",
+            "sectiondef": [
+                {
+                }
+            ]
         }
     ],
     "language": "en-US",

@@ -1,15 +1,33 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "library",
+            "detaileddescription": {
+            },
             "id": "namespacelibrary",
             "innerclass": [
                 {
                 }
             ],
+            "innernamespace": [
+                {
+                },
+                {
+                },
+                {
+                }
+            ],
             "kind": "namespace",
             "language": "C++",
-            "protection": ""
+            "location": {
+            },
+            "protection": "",
+            "sectiondef": [
+                {
+                }
+            ]
         }
     ],
     "language": "en-US",

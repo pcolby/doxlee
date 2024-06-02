@@ -1,10 +1,16 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "094_old_style_fortran_routines.f90",
+            "detaileddescription": {
+            },
             "id": "094__old__style__fortran__routines_8f90",
             "kind": "file",
             "language": "Fortran",
+            "location": {
+            },
             "protection": "",
             "sectiondef": [
                 {

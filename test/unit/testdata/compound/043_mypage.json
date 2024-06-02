@@ -1,14 +1,48 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "mypage",
+            "detaileddescription": {
+            },
             "id": "mypage",
             "innerpage": [
                 {
                 }
             ],
             "kind": "page",
+            "location": {
+            },
             "protection": "",
+            "tableofcontents": [
+                {
+                    "name": "Section Title.",
+                    "reference": "mypage_1mysect",
+                    "tableofcontents": [
+                        {
+                            "name": "Subsection Title.",
+                            "reference": "mypage_1mysubsect",
+                            "tableofcontents": [
+                                {
+                                    "name": "Subsubsection Title.",
+                                    "reference": "mypage_1mysubsubsect",
+                                    "tableofcontents": [
+                                        {
+                                            "name": "Paragraph Title.",
+                                            "reference": "mypage_1mypara"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Another Section Title.",
+                    "reference": "mypage_1mysect2"
+                }
+            ],
             "title": "Page Title"
         }
     ],

@@ -1,15 +1,29 @@
 {
     "compounds": [
         {
+            "briefdescription": {
+            },
             "compoundname": "085_tooltip.cpp",
+            "detaileddescription": {
+            },
             "id": "085__tooltip_8cpp",
+            "incdepgraph": {
+            },
             "includes": [
                 {
                 }
             ],
             "kind": "file",
             "language": "C++",
-            "protection": ""
+            "location": {
+            },
+            "protection": "",
+            "sectiondef": [
+                {
+                },
+                {
+                }
+            ]
         }
     ],
     "language": "en-US",
