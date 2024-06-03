@@ -74,7 +74,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "protected-attrib",
@@ -93,7 +93,7 @@
                         },
                         "mutable": false,
                         "name": "base",
-                        "protection": "protected",
+                        "prot": "protected",
                         "qualifiedname": "Vehicle::base",
                         "static": false,
                         "type": {
@@ -123,7 +123,7 @@
                             {
                             }
                         ],
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "Vehicle::vehicleStop",
                         "static": false,
                         "type": {

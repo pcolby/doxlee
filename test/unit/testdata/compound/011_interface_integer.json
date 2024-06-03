@@ -45,7 +45,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "protected-attrib",
@@ -64,7 +64,7 @@
                         },
                         "mutable": false,
                         "name": "integer",
-                        "protection": "protected",
+                        "prot": "protected",
                         "qualifiedname": "Integer::integer",
                         "static": false,
                         "type": {
@@ -94,7 +94,7 @@
                             {
                             }
                         ],
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "-[Integer integer:]",
                         "static": false,
                         "type": {

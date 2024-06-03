@@ -20,7 +20,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "private-attrib",
@@ -39,7 +39,7 @@
                         },
                         "mutable": false,
                         "name": "privatevariable",
-                        "protection": "private",
+                        "prot": "private",
                         "qualifiedname": "mymodule::t3::privatevariable",
                         "static": false,
                         "type": {

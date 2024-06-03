@@ -34,7 +34,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "public-func",
@@ -61,7 +61,7 @@
                             {
                             }
                         ],
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "Test::drawRect",
                         "static": false,
                         "type": {

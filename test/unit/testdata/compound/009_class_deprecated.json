@@ -20,7 +20,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "public-func",
@@ -41,7 +41,7 @@
                         "location": {
                         },
                         "name": "deprecated",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "Deprecated::deprecated",
                         "static": false,
                         "type": {

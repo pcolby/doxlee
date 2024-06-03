@@ -11,7 +11,7 @@
             "language": "Fortran",
             "location": {
             },
-            "protection": "",
+            "prot": "",
             "sectiondef": [
                 {
                     "kind": "var",
@@ -30,7 +30,7 @@
                         },
                         "mutable": false,
                         "name": "v4",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "m2::v4",
                         "static": false,
                         "type": {

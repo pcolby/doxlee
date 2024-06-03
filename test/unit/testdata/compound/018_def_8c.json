@@ -11,7 +11,7 @@
             "language": "C++",
             "location": {
             },
-            "protection": "",
+            "prot": "",
             "sectiondef": [
                 {
                     "kind": "define",
@@ -29,7 +29,7 @@
                         "location": {
                         },
                         "name": "MACRO4",
-                        "protection": "public",
+                        "prot": "public",
                         "static": false
                     }
                 },
@@ -53,7 +53,7 @@
                         "location": {
                         },
                         "name": "E",
-                        "protection": "public",
+                        "prot": "public",
                         "static": false,
                         "strong": false,
                         "type": {
@@ -76,7 +76,7 @@
                         "location": {
                         },
                         "name": "Type",
-                        "protection": "public",
+                        "prot": "public",
                         "static": false,
                         "type": {
                         }
@@ -101,7 +101,7 @@
                         },
                         "mutable": false,
                         "name": "var",
-                        "protection": "public",
+                        "prot": "public",
                         "static": false,
                         "type": {
                         }
@@ -132,7 +132,7 @@
                             {
                             }
                         ],
-                        "protection": "public",
+                        "prot": "public",
                         "static": false,
                         "type": {
                         },

@@ -20,7 +20,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "public-func",
@@ -41,7 +41,7 @@
                         "location": {
                         },
                         "name": "todo",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "Todo::todo",
                         "static": false,
                         "type": {

@@ -19,7 +19,7 @@
             "language": "C++",
             "location": {
             },
-            "protection": "",
+            "prot": "",
             "sectiondef": [
                 {
                     "kind": "define",
@@ -37,7 +37,7 @@
                         "location": {
                         },
                         "name": "FCLOSE_MACRO",
-                        "protection": "public",
+                        "prot": "public",
                         "static": false
                     }
                 },
@@ -60,7 +60,7 @@
                         },
                         "mutable": false,
                         "name": "unit",
-                        "protection": "public",
+                        "prot": "public",
                         "static": false,
                         "type": {
                         }

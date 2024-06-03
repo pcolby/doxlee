@@ -20,7 +20,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "public-type",
@@ -38,7 +38,7 @@
                         "location": {
                         },
                         "name": "const_pointer",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "N::allocator_traits::const_pointer",
                         "static": false,
                         "type": {

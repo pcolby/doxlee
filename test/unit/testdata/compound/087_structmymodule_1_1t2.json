@@ -20,7 +20,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "public-attrib",
@@ -39,7 +39,7 @@
                         },
                         "mutable": false,
                         "name": "publicvariable",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "mymodule::t2::publicvariable",
                         "static": false,
                         "type": {

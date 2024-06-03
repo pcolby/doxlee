@@ -73,7 +73,7 @@
             "language": "Fortran",
             "location": {
             },
-            "protection": "",
+            "prot": "",
             "sectiondef": [
                 {
                     "kind": "var",
@@ -94,7 +94,7 @@
                         },
                         "mutable": false,
                         "name": "ck",
-                        "protection": "private",
+                        "prot": "private",
                         "qualifiedname": "strings::ck",
                         "static": false,
                         "type": {
@@ -126,7 +126,7 @@
                             {
                             }
                         ],
-                        "protection": "private",
+                        "prot": "private",
                         "qualifiedname": "strings::join_",
                         "static": false,
                         "type": {

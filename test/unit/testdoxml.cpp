@@ -155,7 +155,7 @@ void TestDoxml::parseCompound_DoxygenType_data()
             { QSL("compounds"), QVariantList { QVariantMap {
                 { QSL("id"), QSL("foo") },
                 { QSL("kind"), QSL("bar") },
-                { QSL("protection"), QSL("baz") },
+                { QSL("prot"), QSL("baz") },
             }}},
         };
 }
@@ -180,7 +180,7 @@ void TestDoxml::parseCompound_compounddefType_data()
         << QVariantMap{
             { QSL("id"), QSL("foo") },
             { QSL("kind"), QSL("bar") },
-            { QSL("protection"), QSL("baz") },
+            { QSL("prot"), QSL("baz") },
         };
 }
 
@@ -547,7 +547,7 @@ void TestDoxml::parseCompound_sectiondefType_data()
             { QSL("memberdef"), QVariantMap {
                 { QSL("kind"), QSL("define") },
                 { QSL("id"), QSL("Config_8hpp_1a5da40ad5fb2c39d9a9a711979695fea0") },
-                { QSL("protection"), QSL("public") },
+                { QSL("prot"), QSL("public") },
                 { QSL("static"), false },
                 { QSL("name"), QSL("ENGINE_ARCH") },
             }},
@@ -576,7 +576,7 @@ void TestDoxml::parseCompound_memberdefType_data()
         << QVariantMap{
             { QSL("kind"), QSL("define") },
             { QSL("id"), QSL("Config_8hpp_1a5da40ad5fb2c39d9a9a711979695fea0") },
-            { QSL("protection"), QSL("public") },
+            { QSL("prot"), QSL("public") },
             { QSL("static"), false },
             { QSL("name"), QSL("ENGINE_ARCH") },
         };

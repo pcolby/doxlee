@@ -11,7 +11,7 @@
             "language": "C++",
             "location": {
             },
-            "protection": "",
+            "prot": "",
             "sectiondef": [
                 {
                     "kind": "var",
@@ -30,7 +30,7 @@
                         },
                         "mutable": false,
                         "name": "var",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "N::var",
                         "static": false,
                         "type": {
@@ -60,7 +60,7 @@
                             {
                             }
                         ],
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "N::foo",
                         "static": false,
                         "type": {

@@ -14,7 +14,7 @@
                 }
             ],
             "kind": "group",
-            "protection": "",
+            "prot": "",
             "sectiondef": [
                 {
                     "kind": "enum",
@@ -36,7 +36,7 @@
                         "location": {
                         },
                         "name": "ED",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "NS::ED",
                         "static": false,
                         "strong": false,

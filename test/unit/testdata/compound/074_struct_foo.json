@@ -83,7 +83,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "public-func",
@@ -104,7 +104,7 @@
                         "location": {
                         },
                         "name": "fun",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "Foo::fun",
                         "static": false,
                         "type": {
@@ -137,9 +137,9 @@
                             {
                             }
                         ],
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "Foo::fun",
-                        "static": false,
+                        "static": true,
                         "type": {
                         },
                         "virt": "non-virtual"

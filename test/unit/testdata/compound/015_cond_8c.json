@@ -11,7 +11,7 @@
             "language": "C++",
             "location": {
             },
-            "protection": "",
+            "prot": "",
             "sectiondef": [
                 {
                     "kind": "func",
@@ -32,7 +32,7 @@
                         "location": {
                         },
                         "name": "cond_enabled",
-                        "protection": "public",
+                        "prot": "public",
                         "static": false,
                         "type": {
                         },

@@ -11,7 +11,7 @@
             "language": "Fortran",
             "location": {
             },
-            "protection": "",
+            "prot": "",
             "sectiondef": [
                 {
                     "kind": "func",
@@ -32,7 +32,7 @@
                         "location": {
                         },
                         "name": "f3",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "m1::f3",
                         "static": false,
                         "type": {

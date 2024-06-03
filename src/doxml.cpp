@@ -370,7 +370,7 @@ QVariantMap Doxml::parseCompound_compounddefType(QXmlStreamReader &xml) const
     QVariantMap map {
         { QSL("id"), attributes.value(QSL("id")).toString() },
         { QSL("kind"), attributes.value(QSL("kind")).toString() },
-        { QSL("protection"), attributes.value(QSL("prot")).toString() },
+        { QSL("prot"), attributes.value(QSL("prot")).toString() },
     };
     {
         const QStringView attributeValue = attributes.value(QSL("language"));
@@ -771,8 +771,8 @@ QVariantMap Doxml::parseCompound_memberdefType(QXmlStreamReader &xml) const
     QVariantMap map {
         { QSL("kind"), attributes.value(QSL("kind")).toString() },
         { QSL("id"), attributes.value(QSL("id")).toString() },
-        { QSL("protection"), attributes.value(QSL("prot")).toString() },
-        { QSL("static"), attributes.value(QSL("prot")) == QSL("yes") },
+        { QSL("prot"), attributes.value(QSL("prot")).toString() },
+        { QSL("static"), attributes.value(QSL("static")) == QSL("yes") },
     };
     for (const QString &attributeName: QStringList{ QSL("refqual"), QSL("virt"), QSL("accessor") }) {
         const QStringView attributeValue = attributes.value(attributeName);

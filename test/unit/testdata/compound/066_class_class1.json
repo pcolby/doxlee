@@ -27,7 +27,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "property",
@@ -48,9 +48,9 @@
                         "name": "Property2",
                         "privategettable": false,
                         "privatesettable": false,
+                        "prot": "public",
                         "protectedgettable": false,
                         "protectedsettable": false,
-                        "protection": "public",
                         "qualifiedname": "Class1.Property2",
                         "readable": false,
                         "settable": true,

@@ -20,7 +20,7 @@
             ],
             "location": {
             },
-            "protection": "private",
+            "prot": "private",
             "sectiondef": [
                 {
                     "kind": "public-func",
@@ -47,7 +47,7 @@
                             {
                             }
                         ],
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "mymodule::operator(//)::cross_product",
                         "static": false,
                         "type": {

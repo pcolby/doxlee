@@ -39,7 +39,7 @@
             ],
             "location": {
             },
-            "protection": "public"
+            "prot": "public"
         }
     ],
     "language": "en-US",

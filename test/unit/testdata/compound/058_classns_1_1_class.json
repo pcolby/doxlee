@@ -27,7 +27,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "public-type",
@@ -47,7 +47,7 @@
                         "location": {
                         },
                         "name": "Enum2",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "ns::Class::Enum2",
                         "static": false,
                         "strong": true,

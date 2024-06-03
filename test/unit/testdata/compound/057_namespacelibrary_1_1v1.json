@@ -24,7 +24,7 @@
             "language": "C++",
             "location": {
             },
-            "protection": "",
+            "prot": "",
             "sectiondef": [
                 {
                     "kind": "func",
@@ -45,7 +45,7 @@
                         "location": {
                         },
                         "name": "func",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "library::v1::func",
                         "static": false,
                         "type": {

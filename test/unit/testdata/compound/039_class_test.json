@@ -34,7 +34,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "header": "A group of functions.",
@@ -56,7 +56,7 @@
                         "location": {
                         },
                         "name": "bar",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "Test::bar",
                         "static": false,
                         "type": {
@@ -83,7 +83,7 @@
                         "location": {
                         },
                         "name": "ungrouped",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "Test::ungrouped",
                         "static": false,
                         "type": {

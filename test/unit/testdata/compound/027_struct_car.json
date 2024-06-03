@@ -60,7 +60,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "protected-attrib",
@@ -79,7 +79,7 @@
                         },
                         "mutable": false,
                         "name": "base",
-                        "protection": "protected",
+                        "prot": "protected",
                         "qualifiedname": "Car::base",
                         "static": false,
                         "type": {

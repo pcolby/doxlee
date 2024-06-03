@@ -17,7 +17,7 @@
             "language": "C++",
             "location": {
             },
-            "protection": "",
+            "prot": "",
             "sectiondef": [
                 {
                     "kind": "enum",
@@ -33,7 +33,7 @@
                         "location": {
                         },
                         "name": "Enum",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "Namespace::Enum",
                         "static": false,
                         "strong": true,
@@ -60,7 +60,7 @@
                         "location": {
                         },
                         "name": "foo",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "Namespace::foo",
                         "static": false,
                         "type": {

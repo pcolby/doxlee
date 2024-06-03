@@ -34,7 +34,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "public-func",
@@ -59,7 +59,7 @@
                             {
                             }
                         ],
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "mymodule::genericproc::externalproc2",
                         "static": false,
                         "type": {

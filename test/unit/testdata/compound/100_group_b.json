@@ -14,7 +14,7 @@
                 }
             ],
             "kind": "group",
-            "protection": "",
+            "prot": "",
             "sectiondef": [
                 {
                     "kind": "enum",
@@ -36,7 +36,7 @@
                         "location": {
                         },
                         "name": "E",
-                        "protection": "public",
+                        "prot": "public",
                         "static": false,
                         "strong": false,
                         "type": {
@@ -59,7 +59,7 @@
                         "location": {
                         },
                         "name": "T",
-                        "protection": "public",
+                        "prot": "public",
                         "static": false,
                         "type": {
                         }
@@ -82,8 +82,8 @@
                         },
                         "mutable": false,
                         "name": "i",
-                        "protection": "public",
-                        "static": false,
+                        "prot": "public",
+                        "static": true,
                         "type": {
                         }
                     }
@@ -111,8 +111,8 @@
                             {
                             }
                         ],
-                        "protection": "public",
-                        "static": false,
+                        "prot": "public",
+                        "static": true,
                         "type": {
                         },
                         "virt": "non-virtual"
@@ -134,7 +134,7 @@
                         "location": {
                         },
                         "name": "D",
-                        "protection": "public",
+                        "prot": "public",
                         "static": false
                     }
                 }

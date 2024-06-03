@@ -34,7 +34,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "public-func",
@@ -57,7 +57,7 @@
                         },
                         "name": "do_stuff2",
                         "noexcept": true,
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "A::do_stuff2",
                         "static": false,
                         "type": {

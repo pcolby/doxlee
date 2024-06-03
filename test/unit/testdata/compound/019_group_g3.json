@@ -8,7 +8,7 @@
             },
             "id": "group__g3",
             "kind": "group",
-            "protection": "",
+            "prot": "",
             "sectiondef": [
                 {
                     "kind": "func",
@@ -29,7 +29,7 @@
                         "location": {
                         },
                         "name": "func_g3_add",
-                        "protection": "public",
+                        "prot": "public",
                         "static": false,
                         "type": {
                         },

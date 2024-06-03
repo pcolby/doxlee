@@ -14,7 +14,7 @@
                 }
             ],
             "kind": "group",
-            "protection": "",
+            "prot": "",
             "sectiondef": [
                 {
                     "kind": "func",
@@ -35,7 +35,7 @@
                         "location": {
                         },
                         "name": "func_g2",
-                        "protection": "public",
+                        "prot": "public",
                         "static": false,
                         "type": {
                         },

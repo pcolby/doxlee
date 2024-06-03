@@ -11,7 +11,7 @@
             "language": "C++",
             "location": {
             },
-            "protection": "",
+            "prot": "",
             "sectiondef": [
                 {
                     "kind": "enum",
@@ -35,7 +35,7 @@
                         "location": {
                         },
                         "name": "Boolean",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "ANamespace::Boolean",
                         "static": false,
                         "strong": true,

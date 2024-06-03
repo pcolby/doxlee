@@ -20,7 +20,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "public-func",
@@ -41,7 +41,7 @@
                         "location": {
                         },
                         "name": "foo",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "Bug::foo",
                         "static": false,
                         "type": {

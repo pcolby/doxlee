@@ -20,7 +20,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "public-attrib",
@@ -39,7 +39,7 @@
                         },
                         "mutable": false,
                         "name": "s",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "s::s",
                         "static": false,
                         "type": {

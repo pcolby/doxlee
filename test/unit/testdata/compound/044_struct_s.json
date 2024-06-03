@@ -62,7 +62,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "public-attrib",
@@ -81,7 +81,7 @@
                         },
                         "mutable": false,
                         "name": "pub2",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "S::pub2",
                         "static": false,
                         "type": {
@@ -105,7 +105,7 @@
                         },
                         "mutable": false,
                         "name": "pro2",
-                        "protection": "protected",
+                        "prot": "protected",
                         "qualifiedname": "S::pro2",
                         "static": false,
                         "type": {
@@ -129,7 +129,7 @@
                         },
                         "mutable": false,
                         "name": "pri2",
-                        "protection": "private",
+                        "prot": "private",
                         "qualifiedname": "S::pri2",
                         "static": false,
                         "type": {

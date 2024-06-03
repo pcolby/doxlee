@@ -19,7 +19,7 @@
             "language": "C++",
             "location": {
             },
-            "protection": "",
+            "prot": "",
             "sectiondef": [
                 {
                     "kind": "typedef",
@@ -37,7 +37,7 @@
                         "location": {
                         },
                         "name": "Vec",
-                        "protection": "public",
+                        "prot": "public",
                         "static": false,
                         "templateparamlist": {
                         },

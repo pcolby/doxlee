@@ -11,7 +11,7 @@
             "language": "C++",
             "location": {
             },
-            "protection": "",
+            "prot": "",
             "sectiondef": [
                 {
                     "kind": "func",
@@ -36,7 +36,7 @@
                             {
                             }
                         ],
-                        "protection": "public",
+                        "prot": "public",
                         "static": false,
                         "type": {
                         },

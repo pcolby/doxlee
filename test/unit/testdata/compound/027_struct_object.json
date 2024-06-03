@@ -44,7 +44,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "private-attrib",
@@ -63,7 +63,7 @@
                         },
                         "mutable": false,
                         "name": "ref",
-                        "protection": "private",
+                        "prot": "private",
                         "qualifiedname": "Object::ref",
                         "static": false,
                         "type": {
@@ -93,9 +93,9 @@
                             {
                             }
                         ],
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "Object::objUnref",
-                        "static": false,
+                        "static": true,
                         "type": {
                         },
                         "virt": "non-virtual"

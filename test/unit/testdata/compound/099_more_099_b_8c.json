@@ -11,7 +11,7 @@
             "language": "C++",
             "location": {
             },
-            "protection": "",
+            "prot": "",
             "sectiondef": [
                 {
                     "kind": "enum",
@@ -33,7 +33,7 @@
                         "location": {
                         },
                         "name": "E",
-                        "protection": "public",
+                        "prot": "public",
                         "static": false,
                         "strong": false,
                         "type": {

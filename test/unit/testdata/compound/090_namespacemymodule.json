@@ -38,7 +38,7 @@
             "language": "Fortran",
             "location": {
             },
-            "protection": "",
+            "prot": "",
             "sectiondef": [
                 {
                     "kind": "func",
@@ -65,7 +65,7 @@
                             {
                             }
                         ],
-                        "protection": "private",
+                        "prot": "private",
                         "qualifiedname": "mymodule::cross_product",
                         "static": false,
                         "type": {

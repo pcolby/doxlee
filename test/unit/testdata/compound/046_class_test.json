@@ -34,7 +34,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "public-func",
@@ -55,7 +55,7 @@
                         "location": {
                         },
                         "name": "method",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "Test::method",
                         "static": false,
                         "type": {
@@ -82,7 +82,7 @@
                         "location": {
                         },
                         "name": "another",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "Test::another",
                         "static": false,
                         "type": {

@@ -27,7 +27,7 @@
             ],
             "location": {
             },
-            "protection": "public",
+            "prot": "public",
             "sectiondef": [
                 {
                     "kind": "public-func",
@@ -48,7 +48,7 @@
                         "location": {
                         },
                         "name": "operator int",
-                        "protection": "public",
+                        "prot": "public",
                         "qualifiedname": "Foo::operator int",
                         "static": false,
                         "type": {
