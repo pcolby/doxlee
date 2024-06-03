@@ -52,8 +52,58 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "()",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void Interface::load",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "class_interface_1ab58d3008a7001cbb47f2fa5a5a1aeefa",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "load",
+                        "protection": "public",
+                        "qualifiedname": "Interface::load",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 },
                 {
+                    "kind": "private-func",
+                    "memberdef": {
+                        "argsstring": "()",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void Interface::someUtility",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "class_interface_1a108dce1debd0596b57e7985bbb0f63a1",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "someUtility",
+                        "protection": "private",
+                        "qualifiedname": "Interface::someUtility",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

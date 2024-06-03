@@ -22,8 +22,49 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "define",
+                    "memberdef": {
+                        "briefdescription": {
+                        },
+                        "detaileddescription": {
+                        },
+                        "id": "085__tooltip_8cpp_1a11a2c0486e2bbd915f975a3517817de6",
+                        "inbodydescription": {
+                        },
+                        "initializer": {
+                        },
+                        "kind": "define",
+                        "location": {
+                        },
+                        "name": "FCLOSE_MACRO",
+                        "protection": "public",
+                        "static": false
+                    }
                 },
                 {
+                    "kind": "var",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "FILE* unit",
+                        "detaileddescription": {
+                        },
+                        "id": "085__tooltip_8cpp_1a5cccf7694b5d688466063895f39ee5d1",
+                        "inbodydescription": {
+                        },
+                        "initializer": {
+                        },
+                        "kind": "variable",
+                        "location": {
+                        },
+                        "mutable": false,
+                        "name": "unit",
+                        "protection": "public",
+                        "static": false,
+                        "type": {
+                        }
+                    }
                 }
             ]
         }

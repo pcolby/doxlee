@@ -23,6 +23,28 @@
             "protection": "private",
             "sectiondef": [
                 {
+                    "kind": "public-attrib",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "integer mymodule::t4::publicvariable",
+                        "detaileddescription": {
+                        },
+                        "id": "structmymodule_1_1t4_1aca212dfbb52db21b5c166b416b3019ac",
+                        "inbodydescription": {
+                        },
+                        "kind": "variable",
+                        "location": {
+                        },
+                        "mutable": false,
+                        "name": "publicvariable",
+                        "protection": "public",
+                        "qualifiedname": "mymodule::t4::publicvariable",
+                        "static": false,
+                        "type": {
+                        }
+                    }
                 }
             ]
         }

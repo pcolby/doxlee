@@ -14,6 +14,30 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "()",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "subroutine subr2",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "084__markdown__pre_8f90_1a799d06e535f6b6e83331907261cef116",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "subr2",
+                        "protection": "public",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

@@ -23,6 +23,31 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "()",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void Bug::foo",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "class_bug_1a1f720954dd97cd1203e80501a6eae74c",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "foo",
+                        "protection": "public",
+                        "qualifiedname": "Bug::foo",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

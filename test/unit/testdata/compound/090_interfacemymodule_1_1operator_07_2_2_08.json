@@ -23,6 +23,37 @@
             "protection": "private",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "(v, w)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "pure real function, dimension(3) mymodule::operator(//)::cross_product",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "interfacemymodule_1_1operator_07_2_2_08_1a33fa562a998fde6ddba173ee9d52ad6d",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "cross_product",
+                        "param": [
+                            {
+                            },
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "mymodule::operator(//)::cross_product",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

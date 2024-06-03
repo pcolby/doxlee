@@ -21,6 +21,30 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "()",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void another",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "046__related_8cpp_1a1283d836e0611ff772c1b06a31ecbbfe",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "another",
+                        "protection": "public",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

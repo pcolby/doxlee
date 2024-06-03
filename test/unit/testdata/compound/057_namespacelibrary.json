@@ -36,6 +36,31 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "()",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void library::v2::func",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "namespacelibrary_1_1v2_1aba9375172f5b36e1f4fda9b1dec39d90",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "func",
+                        "protection": "public",
+                        "qualifiedname": "library::v2::func",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

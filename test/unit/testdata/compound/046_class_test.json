@@ -37,8 +37,58 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "()",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void Test::method",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "class_test_1a1683da699dc049d74101488d143c8e98",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "method",
+                        "protection": "public",
+                        "qualifiedname": "Test::method",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 },
                 {
+                    "kind": "related",
+                    "memberdef": {
+                        "argsstring": "()",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void another",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "class_test_1a1283d836e0611ff772c1b06a31ecbbfe",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "another",
+                        "protection": "public",
+                        "qualifiedname": "Test::another",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

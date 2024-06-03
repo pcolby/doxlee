@@ -63,6 +63,28 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "protected-attrib",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "Vehicle Truck::base",
+                        "detaileddescription": {
+                        },
+                        "id": "struct_truck_1ad0ac321609dda1a6c552488b05ec7ac8",
+                        "inbodydescription": {
+                        },
+                        "kind": "variable",
+                        "location": {
+                        },
+                        "mutable": false,
+                        "name": "base",
+                        "protection": "protected",
+                        "qualifiedname": "Truck::base",
+                        "static": false,
+                        "type": {
+                        }
+                    }
                 }
             ]
         }

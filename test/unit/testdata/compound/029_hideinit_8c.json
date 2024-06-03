@@ -14,6 +14,27 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "var",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "int var2",
+                        "detaileddescription": {
+                        },
+                        "id": "029__hideinit_8c_1ac0da06d47d79ad4b9fb1c0eaf1118c3f",
+                        "inbodydescription": {
+                        },
+                        "kind": "variable",
+                        "location": {
+                        },
+                        "mutable": false,
+                        "name": "var2",
+                        "protection": "public",
+                        "static": false,
+                        "type": {
+                        }
+                    }
                 }
             ]
         }

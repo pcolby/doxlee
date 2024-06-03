@@ -14,6 +14,29 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "enum",
+                    "memberdef": {
+                        "briefdescription": {
+                        },
+                        "detaileddescription": {
+                        },
+                        "enumvalue": [
+                            {
+                            }
+                        ],
+                        "id": "073__typed__enum_8cpp_1adf764cbdea00d65edcd07bb9953ad2b7",
+                        "inbodydescription": {
+                        },
+                        "kind": "enum",
+                        "location": {
+                        },
+                        "name": "",
+                        "protection": "public",
+                        "static": false,
+                        "strong": false,
+                        "type": {
+                        }
+                    }
                 }
             ]
         }

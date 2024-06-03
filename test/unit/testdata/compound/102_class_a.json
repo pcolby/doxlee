@@ -37,6 +37,33 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "()",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "constexpr": true,
+                        "definition": "int A::do_stuff2",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "class_a_1aa0ac26ebde08a69be4382f29077bd5d4",
+                        "inbodydescription": {
+                        },
+                        "inline": true,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "do_stuff2",
+                        "noexcept": true,
+                        "protection": "public",
+                        "qualifiedname": "A::do_stuff2",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

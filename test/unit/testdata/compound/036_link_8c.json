@@ -21,6 +21,34 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "(int p)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void func",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "036__link_8c_1affb6da6cff1b57cdf8efc0123dceac9b",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "func",
+                        "param": [
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

@@ -23,6 +23,28 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-attrib",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "integer mymodule::t2::publicvariable",
+                        "detaileddescription": {
+                        },
+                        "id": "structmymodule_1_1t2_1af907af6c7950c587a50eadd26987799a",
+                        "inbodydescription": {
+                        },
+                        "kind": "variable",
+                        "location": {
+                        },
+                        "mutable": false,
+                        "name": "publicvariable",
+                        "protection": "public",
+                        "qualifiedname": "mymodule::t2::publicvariable",
+                        "static": false,
+                        "type": {
+                        }
+                    }
                 }
             ]
         }

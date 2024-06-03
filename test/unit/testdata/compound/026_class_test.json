@@ -23,6 +23,39 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "(int p1, int p2)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "int Test< T >::example",
+                        "detaileddescription": {
+                        },
+                        "exceptions": {
+                        },
+                        "explicit": false,
+                        "id": "class_test_1abf9d5fbdaa4c23d0a513ee9746060779",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "example",
+                        "param": [
+                            {
+                            },
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "Test::example",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ],
             "templateparamlist": {

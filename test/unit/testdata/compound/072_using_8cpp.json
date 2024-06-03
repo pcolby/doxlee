@@ -22,6 +22,28 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "typedef",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "using Vec =  std::vector<T>",
+                        "detaileddescription": {
+                        },
+                        "id": "072__using_8cpp_1a1b01c504448c96cd2191a5184dd31acf",
+                        "inbodydescription": {
+                        },
+                        "kind": "typedef",
+                        "location": {
+                        },
+                        "name": "Vec",
+                        "protection": "public",
+                        "static": false,
+                        "templateparamlist": {
+                        },
+                        "type": {
+                        }
+                    }
                 }
             ]
         }

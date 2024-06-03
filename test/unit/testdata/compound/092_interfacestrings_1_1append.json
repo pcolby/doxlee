@@ -37,6 +37,39 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "(vector, items, mask)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "subroutine strings::append::append_vector",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "interfacestrings_1_1append_1aad33bb7b5e37fe745bbb409d97ae0f87",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "append_vector",
+                        "param": [
+                            {
+                            },
+                            {
+                            },
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "strings::append::append_vector",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

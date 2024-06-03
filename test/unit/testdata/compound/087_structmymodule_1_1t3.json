@@ -23,6 +23,28 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "private-attrib",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "integer mymodule::t3::privatevariable",
+                        "detaileddescription": {
+                        },
+                        "id": "structmymodule_1_1t3_1a8c70e7ad082657d4ddd9967c11ea5c68",
+                        "inbodydescription": {
+                        },
+                        "kind": "variable",
+                        "location": {
+                        },
+                        "mutable": false,
+                        "name": "privatevariable",
+                        "protection": "private",
+                        "qualifiedname": "mymodule::t3::privatevariable",
+                        "static": false,
+                        "type": {
+                        }
+                    }
                 }
             ]
         }

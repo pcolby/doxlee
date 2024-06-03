@@ -48,8 +48,59 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "protected-attrib",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "int Integer::integer",
+                        "detaileddescription": {
+                        },
+                        "id": "interface_integer_1a35e89216966d8179a1b77f14b8211fda",
+                        "inbodydescription": {
+                        },
+                        "kind": "variable",
+                        "location": {
+                        },
+                        "mutable": false,
+                        "name": "integer",
+                        "protection": "protected",
+                        "qualifiedname": "Integer::integer",
+                        "static": false,
+                        "type": {
+                        }
+                    }
                 },
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "(int _integer)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "id Integer::integer:",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "interface_integer_1ad2f47761103b2442ff7b3fbfe33ec6c9",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "integer:",
+                        "param": [
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "-[Integer integer:]",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "virtual"
+                    }
                 }
             ]
         }

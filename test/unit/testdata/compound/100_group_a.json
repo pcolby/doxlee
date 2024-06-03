@@ -24,14 +24,126 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "enum",
+                    "memberdef": {
+                        "briefdescription": {
+                        },
+                        "detaileddescription": {
+                        },
+                        "enumvalue": [
+                            {
+                            },
+                            {
+                            }
+                        ],
+                        "id": "group___a_1gaa57b8491d1d8fc1014dd54bcf83b130a",
+                        "inbodydescription": {
+                        },
+                        "kind": "enum",
+                        "location": {
+                        },
+                        "name": "E",
+                        "protection": "public",
+                        "static": false,
+                        "strong": false,
+                        "type": {
+                        }
+                    }
                 },
                 {
+                    "kind": "typedef",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "typedef struct s T",
+                        "detaileddescription": {
+                        },
+                        "id": "group___a_1ga5a6fd16639bb7ebdbd75952dc246cf51",
+                        "inbodydescription": {
+                        },
+                        "kind": "typedef",
+                        "location": {
+                        },
+                        "name": "T",
+                        "protection": "public",
+                        "static": false,
+                        "type": {
+                        }
+                    }
                 },
                 {
+                    "kind": "var",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "int j",
+                        "detaileddescription": {
+                        },
+                        "id": "group___a_1ga37d972ae0b47b9099e30983131d31916",
+                        "inbodydescription": {
+                        },
+                        "kind": "variable",
+                        "location": {
+                        },
+                        "mutable": false,
+                        "name": "j",
+                        "protection": "public",
+                        "static": false,
+                        "type": {
+                        }
+                    }
                 },
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "(void)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void g",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "group___a_1ga5806fbe7d2114068e8085236b6f8098d",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "g",
+                        "param": [
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 },
                 {
+                    "kind": "define",
+                    "memberdef": {
+                        "briefdescription": {
+                        },
+                        "detaileddescription": {
+                        },
+                        "id": "group___a_1gaf316c33cc298530f245e8b55330e86b5",
+                        "inbodydescription": {
+                        },
+                        "initializer": {
+                        },
+                        "kind": "define",
+                        "location": {
+                        },
+                        "name": "D",
+                        "protection": "public",
+                        "static": false
+                    }
                 }
             ],
             "title": "A"

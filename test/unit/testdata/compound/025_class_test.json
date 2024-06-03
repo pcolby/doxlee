@@ -23,6 +23,31 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "()",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void Test::example",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "class_test_1a47b775f65718978f1ffcd96376f8ecfa",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "example",
+                        "protection": "public",
+                        "qualifiedname": "Test::example",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

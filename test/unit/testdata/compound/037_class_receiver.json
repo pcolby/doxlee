@@ -23,6 +23,35 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "(int commandId)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void Receiver::Command",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "class_receiver_1a162099741e0324e6254c9bc570566e40",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "Command",
+                        "param": [
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "Receiver::Command",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

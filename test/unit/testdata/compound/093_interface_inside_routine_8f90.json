@@ -14,6 +14,30 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "subroutine use_tst::inner_routine",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "093__interface__inside__routine_8f90_1a5e4d223ee08b0fa3c460f84b5ba36753",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "inner_routine",
+                        "protection": "private",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

@@ -14,6 +14,30 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "()",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void cond_enabled",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "015__cond_8c_1a2521dcda743ec66ad8e030113d6e0c63",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "cond_enabled",
+                        "protection": "public",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

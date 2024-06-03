@@ -37,8 +37,59 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "header": "A group of functions.",
+                    "kind": "user-defined",
+                    "memberdef": {
+                        "argsstring": "()",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void Test::bar",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "class_test_1a78e37a450a276b60a5a2fa4a46c86f2e",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "bar",
+                        "protection": "public",
+                        "qualifiedname": "Test::bar",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 },
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "()",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void Test::ungrouped",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "class_test_1a1a26b34cfe612dacf462b81f74235269",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "ungrouped",
+                        "protection": "public",
+                        "qualifiedname": "Test::ungrouped",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

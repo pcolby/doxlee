@@ -14,6 +14,35 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "(std::initializer_list< int * >)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void ns::foo",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "namespacens_1aaa9eb8a7b40d4ed0edbe5e163b4e6e8d",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "foo",
+                        "param": [
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "ns::foo",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

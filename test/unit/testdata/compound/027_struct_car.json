@@ -63,6 +63,28 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "protected-attrib",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "Vehicle Car::base",
+                        "detaileddescription": {
+                        },
+                        "id": "struct_car_1ab8ff28306286da5a8b14fa9bdccaafaa",
+                        "inbodydescription": {
+                        },
+                        "kind": "variable",
+                        "location": {
+                        },
+                        "mutable": false,
+                        "name": "base",
+                        "protection": "protected",
+                        "qualifiedname": "Car::base",
+                        "static": false,
+                        "type": {
+                        }
+                    }
                 }
             ]
         }

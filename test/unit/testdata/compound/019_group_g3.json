@@ -11,6 +11,30 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "()",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void func_g3_add",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "group__g3_1gaf32d23522a5d9c3e7fed3dd5710001f7",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "func_g3_add",
+                        "protection": "public",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ],
             "title": "Third Group"

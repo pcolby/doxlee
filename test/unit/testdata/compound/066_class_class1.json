@@ -30,6 +30,35 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "property",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "string Class1.Property2",
+                        "detaileddescription": {
+                        },
+                        "gettable": true,
+                        "id": "class_class1_1a0d5b843d48ebc2c078e003d6ff3a1610",
+                        "inbodydescription": {
+                        },
+                        "kind": "property",
+                        "location": {
+                        },
+                        "name": "Property2",
+                        "privategettable": false,
+                        "privatesettable": false,
+                        "protectedgettable": false,
+                        "protectedsettable": false,
+                        "protection": "public",
+                        "qualifiedname": "Class1.Property2",
+                        "readable": false,
+                        "settable": true,
+                        "static": false,
+                        "type": {
+                        },
+                        "writable": false
+                    }
                 }
             ]
         }

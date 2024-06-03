@@ -23,6 +23,31 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "()",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void Reminder::reminder",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "class_reminder_1a173b5218bb11287b0e86a550d9f0728d",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "reminder",
+                        "protection": "public",
+                        "qualifiedname": "Reminder::reminder",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

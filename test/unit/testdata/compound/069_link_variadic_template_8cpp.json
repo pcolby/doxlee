@@ -21,6 +21,38 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "(int p, Args... args)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void func",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "069__link__variadic__template_8cpp_1abb1e0338f72ae46a1240ada65d6a397c",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "func",
+                        "param": [
+                            {
+                            },
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "static": false,
+                        "templateparamlist": {
+                        },
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

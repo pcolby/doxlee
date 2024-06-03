@@ -23,6 +23,35 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "(r)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "real function mymodule::externalproc::externalproc",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "interfacemymodule_1_1externalproc_1a50cefb79127d029dda033934c4f0d4f1",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "externalproc",
+                        "param": [
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "mymodule::externalproc::externalproc",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

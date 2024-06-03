@@ -14,6 +14,35 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "(somearg)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "subroutine mymodule::anotherproc",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "091__module__with__procs_8f90_1a81aef287c35bbfbb04b2cb3800aa4714",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "anotherproc",
+                        "param": [
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "mymodule::anotherproc",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

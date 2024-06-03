@@ -20,8 +20,53 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "enum",
+                    "memberdef": {
+                        "briefdescription": {
+                        },
+                        "detaileddescription": {
+                        },
+                        "id": "078__xml__namespace__members__in__file__scope_8h_1add172b93283b1ab7612c3ca6cc5dcfea",
+                        "inbodydescription": {
+                        },
+                        "kind": "enum",
+                        "location": {
+                        },
+                        "name": "Enum",
+                        "protection": "public",
+                        "qualifiedname": "Namespace::Enum",
+                        "static": false,
+                        "strong": true,
+                        "type": {
+                        }
+                    }
                 },
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "()",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void Namespace::foo",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "078__xml__namespace__members__in__file__scope_8h_1a0f1fe1a972c7c4196988a1bdde63ec77",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "foo",
+                        "protection": "public",
+                        "qualifiedname": "Namespace::foo",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

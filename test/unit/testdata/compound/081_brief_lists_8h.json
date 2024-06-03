@@ -14,6 +14,34 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "(void)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void c_subr4",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "081__brief__lists_8h_1a350caf1b2bbbbb18b9b4f08bb799f86b",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "c_subr4",
+                        "param": [
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

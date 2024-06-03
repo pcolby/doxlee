@@ -23,6 +23,31 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "()",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void Todo::todo",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "class_todo_1a9e70ec9176ac4c1b20e011b4daddc9d8",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "todo",
+                        "protection": "public",
+                        "qualifiedname": "Todo::todo",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

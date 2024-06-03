@@ -14,6 +14,28 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "var",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "integer, public m2::v4",
+                        "detaileddescription": {
+                        },
+                        "id": "088__module__var_8f90_1a7e7474396674938ae25b1a2300109b1c",
+                        "inbodydescription": {
+                        },
+                        "kind": "variable",
+                        "location": {
+                        },
+                        "mutable": false,
+                        "name": "v4",
+                        "protection": "public",
+                        "qualifiedname": "m2::v4",
+                        "static": false,
+                        "type": {
+                        }
+                    }
                 }
             ]
         }

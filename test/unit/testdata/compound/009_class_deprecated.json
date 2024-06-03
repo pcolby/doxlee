@@ -23,6 +23,31 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "()",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void Deprecated::deprecated",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "class_deprecated_1a1d5f6803e72c625727e7083d1722dbf9",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "deprecated",
+                        "protection": "public",
+                        "qualifiedname": "Deprecated::deprecated",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

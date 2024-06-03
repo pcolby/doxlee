@@ -14,6 +14,31 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "subroutine, public m1::f3",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "089__module__proc_8f90_1abee3d0fa94615ec38bca901754207860",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "f3",
+                        "protection": "public",
+                        "qualifiedname": "m1::f3",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

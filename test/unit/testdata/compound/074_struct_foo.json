@@ -86,8 +86,64 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "() const",
+                        "briefdescription": {
+                        },
+                        "const": true,
+                        "definition": "Foo Foo::fun",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "struct_foo_1a978acd73e910ce56cc169ebec8736669",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "fun",
+                        "protection": "public",
+                        "qualifiedname": "Foo::fun",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 },
                 {
+                    "kind": "public-static-func",
+                    "memberdef": {
+                        "argsstring": "(Foo a, Foo b)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "static Foo Foo::fun",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "struct_foo_1abdf64a71706807b0f946265902c530ee",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "fun",
+                        "param": [
+                            {
+                            },
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "Foo::fun",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

@@ -14,6 +14,36 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "(int p, int *q)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void func",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "035__invariant_8c_1a92e32ddd4278ab907422d5aaa34cb796",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "func",
+                        "param": [
+                            {
+                            },
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

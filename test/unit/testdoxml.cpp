@@ -503,40 +503,92 @@ void TestDoxml::parseCompound_refTextType()
 
 void TestDoxml::parseCompound_MemberType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    QTest::addRow("enum")
+        << QSL(R"(<member refid="foo" kind="enum"><name>bar</name></member>)")
+        << QVariantMap{
+            { QSL("refid"), QSL("foo") },
+            { QSL("kind"), QSL("enum") },
+            { QSL("name"), QSL("bar") },
+        };
 }
 
 void TestDoxml::parseCompound_MemberType()
 {
-    /// \todo Implement TestDoxml::parseCompound_MemberType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseCompound_MemberType(xml), QVariantMap{});
+    QTEST(doxml.parseCompound_MemberType(xml), "expected");
 }
 
 void TestDoxml::parseCompound_sectiondefType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    QTest::addRow("enum")
+        << QSL(R"(
+            <sectiondef kind="define">
+              <member refid="group__Utils_1ga175f00127b5cd4fc673a52180eb80eb5" kind="define"><name>ENGINE_VERSION</name></member>
+              <memberdef kind="define" id="Config_8hpp_1a5da40ad5fb2c39d9a9a711979695fea0" prot="public" static="no">
+                <name>ENGINE_ARCH</name>
+              </memberdef>
+            </sectiondef>)")
+        << QVariantMap{
+            { QSL("kind"), QSL("define") },
+            { QSL("member"), QVariantMap {
+                { QSL("refid"), QSL("group__Utils_1ga175f00127b5cd4fc673a52180eb80eb5") },
+                { QSL("kind"), QSL("define") },
+                { QSL("name"), QSL("ENGINE_VERSION") },
+            }},
+            { QSL("memberdef"), QVariantMap {
+                { QSL("kind"), QSL("define") },
+                { QSL("id"), QSL("Config_8hpp_1a5da40ad5fb2c39d9a9a711979695fea0") },
+                { QSL("protection"), QSL("public") },
+                { QSL("static"), false },
+                { QSL("name"), QSL("ENGINE_ARCH") },
+            }},
+        };
 }
 
 void TestDoxml::parseCompound_sectiondefType()
 {
-    /// \todo Implement TestDoxml::parseCompound_sectiondefType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseCompound_sectiondefType(xml), QVariantMap{});
+    QTEST(doxml.parseCompound_sectiondefType(xml), "expected");
 }
 
 void TestDoxml::parseCompound_memberdefType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    QTest::addRow("enum")
+        << QSL(R"(
+          <memberdef kind="define" id="Config_8hpp_1a5da40ad5fb2c39d9a9a711979695fea0" prot="public" static="no">
+            <name>ENGINE_ARCH</name>
+          </memberdef>)")
+        << QVariantMap{
+            { QSL("kind"), QSL("define") },
+            { QSL("id"), QSL("Config_8hpp_1a5da40ad5fb2c39d9a9a711979695fea0") },
+            { QSL("protection"), QSL("public") },
+            { QSL("static"), false },
+            { QSL("name"), QSL("ENGINE_ARCH") },
+        };
 }
 
 void TestDoxml::parseCompound_memberdefType()
 {
-    /// \todo Implement TestDoxml::parseCompound_memberdefType().
-    QXmlStreamReader xml(QSL("<memberdef/>"));
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
     xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    doxml.parseCompound_memberdefType(xml);
-    // QCOMPARE(doxml.parseCompound_memberdefType(xml), QVariantMap{});
+    QTEST(doxml.parseCompound_memberdefType(xml), "expected");
 }
 
 void TestDoxml::parseCompound_descriptionType_data()

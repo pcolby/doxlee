@@ -30,6 +30,31 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "() const",
+                        "briefdescription": {
+                        },
+                        "const": true,
+                        "definition": "Foo::operator int",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "struct_foo_1a1cd30e67501c6ff12bd6bf17af081449",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "operator int",
+                        "protection": "public",
+                        "qualifiedname": "Foo::operator int",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

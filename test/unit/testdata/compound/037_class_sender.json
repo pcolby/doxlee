@@ -23,6 +23,35 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "(bool ok)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void Sender::Ack",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "class_sender_1a8ad2c6f9baa4e798868fe4a4d45f8fda",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "Ack",
+                        "param": [
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "Sender::Ack",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

@@ -37,6 +37,37 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "(const Point &topLeft, const Point &bottomRight)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void Test::drawRect",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "class_test_1a62a76eed05fa84633d1e460aeeaf875d",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "drawRect",
+                        "param": [
+                            {
+                            },
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "Test::drawRect",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

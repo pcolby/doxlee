@@ -65,6 +65,35 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "(void(*fptr)(int x, int))",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void Foo::foo",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "struct_foo_1a0d4913fb514ee1cf71c793578650e25d",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "foo",
+                        "param": [
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "Foo::foo",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

@@ -14,6 +14,30 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "program tst",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "094__old__style__fortran__routines_8f90_1ae6213e4fa1afece3b9d926ec6dea6237",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "tst",
+                        "protection": "public",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

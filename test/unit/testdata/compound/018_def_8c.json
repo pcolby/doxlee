@@ -14,14 +14,130 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "define",
+                    "memberdef": {
+                        "briefdescription": {
+                        },
+                        "detaileddescription": {
+                        },
+                        "id": "018__def_8c_1adc4f42710326718e200d81a0c68cd1f0",
+                        "inbodydescription": {
+                        },
+                        "initializer": {
+                        },
+                        "kind": "define",
+                        "location": {
+                        },
+                        "name": "MACRO4",
+                        "protection": "public",
+                        "static": false
+                    }
                 },
                 {
+                    "kind": "enum",
+                    "memberdef": {
+                        "briefdescription": {
+                        },
+                        "detaileddescription": {
+                        },
+                        "enumvalue": [
+                            {
+                            },
+                            {
+                            }
+                        ],
+                        "id": "018__def_8c_1aa57b8491d1d8fc1014dd54bcf83b130a",
+                        "inbodydescription": {
+                        },
+                        "kind": "enum",
+                        "location": {
+                        },
+                        "name": "E",
+                        "protection": "public",
+                        "static": false,
+                        "strong": false,
+                        "type": {
+                        }
+                    }
                 },
                 {
+                    "kind": "typedef",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "typedef int Type",
+                        "detaileddescription": {
+                        },
+                        "id": "018__def_8c_1acf326bb477a5bcb5ca69d535da296189",
+                        "inbodydescription": {
+                        },
+                        "kind": "typedef",
+                        "location": {
+                        },
+                        "name": "Type",
+                        "protection": "public",
+                        "static": false,
+                        "type": {
+                        }
+                    }
                 },
                 {
+                    "kind": "var",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "int var",
+                        "detaileddescription": {
+                        },
+                        "id": "018__def_8c_1a96c77f9f3a7baec84b9b8add26a31787",
+                        "inbodydescription": {
+                        },
+                        "initializer": {
+                        },
+                        "kind": "variable",
+                        "location": {
+                        },
+                        "mutable": false,
+                        "name": "var",
+                        "protection": "public",
+                        "static": false,
+                        "type": {
+                        }
+                    }
                 },
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "(int, const char *)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void func",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "018__def_8c_1adf3f1249a79d3272ac196dd90d6b23aa",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "func",
+                        "param": [
+                            {
+                            },
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

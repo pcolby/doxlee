@@ -30,6 +30,35 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "(Integer *subtrahend)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "id Integer(Arithmetic)::sub:",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "category_integer_07_arithmetic_08_1ae4ff0b0c62b6809e8f5bcee9baa6e521",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "sub:",
+                        "param": [
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "-[Integer(Arithmetic) sub:]",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "virtual"
+                    }
                 }
             ]
         }

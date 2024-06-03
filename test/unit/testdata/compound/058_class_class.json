@@ -30,6 +30,30 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-type",
+                    "memberdef": {
+                        "briefdescription": {
+                        },
+                        "detaileddescription": {
+                        },
+                        "enumvalue": [
+                            {
+                            }
+                        ],
+                        "id": "class_class_1af09ec8b7238c8a302c251b1cfe1de13d",
+                        "inbodydescription": {
+                        },
+                        "kind": "enum",
+                        "location": {
+                        },
+                        "name": "Enum2",
+                        "protection": "public",
+                        "qualifiedname": "Class::Enum2",
+                        "static": false,
+                        "strong": true,
+                        "type": {
+                        }
+                    }
                 }
             ]
         }

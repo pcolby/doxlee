@@ -76,8 +76,63 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "var",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "integer, parameter strings::ck",
+                        "detaileddescription": {
+                        },
+                        "id": "namespacestrings_1a45584f6a9f6f13e5370bd883d744f0a6",
+                        "inbodydescription": {
+                        },
+                        "initializer": {
+                        },
+                        "kind": "variable",
+                        "location": {
+                        },
+                        "mutable": false,
+                        "name": "ck",
+                        "protection": "private",
+                        "qualifiedname": "strings::ck",
+                        "static": false,
+                        "type": {
+                        }
+                    }
                 },
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "(vector, separator)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "character(:) function, allocatable strings::join_",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "namespacestrings_1a4607ed542e854e5f9d57204ad82b2c95",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "join_",
+                        "param": [
+                            {
+                            },
+                            {
+                            }
+                        ],
+                        "protection": "private",
+                        "qualifiedname": "strings::join_",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

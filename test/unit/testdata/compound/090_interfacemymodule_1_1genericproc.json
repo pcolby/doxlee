@@ -37,6 +37,35 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "(r)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "subroutine mymodule::genericproc::externalproc2",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "interfacemymodule_1_1genericproc_1a92cbc79d158eaa86f5a43f0f00af8a12",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "externalproc2",
+                        "param": [
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "mymodule::genericproc::externalproc2",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

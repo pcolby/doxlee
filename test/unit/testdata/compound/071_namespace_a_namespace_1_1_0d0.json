@@ -14,6 +14,34 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "enum",
+                    "memberdef": {
+                        "briefdescription": {
+                        },
+                        "detaileddescription": {
+                        },
+                        "enumvalue": [
+                            {
+                            },
+                            {
+                            },
+                            {
+                            }
+                        ],
+                        "id": "namespace_a_namespace_1_1_0d0_1a96ab6574751fdf6a53ceec8a3896c45d",
+                        "inbodydescription": {
+                        },
+                        "kind": "enum",
+                        "location": {
+                        },
+                        "name": "Boolean",
+                        "protection": "public",
+                        "qualifiedname": "ANamespace::Boolean",
+                        "static": false,
+                        "strong": true,
+                        "type": {
+                        }
+                    }
                 }
             ]
         }

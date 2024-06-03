@@ -72,10 +72,91 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-attrib",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "integer mymodule::t1::publicvariable",
+                        "detaileddescription": {
+                        },
+                        "id": "structmymodule_1_1t1_1a40dabbcb827e13ffbb38bb7e9e5957cc",
+                        "inbodydescription": {
+                        },
+                        "kind": "variable",
+                        "location": {
+                        },
+                        "mutable": false,
+                        "name": "publicvariable",
+                        "protection": "public",
+                        "qualifiedname": "mymodule::t1::publicvariable",
+                        "static": false,
+                        "type": {
+                        }
+                    }
                 },
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "(this)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "final mymodule::t1::destructor",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "final": true,
+                        "id": "structmymodule_1_1t1_1a69844b06186021c87dc0eccea9265d43",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "destructor",
+                        "param": [
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "mymodule::t1::destructor",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 },
                 {
+                    "kind": "public-static-func",
+                    "memberdef": {
+                        "argsstring": "(somearg)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "procedure, nopass mymodule::t1::staticproc",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "structmymodule_1_1t1_1abb688b8fc7c32fadd1055ff32392003c",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "staticproc",
+                        "param": [
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "mymodule::t1::staticproc",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

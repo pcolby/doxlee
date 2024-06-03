@@ -23,6 +23,27 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-type",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "using N::allocator_traits< _Alloc >::const_pointer =  typename _Ptr<__c_pointer, const value_type>::type",
+                        "detaileddescription": {
+                        },
+                        "id": "struct_n_1_1allocator__traits_1a764c5cc2bd9edc0cfa83282a3f5a75f8",
+                        "inbodydescription": {
+                        },
+                        "kind": "typedef",
+                        "location": {
+                        },
+                        "name": "const_pointer",
+                        "protection": "public",
+                        "qualifiedname": "N::allocator_traits::const_pointer",
+                        "static": false,
+                        "type": {
+                        }
+                    }
                 }
             ],
             "templateparamlist": {

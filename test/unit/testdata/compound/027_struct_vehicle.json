@@ -77,8 +77,59 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "protected-attrib",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "Object Vehicle::base",
+                        "detaileddescription": {
+                        },
+                        "id": "struct_vehicle_1ad7970f528d429f6fc1725173e93a77c2",
+                        "inbodydescription": {
+                        },
+                        "kind": "variable",
+                        "location": {
+                        },
+                        "mutable": false,
+                        "name": "base",
+                        "protection": "protected",
+                        "qualifiedname": "Vehicle::base",
+                        "static": false,
+                        "type": {
+                        }
+                    }
                 },
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "(Vehicle *obj)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void vehicleStop",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "struct_vehicle_1a4dcbcba43792dcd673a552b14479ab77",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "vehicleStop",
+                        "param": [
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "Vehicle::vehicleStop",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

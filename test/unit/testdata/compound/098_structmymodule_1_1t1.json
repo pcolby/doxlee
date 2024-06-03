@@ -24,6 +24,37 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "(this, i)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "procedure(abstractproc), deferred mymodule::t1::deferredproc",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "structmymodule_1_1t1_1ab1f2a4ba1fea02505c62a0cd41f447d1",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "deferredproc",
+                        "param": [
+                            {
+                            },
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "mymodule::t1::deferredproc",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "pure-virtual"
+                    }
                 }
             ]
         }

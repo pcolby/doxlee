@@ -17,6 +17,30 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "()",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void func_g2",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "group__g2_1gafd310bbec27993e80a5dbaf6c54d5e0b",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "func_g2",
+                        "protection": "public",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ],
             "title": "Second Group"

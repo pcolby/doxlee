@@ -706,16 +706,61 @@ QVariantMap Doxml::parseCompound_refTextType(QXmlStreamReader &xml) const
 
 QVariantMap Doxml::parseCompound_MemberType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseCompound_MemberType().
-    xml.skipCurrentElement();
-    return {};
+    Q_ASSERT(xml.name() == QSL("member"));
+
+    const QXmlStreamAttributes attributes = xml.attributes();
+    QVariantMap map;
+    for (const QString &attributeName: QStringList{ QSL("refid"), QSL("kind") }) {
+        const QStringView attributeValue = attributes.value(attributeName);
+        if (!attributeValue.isNull()) {
+            map.insert(attributeName, attributeValue.toString());
+        }
+    }
+
+    while ((!xml.atEnd()) && (xml.readNextStartElement())) {
+        if (xml.name() == QSL("name")) {
+            map.insert(QSL("name"), xml.readElementText());
+        } else {
+            logWarning(Warning::UnexpectedElement, xml);
+            xml.skipCurrentElement();
+        }
+    }
+    return map;
 }
 
 QVariantMap Doxml::parseCompound_sectiondefType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseCompound_sectiondefType().
-    xml.skipCurrentElement();
-    return {};
+    Q_ASSERT(xml.name() == QSL("sectiondef"));
+
+    QVariantMap map;
+    const QStringView kind = xml.attributes().value(QSL("kind"));
+    if (!kind.isNull()) {
+        map.insert(QSL("kind"), kind.toString());
+    }
+
+    while ((!xml.atEnd()) && (xml.readNextStartElement())) {
+        if (xml.name() == QSL("header")) {
+            map.insert(QSL("header"), xml.readElementText());
+        }
+
+        else if (xml.name() == QSL("description")) {
+            map.insert(QSL("description"), parseCompound_descriptionType(xml));
+        }
+
+        else if (xml.name() == QSL("memberdef")) {
+            map.insert(QSL("memberdef"), parseCompound_memberdefType(xml));
+        }
+
+        else if (xml.name() == QSL("member")) {
+            map.insert(QSL("member"), parseCompound_MemberType(xml));
+        }
+
+        else {
+            logWarning(Warning::UnexpectedElement, xml);
+            xml.skipCurrentElement();
+        }
+    }
+    return map;
 }
 
 QVariantMap Doxml::parseCompound_memberdefType(QXmlStreamReader &xml) const

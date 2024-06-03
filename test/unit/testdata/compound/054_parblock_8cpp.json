@@ -14,6 +14,42 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "(int client, int *resource, int parblock, int *test, int p)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void function_2",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "054__parblock_8cpp_1a5cded03ec9e6fd626da35ab05f624f39",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "function_2",
+                        "param": [
+                            {
+                            },
+                            {
+                            },
+                            {
+                            },
+                            {
+                            },
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

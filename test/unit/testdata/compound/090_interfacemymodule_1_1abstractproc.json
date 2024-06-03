@@ -23,6 +23,35 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "public-func",
+                    "memberdef": {
+                        "argsstring": "(logicalarg)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "subroutine mymodule::abstractproc::abstractproc",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "interfacemymodule_1_1abstractproc_1ae7af149f9526318f55fd76e8cef8004c",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "abstractproc",
+                        "param": [
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "mymodule::abstractproc::abstractproc",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "virtual"
+                    }
                 }
             ]
         }

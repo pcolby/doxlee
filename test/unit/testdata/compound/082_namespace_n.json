@@ -14,8 +14,59 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "var",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "int N::var",
+                        "detaileddescription": {
+                        },
+                        "id": "namespace_n_1a406e233433deabc7b1612470373d53e0",
+                        "inbodydescription": {
+                        },
+                        "kind": "variable",
+                        "location": {
+                        },
+                        "mutable": false,
+                        "name": "var",
+                        "protection": "public",
+                        "qualifiedname": "N::var",
+                        "static": false,
+                        "type": {
+                        }
+                    }
                 },
                 {
+                    "kind": "func",
+                    "memberdef": {
+                        "argsstring": "(int param)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "void N::foo",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "namespace_n_1a0c776dda1c868f653e020c9ee8dc83bb",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "foo",
+                        "param": [
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "N::foo",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

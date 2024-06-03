@@ -47,8 +47,59 @@
             "protection": "public",
             "sectiondef": [
                 {
+                    "kind": "private-attrib",
+                    "memberdef": {
+                        "argsstring": "",
+                        "briefdescription": {
+                        },
+                        "definition": "int Object::ref",
+                        "detaileddescription": {
+                        },
+                        "id": "struct_object_1a1b6037fba835e83243ababce426ff9af",
+                        "inbodydescription": {
+                        },
+                        "kind": "variable",
+                        "location": {
+                        },
+                        "mutable": false,
+                        "name": "ref",
+                        "protection": "private",
+                        "qualifiedname": "Object::ref",
+                        "static": false,
+                        "type": {
+                        }
+                    }
                 },
                 {
+                    "kind": "public-static-func",
+                    "memberdef": {
+                        "argsstring": "(Object *obj)",
+                        "briefdescription": {
+                        },
+                        "const": false,
+                        "definition": "static Object * objUnref",
+                        "detaileddescription": {
+                        },
+                        "explicit": false,
+                        "id": "struct_object_1a924ee0cecc906d148022b3f0d6325cfb",
+                        "inbodydescription": {
+                        },
+                        "inline": false,
+                        "kind": "function",
+                        "location": {
+                        },
+                        "name": "objUnref",
+                        "param": [
+                            {
+                            }
+                        ],
+                        "protection": "public",
+                        "qualifiedname": "Object::objUnref",
+                        "static": false,
+                        "type": {
+                        },
+                        "virt": "non-virtual"
+                    }
                 }
             ]
         }

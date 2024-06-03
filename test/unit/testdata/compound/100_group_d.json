@@ -17,6 +17,32 @@
             "protection": "",
             "sectiondef": [
                 {
+                    "kind": "enum",
+                    "memberdef": {
+                        "briefdescription": {
+                        },
+                        "detaileddescription": {
+                        },
+                        "enumvalue": [
+                            {
+                            },
+                            {
+                            }
+                        ],
+                        "id": "group___d_1gaa48c7d518127686d87b3be640e03f505",
+                        "inbodydescription": {
+                        },
+                        "kind": "enum",
+                        "location": {
+                        },
+                        "name": "ED",
+                        "protection": "public",
+                        "qualifiedname": "NS::ED",
+                        "static": false,
+                        "strong": false,
+                        "type": {
+                        }
+                    }
                 }
             ],
             "title": "D"
