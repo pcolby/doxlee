@@ -9,6 +9,8 @@
             "id": "077__no__xml__namespace__members__in__file__scope_8h",
             "innernamespace": [
                 {
+                    "refid": "namespace_namespace",
+                    "text": "Namespace"
                 }
             ],
             "kind": "file",

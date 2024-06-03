@@ -9,6 +9,9 @@
             "id": "class_a",
             "includes": [
                 {
+                    "local": false,
+                    "refid": "102__header_8hpp",
+                    "text": "102_header.hpp"
                 }
             ],
             "kind": "class",

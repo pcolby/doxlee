@@ -598,7 +598,7 @@ QVariantMap Doxml::parseCompound_compoundRefType(QXmlStreamReader &xml) const
 
     const QXmlStreamAttributes attributes = xml.attributes();
     QVariantMap map;
-    for (const QString &attributeName: QStringList{ QSL("refid"), QSL("prot"), QSL("virt"), QSL("virt") }) {
+    for (const QString &attributeName: QStringList{ QSL("refid"), QSL("prot"), QSL("virt") }) {
         const QStringView attributeValue = attributes.value(attributeName);
         if (!attributeValue.isNull()) {
             map.insert(attributeName, attributeValue.toString());
@@ -610,44 +610,98 @@ QVariantMap Doxml::parseCompound_compoundRefType(QXmlStreamReader &xml) const
 
 QVariantMap Doxml::parseCompound_reimplementType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseCompound_reimplementType().
-    xml.skipCurrentElement();
-    return {};
+    Q_ASSERT(xml.name() == QSL("reimplements"));
+
+    QVariantMap map;
+    const QStringView refid = xml.attributes().value(QSL("refid"));
+    if (!refid.isNull()) {
+        map.insert(QSL("refid"), refid.toString());
+    }
+    map.insert(QSL("text"), xml.readElementText());
+    return map;
 }
 
 QVariantMap Doxml::parseCompound_incType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseCompound_incType().
-    xml.skipCurrentElement();
-    return {};
+    Q_ASSERT((xml.name() == QSL("includes")) || (xml.name() == QSL("includedby")));
+
+    const QXmlStreamAttributes attributes = xml.attributes();
+    QVariantMap map;
+    const QStringView refid = attributes.value(QSL("refid"));
+    if (!refid.isNull()) {
+        map.insert(QSL("refid"), refid.toString());
+    }
+    const QStringView local = attributes.value(QSL("local"));
+    if (!local.isNull()) {
+        map.insert(QSL("local"), local.toString() == QSL("yes"));
+    }
+    map.insert(QSL("text"), xml.readElementText());
+    return map;
 }
 
-QVariantMap Doxml::parseCompound_exportsType(QXmlStreamReader &xml) const
+QVariantList Doxml::parseCompound_exportsType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseCompound_exportsType().
-    xml.skipCurrentElement();
-    return {};
+    Q_ASSERT(xml.name() == QSL("exports"));
+
+    QVariantList list;
+    while ((!xml.atEnd()) && (xml.readNextStartElement())) {
+        if (xml.name() == QSL("export")) {
+            list.append(parseCompound_exportType(xml));
+        } else {
+            logWarning(Warning::UnexpectedElement, xml);
+            xml.skipCurrentElement();
+        }
+    }
+    return list;
 }
 
 QVariantMap Doxml::parseCompound_exportType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseCompound_exportType().
-    xml.skipCurrentElement();
-    return {};
+    Q_ASSERT(xml.name() == QSL("export"));
+
+    QVariantMap map;
+    const QStringView refid = xml.attributes().value(QSL("refid"));
+    if (!refid.isNull()) {
+        map.insert(QSL("refid"), refid.toString());
+    }
+    map.insert(QSL("text"), xml.readElementText());
+    return map;
 }
 
 QVariantMap Doxml::parseCompound_refType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseCompound_refType().
-    xml.skipCurrentElement();
-    return {};
+    Q_ASSERT(xml.name().startsWith(QSL("inner")));
+
+    const QXmlStreamAttributes attributes = xml.attributes();
+    QVariantMap map;
+    for (const QString &attributeName: QStringList{ QSL("refid"), QSL("prot") }) {
+        const QStringView attributeValue = attributes.value(attributeName);
+        if (!attributeValue.isNull()) {
+            map.insert(attributeName, attributeValue.toString());
+        }
+    }
+    const QStringView localView = attributes.value(QSL("inline"));
+    if (!localView.isNull()) {
+        map.insert(QSL("inline"), localView.toString() == QSL("yes"));
+    }
+    map.insert(QSL("text"), xml.readElementText());
+    return map;
 }
 
 QVariantMap Doxml::parseCompound_refTextType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseCompound_refTextType().
-    xml.skipCurrentElement();
-    return {};
+    Q_ASSERT(xml.name() == QSL("ref"));
+
+    const QXmlStreamAttributes attributes = xml.attributes();
+    QVariantMap map;
+    for (const QString &attributeName: QStringList{ QSL("refid"), QSL("kindref"), QSL("external"), QSL("tooltip") }) {
+        const QStringView attributeValue = attributes.value(attributeName);
+        if (!attributeValue.isNull()) {
+            map.insert(attributeName, attributeValue.toString());
+        }
+    }
+    map.insert(QSL("text"), xml.readElementText());
+    return map;
 }
 
 QVariantMap Doxml::parseCompound_MemberType(QXmlStreamReader &xml) const

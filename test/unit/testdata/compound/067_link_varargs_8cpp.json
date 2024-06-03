@@ -9,6 +9,9 @@
             "id": "067__link__varargs_8cpp",
             "innerclass": [
                 {
+                    "prot": "public",
+                    "refid": "class_test",
+                    "text": "Test"
                 }
             ],
             "kind": "file",

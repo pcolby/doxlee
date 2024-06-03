@@ -9,10 +9,15 @@
             "id": "namespacelibrary_1_1v1",
             "innerclass": [
                 {
+                    "prot": "public",
+                    "refid": "classlibrary_1_1v1_1_1foo",
+                    "text": "library::v1::foo"
                 }
             ],
             "innernamespace": [
                 {
+                    "refid": "namespacelibrary_1_1v1_1_1_n_s",
+                    "text": "library::v1::NS"
                 }
             ],
             "kind": "namespace",

@@ -9,28 +9,64 @@
             "id": "namespacestrings",
             "innerclass": [
                 {
+                    "prot": "public",
+                    "refid": "interfacestrings_1_1append",
+                    "text": "strings::append"
                 },
                 {
+                    "prot": "public",
+                    "refid": "interfacestrings_1_1appendifunique",
+                    "text": "strings::appendifunique"
                 },
                 {
+                    "prot": "public",
+                    "refid": "interfacestrings_1_1find",
+                    "text": "strings::find"
                 },
                 {
+                    "prot": "public",
+                    "refid": "interfacestrings_1_1grow",
+                    "text": "strings::grow"
                 },
                 {
+                    "prot": "public",
+                    "refid": "interfacestrings_1_1join",
+                    "text": "strings::join"
                 },
                 {
+                    "prot": "public",
+                    "refid": "interfacestrings_1_1len",
+                    "text": "strings::len"
                 },
                 {
+                    "prot": "public",
+                    "refid": "interfacestrings_1_1operator_07_0a_0a_08",
+                    "text": "strings::operator(==)"
                 },
                 {
+                    "prot": "public",
+                    "refid": "interfacestrings_1_1pack",
+                    "text": "strings::pack"
                 },
                 {
+                    "prot": "private",
+                    "refid": "interfacestrings_1_1push",
+                    "text": "strings::push"
                 },
                 {
+                    "prot": "public",
+                    "refid": "interfacestrings_1_1replace",
+                    "text": "strings::replace"
                 },
                 {
+                    "prot": "public",
+                    "refid": "interfacestrings_1_1shrink",
+                    "text": "strings::shrink"
                 },
                 {
+                    "prot": "public",
+                    "refid": "structstrings_1_1string",
+                    "text": "strings::string"
                 }
             ],
             "kind": "namespace",

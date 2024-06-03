@@ -9,10 +9,15 @@
             "id": "group___c",
             "innerclass": [
                 {
+                    "prot": "public",
+                    "refid": "structs",
+                    "text": "s"
                 }
             ],
             "innerfile": [
                 {
+                    "refid": "more__100__c_8c",
+                    "text": "more_100_c.c"
                 }
             ],
             "kind": "group",

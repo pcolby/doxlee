@@ -9,6 +9,8 @@
             "id": "group__g2",
             "innergroup": [
                 {
+                    "refid": "group__g3",
+                    "text": "Third Group"
                 }
             ],
             "kind": "group",

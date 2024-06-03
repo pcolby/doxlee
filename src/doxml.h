@@ -66,7 +66,7 @@ private:
     QVariantMap parseCompound_compoundRefType         (QXmlStreamReader &xml) const;
     QVariantMap parseCompound_reimplementType         (QXmlStreamReader &xml) const;
     QVariantMap parseCompound_incType                 (QXmlStreamReader &xml) const;
-    QVariantMap parseCompound_exportsType             (QXmlStreamReader &xml) const;
+    QVariantList parseCompound_exportsType            (QXmlStreamReader &xml) const;
     QVariantMap parseCompound_exportType              (QXmlStreamReader &xml) const;
     QVariantMap parseCompound_refType                 (QXmlStreamReader &xml) const;
     QVariantMap parseCompound_refTextType             (QXmlStreamReader &xml) const;

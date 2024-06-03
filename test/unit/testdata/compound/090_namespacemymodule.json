@@ -9,14 +9,29 @@
             "id": "namespacemymodule",
             "innerclass": [
                 {
+                    "prot": "public",
+                    "refid": "interfacemymodule_1_1abstractproc",
+                    "text": "mymodule::abstractproc"
                 },
                 {
+                    "prot": "public",
+                    "refid": "interfacemymodule_1_1externalproc",
+                    "text": "mymodule::externalproc"
                 },
                 {
+                    "prot": "public",
+                    "refid": "interfacemymodule_1_1genericproc",
+                    "text": "mymodule::genericproc"
                 },
                 {
+                    "prot": "private",
+                    "refid": "interfacemymodule_1_1operator_07_8cross_8_08",
+                    "text": "mymodule::operator(.cross.)"
                 },
                 {
+                    "prot": "private",
+                    "refid": "interfacemymodule_1_1operator_07_2_2_08",
+                    "text": "mymodule::operator(//)"
                 }
             ],
             "kind": "namespace",

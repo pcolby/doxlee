@@ -9,6 +9,9 @@
             "id": "class_t1",
             "includes": [
                 {
+                    "local": true,
+                    "refid": "013__class_8h",
+                    "text": "inc/013_class.h"
                 }
             ],
             "kind": "class",

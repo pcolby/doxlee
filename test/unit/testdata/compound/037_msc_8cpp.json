@@ -9,8 +9,14 @@
             "id": "037__msc_8cpp",
             "innerclass": [
                 {
+                    "prot": "public",
+                    "refid": "class_sender",
+                    "text": "Sender"
                 },
                 {
+                    "prot": "public",
+                    "refid": "class_receiver",
+                    "text": "Receiver"
                 }
             ],
             "kind": "file",

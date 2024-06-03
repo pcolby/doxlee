@@ -11,6 +11,8 @@
             },
             "includes": [
                 {
+                    "local": false,
+                    "text": "vector"
                 }
             ],
             "kind": "file",

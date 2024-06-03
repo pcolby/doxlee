@@ -9,10 +9,19 @@
             "id": "namespacem1",
             "innerclass": [
                 {
+                    "prot": "public",
+                    "refid": "structm1_1_1t1",
+                    "text": "m1::t1"
                 },
                 {
+                    "prot": "public",
+                    "refid": "structm1_1_1t2",
+                    "text": "m1::t2"
                 },
                 {
+                    "prot": "public",
+                    "refid": "structm1_1_1t3",
+                    "text": "m1::t3"
                 }
             ],
             "kind": "namespace",

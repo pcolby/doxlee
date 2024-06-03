@@ -9,6 +9,8 @@
             "id": "group___d",
             "innernamespace": [
                 {
+                    "refid": "namespace_n_s",
+                    "text": "NS"
                 }
             ],
             "kind": "group",

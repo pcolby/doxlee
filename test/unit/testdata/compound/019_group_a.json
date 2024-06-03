@@ -9,10 +9,16 @@
             "id": "group___a",
             "innergroup": [
                 {
+                    "refid": "group___b",
+                    "text": "B"
                 },
                 {
+                    "refid": "group___c",
+                    "text": "C"
                 },
                 {
+                    "refid": "group___d",
+                    "text": "D"
                 }
             ],
             "kind": "group",

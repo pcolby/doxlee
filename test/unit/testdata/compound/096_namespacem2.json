@@ -9,6 +9,9 @@
             "id": "namespacem2",
             "innerclass": [
                 {
+                    "prot": "public",
+                    "refid": "structm2_1_1t3",
+                    "text": "m2::t3"
                 }
             ],
             "kind": "namespace",

@@ -11,6 +11,8 @@
             },
             "includes": [
                 {
+                    "local": false,
+                    "text": "stdio.h"
                 }
             ],
             "kind": "file",

@@ -9,6 +9,8 @@
             "id": "mypage",
             "innerpage": [
                 {
+                    "refid": "another",
+                    "text": "Another Page"
                 }
             ],
             "kind": "page",

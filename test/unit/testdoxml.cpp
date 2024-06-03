@@ -322,79 +322,183 @@ void TestDoxml::parseCompound_compoundRefType()
     xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
     QTEST(doxml.parseCompound_compoundRefType(xml), "expected");
-    // for (const QString &attributeName: QStringList{ QSL("refid"), QSL("prot"), QSL("virt"), QSL("virt") }) {
 }
 
 void TestDoxml::parseCompound_reimplementType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    QTest::addRow("basic")
+        << QSL("<reimplements>abc</reimplements>")
+        << QVariantMap{
+            { QSL("text"), QSL("abc") },
+        };
+
+    QTest::addRow("more")
+        << QSL(R"(<reimplements refid="foo">bar</reimplements>)")
+        << QVariantMap{
+            { QSL("refid"), QSL("foo") },
+            { QSL("text"), QSL("bar") },
+        };
 }
 
 void TestDoxml::parseCompound_reimplementType()
 {
-    /// \todo Implement TestDoxml::parseCompound_reimplementType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseCompound_reimplementType(xml), QVariantMap{});
+    QTEST(doxml.parseCompound_reimplementType(xml), "expected");
 }
 
 void TestDoxml::parseCompound_incType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    QTest::addRow("includes")
+        << QSL("<includes>abc</includes>")
+        << QVariantMap{
+            { QSL("text"), QSL("abc") },
+        };
+
+    QTest::addRow("includedby")
+        << QSL(R"(<includedby refid="foo" local="yes">bar</reimplements>)")
+        << QVariantMap{
+            { QSL("refid"), QSL("foo") },
+            { QSL("local"), true },
+            { QSL("text"), QSL("bar") },
+        };
 }
 
 void TestDoxml::parseCompound_incType()
 {
-    /// \todo Implement TestDoxml::parseCompound_incType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseCompound_incType(xml), QVariantMap{});
+    QTEST(doxml.parseCompound_incType(xml), "expected");
 }
 
 void TestDoxml::parseCompound_exportsType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantList>("expected");
+
+    QTest::addRow("basic")
+        << QSL(R"(
+            <exports>
+                <export>abc</export>
+                <export refid="foo">bar</export>
+            </exports>)")
+        << QVariantList{
+            QVariantMap{
+                { QSL("text"), QSL("abc") },
+            },
+            QVariantMap{
+                { QSL("refid"), QSL("foo") },
+                { QSL("text"), QSL("bar") },
+            },
+        };
 }
 
 void TestDoxml::parseCompound_exportsType()
 {
-    /// \todo Implement TestDoxml::parseCompound_exportsType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseCompound_exportsType(xml), QVariantMap{});
+    QTEST(doxml.parseCompound_exportsType(xml), "expected");
 }
 
 void TestDoxml::parseCompound_exportType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    QTest::addRow("basic")
+        << QSL("<export>abc</export>")
+        << QVariantMap{
+            { QSL("text"), QSL("abc") },
+        };
+
+    QTest::addRow("more")
+        << QSL(R"(<export refid="foo">bar</export>)")
+        << QVariantMap{
+            { QSL("refid"), QSL("foo") },
+            { QSL("text"), QSL("bar") },
+        };
 }
 
 void TestDoxml::parseCompound_exportType()
 {
-    /// \todo Implement TestDoxml::parseCompound_exportType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseCompound_exportType(xml), QVariantMap{});
+    QTEST(doxml.parseCompound_exportType(xml), "expected");
 }
 
 void TestDoxml::parseCompound_refType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    QTest::addRow("innermodule")
+        << QSL("<innermodule>abc</innermodule>")
+        << QVariantMap{
+            { QSL("text"), QSL("abc") },
+        };
+
+    QTest::addRow("innerdir")
+        << QSL(R"(<innerdir refid="foo" prot="public" inline="yes">bar</innerdir>)")
+        << QVariantMap{
+            { QSL("refid"), QSL("foo") },
+            { QSL("prot"), QSL("public") },
+            { QSL("inline"), true },
+            { QSL("text"), QSL("bar") },
+        };
 }
 
 void TestDoxml::parseCompound_refType()
 {
-    /// \todo Implement TestDoxml::parseCompound_refType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseCompound_refType(xml), QVariantMap{});
+    QTEST(doxml.parseCompound_refType(xml), "expected");
 }
 
 void TestDoxml::parseCompound_refTextType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    QTest::addRow("basic")
+        << QSL("<ref>abc</ref>")
+        << QVariantMap{
+            { QSL("text"), QSL("abc") },
+        };
+
+    QTest::addRow("more")
+        << QSL(R"(<ref refid="foo" kindref="bar" external="baz" tooltip="quz">abc</ref>)")
+        << QVariantMap{
+            { QSL("refid"), QSL("foo") },
+            { QSL("kindref"), QSL("bar") },
+            { QSL("external"), QSL("baz") },
+            { QSL("tooltip"), QSL("quz") },
+            { QSL("text"), QSL("abc") },
+        };
 }
 
 void TestDoxml::parseCompound_refTextType()
 {
-    /// \todo Implement TestDoxml::parseCompound_refTextType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseCompound_refTextType(xml), QVariantMap{});
+    QTEST(doxml.parseCompound_refTextType(xml), "expected");
 }
 
 void TestDoxml::parseCompound_MemberType_data()

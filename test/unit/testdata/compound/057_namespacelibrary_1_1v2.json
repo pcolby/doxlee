@@ -10,10 +10,15 @@
             "inline": true,
             "innerclass": [
                 {
+                    "prot": "public",
+                    "refid": "classlibrary_1_1v2_1_1foo",
+                    "text": "library::v2::foo"
                 }
             ],
             "innernamespace": [
                 {
+                    "refid": "namespacelibrary_1_1v2_1_1_n_s",
+                    "text": "library::v2::NS"
                 }
             ],
             "kind": "namespace",
