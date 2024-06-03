@@ -268,14 +268,30 @@ void TestDoxml::parseCompound_memberRefType()
 
 void TestDoxml::parseCompound_docHtmlOnlyType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    QTest::addRow("basic")
+        << QSL("<htmlonly>abc</htmlonly>")
+        << QVariantMap{
+            { QSL("text"), QSL("abc") },
+        };
+
+    QTest::addRow("block")
+        << QSL(R"(<htmlonly block="foo">bar</htmlonly>)")
+        << QVariantMap{
+            { QSL("block"), QSL("foo") },
+            { QSL("text"), QSL("bar") },
+        };
 }
 
 void TestDoxml::parseCompound_docHtmlOnlyType()
 {
-    /// \todo Implement TestDoxml::parseCompound_docHtmlOnlyType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseCompound_docHtmlOnlyType(xml), QVariantMap{});
+    QTEST(doxml.parseCompound_docHtmlOnlyType(xml), "expected");
 }
 
 void TestDoxml::parseCompound_compoundRefType_data()
