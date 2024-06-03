@@ -3,6 +3,10 @@
         {
             "basecompoundref": [
                 {
+                    "prot": "public",
+                    "refid": "structm1_1_1t2",
+                    "text": "m1::t2",
+                    "virt": "non-virtual"
                 }
             ],
             "briefdescription": {

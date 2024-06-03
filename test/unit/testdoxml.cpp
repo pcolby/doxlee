@@ -296,14 +296,33 @@ void TestDoxml::parseCompound_docHtmlOnlyType()
 
 void TestDoxml::parseCompound_compoundRefType_data()
 {
+    QTest::addColumn<QString>("xmlString");
+    QTest::addColumn<QVariantMap>("expected");
+
+    QTest::addRow("basecompoundref")
+        << QSL("<basecompoundref>abc</basecompoundref>")
+        << QVariantMap{
+            { QSL("text"), QSL("abc") },
+        };
+
+    QTest::addRow("derivedcompoundref")
+        << QSL(R"(<derivedcompoundref refid="foo" prot="public" virt="pure-virtual">bar</derivedcompoundref>)")
+        << QVariantMap{
+            { QSL("refid"), QSL("foo") },
+            { QSL("prot"), QSL("public") },
+            { QSL("virt"), QSL("pure-virtual") },
+            { QSL("text"), QSL("bar") },
+        };
 }
 
 void TestDoxml::parseCompound_compoundRefType()
 {
-    /// \todo Implement TestDoxml::parseCompound_compoundRefType().
-    QXmlStreamReader xml;
+    QFETCH(QString, xmlString);
+    QXmlStreamReader xml(xmlString);
+    xml.readNextStartElement();
     doxlee::Doxml doxml(QString{});
-    QCOMPARE(doxml.parseCompound_compoundRefType(xml), QVariantMap{});
+    QTEST(doxml.parseCompound_compoundRefType(xml), "expected");
+    // for (const QString &attributeName: QStringList{ QSL("refid"), QSL("prot"), QSL("virt"), QSL("virt") }) {
 }
 
 void TestDoxml::parseCompound_reimplementType_data()

@@ -3,6 +3,10 @@
         {
             "basecompoundref": [
                 {
+                    "prot": "public",
+                    "refid": "structm1_1_1t1",
+                    "text": "m1::t1",
+                    "virt": "non-virtual"
                 }
             ],
             "briefdescription": {
@@ -12,8 +16,16 @@
             "compoundname": "m1::t2",
             "derivedcompoundref": [
                 {
+                    "prot": "public",
+                    "refid": "structm1_1_1t3",
+                    "text": "m1::t3",
+                    "virt": "non-virtual"
                 },
                 {
+                    "prot": "public",
+                    "refid": "structm2_1_1t3",
+                    "text": "m2::t3",
+                    "virt": "non-virtual"
                 }
             ],
             "detaileddescription": {

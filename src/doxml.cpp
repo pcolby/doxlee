@@ -594,9 +594,18 @@ QVariantMap Doxml::parseCompound_docHtmlOnlyType(QXmlStreamReader &xml) const
 
 QVariantMap Doxml::parseCompound_compoundRefType(QXmlStreamReader &xml) const
 {
-    /// \todo Implement Doxml::parseCompound_compoundRefType().
-    xml.skipCurrentElement();
-    return {};
+    Q_ASSERT((xml.name() == QSL("basecompoundref")) || (xml.name() == QSL("derivedcompoundref")));
+
+    const QXmlStreamAttributes attributes = xml.attributes();
+    QVariantMap map;
+    for (const QString &attributeName: QStringList{ QSL("refid"), QSL("prot"), QSL("virt"), QSL("virt") }) {
+        const QStringView attributeValue = attributes.value(attributeName);
+        if (!attributeValue.isNull()) {
+            map.insert(attributeName, attributeValue.toString());
+        }
+    }
+    map.insert(QSL("text"), xml.readElementText());
+    return map;
 }
 
 QVariantMap Doxml::parseCompound_reimplementType(QXmlStreamReader &xml) const

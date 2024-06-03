@@ -6,6 +6,10 @@
             "compoundname": "Object",
             "derivedcompoundref": [
                 {
+                    "prot": "public",
+                    "refid": "struct_vehicle",
+                    "text": "Vehicle",
+                    "virt": "non-virtual"
                 }
             ],
             "detaileddescription": {

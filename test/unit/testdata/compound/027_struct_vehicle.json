@@ -3,6 +3,10 @@
         {
             "basecompoundref": [
                 {
+                    "prot": "public",
+                    "refid": "struct_object",
+                    "text": "Object",
+                    "virt": "non-virtual"
                 }
             ],
             "briefdescription": {
@@ -12,8 +16,16 @@
             "compoundname": "Vehicle",
             "derivedcompoundref": [
                 {
+                    "prot": "public",
+                    "refid": "struct_car",
+                    "text": "Car",
+                    "virt": "non-virtual"
                 },
                 {
+                    "prot": "public",
+                    "refid": "struct_truck",
+                    "text": "Truck",
+                    "virt": "non-virtual"
                 }
             ],
             "detaileddescription": {

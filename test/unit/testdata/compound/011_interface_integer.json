@@ -3,6 +3,9 @@
         {
             "basecompoundref": [
                 {
+                    "prot": "public",
+                    "text": "Object",
+                    "virt": "non-virtual"
                 }
             ],
             "briefdescription": {

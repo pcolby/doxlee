@@ -3,6 +3,10 @@
         {
             "basecompoundref": [
                 {
+                    "prot": "public",
+                    "refid": "struct_vehicle",
+                    "text": "Vehicle",
+                    "virt": "non-virtual"
                 }
             ],
             "briefdescription": {
