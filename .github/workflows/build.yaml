@@ -95,7 +95,7 @@ jobs:
           'https://github.com/linuxdeploy/linuxdeploy-plugin-appimage/releases/download/continuous/linuxdeploy-plugin-appimage-x86_64.AppImage' \
           'https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage'
         chmod a+x /home/runner/.local/bin/linuxdeploy{,-plugin-{appimage,qt}}-x86_64.AppImage
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - name: Build
       id: build
       env:
@@ -211,7 +211,7 @@ jobs:
           - { qt: '6.5.3', env: { cc: gcc-12 } }
           - { qt: '6.6.3', env: { cc: gcc-12 } }
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - name: Install lcov
       run: brew install lcov
     - name: Install Qt
@@ -359,7 +359,7 @@ jobs:
         - { generator: 'NMake Makefiles', tool: msvc  }
         - { generator: 'MinGW Makefiles', tool: mingw }
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - name: Install host Qt for cross-compilation
       if: matrix.arch == 'arm64'
       uses: jurplel/install-qt-action@v4
@@ -462,7 +462,7 @@ jobs:
     needs: linux # \todo Require [ linux, mac, win ]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - name: Install lcov
       run: |
         sudo apt-mark hold grub-efi-amd64-signed
@@ -518,7 +518,7 @@ jobs:
     #if: success() && (github.ref == 'refs/heads/main')
     needs: collate-test-results
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
       with: { ref: doc }
     - name: Clear previous coverage report
       run: rm -rf main/cov
